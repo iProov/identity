@@ -1,0 +1,51 @@
+{
+  "originHash" : "332d55abd9ad33a8ddf86eac9a034130d10222acc02c1044883c598dba33cf88",
+  "pins" : [
+    {
+      "identity" : "ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/iProov/ios",
+      "state" : {
+        "revision" : "150757800c7020d088c48dc850766662bda4474b",
+        "version" : "12.4.1"
+      }
+    },
+    {
+      "identity" : "mrzparser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/appintheair/MRZParser.git",
+      "state" : {
+        "revision" : "64b73fae8092b31d0a378f0d000c244470c7ac44",
+        "version" : "1.1.3"
+      }
+    },
+    {
+      "identity" : "mrzscanner",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/appintheair/MRZScanner.git",
+      "state" : {
+        "branch" : "develop",
+        "revision" : "a5448a574c097babe134712471c282cdaf1d3b53"
+      }
+    },
+    {
+      "identity" : "nfcpassportreader",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AndyQ/NFCPassportReader",
+      "state" : {
+        "revision" : "84e11ec67a5c0d5ff54f918182fd4658801cc7f2",
+        "version" : "2.1.1"
+      }
+    },
+    {
+      "identity" : "openssl",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/krzyzanowskim/OpenSSL.git",
+      "state" : {
+        "revision" : "8cb1d641ab5ebce2cd7cf31c93baef07bed672d4",
+        "version" : "1.1.2301"
+      }
+    }
+  ],
+  "version" : 3
+}

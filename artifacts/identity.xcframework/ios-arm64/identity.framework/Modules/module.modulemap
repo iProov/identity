@@ -1,0 +1,8 @@
+framework module "identity" {
+    umbrella header "identity.h"
+
+    export *
+    module * { export * }
+
+    use Foundation
+}

@@ -1,0 +1,576 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CA0CDC972D5E17BA005725B7 /* MRZScanner in Frameworks */ = {isa = PBXBuildFile; productRef = CA0CDC962D5E17BA005725B7 /* MRZScanner */; };
+		CA0CDC992D5E17DD005725B7 /* MrzCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0CDC982D5E17DD005725B7 /* MrzCaptureView.swift */; };
+		CA3824182E17B5E2008F4D2C /* ScanQrCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3824172E17B5DA008F4D2C /* ScanQrCodeViewModel.swift */; };
+		CA38241A2E17B625008F4D2C /* ScanQrCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3824192E17B621008F4D2C /* ScanQrCodeButton.swift */; };
+		CA38241C2E17B6B5008F4D2C /* RegisteredViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA38241B2E17B6B2008F4D2C /* RegisteredViewModel.swift */; };
+		CA38241E2E17C177008F4D2C /* AddDocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA38241D2E17C174008F4D2C /* AddDocumentViewModel.swift */; };
+		CA3824202E17C3C1008F4D2C /* AddEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA38241F2E17C3BB008F4D2C /* AddEmailViewModel.swift */; };
+		CA3824222E17C41F008F4D2C /* AddPhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3824212E17C417008F4D2C /* AddPhoneViewModel.swift */; };
+		CA3824282E181ABF008F4D2C /* AddDocumentReferenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3824272E181AB7008F4D2C /* AddDocumentReferenceViewModel.swift */; };
+		CA3824292E1C1DFC008F4D2C /* identity.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3824132E172138008F4D2C /* identity.xcframework */; };
+		CA38242A2E1C1DFC008F4D2C /* identity.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA3824132E172138008F4D2C /* identity.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CA38242E2E1C23C9008F4D2C /* iProov in Frameworks */ = {isa = PBXBuildFile; productRef = CA38242D2E1C23C9008F4D2C /* iProov */; };
+		CA3824302E1C3314008F4D2C /* AddDocumentReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA38242F2E1C330D008F4D2C /* AddDocumentReferenceView.swift */; };
+		CA4156792D39641800D7A909 /* CredentialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4156782D39641800D7A909 /* CredentialsView.swift */; };
+		CA41567B2D3965A800D7A909 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA41567A2D3965A800D7A909 /* HomeViewModel.swift */; };
+		CA41567F2D39732000D7A909 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA41567E2D39732000D7A909 /* ErrorView.swift */; };
+		CAB748A62D1415BE00F33325 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB748A52D1415BE00F33325 /* App.swift */; };
+		CAB748A82D1415BE00F33325 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB748A72D1415BE00F33325 /* HomeView.swift */; };
+		CAB748AA2D1415C000F33325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB748A92D1415C000F33325 /* Assets.xcassets */; };
+		CAB748AD2D1415C000F33325 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB748AC2D1415C000F33325 /* Preview Assets.xcassets */; };
+		CAD1A8C52D4D1EBD009CD341 /* NFCPassportReader in Frameworks */ = {isa = PBXBuildFile; productRef = CAD1A8C42D4D1EBD009CD341 /* NFCPassportReader */; };
+		CAD1A8C72D4D2D83009CD341 /* AddDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A8C62D4D2D83009CD341 /* AddDocumentView.swift */; };
+		CAD1A8C92D50E5EF009CD341 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A8C82D50E5EF009CD341 /* Error.swift */; };
+		CAD1A8CB2D510FD4009CD341 /* AddPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A8CA2D510FD4009CD341 /* AddPhoneView.swift */; };
+		CAD1A8CD2D510FDB009CD341 /* AddEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A8CC2D510FDB009CD341 /* AddEmailView.swift */; };
+		CAF398CC2D479925007D62E3 /* JwtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF398CB2D479925007D62E3 /* JwtView.swift */; };
+		CAF398D92D47AD6C007D62E3 /* ScanQrCodeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF398D82D47AD6C007D62E3 /* ScanQrCodeSheet.swift */; };
+		CAF398DF2D48CB71007D62E3 /* SelectiveDisclosureSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF398DE2D48CB71007D62E3 /* SelectiveDisclosureSheet.swift */; };
+		CAF398E12D48CB87007D62E3 /* SelectiveDisclosureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF398E02D48CB87007D62E3 /* SelectiveDisclosureViewModel.swift */; };
+		CAF398E32D4929CE007D62E3 /* RegisteredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF398E22D4929CE007D62E3 /* RegisteredView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CA38242B2E1C1DFC008F4D2C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CA38242A2E1C1DFC008F4D2C /* identity.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CA0CDC982D5E17DD005725B7 /* MrzCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MrzCaptureView.swift; sourceTree = "<group>"; };
+		CA1CCA182DB8D3D700399302 /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../identity/build/XCFrameworks/debug/identity.xcframework; sourceTree = "<group>"; };
+		CA3824132E172138008F4D2C /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../artifacts/identity.xcframework; sourceTree = "<group>"; };
+		CA3824172E17B5DA008F4D2C /* ScanQrCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQrCodeViewModel.swift; sourceTree = "<group>"; };
+		CA3824192E17B621008F4D2C /* ScanQrCodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQrCodeButton.swift; sourceTree = "<group>"; };
+		CA38241B2E17B6B2008F4D2C /* RegisteredViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredViewModel.swift; sourceTree = "<group>"; };
+		CA38241D2E17C174008F4D2C /* AddDocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDocumentViewModel.swift; sourceTree = "<group>"; };
+		CA38241F2E17C3BB008F4D2C /* AddEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmailViewModel.swift; sourceTree = "<group>"; };
+		CA3824212E17C417008F4D2C /* AddPhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhoneViewModel.swift; sourceTree = "<group>"; };
+		CA3824272E181AB7008F4D2C /* AddDocumentReferenceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDocumentReferenceViewModel.swift; sourceTree = "<group>"; };
+		CA38242F2E1C330D008F4D2C /* AddDocumentReferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDocumentReferenceView.swift; sourceTree = "<group>"; };
+		CA4156722D395EC600D7A909 /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../identity/build/XCFrameworks/release/identity.xcframework; sourceTree = "<group>"; };
+		CA4156782D39641800D7A909 /* CredentialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsView.swift; sourceTree = "<group>"; };
+		CA41567A2D3965A800D7A909 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		CA41567E2D39732000D7A909 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		CAB748A22D1415BE00F33325 /* iProov Identity Example App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iProov Identity Example App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAB748A52D1415BE00F33325 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		CAB748A72D1415BE00F33325 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		CAB748A92D1415C000F33325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CAB748AC2D1415C000F33325 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CAB748B42D141AB300F33325 /* sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = sdk.framework; path = ../identity/build/bin/iosX64/releaseFramework/sdk.framework; sourceTree = "<group>"; };
+		CAD1A8C62D4D2D83009CD341 /* AddDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDocumentView.swift; sourceTree = "<group>"; };
+		CAD1A8C82D50E5EF009CD341 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		CAD1A8CA2D510FD4009CD341 /* AddPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhoneView.swift; sourceTree = "<group>"; };
+		CAD1A8CC2D510FDB009CD341 /* AddEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmailView.swift; sourceTree = "<group>"; };
+		CAF398CB2D479925007D62E3 /* JwtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtView.swift; sourceTree = "<group>"; };
+		CAF398D82D47AD6C007D62E3 /* ScanQrCodeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQrCodeSheet.swift; sourceTree = "<group>"; };
+		CAF398DE2D48CB71007D62E3 /* SelectiveDisclosureSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectiveDisclosureSheet.swift; sourceTree = "<group>"; };
+		CAF398E02D48CB87007D62E3 /* SelectiveDisclosureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectiveDisclosureViewModel.swift; sourceTree = "<group>"; };
+		CAF398E22D4929CE007D62E3 /* RegisteredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CAB7489F2D1415BE00F33325 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA3824292E1C1DFC008F4D2C /* identity.xcframework in Frameworks */,
+				CA38242E2E1C23C9008F4D2C /* iProov in Frameworks */,
+				CA0CDC972D5E17BA005725B7 /* MRZScanner in Frameworks */,
+				CAD1A8C52D4D1EBD009CD341 /* NFCPassportReader in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CAB748992D1415BE00F33325 = {
+			isa = PBXGroup;
+			children = (
+				CAB748A42D1415BE00F33325 /* iProov Identity Example App */,
+				CAB748A32D1415BE00F33325 /* Products */,
+				CAB748B32D141AB300F33325 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CAB748A32D1415BE00F33325 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CAB748A22D1415BE00F33325 /* iProov Identity Example App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CAB748A42D1415BE00F33325 /* iProov Identity Example App */ = {
+			isa = PBXGroup;
+			children = (
+				CAF398DD2D47F6AB007D62E3 /* Utils */,
+				CAF398DC2D47F67C007D62E3 /* Issuance */,
+				CAF398DB2D47F675007D62E3 /* Presentation */,
+				CAF398DA2D47F66E007D62E3 /* Home */,
+				CAB748A52D1415BE00F33325 /* App.swift */,
+				CAB748A92D1415C000F33325 /* Assets.xcassets */,
+				CAB748AB2D1415C000F33325 /* Preview Content */,
+			);
+			path = "iProov Identity Example App";
+			sourceTree = "<group>";
+		};
+		CAB748AB2D1415C000F33325 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CAB748AC2D1415C000F33325 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CAB748B32D141AB300F33325 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CA4156722D395EC600D7A909 /* identity.xcframework */,
+				CA1CCA182DB8D3D700399302 /* identity.xcframework */,
+				CA3824132E172138008F4D2C /* identity.xcframework */,
+				CAB748B42D141AB300F33325 /* sdk.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CAF398DA2D47F66E007D62E3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CA38241B2E17B6B2008F4D2C /* RegisteredViewModel.swift */,
+				CA3824192E17B621008F4D2C /* ScanQrCodeButton.swift */,
+				CA3824172E17B5DA008F4D2C /* ScanQrCodeViewModel.swift */,
+				CA41567A2D3965A800D7A909 /* HomeViewModel.swift */,
+				CAB748A72D1415BE00F33325 /* HomeView.swift */,
+				CA4156782D39641800D7A909 /* CredentialsView.swift */,
+				CA41567E2D39732000D7A909 /* ErrorView.swift */,
+				CAF398CB2D479925007D62E3 /* JwtView.swift */,
+				CAF398E22D4929CE007D62E3 /* RegisteredView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		CAF398DB2D47F675007D62E3 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				CAF398D82D47AD6C007D62E3 /* ScanQrCodeSheet.swift */,
+				CAF398DE2D48CB71007D62E3 /* SelectiveDisclosureSheet.swift */,
+				CAF398E02D48CB87007D62E3 /* SelectiveDisclosureViewModel.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		CAF398DC2D47F67C007D62E3 /* Issuance */ = {
+			isa = PBXGroup;
+			children = (
+				CA38242F2E1C330D008F4D2C /* AddDocumentReferenceView.swift */,
+				CA3824272E181AB7008F4D2C /* AddDocumentReferenceViewModel.swift */,
+				CA3824212E17C417008F4D2C /* AddPhoneViewModel.swift */,
+				CA38241F2E17C3BB008F4D2C /* AddEmailViewModel.swift */,
+				CA38241D2E17C174008F4D2C /* AddDocumentViewModel.swift */,
+				CAD1A8C62D4D2D83009CD341 /* AddDocumentView.swift */,
+				CAD1A8CA2D510FD4009CD341 /* AddPhoneView.swift */,
+				CAD1A8CC2D510FDB009CD341 /* AddEmailView.swift */,
+				CA0CDC982D5E17DD005725B7 /* MrzCaptureView.swift */,
+			);
+			path = Issuance;
+			sourceTree = "<group>";
+		};
+		CAF398DD2D47F6AB007D62E3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CAD1A8C82D50E5EF009CD341 /* Error.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CAB748A12D1415BE00F33325 /* iProov Identity Example App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CAB748B02D1415C000F33325 /* Build configuration list for PBXNativeTarget "iProov Identity Example App" */;
+			buildPhases = (
+				CAB7489F2D1415BE00F33325 /* Frameworks */,
+				CAB7489E2D1415BE00F33325 /* Sources */,
+				CAB748A02D1415BE00F33325 /* Resources */,
+				CA38242B2E1C1DFC008F4D2C /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iProov Identity Example App";
+			packageProductDependencies = (
+				CAD1A8C42D4D1EBD009CD341 /* NFCPassportReader */,
+				CA0CDC962D5E17BA005725B7 /* MRZScanner */,
+				CA38242D2E1C23C9008F4D2C /* iProov */,
+			);
+			productName = "iProov Identity Sample App";
+			productReference = CAB748A22D1415BE00F33325 /* iProov Identity Example App.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CAB7489A2D1415BE00F33325 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					CAB748A12D1415BE00F33325 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = CAB7489D2D1415BE00F33325 /* Build configuration list for PBXProject "iProov Identity Example App" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CAB748992D1415BE00F33325;
+			packageReferences = (
+				CAD1A8C32D4D1EBD009CD341 /* XCRemoteSwiftPackageReference "NFCPassportReader" */,
+				CA0CDC952D5E17BA005725B7 /* XCRemoteSwiftPackageReference "MRZScanner" */,
+				CA38242C2E1C23C9008F4D2C /* XCRemoteSwiftPackageReference "ios" */,
+			);
+			productRefGroup = CAB748A32D1415BE00F33325 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CAB748A12D1415BE00F33325 /* iProov Identity Example App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CAB748A02D1415BE00F33325 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CAB748AD2D1415C000F33325 /* Preview Assets.xcassets in Resources */,
+				CAB748AA2D1415C000F33325 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CAB7489E2D1415BE00F33325 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CAD1A8CD2D510FDB009CD341 /* AddEmailView.swift in Sources */,
+				CA41567F2D39732000D7A909 /* ErrorView.swift in Sources */,
+				CAB748A82D1415BE00F33325 /* HomeView.swift in Sources */,
+				CAF398CC2D479925007D62E3 /* JwtView.swift in Sources */,
+				CAD1A8C92D50E5EF009CD341 /* Error.swift in Sources */,
+				CA3824282E181ABF008F4D2C /* AddDocumentReferenceViewModel.swift in Sources */,
+				CA3824182E17B5E2008F4D2C /* ScanQrCodeViewModel.swift in Sources */,
+				CA38241C2E17B6B5008F4D2C /* RegisteredViewModel.swift in Sources */,
+				CA38241E2E17C177008F4D2C /* AddDocumentViewModel.swift in Sources */,
+				CA3824302E1C3314008F4D2C /* AddDocumentReferenceView.swift in Sources */,
+				CAD1A8C72D4D2D83009CD341 /* AddDocumentView.swift in Sources */,
+				CAB748A62D1415BE00F33325 /* App.swift in Sources */,
+				CA0CDC992D5E17DD005725B7 /* MrzCaptureView.swift in Sources */,
+				CAF398E12D48CB87007D62E3 /* SelectiveDisclosureViewModel.swift in Sources */,
+				CAF398E32D4929CE007D62E3 /* RegisteredView.swift in Sources */,
+				CA3824202E17C3C1008F4D2C /* AddEmailViewModel.swift in Sources */,
+				CA38241A2E17B625008F4D2C /* ScanQrCodeButton.swift in Sources */,
+				CA4156792D39641800D7A909 /* CredentialsView.swift in Sources */,
+				CA41567B2D3965A800D7A909 /* HomeViewModel.swift in Sources */,
+				CAD1A8CB2D510FD4009CD341 /* AddPhoneView.swift in Sources */,
+				CA3824222E17C41F008F4D2C /* AddPhoneViewModel.swift in Sources */,
+				CAF398DF2D48CB71007D62E3 /* SelectiveDisclosureSheet.swift in Sources */,
+				CAF398D92D47AD6C007D62E3 /* ScanQrCodeSheet.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CAB748AE2D1415C000F33325 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CAB748AF2D1415C000F33325 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CAB748B12D1415C000F33325 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "iProov Identity Example App/iProov Identity Example App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"iProov Identity Example App/Preview Content\"";
+				DEVELOPMENT_TEAM = 622Y49N79Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iProov-Identity-Example-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "iProov Identity Example App";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires the camera to scan QR codes and your face.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iproov.identity.example;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		CAB748B22D1415C000F33325 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "iProov Identity Example App/iProov Identity Example App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"iProov Identity Example App/Preview Content\"";
+				DEVELOPMENT_TEAM = 622Y49N79Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iProov-Identity-Example-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "iProov Identity Example App";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires the camera to scan QR codes and your face.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iproov.identity.example;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CAB7489D2D1415BE00F33325 /* Build configuration list for PBXProject "iProov Identity Example App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CAB748AE2D1415C000F33325 /* Debug */,
+				CAB748AF2D1415C000F33325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CAB748B02D1415C000F33325 /* Build configuration list for PBXNativeTarget "iProov Identity Example App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CAB748B12D1415C000F33325 /* Debug */,
+				CAB748B22D1415C000F33325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CA0CDC952D5E17BA005725B7 /* XCRemoteSwiftPackageReference "MRZScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/appintheair/MRZScanner.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+		CA38242C2E1C23C9008F4D2C /* XCRemoteSwiftPackageReference "ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/iProov/ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.4.1;
+			};
+		};
+		CAD1A8C32D4D1EBD009CD341 /* XCRemoteSwiftPackageReference "NFCPassportReader" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AndyQ/NFCPassportReader";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CA0CDC962D5E17BA005725B7 /* MRZScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA0CDC952D5E17BA005725B7 /* XCRemoteSwiftPackageReference "MRZScanner" */;
+			productName = MRZScanner;
+		};
+		CA38242D2E1C23C9008F4D2C /* iProov */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA38242C2E1C23C9008F4D2C /* XCRemoteSwiftPackageReference "ios" */;
+			productName = iProov;
+		};
+		CAD1A8C42D4D1EBD009CD341 /* NFCPassportReader */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CAD1A8C32D4D1EBD009CD341 /* XCRemoteSwiftPackageReference "NFCPassportReader" */;
+			productName = NFCPassportReader;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = CAB7489A2D1415BE00F33325 /* Project object */;
+}

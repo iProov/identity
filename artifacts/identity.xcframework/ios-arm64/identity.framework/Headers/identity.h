@@ -916,6 +916,12 @@ __attribute__((swift_name("IdentityPlatformInterface")))
 - (void)verifyReadIdSession:(NSString *)session secret:(IdentityKotlinByteArray *)secret completionHandler:(void (^)(NSArray<IdentityJwt *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("verifyReadId(session:secret:completionHandler:)")));
 
 /**
+ * @note This method converts instances of ApiException, CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)verifyReferenceDocumentToken:(NSString *)token completionHandler:(void (^)(NSArray<IdentityJwt *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("verifyReferenceDocument(token:completionHandler:)")));
+
+/**
  * @note This method converts instances of CancellationException, ApiException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */

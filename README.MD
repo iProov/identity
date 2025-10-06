@@ -90,8 +90,8 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
     dependencyResolutionManagement {
         repositories {
             mavenCentral()
-            maven("https://raw.githubusercontent.com/iProov/android/master/maven/")
-            maven("https://raw.githubusercontent.com/iProov/identity-sdk/master/maven/")
+            maven("https://raw.githubusercontent.com/iProov/kotlin-multiplatform/main/maven/")
+            maven("https://raw.githubusercontent.com/iProov/identity/master/maven/")
         }
     }
     ```
@@ -120,7 +120,8 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
     dependencyResolutionManagement {
         repositories {
             mavenCentral()
-            maven("https://raw.githubusercontent.com/iProov/identity-sdk/master/maven/")
+            maven("https://raw.githubusercontent.com/iProov/kotlin-multiplatform/main/maven/")
+            maven("https://raw.githubusercontent.com/iProov/identity/master/maven/")
         }
     }
     ```

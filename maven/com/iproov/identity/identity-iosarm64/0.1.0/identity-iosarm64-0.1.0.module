@@ -122,11 +122,11 @@
         {
           "name": "identity-iosArm64Main-0.1.0.klib",
           "url": "identity-iosarm64-0.1.0.klib",
-          "size": 363374,
-          "sha512": "63b6a1b787ea5a7dffb7026df5116772e34317d577e07b36b7d84e9a5d28ca66d82d1a19ef07578d3d92ae9b3873d1e1c995322c5da5171510043eba77d07488",
-          "sha256": "a15d79c93637e520ed1354f88e3fe170da5af99a3238e6e94914ea834aab5809",
-          "sha1": "c1b0d50e56795c6cb4c658424ac5706d7495d333",
-          "md5": "9564a28cf5475d700ac236c42226b371"
+          "size": 374864,
+          "sha512": "db80546285c0648fa96f09b2cc5c6ac99de13482b415310bc12b47656bc7b4f7f8017b444e390f01fe5a50dfbd6a3945b4d6c80578df9c7acc1f8d0b1779503c",
+          "sha256": "b1d5916ffee136b885ba04058c4054182bd6d594545cab82cd59a542b6cd5004",
+          "sha1": "25c79cbb46afbb446a92bcfd3c7d5310c837d960",
+          "md5": "64255a3bc1569d9f1307b42d080d217a"
         }
       ]
     },
@@ -145,11 +145,11 @@
         {
           "name": "identity-iosarm64-0.1.0-sources.jar",
           "url": "identity-iosarm64-0.1.0-sources.jar",
-          "size": 55218,
-          "sha512": "97d5c1bb60f764cd19e9a17c0a8ab77b9c6f5f433d37d6e35f3e9c88d891c4d1ce0535426cccd0667b215d70448cbcc9d8acf24dc812b428983d073494c02acd",
-          "sha256": "57da3d5242e37cb3d089282fb45be278e652c335c8b1f100c0b95ba653233a88",
-          "sha1": "d6ca715e95cf995510f62556a6c6136cadb77bd0",
-          "md5": "b5ef57549b6727bc405392d9df7f010e"
+          "size": 56198,
+          "sha512": "a4592dc1f6dc8156817132a74f634b486ee747dbb89865b6c3b949fb93a208a16c911061b78f639421f93d0b312a65a005ef74c2cafbc5f1b74d5687b5e13dee",
+          "sha256": "93e7bd60ba075bbfe82b1352d3744d4c51df8698aded02df1684585e22ee7db9",
+          "sha1": "4bae9c999d818222f0285279fdd9df15ed4445d4",
+          "md5": "6e9435933a09d56cb51f1f01862b2452"
         }
       ]
     },
@@ -261,10 +261,10 @@
           "name": "identity-iosarm64-0.1.0-metadata.jar",
           "url": "identity-iosarm64-0.1.0-metadata.jar",
           "size": 261,
-          "sha512": "c0c03e4507a569bf623a0393fd0c3aab77968610bb5bd405ae9b2f31edc4b3a547b6618824e34246173d0f10bce1d42b214c39e813e291265ff1402348457352",
-          "sha256": "cb4466a91bb5a67a3449a31e8389fe95a16f3a59aba6fd2f70ebf0bdb6bfddc8",
-          "sha1": "2acf72019dea4b7a1b955ffc122e190db0bd4c20",
-          "md5": "0d1deb19b43f64f544a2c79067ab2c5b"
+          "sha512": "a7954397e9c0b6caf30aa439da68eae29156e262cba234c1806d36736b416c60efd7abe52728a52574ad0870f5427f79ae9014a864cbeade83396b01c1d8e4be",
+          "sha256": "b912c29cae7963343bd3c795256b7b0d0fec67266df278db4fd0977b02f1575f",
+          "sha1": "812f0ccc5848f8210ba35fedf436a62c7df7251b",
+          "md5": "45f8a54a482c6f64310d290c01e52138"
         }
       ]
     }

@@ -1,6 +1,7 @@
-# iProov Identity SDK v0.1.0
+# iProov Identity SDK v0.1.1
 
-The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform app.
+The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform
+app.
 
 > [!WARNING]
 > The iProov Identity SDK is currently a development preview, which means that there may be missing/broken
@@ -47,8 +48,8 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 - For Android apps:
     - Your Android application ID.
     - The fingerprint of your Android
-    app [signing key certificate](https://play.google.com/console/developers/app/keymanagement). (For further details,
-    see [here](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en-GB#:~:text=signing%20to%20continue.-,Step%203,-%3A%20Register%20your%20app)).
+      app [signing key certificate](https://play.google.com/console/developers/app/keymanagement). (For further details,
+      see [here](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en-GB#:~:text=signing%20to%20continue.-,Step%203,-%3A%20Register%20your%20app)).
 
 ## Installation
 
@@ -57,13 +58,13 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
     <details>
     <summary>iOS (Swift Package Manager)</summary>
 
-    Not currently supported, will be added in a future release. For now please follow the manual steps.
+   Not currently supported, will be added in a future release. For now please follow the manual steps.
     </details>
 
     <details>
     <summary>iOS (Manual)</summary>
 
-    ![Diagram of Xcode](docs/manual-installation.png)
+   ![Diagram of Xcode](docs/manual-installation.png)
 
     1. Select your project in Xcode.
 
@@ -73,7 +74,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     4. Add identity.xcframework from the artifacts directory in the repository.
 
-    > **Note**: Ensure you add the .xcframework file, rather than the .framework file.
+   > **Note**: Ensure you add the .xcframework file, rather than the .framework file.
 
     5. Under the Embed column, ensure Embed & Sign is set.
 
@@ -84,19 +85,19 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
     <details>
     <summary>Android</summary>
 
-    Add the following to your project's `settings.gradle.kts` file:
+   Add the following to your project's `settings.gradle.kts` file:
 
     ```kotlin
     dependencyResolutionManagement {
         repositories {
             mavenCentral()
-            maven("https://raw.githubusercontent.com/iProov/kotlin-multiplatform/main/maven/")
-            maven("https://raw.githubusercontent.com/iProov/identity/master/maven/")
+            maven("https://raw.githubusercontent.com/iProov/android/master/maven/")
+            maven("https://raw.githubusercontent.com/iProov/identity-sdk/master/maven/")
         }
     }
     ```
 
-    Add the following to your module's `build.gradle.kts` file:
+   Add the following to your module's `build.gradle.kts` file:
 
     ```kotlin
     dependencies {
@@ -105,28 +106,28 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
     }
     ```
 
-    Make sure you refer to the docs [here](https://github.com/iProov/android) for the latest instructions to add the iProov Biometrics SDK to your app.
+   Make sure you refer to the docs [here](https://github.com/iProov/android) for the latest instructions to add the
+   iProov Biometrics SDK to your app.
 
     </details>
 
     <details>
     <summary>Kotlin Multiplatform</summary>
 
-    ### Kotlin Multiplatform
+   ### Kotlin Multiplatform
 
-    Add the following to your project's `settings.gradle.kts` file:
+   Add the following to your project's `settings.gradle.kts` file:
 
     ```kotlin
     dependencyResolutionManagement {
         repositories {
             mavenCentral()
-            maven("https://raw.githubusercontent.com/iProov/kotlin-multiplatform/main/maven/")
-            maven("https://raw.githubusercontent.com/iProov/identity/master/maven/")
+            maven("https://raw.githubusercontent.com/iProov/identity-sdk/master/maven/")
         }
     }
     ```
 
-    Add the following to your module's `build.gradle.kts` file:
+   Add the following to your module's `build.gradle.kts` file:
 
     ```kotlin
     kotlin {
@@ -146,21 +147,21 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
     <details>
     <summary>iOS</summary>
 
-    Camera access permission is required to use the iProov Biometrics SDK to scan the user's face.
+   Camera access permission is required to use the iProov Biometrics SDK to scan the user's face.
 
-    Add an `NSCameraUsageDescription` entry to your app's Info.plist file, with the reason why your app requires camera
-    access (e.g. “To iProov you to verify your identity.”)
+   Add an `NSCameraUsageDescription` entry to your app's Info.plist file, with the reason why your app requires camera
+   access (e.g. “To iProov you to verify your identity.”)
     </details>
 
     <details>
     <summary>Android</summary>
 
-    On Android, the Identity SDK stores its data in the `com.iproov.identity.xml` encrypted shared preferences file. By
-    default, this file is encrypted with a key stored in secure hardware and can therefore not be accessed on a different
-    device, or after a device reset.
+   On Android, the Identity SDK stores its data in the `com.iproov.identity.xml` encrypted shared preferences file. By
+   default, this file is encrypted with a key stored in secure hardware and can therefore not be accessed on a different
+   device, or after a device reset.
 
-    Therefore, if Android tries to restore this file from a backup, it will fail to decrypt it. Follow these steps to
-    exclude it from your app backups:
+   Therefore, if Android tries to restore this file from a backup, it will fail to decrypt it. Follow these steps to
+   exclude it from your app backups:
 
     1. Add the following attributes to your `AndroidManifest.xml` file `<application>` tag:
 
@@ -171,8 +172,8 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
             android:dataExtractionRules="@xml/data_extraction_rules">
         ```
 
-    You could also consider adding `android:allowBackup="false"`, however this will prevent **all** data from your app
-    being backed up.
+   You could also consider adding `android:allowBackup="false"`, however this will prevent **all** data from your app
+   being backed up.
 
     2. Add the following contents to `res/xml/backup_rules.xml` (for Android 11 and below):
 
@@ -194,7 +195,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
             </device-transfer-rules>
         </data-extraction-rules>
         ```
-    </summary>
+    </details>
 
 
 3. Finally, you can now import the SDK to use it from your project:
@@ -206,7 +207,6 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
     import com.iproov.identity.*
     ```
     </details>
-
 
     <details>
     <summary>Swift</summary>
@@ -229,6 +229,7 @@ You can get a reference to the wallet as follows (in this case, pointing to the 
 ```kotlin
 val wallet = WalletFactory.getInstance(baseUrl = "https://api.beta-eu.iproov.me")
 ```
+
 </details>
 
 <details>
@@ -237,6 +238,7 @@ val wallet = WalletFactory.getInstance(baseUrl = "https://api.beta-eu.iproov.me"
 ```swift
 let wallet = WalletFactory.shared.getInstance(baseUrl: "https://api.beta-eu.iproov.me", isLoggingEnabled: true)
 ```
+
 </details>
 
 If the wallet hasn't yet been initialized on your device, it will be created for you.
@@ -265,6 +267,7 @@ To register your wallet, call `wallet.register()`:
 // In a coroutine scope
 wallet.register()
 ```
+
 </details>
 
 <details>
@@ -277,21 +280,23 @@ do {
     // Handle error
 }
 ```
+
 </details>
 
 <details>
 <summary>Swift (pre-concurrency)</summary>
 
 ```swift
-wallet.register(){ error in 
+wallet.register() { error in
     if let error {
         // Handle error
         return
     }
-    
+
     // Handle successful wallet registration
 }
 ```
+
 </details>
 
 > [!IMPORTANT]
@@ -306,6 +311,7 @@ You can always check if your wallet is already registered with `wallet.isRegiste
 ```kotlin
 val isRegistered = wallet.isRegistered
 ```
+
 </details>
 
 <details>
@@ -314,6 +320,7 @@ val isRegistered = wallet.isRegistered
 ```swift
 let isRegistered = wallet.isRegistered
 ```
+
 </details>
 
 When your wallet is first registered, it contains no credentials and only three claims: `sub` and `wid`
@@ -333,6 +340,7 @@ You can delete your wallet by calling `wallet.delete()`:
 // In a coroutine scope
 wallet.delete()
 ```
+
 </details>
 
 <details>
@@ -345,21 +353,23 @@ do {
     // Handle error
 }
 ```
+
 </details>
 
 <details>
 <summary>Swift (pre-concurrency)</summary>
 
 ```swift
-wallet.delete() { error in 
+wallet.delete() { error in
     if let error {
         // Handle error
         return
     }
-    
+
     // Handle successful wallet deletion
 }
 ```
+
 </details>
 
 As this makes an API call, this can fail, if there is no internet or the wallet is in an invalid state. Failing the API
@@ -381,6 +391,7 @@ can directly call `wallet.destroy()`:
 ```kotlin
 wallet.destroy()
 ```
+
 </details>
 
 <details>
@@ -393,21 +404,23 @@ do {
     // Handle error
 }
 ```
+
 </details>
 
 <details>
 <summary>Swift (pre-concurrency)</summary>
 
 ```swift
-wallet.destroy() { error in 
+wallet.destroy() { error in
     if let error {
         // Handle error
         return
     }
-    
+
     // Handle successful wallet destruction
 }
 ```
+
 </details>
 
 ## Credentials
@@ -442,6 +455,7 @@ You can get all the credentials in your wallet with `wallet.getCredentials()`:
 ```kotlin
 val credentials = wallet.getCredentials()
 ```
+
 </details>
 
 <details>
@@ -454,6 +468,7 @@ do {
     // Handle error
 }
 ```
+
 </details>
 
 ### Deleting credentials
@@ -497,6 +512,7 @@ do {
     // Handle error
 }
 ```
+
 </details>
 
 <details>
@@ -508,7 +524,7 @@ credential.delete() { error in
         // Handle error
         return
     }
-    
+
     // Handle succesful deletion
 }
 ```
@@ -516,15 +532,16 @@ credential.delete() { error in
 or
 
 ```swift
-wallet.deleteCredential(credential: credential) { error in 
-   if let error {
+wallet.deleteCredential(credential: credential) { error in
+    if let error {
         // Handle error
         return
-   }
-   
-   // Handle successful deletion
+    }
+
+    // Handle successful deletion
 }
 ```
+
 </details>
 
 
@@ -554,6 +571,7 @@ Document) with `wallet.createDemoMrtd()`:
 // In a coroutine scope
 val mrtd = wallet.createDemoMrtd()
 ```
+
 </details>
 
 <details>
@@ -566,6 +584,7 @@ do {
     // Handle error
 }
 ```
+
 </details>
 
 <details>
@@ -580,6 +599,7 @@ wallet.createDemoMrtd() { mrtd, error in
     // Handle success with mrtd
 }
 ```
+
 </details>
 
 For a real identity credential, you would now perform an optical OCR scan of the document to capture the MRZ of the
@@ -599,6 +619,7 @@ val challenge = wallet.addDocumentWithMrz(
     loginRequest = null // If performing a re-verification pass in login request
 )
 ```
+
 </details>
 
 <details>
@@ -607,13 +628,14 @@ val challenge = wallet.addDocumentWithMrz(
 ```swift
 do {
     let challenge = try await wallet.addDocumentWithMrz(
-        mrz: mrtd.mrz, 
+        mrz: mrtd.mrz,
         loginRequest: nil // If performing a re-verification pass in login request
     )
 } catch {
     // Handle error
 }
 ```
+
 </details>
 
 
@@ -622,7 +644,7 @@ do {
 
 ```swift
 wallet.addDocumentWithMrz(
-    mrz: mrtd.mrz, 
+    mrz: mrtd.mrz,
     loginRequest: nil // If performing a re-verification pass in login request
 ) { challenge, error in
 
@@ -634,6 +656,7 @@ wallet.addDocumentWithMrz(
     // Handle success with challenge    
 }
 ```
+
 </details>
 
 For a real document, you would now perform the NFC scan (passing the challenge, and getting a signature in response),
@@ -647,6 +670,7 @@ credential (and skipping the Active Authentication signature) as follows:
 // In a coroutine scope
 challenge.respond.withMrtd(mrtd = mrtd, accessControl = AccessControl.bac)
 ```
+
 </details>
 
 <details>
@@ -660,6 +684,7 @@ do {
     // Handle error
 }
 ```
+
 </details>
 
 <details>
@@ -668,14 +693,15 @@ do {
 ```swift
 let signature: Data? = nil
 challenge.respond!.withMrtd(mrtd: mrtd, accessControl: .bac, signature: signature) { _, error in
-  if let error {
-    // Handle error
-    return
-  }      
-  
-  // Handle success
-})
+    if let error {
+        // Handle error
+        return
+    }
+
+    // Handle success
+}
 ```
+
 </details>
 
 Your demo identity credential has now been added to the wallet, and you can fetch the updated contents of your wallet
@@ -712,6 +738,7 @@ Example obtaining a challenge for a document for which you have the MRZ:
 val challenge =
     wallet.addDocumentWithMrz("P<GBRMASON<<EDMUND<<<<<<<<<<<<<<<<<<<<<<<<<<8990336246GBR8602049M2801013<<<<<<<<<<<<<<02")
 ```
+
 </details>
 
 <details>
@@ -720,13 +747,14 @@ val challenge =
 ```swift
 do {
     let challenge = try await wallet.addDocumentWithMrz(
-        mrz: "P<GBRMASON<<EDMUND<<<<<<<<<<<<<<<<<<<<<<<<<<8990336246GBR8602049M2801013<<<<<<<<<<<<<<02", 
+        mrz: "P<GBRMASON<<EDMUND<<<<<<<<<<<<<<<<<<<<<<<<<<8990336246GBR8602049M2801013<<<<<<<<<<<<<<02",
         loginRequest: nil
     )
 } catch {
     // Handle error
 }
 ```
+
 </details>
 
 <details>
@@ -736,16 +764,17 @@ do {
 wallet.addDocumentWithMrz(
     mrz: "P<GBRMASON<<EDMUND<<<<<<<<<<<<<<<<<<<<<<<<<<8990336246GBR8602049M2801013<<<<<<<<<<<<<<02",
     loginRequest: nil
-){ challenge, error in
-            
+) { challenge, error in
+
     if let error {
         // Handle error
         return
     }
-        
+
     // Handle challenge
 }
 ```
+
 </details>
 
 Example obtaining a challenge for a document for which you have the document properties (e.g. manual user input):
@@ -761,6 +790,7 @@ val challenge = wallet.addDocumentWithFields(
     dateOfExpiry = "280101"
 )
 ```
+
 </details>
 
 <details>
@@ -774,6 +804,7 @@ let challenge = try await wallet.addDocumentWithFields(
     loginRequest: nil
 )
 ```
+
 </details>
 
 <details>
@@ -785,14 +816,15 @@ wallet.addDocumentWithFields(
     dateOfBirth: "860204",
     dateOfExpiry: "280101",
     loginRequest: nil
-){ challenge, error in
+) { challenge, error in
     if let error {
         // Handle error
     }
-    
+
     // Handle success with challenge
 }
 ```
+
 </details>
 
 Once you have the challenge, you can then use it to perform the NFC reading:
@@ -807,6 +839,7 @@ val aaChallenge = challenge.challenge // AA challenge for document to sign
 // Use your NFC Scanner to read the document & sign the challenge if present
 val nfcResult = NfcScanner().scanDocument(bacKey, aaChallenge)
 ```
+
 </details>
 
 <details>
@@ -819,6 +852,7 @@ let aaChallenge = challenge.challenge // AA challenge for document to sign
 // Use your NFC Scanner to read the document & sign the challenge if present.
 let nfcResult = NfcScanner().scanDocument(bacKey, aaChallenge)
 ```
+
 </details>
 
 From the result of your NFC scanner, you then need to create a `MrtdData` object that contains all of the data groups (
@@ -840,6 +874,7 @@ val mrtd = MrtdData(
     // ...other DGs (optional)
 )
 ```
+
 </details>
 
 <details>
@@ -852,6 +887,7 @@ let mrtd = MrtdData(
     dg2: Data() // Data - DG2 
 )
 ```
+
 </details>
 
 You can then finalize the process of adding the document by responding to the challenge, along with the type of access
@@ -870,6 +906,7 @@ val accessControl = AccessControl.bac
 // In a coroutine scope
 challenge.respond.withMrtd(mrtd = mrtd, accessControl = accessControl, signature = signature)
 ```
+
 </details>
 
 <details>
@@ -887,6 +924,7 @@ do {
     // Handle error
 }
 ```
+
 </details>
 
 <details>
@@ -903,9 +941,10 @@ challenge.respond!.withMrtd(mrtd: mrtd, accessControl: accessControl, signature:
         // Handle error
         return
     }
-    
-})
+
+}
 ```
+
 </details>
 
 > [!NOTE]
@@ -927,6 +966,7 @@ val mrtd = MrtdData.fromDtcVc(dtc)
 
 // Respond to challenge with MrtdData like above
 ```
+
 </details>
 
 <details>
@@ -938,6 +978,7 @@ let mrtd = MrtdData.fromDtcVc(dtc)
 
 // Respond to challenge with MrtdData like above
 ```
+
 </details>
 
 ### Verifying a face against a document
@@ -951,10 +992,8 @@ integrated into the Identity SDK SDK.
 > for.
 
 To add a user's face to an MRTD identity credential call either `credential.verifyFace()`
-or `wallet.addFaceVerification()` (passing the
-MRTD identity credential) which will automatically handle for you the face verification journey using iProov Genuine
-Presence
-Assurance™.
+or `wallet.addFaceVerification()` (passing the MRTD identity credential) which will automatically handle for you the
+face verification journey using iProov Genuine Presence Assurance™.
 
 Events will be fired to your app from a Flow, which you need to handle in your app.
 
@@ -971,6 +1010,7 @@ events.collect { event ->
     }
 }
 ```
+
 </details>
 
 <details>
@@ -981,12 +1021,12 @@ let events = wallet.addFaceVerification(credential: credential, loginRequest: ni
 
 events.collect(onEach: { event in
     print(event) // Handle the event
-}, onError: {error in
+}, onError: { error in
     print(error) // Handle the error
 })
 ```
-</details>
 
+</details>
 
 | Event                            | Underlying iProov Event | Description                                                       |
 |----------------------------------|-------------------------|-------------------------------------------------------------------|
@@ -1013,6 +1053,7 @@ val events = document.verifyFace(
     options = IproovOptions(title = "Hello World")
 )
 ```
+
 </details>
 
 For documentation of the full set of available iProov options, consult
@@ -1037,33 +1078,36 @@ The issuance of the one-time code via SMS can be triggered as follows:
 // In a coroutine scope
 val challenge = wallet.addUriCredential(uri = "sms:+442079461234")
 ```
+
 </details>
 
 <details>
 <summary>Swift</summary>
 
 ```swift
-do{
+do {
     let challenge = try await wallet.addUriCredential(uri: "sms:+442079461234")
 } catch {
     // Handle error
 }
 ```
+
 </details>
 
 <details>
 <summary>Swift (pre-concurrency)</summary>
 
 ```swift
-wallet.addUriCredential(uri: "sms:+442079461234") { challenge, error in 
+wallet.addUriCredential(uri: "sms:+442079461234") { challenge, error in
     if let error {
         // Handle error
         return
     }
-    
+
     // Use challenge
 }
 ```
+
 </details>
 
 You can then complete SMS verification by either responding to the challenge object with the OTP code:
@@ -1087,6 +1131,7 @@ val otp: String = "" // Your OTP
 // In a coroutine scope
 wallet.verifyUriCredential(uri = "sms:+442079461234", token = otp) 
 ```
+
 </details>
 
 <details>
@@ -1115,6 +1160,7 @@ do {
     // Handle error
 }
 ```
+
 </details>
 
 <details>
@@ -1123,12 +1169,12 @@ do {
 ```swift
 let otp: String = "" // Your OTP
 
-challenge.respond!.withToken(otp) {_, error in 
+challenge.respond!.withToken(otp) { _, error in
     if let error {
         // Handle error
         return
-    } 
-    
+    }
+
     // Handle success
 }
 ```
@@ -1139,15 +1185,16 @@ the `token`:
 ```swift
 let otp: String = "" // Your OTP
 
-wallet.verifyUriCredential(uri: "sms:+442079461234", token: otp){ error in 
+wallet.verifyUriCredential(uri: "sms:+442079461234", token: otp) { error in
     if let error {
         // Handle error
         return
-    } 
-    
+    }
+
     // Handle success
 }
 ```
+
 </details>
 
 > [!TIP]
@@ -1168,6 +1215,7 @@ The verification email is triggered as follows:
 // In a coroutine scope
 val challenge = wallet.addUriCredential("mailto:iproov.id@iproov.com")
 ```
+
 </details>
 
 <details>
@@ -1180,6 +1228,7 @@ do {
     // Handle error
 }
 ```
+
 </details>
 
 <details>
@@ -1191,10 +1240,11 @@ wallet.addUriCredential(uri: "mailto:iproov.id@iproov.com") { challenge, error i
         // Handle error
         return
     }
-    
+
     // Handle success
 }
 ```
+
 </details>
 
 You can then complete email verification by either responding to the challenge object, passing the verification URL from
@@ -1218,6 +1268,7 @@ wallet.verifyUriCredential(
     token = "https://app.iproov.dev/email/verify/8ec6bed67d0ea8a0"
 )
 ```
+
 </details>
 
 <details>
@@ -1243,20 +1294,21 @@ do {
     // Handle error
 }
 ```
+
 </details>
 
 <details>
 <summary>Swift (pre-concurrency)</summary>
 
 ```swift
-challenge.respond!.withToken("https://app.iproov.dev/email/verify/8ec6bed67d0ea8a0") { _, error in 
+challenge.respond!.withToken("https://app.iproov.dev/email/verify/8ec6bed67d0ea8a0") { _, error in
     if let error {
         // Handle error
         return
     }
-    
+
     // Handle success
-})
+}
 ```
 
 Or, if you no longer have reference to the challenge, you can respond by passing the URL as the `token` as follows:
@@ -1265,16 +1317,17 @@ Or, if you no longer have reference to the challenge, you can respond by passing
 wallet.verifyUriCredential(
     uri: "mailto:iproov.id@iproov.com",
     token: "https://app.iproov.dev/email/verify/8ec6bed67d0ea8a0"
-) { error in 
+) { error in
 
-     if let error {
+    if let error {
         // Handle error
         return
     }
-    
+
     // Handle success
 }
 ```
+
 </details>
 
 > [!NOTE]
@@ -1296,6 +1349,7 @@ You can get a list of claims for a given credential using the `claims` property:
 ```kotlin
 val claims = credential.claims
 ```
+
 </details>
 
 <details>
@@ -1304,6 +1358,7 @@ val claims = credential.claims
 ```swift
 let claims = credential.claims
 ```
+
 </details>
 
 You can also get all claims added to the wallet using `wallet.getAllClaims()`:
@@ -1314,6 +1369,7 @@ You can also get all claims added to the wallet using `wallet.getAllClaims()`:
 ```kotlin
 val claims = wallet.getAllClaims()
 ```
+
 </details>
 
 <details>
@@ -1322,6 +1378,7 @@ val claims = wallet.getAllClaims()
 ```swift
 let claims = try wallet.getAllClaims()
 ```
+
 </details>
 
 Each `Claim` has the following properties:
@@ -1361,6 +1418,7 @@ val uri = "https://app.iproov.dev/ad/74D18EF9-242B-48E9-8CAD-4FA3A1CCB79B_169926
 // In a coroutine scope
 val loginRequest: RespondableLoginRequest = wallet.getLoginRequest(uri = uri, isNfcCapable = true)
 ```
+
 </details>
 
 <details>
@@ -1371,10 +1429,11 @@ let uri = "https://app.iproov.dev/ad/74D18EF9-242B-48E9-8CAD-4FA3A1CCB79B_169926
 
 do {
     let loginRequest = try await wallet.getLoginRequest(uri: uri, isNfcCapable: true)
-} catch  {
+} catch {
     // Handle error
 }
 ```
+
 </details>
 
 <details>
@@ -1384,15 +1443,16 @@ do {
 let uri = "https://app.iproov.dev/ad/74D18EF9-242B-48E9-8CAD-4FA3A1CCB79B_1699265322128"
 let isNfcCapable = NFCNDEFReaderSession.readingAvailable
 
-wallet.getLoginRequest(uri: String(describing: uri), isNfcCapable: isNfcCapable) { loginRequest, error in 
+wallet.getLoginRequest(uri: String(describing: uri), isNfcCapable: isNfcCapable) { loginRequest, error in
     if let error {
         // Handle error
         return
     }
-    
+
     // Handle success with loginRequest
 }
 ```
+
 </details>
 
 The `RespondableLoginRequest` contains detailed information, such as:
@@ -1417,6 +1477,7 @@ val name = relyingParty.name
 val reason = relyingParty.reason
 val base64EncodedRelyingPartyLogoUri = relyingParty.logoUri
 ```
+
 </details>
 
 <details>
@@ -1425,9 +1486,10 @@ val base64EncodedRelyingPartyLogoUri = relyingParty.logoUri
 ```swift
 let relyingParty = loginRequest.relyingParty
 let name = relyingParty.name
-let val reason = relyingParty.reason
-let val base64EncodedRelyingPartyLogoUri = relyingParty.logoUri
+let reason = relyingParty.reason
+let base64EncodedRelyingPartyLogoUri = relyingParty.logoUri
 ```
+
 </details>
 
 You should display this data to the user so that they are aware of who they are sharing their data with, and why.
@@ -1471,6 +1533,7 @@ for (requestedClaim in loginRequest.claims) {
     }
 }
 ```
+
 </details>
 
 <details>
@@ -1485,16 +1548,16 @@ for requestedClaim in loginRequest.claims {
     if requestedClaim.displayName != nil {
         print("Displaying: \(requestedClaim.displayName!) - is essential? \(requestedClaim.isEssential)")
     }
-    
+
     // Find a matching claim in the wallet:
     let matchingClaims = claimsInWallet.filter { claim in
         claim.name == requestedClaim.name
     }
-    
+
     // In this case, we'll simply choose the first matching claim, but for wallets containing multiple
     // documents, you'll typically need to implement some more complex logic:
     let firstClaim = matchingClaims.first
-    
+
     if firstClaim != nil {
         claims.append(firstClaim!)
     } else {
@@ -1502,6 +1565,7 @@ for requestedClaim in loginRequest.claims {
     }
 }
 ```
+
 </details>
 
 > [!NOTE]
@@ -1550,6 +1614,7 @@ for (request in loginRequest.reverifications) {
     }
 }
 ```
+
 </details>
 
 <details>
@@ -1559,15 +1624,14 @@ for (request in loginRequest.reverifications) {
 let credential = // Credential to use for re-verifications
 
 for request in loginRequest.reverifications {
-    if let faceVerification = request as? FaceReverificationRequest{
+    if let faceVerification = request as? FaceReverificationRequest {
         let events = try wallet.addFaceVerification(credential: credential, loginRequest: loginRequest, options: nil)
         events.collect(onEach: { event in
             print(event) // Handle the event
-        }, onError: {error in
+        }, onError: { error in
             print(error) // Handle the error
         })
-    }
-    else if let documentReverification = request as? DocumentReverificationRequest {
+    } else if let documentReverification = request as? DocumentReverificationRequest {
         let challenge: DocumentChallenge = try await documentReverification.getChallenge(credential) as! DocumentChallenge
         let mrtd = Mrtd() // Perform NFC Scan
         let signature: Data? = nil // From NFC Scan
@@ -1575,6 +1639,7 @@ for request in loginRequest.reverifications {
     }
 }
 ```
+
 </details>
 
 ### Responding to the login request
@@ -1589,6 +1654,7 @@ request by calling `accept()` and passing the claims which were collected earlie
 // In a coroutine scope
 val response = loginRequest.accept(claims)
 ```
+
 </details>
 
 <details>
@@ -1597,21 +1663,23 @@ val response = loginRequest.accept(claims)
 ```swift
 let response = try await loginRequest.accept(claims: claims)
 ```
+
 </details>
 
 <details>
 <summary>Swift (pre-concurrency)</summary>
 
 ```swift
-loginRequest.accept(claims: claims) { loginResponse, error in 
+loginRequest.accept(claims: claims) { loginResponse, error in
     if let error {
         // Handle error
         return
     }
-    
+
     // handle success 
-})
+}
 ```
+
 </details>
 
 Accepting the login request will return a `LoginResponse` which contains an optional redirect url that should be
@@ -1626,6 +1694,7 @@ If the user does not wish to proceed, you can deny the login request by calling 
 // In a coroutine scope
 loginRequest.deny()
 ```
+
 </details>
 
 <details>
@@ -1638,20 +1707,22 @@ do {
     // Handle error
 }
 ```
+
 </details>
 
 <details>
 <summary>Swift (pre-concurrency)</summary>
 
 ```swift
-loginRequest.deny() {_, error in
+loginRequest.deny() { _, error in
     if let error {
         // Handle error
     }
-    
+
     // Handle success
-})
+}
 ```
+
 </details>
 
 > [!IMPORTANT]
@@ -1660,7 +1731,8 @@ loginRequest.deny() {_, error in
 
 # Example app
 
-We provide two separate examples showing how to use the Identity SDK. Each example app provides a full wallet implementation, with
+We provide two separate examples showing how to use the Identity SDK. Each example app provides a full wallet
+implementation, with
 the following functionality:
 
 - Register/delete wallet
@@ -1675,7 +1747,8 @@ the following functionality:
 For the iOS example app, see the `/example-ios` folder. For the Android example app, see the `/example-android` folder.
 
 > [!NOTE]
-> To build the Android example app from source, you need to open the entire repository project in Android Studio, not `/example-android`.
+> To build the Android example app from source, you need to open the entire repository project in Android Studio, not
+`/example-android`.
 
 ## Advanced topics
 
@@ -1701,6 +1774,7 @@ flow.collect { event ->
     // handle face verification events (see above)
 }
 ```
+
 </details>
 
 <details>
@@ -1717,10 +1791,11 @@ let flow = wallet.addDocumentWithReference(
 
 events.collect(onEach: { event in
     print(event) // Handle the event
-}, onError: {error in
+}, onError: { error in
     print(error) // Handle the error
 })
 ```
+
 </details>
 
 > [!NOTE]
@@ -1746,6 +1821,7 @@ flow.collect { event ->
     // Handled the same as a normal document face verification
 }
 ```
+
 </details>
 
 <details>
@@ -1755,7 +1831,7 @@ flow.collect { event ->
 let image = Data() // Load from assets
 let reference = "the_reference"
 
-val events = wallet.addDocumentWithReference(
+let events = wallet.addDocumentWithReference(
     reference: reference,
     demoReferencePhoto: image,
     loginRequest: nil,
@@ -1764,10 +1840,11 @@ val events = wallet.addDocumentWithReference(
 
 events.collect(onEach: { event in
     print(event) // Handle the event
-}, onError: {error in
+}, onError: { error in
     print(error) // Handle the error
 })
 ```
+
 </details>
 
 An example of this is provided in the Example app, which shows how to retrieve an image from the camera roll/gallery,

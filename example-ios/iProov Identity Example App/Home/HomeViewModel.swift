@@ -29,7 +29,16 @@ class HomeViewModel: ObservableObject{
         self.wallet = wallet
     }
     
-    func load(){self.state = getInitialSate()}
+    func load(){
+        self.state = getInitialSate()
+        if wallet.isRegistered {
+            wallet.refreshExpiredCredentials{ error in
+                if error != nil {
+                    self.state = .error(error!.localizedDescription)
+                }
+            }
+        }
+    }
     
     func getInitialSate() -> State {
         if (!wallet.isRegistered) {return State.notRegistered}

@@ -16,13 +16,13 @@
 		CA3824202E17C3C1008F4D2C /* AddEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA38241F2E17C3BB008F4D2C /* AddEmailViewModel.swift */; };
 		CA3824222E17C41F008F4D2C /* AddPhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3824212E17C417008F4D2C /* AddPhoneViewModel.swift */; };
 		CA3824282E181ABF008F4D2C /* AddDocumentReferenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3824272E181AB7008F4D2C /* AddDocumentReferenceViewModel.swift */; };
-		CA3824292E1C1DFC008F4D2C /* identity.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3824132E172138008F4D2C /* identity.xcframework */; };
-		CA38242A2E1C1DFC008F4D2C /* identity.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA3824132E172138008F4D2C /* identity.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CA38242E2E1C23C9008F4D2C /* iProov in Frameworks */ = {isa = PBXBuildFile; productRef = CA38242D2E1C23C9008F4D2C /* iProov */; };
 		CA3824302E1C3314008F4D2C /* AddDocumentReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA38242F2E1C330D008F4D2C /* AddDocumentReferenceView.swift */; };
 		CA4156792D39641800D7A909 /* CredentialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4156782D39641800D7A909 /* CredentialsView.swift */; };
 		CA41567B2D3965A800D7A909 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA41567A2D3965A800D7A909 /* HomeViewModel.swift */; };
 		CA41567F2D39732000D7A909 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA41567E2D39732000D7A909 /* ErrorView.swift */; };
+		CA8111012E9E43A800D326AF /* identity.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8111002E9E43A800D326AF /* identity.xcframework */; };
+		CA8111022E9E43A800D326AF /* identity.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA8111002E9E43A800D326AF /* identity.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CAB748A62D1415BE00F33325 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB748A52D1415BE00F33325 /* App.swift */; };
 		CAB748A82D1415BE00F33325 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB748A72D1415BE00F33325 /* HomeView.swift */; };
 		CAB748AA2D1415C000F33325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB748A92D1415C000F33325 /* Assets.xcassets */; };
@@ -40,13 +40,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CA38242B2E1C1DFC008F4D2C /* Embed Frameworks */ = {
+		CA8111032E9E43A800D326AF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CA38242A2E1C1DFC008F4D2C /* identity.xcframework in Embed Frameworks */,
+				CA8111022E9E43A800D326AF /* identity.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,7 +56,6 @@
 /* Begin PBXFileReference section */
 		CA0CDC982D5E17DD005725B7 /* MrzCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MrzCaptureView.swift; sourceTree = "<group>"; };
 		CA1CCA182DB8D3D700399302 /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../identity/build/XCFrameworks/debug/identity.xcframework; sourceTree = "<group>"; };
-		CA3824132E172138008F4D2C /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../artifacts/identity.xcframework; sourceTree = "<group>"; };
 		CA3824172E17B5DA008F4D2C /* ScanQrCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQrCodeViewModel.swift; sourceTree = "<group>"; };
 		CA3824192E17B621008F4D2C /* ScanQrCodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQrCodeButton.swift; sourceTree = "<group>"; };
 		CA38241B2E17B6B2008F4D2C /* RegisteredViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredViewModel.swift; sourceTree = "<group>"; };
@@ -69,6 +68,8 @@
 		CA4156782D39641800D7A909 /* CredentialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsView.swift; sourceTree = "<group>"; };
 		CA41567A2D3965A800D7A909 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CA41567E2D39732000D7A909 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		CA8110FD2E9E435600D326AF /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../artifacts/identity.xcframework; sourceTree = "<group>"; };
+		CA8111002E9E43A800D326AF /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../identity.xcframework; sourceTree = "<group>"; };
 		CAB748A22D1415BE00F33325 /* iProov Identity Example App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iProov Identity Example App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB748A52D1415BE00F33325 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		CAB748A72D1415BE00F33325 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -91,8 +92,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA3824292E1C1DFC008F4D2C /* identity.xcframework in Frameworks */,
 				CA38242E2E1C23C9008F4D2C /* iProov in Frameworks */,
+				CA8111012E9E43A800D326AF /* identity.xcframework in Frameworks */,
 				CA0CDC972D5E17BA005725B7 /* MRZScanner in Frameworks */,
 				CAD1A8C52D4D1EBD009CD341 /* NFCPassportReader in Frameworks */,
 			);
@@ -145,7 +146,8 @@
 			children = (
 				CA4156722D395EC600D7A909 /* identity.xcframework */,
 				CA1CCA182DB8D3D700399302 /* identity.xcframework */,
-				CA3824132E172138008F4D2C /* identity.xcframework */,
+				CA8110FD2E9E435600D326AF /* identity.xcframework */,
+				CA8111002E9E43A800D326AF /* identity.xcframework */,
 				CAB748B42D141AB300F33325 /* sdk.framework */,
 			);
 			name = Frameworks;
@@ -211,7 +213,7 @@
 				CAB7489F2D1415BE00F33325 /* Frameworks */,
 				CAB7489E2D1415BE00F33325 /* Sources */,
 				CAB748A02D1415BE00F33325 /* Resources */,
-				CA38242B2E1C1DFC008F4D2C /* Embed Frameworks */,
+				CA8111032E9E43A800D326AF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

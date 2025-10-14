@@ -30,6 +30,9 @@ struct CredentialsView: View {
     var body: some View {
         List {
             ForEach(credentials) { credential in
+                let isWalletCredential = credential.source.contains("wallet:")
+                let hasDtc =  credential.claims.contains{ claim in claim.name == "com.svipe:dtc"}
+                let hasFaceVerified = credential.claims.contains { claim in claim.name == "com.svipe:face_verified"}
                 Section {
                     ForEach(credential.claims) { claim in
                         NavigationLink(
@@ -38,15 +41,13 @@ struct CredentialsView: View {
                             Text(claim.displayName ?? claim.name)
                         }
                     }
-                    if credential is Credential.IdentityCredentialMrtd && !credential.claims.contains(where: {
-                        $0.name == "com.svipe:face_verified"
-                    }){
+                    if hasDtc && !hasFaceVerified{
                         Button("Verify") {
                             verifyCredential(credential)
                         }
                     }
 
-                    if !credential.source.contains("wallet:") {
+                    if !isWalletCredential {
                         Button("Delete", role: .destructive) {
                             deleteCredential(credential)
                         }

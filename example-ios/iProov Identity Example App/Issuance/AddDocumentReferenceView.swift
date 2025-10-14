@@ -21,8 +21,6 @@ struct AddDocumentReferenceView: View {
                     .padding(.horizontal)
 
                 TextField("Your reference", text: $viewModel.reference)
-                    .keyboardType(.phonePad)
-                    .textContentType(.telephoneNumber)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
 

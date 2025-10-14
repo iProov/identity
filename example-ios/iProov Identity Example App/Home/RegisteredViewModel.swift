@@ -43,14 +43,16 @@ class RegisteredViewModel: ObservableObject {
     }
 
     func verify(_ credential: Credential) {
-        guard let mrtd = credential as? Credential.IdentityCredentialMrtd else {
-            alert = AlertDialog(title: "Not Supported", message: "Only MRTD based documents can be verified")
+        let hasDtc =  credential.claims.contains{ claim in claim.name == "com.svipe:dtc"}
+
+        guard hasDtc else {
+            alert = AlertDialog(title: "Not Supported", message: "Only credentials with a DTC can be verified")
             return
         }
 
         isLoading = true
         do {
-            let events = try wallet.addFaceVerification(credential: mrtd, loginRequest: nil, options: nil)
+            let events = try wallet.addFaceVerification(credential: credential, loginRequest: nil, options: nil)
             events.collect { [weak self] event in
 
                 guard let self = self else { return }
@@ -81,10 +83,12 @@ class RegisteredViewModel: ObservableObject {
                 }
                 
             } onError: { error in
+                self.isLoading = false
                 self.alert = AlertDialog(title: "Error whilst verifying face", message: error.localizedDescription)
 
             }
         } catch {
+            isLoading = false
             alert = AlertDialog(title: "Couldn't start face verification", message: error.localizedDescription)
         }
     }

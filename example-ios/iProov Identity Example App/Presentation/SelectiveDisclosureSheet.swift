@@ -63,7 +63,10 @@ struct SelectiveDisclosureSheet: View {
     private func shareInformation() {
         Task {
             do {
-                let response = try await viewModel.loginRequest.accept(claims: viewModel.claimsToShare.values.sorted())
+                let claims = viewModel.claimsToShare.values
+                    .compactMap { $0 }
+            
+                let response = try await viewModel.loginRequest.accept(claims: claims)
                 print(String(describing:response))
             } catch let exception {
                 print("Failed to share information \(exception.localizedDescription)")

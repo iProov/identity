@@ -22,8 +22,8 @@ struct JwtView: View {
                 }
                 
                 Section{
-                    Text("Verification Status: \(String(describing: jwt.verificationStatus))")
-                } header: { Text("Metadata") }
+                    Text(jwt.compactString)
+                } header: { Text("Raw") }
             }
             .background(.background.secondary)
             .navigationTitle(displayName)

@@ -18,11 +18,15 @@
 		CA3824282E181ABF008F4D2C /* AddDocumentReferenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3824272E181AB7008F4D2C /* AddDocumentReferenceViewModel.swift */; };
 		CA38242E2E1C23C9008F4D2C /* iProov in Frameworks */ = {isa = PBXBuildFile; productRef = CA38242D2E1C23C9008F4D2C /* iProov */; };
 		CA3824302E1C3314008F4D2C /* AddDocumentReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA38242F2E1C330D008F4D2C /* AddDocumentReferenceView.swift */; };
+		CA388D2B2EA1ECBD00E04467 /* DisplayHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA388D2A2EA1ECBD00E04467 /* DisplayHelpers.swift */; };
+		CA388D2D2EA1ECF700E04467 /* CredentialOfferSheetState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA388D2C2EA1ECF700E04467 /* CredentialOfferSheetState.swift */; };
+		CA388D2F2EA1ED7D00E04467 /* CredentialOfferSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA388D2E2EA1ED7D00E04467 /* CredentialOfferSheet.swift */; };
+		CA39CA9E2EA005570051934E /* JOSESwift in Frameworks */ = {isa = PBXBuildFile; productRef = CA39CA9D2EA005570051934E /* JOSESwift */; };
+		CA39CAB82EA259880051934E /* identity.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA39CAB72EA259870051934E /* identity.xcframework */; };
+		CA39CAB92EA259880051934E /* identity.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA39CAB72EA259870051934E /* identity.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CA4156792D39641800D7A909 /* CredentialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4156782D39641800D7A909 /* CredentialsView.swift */; };
 		CA41567B2D3965A800D7A909 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA41567A2D3965A800D7A909 /* HomeViewModel.swift */; };
 		CA41567F2D39732000D7A909 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA41567E2D39732000D7A909 /* ErrorView.swift */; };
-		CA8111012E9E43A800D326AF /* identity.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8111002E9E43A800D326AF /* identity.xcframework */; };
-		CA8111022E9E43A800D326AF /* identity.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA8111002E9E43A800D326AF /* identity.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CAB748A62D1415BE00F33325 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB748A52D1415BE00F33325 /* App.swift */; };
 		CAB748A82D1415BE00F33325 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB748A72D1415BE00F33325 /* HomeView.swift */; };
 		CAB748AA2D1415C000F33325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB748A92D1415C000F33325 /* Assets.xcassets */; };
@@ -40,13 +44,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CA8111032E9E43A800D326AF /* Embed Frameworks */ = {
+		CA39CAAD2EA1239A0051934E /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CA8111022E9E43A800D326AF /* identity.xcframework in Embed Frameworks */,
+				CA39CAB92EA259880051934E /* identity.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,12 +68,15 @@
 		CA3824212E17C417008F4D2C /* AddPhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhoneViewModel.swift; sourceTree = "<group>"; };
 		CA3824272E181AB7008F4D2C /* AddDocumentReferenceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDocumentReferenceViewModel.swift; sourceTree = "<group>"; };
 		CA38242F2E1C330D008F4D2C /* AddDocumentReferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDocumentReferenceView.swift; sourceTree = "<group>"; };
+		CA388D2A2EA1ECBD00E04467 /* DisplayHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayHelpers.swift; sourceTree = "<group>"; };
+		CA388D2C2EA1ECF700E04467 /* CredentialOfferSheetState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialOfferSheetState.swift; sourceTree = "<group>"; };
+		CA388D2E2EA1ED7D00E04467 /* CredentialOfferSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialOfferSheet.swift; sourceTree = "<group>"; };
+		CA39CAB72EA259870051934E /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../identity.xcframework; sourceTree = "<group>"; };
 		CA4156722D395EC600D7A909 /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../identity/build/XCFrameworks/release/identity.xcframework; sourceTree = "<group>"; };
 		CA4156782D39641800D7A909 /* CredentialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsView.swift; sourceTree = "<group>"; };
 		CA41567A2D3965A800D7A909 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CA41567E2D39732000D7A909 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		CA8110FD2E9E435600D326AF /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../artifacts/identity.xcframework; sourceTree = "<group>"; };
-		CA8111002E9E43A800D326AF /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../identity.xcframework; sourceTree = "<group>"; };
 		CAB748A22D1415BE00F33325 /* iProov Identity Example App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iProov Identity Example App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB748A52D1415BE00F33325 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		CAB748A72D1415BE00F33325 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -93,9 +100,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA38242E2E1C23C9008F4D2C /* iProov in Frameworks */,
-				CA8111012E9E43A800D326AF /* identity.xcframework in Frameworks */,
 				CA0CDC972D5E17BA005725B7 /* MRZScanner in Frameworks */,
 				CAD1A8C52D4D1EBD009CD341 /* NFCPassportReader in Frameworks */,
+				CA39CA9E2EA005570051934E /* JOSESwift in Frameworks */,
+				CA39CAB82EA259880051934E /* identity.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,7 +155,7 @@
 				CA4156722D395EC600D7A909 /* identity.xcframework */,
 				CA1CCA182DB8D3D700399302 /* identity.xcframework */,
 				CA8110FD2E9E435600D326AF /* identity.xcframework */,
-				CA8111002E9E43A800D326AF /* identity.xcframework */,
+				CA39CAB72EA259870051934E /* identity.xcframework */,
 				CAB748B42D141AB300F33325 /* sdk.framework */,
 			);
 			name = Frameworks;
@@ -191,6 +199,8 @@
 				CAD1A8CA2D510FD4009CD341 /* AddPhoneView.swift */,
 				CAD1A8CC2D510FDB009CD341 /* AddEmailView.swift */,
 				CA0CDC982D5E17DD005725B7 /* MrzCaptureView.swift */,
+				CA388D2C2EA1ECF700E04467 /* CredentialOfferSheetState.swift */,
+				CA388D2E2EA1ED7D00E04467 /* CredentialOfferSheet.swift */,
 			);
 			path = Issuance;
 			sourceTree = "<group>";
@@ -198,6 +208,7 @@
 		CAF398DD2D47F6AB007D62E3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CA388D2A2EA1ECBD00E04467 /* DisplayHelpers.swift */,
 				CAD1A8C82D50E5EF009CD341 /* Error.swift */,
 			);
 			path = Utils;
@@ -213,7 +224,7 @@
 				CAB7489F2D1415BE00F33325 /* Frameworks */,
 				CAB7489E2D1415BE00F33325 /* Sources */,
 				CAB748A02D1415BE00F33325 /* Resources */,
-				CA8111032E9E43A800D326AF /* Embed Frameworks */,
+				CA39CAAD2EA1239A0051934E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -224,6 +235,7 @@
 				CAD1A8C42D4D1EBD009CD341 /* NFCPassportReader */,
 				CA0CDC962D5E17BA005725B7 /* MRZScanner */,
 				CA38242D2E1C23C9008F4D2C /* iProov */,
+				CA39CA9D2EA005570051934E /* JOSESwift */,
 			);
 			productName = "iProov Identity Sample App";
 			productReference = CAB748A22D1415BE00F33325 /* iProov Identity Example App.app */;
@@ -257,6 +269,7 @@
 				CAD1A8C32D4D1EBD009CD341 /* XCRemoteSwiftPackageReference "NFCPassportReader" */,
 				CA0CDC952D5E17BA005725B7 /* XCRemoteSwiftPackageReference "MRZScanner" */,
 				CA38242C2E1C23C9008F4D2C /* XCRemoteSwiftPackageReference "ios" */,
+				CA39CA9C2EA005570051934E /* XCRemoteSwiftPackageReference "JOSESwift" */,
 			);
 			productRefGroup = CAB748A32D1415BE00F33325 /* Products */;
 			projectDirPath = "";
@@ -289,11 +302,14 @@
 				CAB748A82D1415BE00F33325 /* HomeView.swift in Sources */,
 				CAF398CC2D479925007D62E3 /* JwtView.swift in Sources */,
 				CAD1A8C92D50E5EF009CD341 /* Error.swift in Sources */,
+				CA388D2B2EA1ECBD00E04467 /* DisplayHelpers.swift in Sources */,
 				CA3824282E181ABF008F4D2C /* AddDocumentReferenceViewModel.swift in Sources */,
 				CA3824182E17B5E2008F4D2C /* ScanQrCodeViewModel.swift in Sources */,
 				CA38241C2E17B6B5008F4D2C /* RegisteredViewModel.swift in Sources */,
 				CA38241E2E17C177008F4D2C /* AddDocumentViewModel.swift in Sources */,
 				CA3824302E1C3314008F4D2C /* AddDocumentReferenceView.swift in Sources */,
+				CA388D2D2EA1ECF700E04467 /* CredentialOfferSheetState.swift in Sources */,
+				CA388D2F2EA1ED7D00E04467 /* CredentialOfferSheet.swift in Sources */,
 				CAD1A8C72D4D2D83009CD341 /* AddDocumentView.swift in Sources */,
 				CAB748A62D1415BE00F33325 /* App.swift in Sources */,
 				CA0CDC992D5E17DD005725B7 /* MrzCaptureView.swift in Sources */,
@@ -546,6 +562,14 @@
 				minimumVersion = 12.4.1;
 			};
 		};
+		CA39CA9C2EA005570051934E /* XCRemoteSwiftPackageReference "JOSESwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airsidemobile/JOSESwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		CAD1A8C32D4D1EBD009CD341 /* XCRemoteSwiftPackageReference "NFCPassportReader" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AndyQ/NFCPassportReader";
@@ -566,6 +590,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CA38242C2E1C23C9008F4D2C /* XCRemoteSwiftPackageReference "ios" */;
 			productName = iProov;
+		};
+		CA39CA9D2EA005570051934E /* JOSESwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA39CA9C2EA005570051934E /* XCRemoteSwiftPackageReference "JOSESwift" */;
+			productName = JOSESwift;
 		};
 		CAD1A8C42D4D1EBD009CD341 /* NFCPassportReader */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -1,0 +1,404 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../identity/0.2.0/identity-0.2.0.module",
+    "group": "com.iproov.identity",
+    "module": "identity",
+    "version": "0.2.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "com.iproov.kmp",
+          "module": "sdk",
+          "version": {
+            "requires": "1.0.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.20"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-darwin",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-test",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-serialization-json",
+          "version": {
+            "requires": "1.8.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-content-negotiation",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-serialization-kotlinx-json",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-logging",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "at.asitplus.signum",
+          "module": "indispensable",
+          "version": {
+            "requires": "3.10.1"
+          }
+        },
+        {
+          "group": "com.benasher44",
+          "module": "uuid",
+          "version": {
+            "requires": "0.8.4"
+          }
+        },
+        {
+          "group": "id.walt.credentials",
+          "module": "waltid-mdoc-credentials2",
+          "version": {
+            "requires": "1.0.0-SNAPSHOT"
+          },
+          "excludes": [
+            {
+              "group": "org.bouncycastle",
+              "module": "bcprov-lts8on"
+            },
+            {
+              "group": "com.google.crypto.tink",
+              "module": "tink"
+            },
+            {
+              "group": "com.google.protobuf",
+              "module": "protobuf-javalite"
+            },
+            {
+              "group": "org.bouncycastle",
+              "module": "bcpkix-lts8on"
+            },
+            {
+              "group": "com.google.protobuf",
+              "module": "*"
+            },
+            {
+              "group": "org.bouncycastle",
+              "module": "bcutil-lts8on"
+            }
+          ]
+        },
+        {
+          "group": "id.walt.openid4vc",
+          "module": "waltid-openid4vc",
+          "version": {
+            "requires": "1.0.0-SNAPSHOT"
+          },
+          "excludes": [
+            {
+              "group": "org.bouncycastle",
+              "module": "bcprov-lts8on"
+            },
+            {
+              "group": "com.google.crypto.tink",
+              "module": "tink"
+            },
+            {
+              "group": "com.google.protobuf",
+              "module": "protobuf-javalite"
+            },
+            {
+              "group": "org.bouncycastle",
+              "module": "bcpkix-lts8on"
+            },
+            {
+              "group": "com.google.protobuf",
+              "module": "*"
+            },
+            {
+              "group": "org.bouncycastle",
+              "module": "bcutil-lts8on"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "name": "identity-iosArm64Main-0.2.0.klib",
+          "url": "identity-iosarm64-0.2.0.klib",
+          "size": 510432,
+          "sha512": "18113b4d050cf9435ba373a47538f87fce4ddc50e10a7d1a2eb83eb6ae9c1f8992e970168847169ec77a2e3791ae24618bfa6212674aeba18243eb4fc046c01e",
+          "sha256": "85ab182f4e9026545437cfa7cfb08bcc453bde5136e8c5f3da06e5340c7873e0",
+          "sha1": "be61b77684bfd0205dd36ca0020d601e666ff023",
+          "md5": "4442ee538f5c9098555bf6bea65649eb"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "files": [
+        {
+          "name": "identity-iosarm64-0.2.0-sources.jar",
+          "url": "identity-iosarm64-0.2.0-sources.jar",
+          "size": 76367,
+          "sha512": "028d4ba1e5457d17f353732744b662e7b95e1fbd8bf45446faec7766d05607292cdb9ecccac4249491d9717be8df360406f70834ec475e3d378a6b89a2df4320",
+          "sha256": "4e4b5b10055dfc79504e8911588ff7a8b3212fb92b79c27fe4f7fdb7c59fc323",
+          "sha1": "dad39e889f72ae93544f4623eee2bc9d11214289",
+          "md5": "c6c481cf88922eb0b352c27ff63a06ba"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "com.iproov.kmp",
+          "module": "sdk",
+          "version": {
+            "requires": "1.0.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.20"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-darwin",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-test",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-serialization-json",
+          "version": {
+            "requires": "1.8.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-content-negotiation",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-serialization-kotlinx-json",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-logging",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "at.asitplus.signum",
+          "module": "indispensable",
+          "version": {
+            "requires": "3.10.1"
+          }
+        },
+        {
+          "group": "com.benasher44",
+          "module": "uuid",
+          "version": {
+            "requires": "0.8.4"
+          }
+        },
+        {
+          "group": "id.walt.credentials",
+          "module": "waltid-mdoc-credentials2",
+          "version": {
+            "requires": "1.0.0-SNAPSHOT"
+          },
+          "excludes": [
+            {
+              "group": "org.bouncycastle",
+              "module": "bcprov-lts8on"
+            },
+            {
+              "group": "com.google.crypto.tink",
+              "module": "tink"
+            },
+            {
+              "group": "com.google.protobuf",
+              "module": "protobuf-javalite"
+            },
+            {
+              "group": "org.bouncycastle",
+              "module": "bcpkix-lts8on"
+            },
+            {
+              "group": "com.google.protobuf",
+              "module": "*"
+            },
+            {
+              "group": "org.bouncycastle",
+              "module": "bcutil-lts8on"
+            }
+          ]
+        },
+        {
+          "group": "id.walt.openid4vc",
+          "module": "waltid-openid4vc",
+          "version": {
+            "requires": "1.0.0-SNAPSHOT"
+          },
+          "excludes": [
+            {
+              "group": "org.bouncycastle",
+              "module": "bcprov-lts8on"
+            },
+            {
+              "group": "com.google.crypto.tink",
+              "module": "tink"
+            },
+            {
+              "group": "com.google.protobuf",
+              "module": "protobuf-javalite"
+            },
+            {
+              "group": "org.bouncycastle",
+              "module": "bcpkix-lts8on"
+            },
+            {
+              "group": "com.google.protobuf",
+              "module": "*"
+            },
+            {
+              "group": "org.bouncycastle",
+              "module": "bcutil-lts8on"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "name": "identity-iosarm64-0.2.0-metadata.jar",
+          "url": "identity-iosarm64-0.2.0-metadata.jar",
+          "size": 261,
+          "sha512": "e825a91a38e687df00f5471af6144173382e5ebf10857222b31d352f92a9e411709728b47e0a42eddc9db886b3a74a68468545f10e27ce018432beda691718b2",
+          "sha256": "f657e629471e84e0b7b1cdebfc0d976149e760efb711264efc53763b16e818f1",
+          "sha1": "a96556778eb276c7983fade4b5d957b6cbcd793b",
+          "md5": "acecdfaa6f83356a3062e37e88bfa16c"
+        }
+      ]
+    }
+  ]
+}

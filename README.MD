@@ -1,4 +1,4 @@
-# iProov Identity SDK v0.1.1
+# iProov Identity SDK v0.2.0
 
 The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform
 app.
@@ -13,9 +13,12 @@ app.
 
 - iOS: 13.0+
 - Android: API Level 26+
-- Kotlin Multiplatform: 2.0.0+
+- Kotlin Multiplatform: 2.2.0+
 
 ## Concepts and terminology
+
+> [!IMPORTANT]
+> Legacy credentials are deprecated and will be removed in a future release.
 
 Before getting started with the iProov Identity SDK, it's worth familiarizing yourself with the following terminology
 which describes the core functionality of the SDK:
@@ -23,10 +26,14 @@ which describes the core functionality of the SDK:
 - **Wallet** - the wallet is the core of the iProov Identity SDK. It holds all of your credentials and any claims
   associated with those credentials. You will only have one wallet for your entire app.
 
-- **Credential** - a credential is a piece of information about a user. Currently supported credentials are documents (
-  specifically, NFC-enabled passports and ID cards following the ICAO 9303 standard), email addresses and phone numbers.
+- **Credential** - a credential is an encapsulation of information issued, by a OID4VCI Draft 13 compliant issuer, in a
+  specific format such as `mso_mdoc` and `jwt_vc_json-ld`. The only format that's supported currently is `mso_mdoc`.
 
-- **Claim** - a claim is an attribute that may be associated with a credential (for example, a document will have
+- **LegacyCredential** - a legacy credential is a piece of information about a user. LegacyCurrently supported
+  credentials are documents (specifically, NFC-enabled passports and ID cards following the ICAO 9303 standard), email
+  addresses and phone numbers.
+
+- **Claim** - a claim is an attribute that may be associated with a legacy credential (for example, a document will have
   claims `family_name` or `birthdate`, an email will have `email`, etc...). It is provided as
   a [Verifiable Credential](https://www.w3.org/TR/vc-data-model/) (VC). Each claim is provided as its own VC.
   Additionally, there are three special claims (`wid`, `sub` and `com.svipe:client_attestation`) that belong to the
@@ -76,9 +83,9 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
    > **Note**: Ensure you add the .xcframework file, rather than the .framework file.
 
-    5. Under the Embed column, ensure Embed & Sign is set.
-
-    6. Follow installation instructions to add the iProov SDK to your app [here](https://github.com/iProov/iOS)
+    5. Add [JOSESwift](https://github.com/airsidemobile/JOSESwift) as a dependency
+    6. Under the Embed column, ensure Embed & Sign is set.
+    7. Follow installation instructions to add the iProov SDK to your app [here](https://github.com/iProov/iOS)
 
     </details>
 
@@ -89,11 +96,13 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     dependencyResolutionManagement {
-        repositories {
-            mavenCentral()
-            maven("https://raw.githubusercontent.com/iProov/android/master/maven/")
-            maven("https://raw.githubusercontent.com/iProov/identity-sdk/master/maven/")
-        }
+      repositories {
+          mavenCentral()
+          maven("https://raw.githubusercontent.com/iProov/android/master/maven/")
+          maven("https://raw.githubusercontent.com/iProov/identity/master/maven/")
+          maven("https://raw.githubusercontent.com/iProovOpenSource/waltid-identity/master/maven/")
+          maven("https://maven.waltid.dev/snapshots") 
+      }
     }
     ```
 
@@ -101,8 +110,8 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     dependencies {
-        implementation("com.iproov.identity:identity-android:0.1.0")
-        implementation("com.iproov.sdk:iproov:<latest-version>")
+      implementation("com.iproov.identity:identity-android:0.2.0")
+      implementation("com.iproov.sdk:iproov:<latest-version>")
     }
     ```
 
@@ -120,10 +129,13 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     dependencyResolutionManagement {
-        repositories {
-            mavenCentral()
-            maven("https://raw.githubusercontent.com/iProov/identity-sdk/master/maven/")
-        }
+      repositories {
+          mavenCentral()
+          maven("https://raw.githubusercontent.com/iProov/android/master/maven/")
+          maven("https://raw.githubusercontent.com/iProov/identity/master/maven/")
+          maven("https://raw.githubusercontent.com/iProovOpenSource/waltid-identity/master/maven/")
+          maven("https://maven.waltid.dev/snapshots") 
+      }
     }
     ```
 
@@ -131,13 +143,13 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     kotlin {
-        sourceSets {
-            val commonMain by getting {
-                dependencies {
-                    implementation("com.iproov.identity:identity:0.1.0")
-                }
-            }
-        }
+      sourceSets {
+          val commonMain by getting {
+              dependencies {
+                  implementation("com.iproov.identity:identity:0.2.0")
+              }
+          }
+      }
     }
     ```
     </details>
@@ -427,7 +439,7 @@ wallet.destroy() { error in
 
 Your wallet is used to store **credentials**.
 
-Currently, 4 types of `Credential` can be added to the wallet:
+Currently, 4 types of `LegacyCredential` can be added to the wallet:
 
 - `IdentityCredential.Mrtd` - an NFC-enabled machine-readable travel document (MRTD). This includes demo documents
   generated by the iProov platform, which you can use for testing.
@@ -439,6 +451,11 @@ Currently, 4 types of `Credential` can be added to the wallet:
 - `IdentityCredential.Reference` - a reference to a document that can be retrieved from a remote database (e.g.
   government database). This is advanced functionality which is explained further later in this document.
 
+> [!IMPORTANT]
+> These `IdentityCredential` types are now considered legacy. New credentials are issued as verifiable credentials via
+> OpenID for Verifiable Credential Issuance (OID4VCI). Legacy APIs remain for backwards compatibility only and will be
+> removed in a future release.
+
 Each credential has one or more **claims** associated with it (e.g. name, date of birth, phone number, etc.)
 
 ### Adding credentials
@@ -447,13 +464,22 @@ See the section below on how to add each type of credential to the wallet.
 
 ### Listing credentials
 
-You can get all the credentials in your wallet with `wallet.getCredentials()`:
+Calling `wallet.getCredentials()` now returns a `CredentialSummary` containing the credentials indexed by their
+`CredentialMetadata`, along with a collection of any retrieval failures.
 
 <details>
 <summary>Kotlin</summary>
 
 ```kotlin
-val credentials = wallet.getCredentials()
+val summary = wallet.getCredentials()
+
+summary.credentials.forEach { (metadata, credential) ->
+    // Render credential using metadata.display for locale-specific labels
+}
+
+summary.failures.forEach { (metadata, failure) ->
+    // Handle failure.description (e.g. show an error state in UI)
+}
 ```
 
 </details>
@@ -463,31 +489,37 @@ val credentials = wallet.getCredentials()
 
 ```swift
 do {
-    let credentials = try wallet.getCredentials()
+    let summary = try wallet.getCredentials()
+
+    for (metadata, credential) in summary.credentials {
+        // Present credential; metadata.display contains issuer supplied strings
+    }
+
+    for (metadata, failure) in summary.failures {
+        // Handle failure.description (e.g. prompt the user to retry)
+    }
 } catch {
     // Handle error
 }
 ```
 
 </details>
+
+> [!TIP]
+> Call `wallet.getCredentialMetadata()` when you only need issuer metadata without deserializing each credential.
 
 ### Deleting credentials
 
-You can delete a credential by calling `delete()` on the credential, or `wallet.deleteCredential()`:
+To remove a verifiable credential, pass its `CredentialMetadata` to `wallet.deleteCredential()`.
 
 <details>
 <summary>Kotlin</summary>
 
 ```kotlin
-// In a coroutine scope
-credential.delete()
-```
+val summary = wallet.getCredentials()
+val metadata = summary.credentials.keys.firstOrNull() ?: return
 
-or
-
-```kotlin
-// In a coroutine scope
-wallet.deleteCredential(credential)
+wallet.deleteCredential(metadata)
 ```
 
 </details>
@@ -497,55 +529,99 @@ wallet.deleteCredential(credential)
 
 ```swift
 do {
-    try await credential.delete()
+    let summary = try wallet.getCredentials()
+    guard let metadata = summary.credentials.keys.first as? CredentialMetadata else {
+        return
+    }
+
+    try wallet.deleteCredential(metadata: metadata)
 } catch {
     // Handle error
 }
 ```
 
-or
+</details>
 
-```swift
-do {
-    try await wallet.deleteCredential(credential: credential)
-} catch {
-    // Handle error
+> [!NOTE]
+> Legacy credential objects still expose `delete()`; however, new implementations should call
+> `wallet.deleteCredential(metadata:)` so OID4VCI-issued credentials and their derived claims are cleaned up together.
+
+Deleting a credential removes both the credential record and any claims associated with that credential.
+
+### Handling OID4VCI credential offers
+
+Whenever you add a document, complete a face verification, or consume a `credential_offer` URI, the Identity SDK
+returns a `RespondableCredentialOffer`. This object contains the issuer metadata and the list of
+`CredentialDescriptor`s that can be issued. Present this information to the user, then accept the offer to retrieve and
+store the selected credentials.
+
+<details>
+<summary>Kotlin</summary>
+
+```kotlin
+// Example: offer returned from wallet.addCredentialWithOffer or a document/face flow
+val offer = wallet.addCredentialWithOffer(uri)
+
+val issuance = offer.accept(offer.credentials)
+
+when (issuance) {
+    IssuanceResult.Empty -> {
+        // Nothing was issued (issuer returned no credentials)
+    }
+    is IssuanceResult.Immediate -> {
+        val summary = issuance.summary
+        summary.credentialsAdded.forEach { metadata ->
+            // Refresh UI or fetch wallet.getCredentials() using this metadata
+        }
+        summary.errors.forEach { (metadata, error) ->
+            // Handle error.description for the specific credential
+        }
+    }
+    is IssuanceResult.TransactionCodeRequired -> {
+        val challenge = issuance.challenge
+        // e.g. prompt the user for the OTP / transaction code described in challenge.details
+        val enteredCode = obtainTransactionCodeFromUser(challenge.details)
+        val summary = challenge.respond(enteredCode)
+        // Process summary as above
+    }
 }
 ```
 
 </details>
 
 <details>
-<summary>Swift (pre-concurrency)</summary>
+<summary>Swift</summary>
 
 ```swift
-credential.delete() { error in
-    if let error {
-        // Handle error
-        return
+let offer = try await wallet.addCredentialWithOffer(uri: offerUri)
+let result = try await offer.accept(credentials: offer.credentials as? [CredentialDescriptor] ?? [])
+
+if let immediate = result as? IssuanceResultImmediate {
+    let summary = immediate.summary
+    for metadata in summary.credentialsAdded as? [CredentialMetadata] ?? [] {
+        // Refresh wallet view or fetch details for metadata
     }
-
-    // Handle succesful deletion
-}
-```
-
-or
-
-```swift
-wallet.deleteCredential(credential: credential) { error in
-    if let error {
-        // Handle error
-        return
+    if let errors = summary.errors as? [CredentialMetadata: OID4VCICredentialError] {
+        for (metadata, error) in errors {
+            // Surface error.description to the user
+        }
     }
-
-    // Handle successful deletion
+} else if let txRequired = result as? IssuanceResultTransactionCodeRequired {
+    let details = txRequired.challenge.details
+    let code = promptForTransactionCode(description: details.description_)
+    let summary = try await txRequired.challenge.respond(txCode: code)
+    // Handle summary as above
+} else if result is IssuanceResultEmpty {
+    // Issuer did not return any credentials
 }
 ```
 
 </details>
 
-
-Deleting the credential will delete the credential as well as any claims associated with that credential.
+> [!NOTE]
+> `TransactionCodeChallenge.details` describes how to prompt the user (numeric vs text, length, optional description).
+> Both document and face verification flows surface `RespondableCredentialOffer` objects in their completion callbacks—
+> see the sections below for integration points.
 
 ## Demo identity credentials
 
@@ -616,8 +692,9 @@ MRZ from the document to `wallet.addDocumentWithMrz()`:
 
 val challenge = wallet.addDocumentWithMrz(
     mrtd.mrz,
-    loginRequest = null // If performing a re-verification pass in login request
-)
+    loginRequest = null, // If performing a re-verification pass in login request
+    addLegacyCredential = true // This toggles whether credentials in legacy format are added the wallet, this true by default.
+)   
 ```
 
 </details>
@@ -629,7 +706,8 @@ val challenge = wallet.addDocumentWithMrz(
 do {
     let challenge = try await wallet.addDocumentWithMrz(
         mrz: mrtd.mrz,
-        loginRequest: nil // If performing a re-verification pass in login request
+        loginRequest: nil, // If performing a re-verification pass in login request
+        addLegacyCredential: true // This toggles whether credentials in legacy format are added the wallet, this true by default.
     )
 } catch {
     // Handle error
@@ -645,7 +723,8 @@ do {
 ```swift
 wallet.addDocumentWithMrz(
     mrz: mrtd.mrz,
-    loginRequest: nil // If performing a re-verification pass in login request
+    loginRequest: nil, // If performing a re-verification pass in login request
+    addLegacyCredential: true // This toggles whether credentials in legacy format are added the wallet, this true by default.
 ) { challenge, error in
 
     if let error {
@@ -668,7 +747,7 @@ credential (and skipping the Active Authentication signature) as follows:
 
 ```kotlin
 // In a coroutine scope
-challenge.respond.withMrtd(mrtd = mrtd, accessControl = AccessControl.bac)
+val offer = challenge.respond.withMrtd(mrtd = mrtd, accessControl = AccessControl.bac)
 ```
 
 </details>
@@ -679,7 +758,7 @@ challenge.respond.withMrtd(mrtd = mrtd, accessControl = AccessControl.bac)
 ```swift
 do {
     let signature: Data? = nil
-    try await challenge.respond!.withMrtd(mrtd: mrtd, accessControl: .bac, signature: signature)
+    let offer = try await challenge.respond!.withMrtd(mrtd: mrtd, accessControl: .bac, signature: signature)
 } catch {
     // Handle error
 }
@@ -692,7 +771,7 @@ do {
 
 ```swift
 let signature: Data? = nil
-challenge.respond!.withMrtd(mrtd: mrtd, accessControl: .bac, signature: signature) { _, error in
+let offer = challenge.respond!.withMrtd(mrtd: mrtd, accessControl: .bac, signature: signature) { _, error in
     if let error {
         // Handle error
         return
@@ -704,8 +783,10 @@ challenge.respond!.withMrtd(mrtd: mrtd, accessControl: .bac, signature: signatur
 
 </details>
 
-Your demo identity credential has now been added to the wallet, and you can fetch the updated contents of your wallet
-with `wallet.getCredentials()` (see above).
+Responding returns a `RespondableCredentialOffer`. Accept it (
+see [Handling OID4VCI credential offers](#handling-oid4vci-credential-offers))
+to retrieve and store the issued credential; once the offer has been accepted you can fetch the updated contents of your
+wallet with `wallet.getCredentials()` (see above).
 
 > [!WARNING]
 > For security reasons, you are strongly advised to avoid mixing demo credentials with real user data in the same
@@ -763,7 +844,8 @@ do {
 ```swift
 wallet.addDocumentWithMrz(
     mrz: "P<GBRMASON<<EDMUND<<<<<<<<<<<<<<<<<<<<<<<<<<8990336246GBR8602049M2801013<<<<<<<<<<<<<<02",
-    loginRequest: nil
+    loginRequest: nil,
+    addLegacyCredential: true // This toggles whether credentials in legacy format are added the wallet, this true by default.
 ) { challenge, error in
 
     if let error {
@@ -787,7 +869,9 @@ Example obtaining a challenge for a document for which you have the document pro
 val challenge = wallet.addDocumentWithFields(
     documentNumber = "899033624",
     dateOfBirth = "860204",
-    dateOfExpiry = "280101"
+    dateOfExpiry = "280101",
+    addLegacyCredential = true // This toggles whether credentials in legacy format are added the wallet, this true by default.
+
 )
 ```
 
@@ -801,7 +885,8 @@ let challenge = try await wallet.addDocumentWithFields(
     documentNumber: "899033624",
     dateOfBirth: "860204",
     dateOfExpiry: "280101",
-    loginRequest: nil
+    loginRequest: nil,
+    addLegacyCredential: true // This toggles whether credentials in legacy format are added the wallet, this true by default.
 )
 ```
 
@@ -815,7 +900,8 @@ wallet.addDocumentWithFields(
     documentNumber: "899033624",
     dateOfBirth: "860204",
     dateOfExpiry: "280101",
-    loginRequest: nil
+    loginRequest: nil,
+    addLegacyCredential: true // This toggles whether credentials in legacy format are added the wallet
 ) { challenge, error in
     if let error {
         // Handle error
@@ -947,6 +1033,9 @@ challenge.respond!.withMrtd(mrtd: mrtd, accessControl: accessControl, signature:
 
 </details>
 
+Responding to the challenge returns a `RespondableCredentialOffer`; accept it to retrieve and persist the issued
+credentials (see [Handling OID4VCI credential offers](#handling-oid4vci-credential-offers)).
+
 > [!NOTE]
 > If the document does not support Active Authentication or Chip Authentication, you should pass `null` as the
 > signature (or omit the argument).
@@ -1041,6 +1130,42 @@ events.collect(onEach: { event in
 
 For more details on iProov Biometrics SDK events, [see here](https://github.com/iproov/android#get-started).
 
+When you receive `VerificationEvent.Completed`, check the embedded `offer` and follow the
+[Handling OID4VCI credential offers](#handling-oid4vci-credential-offers) guidance to accept any newly issued
+credentials:
+
+<details>
+<summary>Kotlin</summary>
+
+```kotlin
+events.collect { event ->
+    when (event) {
+        is VerificationEvent.Completed -> event.offer?.let { handleOffer(it) }
+        // ...existing handling
+    }
+}
+```
+
+</details>
+
+<details>
+<summary>Swift</summary>
+
+```swift
+events.collect(onEach: { event in
+    if let completed = event as? VerificationEventCompleted, let offer = completed.offer {
+        Task {
+            await handle(offer: offer)
+        }
+    }
+    // ...existing handling
+}, onError: { error in
+    // Handle error
+})
+```
+
+</details>
+
 #### Customizing the face scan
 
 You can customize the face scan experience by passing iProov SDK options when verifying the user's face, for example:
@@ -1060,7 +1185,48 @@ For documentation of the full set of available iProov options, consult
 the iProov Biometrics SDK [Android](https://github.com/iProov/android#customize-the-user-experience)
 or [iOS](https://github.com/iProov/ios#options)
 
+## Adding credentials from an OID4VCI offer
+
+If your app receives a `credential_offer_uri` URI (for example by scanning a QR code or handling a universal link), pass
+it to `wallet.addCredentialWithOffer()` to retrieve a `RespondableCredentialOffer` that you can present to the user.
+
+<details>
+<summary>Kotlin</summary>
+
+```kotlin
+// In a coroutine scope
+val offer = wallet.addCredentialWithOffer(uri)
+
+// Display offer.issuer and offer.credentials, then accept as shown earlier
+val issuance = offer.accept(offer.credentials)
+```
+
+</details>
+
+<details>
+<summary>Swift</summary>
+
+```swift
+do {
+    let offer = try await wallet.addCredentialWithOffer(uri: offerUri)
+    let result = try await offer.accept(credentials: offer.credentials as? [CredentialDescriptor] ?? [])
+    // Handle result using the same flow described in Handling OID4VCI credential offers
+} catch {
+    // Handle error
+}
+```
+
+</details>
+
+> [!TIP]
+> Persist the original credential offer URI (or the resulting `CredentialMetadata`) if you need to audit or resume a
+> deferred issuance flow at a later time.
+
 ## Phone number & email address
+
+> [!WARNING]
+> Phone number and email credentials use legacy issuance flows that are being deprecated. Where possible, migrate to
+> OID4VCI-based credentials.
 
 You can also add phone number and email address credentials to the wallet, however, they must be verified first.
 
@@ -1340,6 +1506,10 @@ wallet.verifyUriCredential(
 ## Claims
 
 Each credential has multiple claims associated with it.
+
+> [!WARNING]
+> `wallet.getAllClaims()` and related helpers operate on legacy credential storage. For OID4VCI credentials you should
+> parse the returned verifiable credential payload and rely on issuer-provided claim descriptors instead.
 
 You can get a list of claims for a given credential using the `claims` property:
 
@@ -1753,6 +1923,10 @@ For the iOS example app, see the `/example-ios` folder. For the Android example 
 ## Advanced topics
 
 ### Adding a document by reference
+
+> [!WARNING]
+> Document references are part of the legacy credential model and remain for backwards compatibility only. Prefer
+> issuing verifiable credentials via the OID4VCI flows described above.
 
 Sometimes, you may wish to add a document to the wallet that isn't physically held by the user, for example, a document
 held in a remote database (e.g. government database).

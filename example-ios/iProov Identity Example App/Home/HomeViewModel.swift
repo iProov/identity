@@ -33,9 +33,10 @@ class HomeViewModel: ObservableObject{
         self.state = getInitialSate()
         if wallet.isRegistered {
             wallet.refreshExpiredCredentials{ error in
-                if error != nil {
-                    self.state = .error(error!.localizedDescription)
-                }
+                print("Failed to refresh expired credentials")
+//                if error != nil {
+//                    self.state = .error(error!.localizedDescription)
+//                }
             }
         }
     }

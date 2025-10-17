@@ -18,15 +18,27 @@ struct RegisteredView: View {
             ZStack(alignment: .bottomTrailing) {
                 if viewModel.isLoading {
                     ProgressView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
-                    CredentialsView(
-                        credentials: viewModel.credentials,
-                        deleteCredential: viewModel.deleteCredential,
-                        verifyCredential: viewModel.verify,
+                    List {
+                        StoredCredentialsSection(
+                            summary: viewModel.credentialSummary,
+                            onDelete: viewModel.deleteCredential
+                        )
+
+                        LegacyCredentialsSection(
+                            credentials: viewModel.legacyCredentials,
+                            deleteCredential: viewModel.deleteLegacyCredential,
+                            verifyCredential: viewModel.verify
+                        )
+                    }
+
+                    ScanQRCodeButton(
+                        failure: $viewModel.alert,
+                        reloadCredentials: viewModel.loadCredentials
                     )
+                    .padding()
                 }
-                
-                ScanQRCodeButton(failure: $viewModel.alert, reloadCredentials: viewModel.loadCredentials).padding()
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {

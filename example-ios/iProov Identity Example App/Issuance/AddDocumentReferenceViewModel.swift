@@ -14,6 +14,7 @@ class AddDocumentReferenceViewModel: ObservableObject {
     @Published var reference = ""
     @Published var isLoading = false
     @Published var alert: AlertDialog? = nil
+    @Published var offerSheet: CredentialOfferSheetState? = nil
 
     private let completion: () -> Void
 
@@ -24,6 +25,8 @@ class AddDocumentReferenceViewModel: ObservableObject {
     }
 
     func addDocumentWithReference() {
+        guard validateReference() else { return }
+
         isLoading = true
 
         do {
@@ -36,17 +39,32 @@ class AddDocumentReferenceViewModel: ObservableObject {
 
             events.collect(
                 onEach: { event in
-                    if case _ as VerificationEvent.Completed = event {
-                        self.alert = AlertDialog(title: "Success", message: "Identity added using reference.")
+                    switch event {
+                    case let completed as VerificationEvent.Completed:
+                        guard let offer = completed.offer else {
+                            self.alert = AlertDialog(
+                                title: "No credential offer",
+                                message: "The issuer did not return a credential offer."
+                            )
+                            self.isLoading = false
+                            return
+                        }
+
                         self.isLoading = false
-                        self.completion()
-                    } else if case let failure as VerificationEvent.Error = event {
-                        self.alert = AlertDialog(title: "Face verification failed", message: failure.message)
+                        self.presentOffer(offer)
+
+                    case let failureEvent as VerificationEvent.Error:
+                        self.alert = AlertDialog(title: "Face verification failed", message: failureEvent.message)
+                        self.isLoading = false
+
+                    case is VerificationEvent.Loading:
                         self.isLoading = true
-                    } else if case _ as VerificationEvent.Loading = event {
+
+                    case is VerificationEvent.Canceled:
                         self.isLoading = false
-                    } else if case _ as VerificationEvent.Canceled = event {
-                        self.isLoading = false
+
+                    default:
+                        break
                     }
                 },
                 onError: { error in
@@ -73,5 +91,96 @@ class AddDocumentReferenceViewModel: ObservableObject {
         }
 
         return true
+    }
+
+    private func presentOffer(_ offer: RespondableCredentialOffer) {
+        alert = nil
+        offerSheet = CredentialOfferSheetState(offer: offer)
+    }
+
+    func toggleCredentialSelection(id: UUID) {
+        guard var sheet = offerSheet else { return }
+        sheet.toggleSelection(id: id)
+        if case .failed = sheet.status {
+            sheet.status = .idle
+        }
+        offerSheet = sheet
+    }
+
+    func confirmCredentialSelection() {
+        guard let sheet = offerSheet else { return }
+        let selected = sheet.selectedDescriptors
+        guard !selected.isEmpty else {
+            alert = AlertDialog(
+                title: "Select a credential",
+                message: "Choose at least one credential to add."
+            )
+            return
+        }
+
+        var submitting = sheet
+        submitting.status = .submitting
+        offerSheet = submitting
+
+        let offer = sheet.offer
+        let sheetId = sheet.id
+
+        Task {
+            do {
+                let result = try await offer.accept(credentials: selected)
+                await MainActor.run {
+                    self.updateOfferSheet(id: sheetId) { state in
+                        self.apply(result: result, to: &state)
+                    }
+                }
+            } catch {
+                await MainActor.run {
+                    self.updateOfferSheet(id: sheetId) { state in
+                        state.status = .failed(message: error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+
+    func dismissOfferSheet() {
+        let shouldComplete: Bool
+        if case .completed = offerSheet?.status {
+            shouldComplete = true
+        } else {
+            shouldComplete = false
+        }
+
+        offerSheet = nil
+
+        if shouldComplete {
+            completion()
+        }
+    }
+
+    private func updateOfferSheet(id: UUID, mutate: (inout CredentialOfferSheetState) -> Void) {
+        guard var sheet = offerSheet, sheet.id == id else { return }
+        mutate(&sheet)
+        offerSheet = sheet
+    }
+
+    private func apply(result: IssuanceResult, to state: inout CredentialOfferSheetState) {
+        if let immediate = result as? IssuanceResultImmediate {
+            state.status = .completed(summary: immediate.summary)
+            return
+        }
+
+        if result is IssuanceResultEmpty {
+            state.status = .failed(message: "The issuer did not issue any credentials.")
+            return
+        }
+
+        if let txRequired = result as? IssuanceResultTransactionCodeRequired {
+            let description = txRequired.challenge.details.description_ ?? "A transaction code is required to complete issuance."
+            state.status = .transactionCodeRequired(description: description)
+            return
+        }
+
+        state.status = .failed(message: "Unsupported issuance result")
     }
 }

@@ -43,6 +43,15 @@ struct AddDocumentView: View {
             .alert(item: $viewModel.failure) { error in
                 Alert(title: Text(error.title), message: Text(error.message))
             }
+            .sheet(item: $viewModel.offerSheet) { sheet in
+                CredentialOfferSheet(
+                    state: sheet,
+                    onToggleSelection: viewModel.toggleCredentialSelection,
+                    onConfirm: viewModel.confirmCredentialSelection,
+                    onDismiss: viewModel.dismissOfferSheet
+                )
+                .presentationDetents([.medium, .large])
+            }
         }
     }
 }

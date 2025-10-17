@@ -11,7 +11,8 @@ import identity
 
 @MainActor
 class RegisteredViewModel: ObservableObject {
-    @Published var credentials: [Credential] = []
+    @Published var legacyCredentials: [LegacyCredential] = []
+    @Published var credentialSummary = CredentialSummary(credentials: [:], failures: [:])
     @Published var isLoading = false
     @Published var alert: AlertDialog? = nil
 
@@ -20,20 +21,32 @@ class RegisteredViewModel: ObservableObject {
     /// Fetches the user's credentials from the wallet.
     func loadCredentials() {
         isLoading = true
-        do {
-            credentials = try wallet.getCredentials()
-        } catch {
-            alert = AlertDialog(title: "Failed to load credentials", message: error.localizedDescription)
+        Task {
+            do {
+                let summary = try wallet.getCredentials()
+                let legacy = try wallet.getLegacyCredentials()
+
+                await MainActor.run {
+                    credentialSummary = summary
+                    legacyCredentials = legacy
+                    isLoading = false
+                }
+            } catch {
+                await MainActor.run {
+                    alert = AlertDialog(title: "Failed to load credentials", message: error.localizedDescription)
+                    credentialSummary = CredentialSummary(credentials: [:], failures: [:])
+                    isLoading = false
+                }
+            }
         }
-        isLoading = false
     }
 
     /// Deletes a specific credential from the wallet and reloads the list.
-    func deleteCredential(_ credential: Credential) {
+    func deleteLegacyCredential(_ credential: LegacyCredential) {
         isLoading = true
         Task {
             do {
-                try await wallet.deleteCredential(credential: credential)
+                try wallet.deleteCredential(credential: credential)
                 loadCredentials()  // Reload to reflect the change
             } catch {
                 alert = AlertDialog(title: "Failed to delete credential", message: error.localizedDescription)
@@ -42,7 +55,20 @@ class RegisteredViewModel: ObservableObject {
         }
     }
 
-    func verify(_ credential: Credential) {
+    func deleteCredential(metadata: CredentialMetadata) {
+        isLoading = true
+        Task {
+            do {
+                try wallet.deleteCredential(metadata: metadata)
+                loadCredentials()
+            } catch {
+                alert = AlertDialog(title: "Failed to delete credential", message: error.localizedDescription)
+            }
+            isLoading = false
+        }
+    }
+
+    func verify(_ credential: LegacyCredential) {
         let hasDtc =  credential.claims.contains{ claim in claim.name == "com.svipe:dtc"}
 
         guard hasDtc else {

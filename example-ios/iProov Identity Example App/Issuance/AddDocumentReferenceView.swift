@@ -36,6 +36,15 @@ struct AddDocumentReferenceView: View {
             .alert(item: $viewModel.alert) { alert in
                 Alert(title: Text(alert.title), message: Text(alert.message))
             }
+            .sheet(item: $viewModel.offerSheet) { sheet in
+                CredentialOfferSheet(
+                    state: sheet,
+                    onToggleSelection: viewModel.toggleCredentialSelection,
+                    onConfirm: viewModel.confirmCredentialSelection,
+                    onDismiss: viewModel.dismissOfferSheet
+                )
+                .presentationDetents([.medium, .large])
+            }
         }
     }
 }

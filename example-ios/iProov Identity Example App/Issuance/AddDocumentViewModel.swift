@@ -15,6 +15,7 @@ import MRZScanner
 class AddDocumentViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var failure: AlertDialog? = nil
+    @Published var offerSheet: CredentialOfferSheetState? = nil
     
     private let wallet = WalletFactory.shared.instance!
     private let loginRequest: LoginRequest?
@@ -31,12 +32,27 @@ class AddDocumentViewModel: ObservableObject {
         Task {
             do {
                 let demoDocument = try await wallet.createDemoMrtd()
-                let documentChallenge = try await wallet.addDocumentWithMrz(mrz: demoDocument.mrz, loginRequest: loginRequest)
+                let documentChallenge = try await wallet.addDocumentWithMrz(
+                    mrz: demoDocument.mrz,
+                    loginRequest: loginRequest,
+                    addLegacyCredential: false
+                )
 
-                let signature: Data?  = nil
-                try await documentChallenge.respond?.withMrtd(mrtd: demoDocument, accessControl: .bac, signature: signature)
-                
-                completion()
+                guard let responder = documentChallenge.respond else {
+                    throw NSError(domain: "AddDocumentError", code: 2, userInfo: [NSLocalizedDescriptionKey: "No credential offer responder returned."])
+                }
+
+                guard let offer = try await responder.withMrtd(
+                    mrtd: demoDocument,
+                    accessControl: .bac,
+                    signature: nil
+                ) else {
+                    throw NSError(domain: "AddDocumentError", code: 4, userInfo: [NSLocalizedDescriptionKey: "No credential offer returned by issuer."])
+                }
+
+                isLoading = false
+                presentOffer(offer)
+                return
             } catch {
                 failure = AlertDialog(title: "Failed to add demo document", message: error.localizedDescription)
             }
@@ -55,7 +71,13 @@ class AddDocumentViewModel: ObservableObject {
                     throw NSError(domain: "AddDocumentError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid MRZ data."])
                 }
                 
-                let challenge = try await wallet.addDocumentWithFields(documentNumber: documentNumber, dateOfBirth: dob, dateOfExpiry: doe, loginRequest: loginRequest)
+                let challenge = try await wallet.addDocumentWithFields(
+                    documentNumber: documentNumber,
+                    dateOfBirth: dob,
+                    dateOfExpiry: doe,
+                    loginRequest: loginRequest,
+                    addLegacyCredential: false
+                )
                 
                 let key = MRZKey(documentNumber: documentNumber, dateOfBirth: dob, dateOfExpiry: doe).key
                 
@@ -64,18 +86,119 @@ class AddDocumentViewModel: ObservableObject {
                 let mrtd = try result.dataGroupsRead.toMrtd()
                 
                 let accessControl: AccessControl = result.PACEStatus == .success ? .pace : .bac
-                        
-                let signature: Data? = nil
-                try await challenge.respond!
-                    .withMrtd(mrtd: mrtd, accessControl: accessControl, signature: signature)
-                
-                completion()
+
+                guard let responder = challenge.respond else {
+                    throw NSError(domain: "AddDocumentError", code: 3, userInfo: [NSLocalizedDescriptionKey: "No credential offer responder returned."])
+                }
+
+                guard let offer = try await responder.withMrtd(
+                    mrtd: mrtd,
+                    accessControl: accessControl,
+                    signature: nil
+                ) else {
+                    throw NSError(domain: "AddDocumentError", code: 5, userInfo: [NSLocalizedDescriptionKey: "No credential offer returned by issuer."])
+                }
+
+                isLoading = false
+                presentOffer(offer)
+                return
                 
             } catch {
                 failure = AlertDialog(title: "Failed to read document", message: error.localizedDescription)
             }
             isLoading = false
         }
+    }
+
+    private func presentOffer(_ offer: RespondableCredentialOffer) {
+        failure = nil
+        offerSheet = CredentialOfferSheetState(offer: offer)
+    }
+
+    func toggleCredentialSelection(id: UUID) {
+        guard var sheet = offerSheet else { return }
+        sheet.toggleSelection(id: id)
+        if case .failed = sheet.status {
+            sheet.status = .idle
+        }
+        offerSheet = sheet
+    }
+
+    func confirmCredentialSelection() {
+        guard let sheet = offerSheet else { return }
+        let selected = sheet.selectedDescriptors
+        guard !selected.isEmpty else {
+            failure = AlertDialog(
+                title: "Select a credential",
+                message: "Choose at least one credential to add."
+            )
+            return
+        }
+
+        var submitting = sheet
+        submitting.status = .submitting
+        offerSheet = submitting
+
+        let offer = sheet.offer
+        let sheetId = sheet.id
+
+        Task {
+            do {
+                let result = try await offer.accept(credentials: selected)
+                await MainActor.run {
+                    self.updateOfferSheet(id: sheetId) { state in
+                        self.apply(result: result, to: &state)
+                    }
+                }
+            } catch {
+                await MainActor.run {
+                    self.updateOfferSheet(id: sheetId) { state in
+                        state.status = .failed(message: error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+
+    func dismissOfferSheet() {
+        let shouldComplete: Bool
+        if case .completed = offerSheet?.status {
+            shouldComplete = true
+        } else {
+            shouldComplete = false
+        }
+
+        offerSheet = nil
+
+        if shouldComplete {
+            completion()
+        }
+    }
+
+    private func updateOfferSheet(id: UUID, mutate: (inout CredentialOfferSheetState) -> Void) {
+        guard var sheet = offerSheet, sheet.id == id else { return }
+        mutate(&sheet)
+        offerSheet = sheet
+    }
+
+    private func apply(result: IssuanceResult, to state: inout CredentialOfferSheetState) {
+        if let immediate = result as? IssuanceResultImmediate {
+            state.status = .completed(summary: immediate.summary)
+            return
+        }
+
+        if result is IssuanceResultEmpty {
+            state.status = .failed(message: "The issuer did not return any credentials.")
+            return
+        }
+
+        if let txRequired = result as? IssuanceResultTransactionCodeRequired {
+            let description = txRequired.challenge.details.description_ ?? "A transaction code is required to complete issuance."
+            state.status = .transactionCodeRequired(description: description)
+            return
+        }
+
+        state.status = .failed(message: "Unsupported issuance result")
     }
 }
 

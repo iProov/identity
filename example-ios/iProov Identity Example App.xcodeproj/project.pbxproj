@@ -22,8 +22,8 @@
 		CA388D2D2EA1ECF700E04467 /* CredentialOfferSheetState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA388D2C2EA1ECF700E04467 /* CredentialOfferSheetState.swift */; };
 		CA388D2F2EA1ED7D00E04467 /* CredentialOfferSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA388D2E2EA1ED7D00E04467 /* CredentialOfferSheet.swift */; };
 		CA39CA9E2EA005570051934E /* JOSESwift in Frameworks */ = {isa = PBXBuildFile; productRef = CA39CA9D2EA005570051934E /* JOSESwift */; };
-		CA39CAB52EA248770051934E /* identity.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA39CAB42EA248770051934E /* identity.xcframework */; };
-		CA39CAB62EA248770051934E /* identity.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA39CAB42EA248770051934E /* identity.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CA39CAB82EA259880051934E /* identity.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA39CAB72EA259870051934E /* identity.xcframework */; };
+		CA39CAB92EA259880051934E /* identity.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA39CAB72EA259870051934E /* identity.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CA4156792D39641800D7A909 /* CredentialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4156782D39641800D7A909 /* CredentialsView.swift */; };
 		CA41567B2D3965A800D7A909 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA41567A2D3965A800D7A909 /* HomeViewModel.swift */; };
 		CA41567F2D39732000D7A909 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA41567E2D39732000D7A909 /* ErrorView.swift */; };
@@ -50,7 +50,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CA39CAB62EA248770051934E /* identity.xcframework in Embed Frameworks */,
+				CA39CAB92EA259880051934E /* identity.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,7 +71,7 @@
 		CA388D2A2EA1ECBD00E04467 /* DisplayHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayHelpers.swift; sourceTree = "<group>"; };
 		CA388D2C2EA1ECF700E04467 /* CredentialOfferSheetState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialOfferSheetState.swift; sourceTree = "<group>"; };
 		CA388D2E2EA1ED7D00E04467 /* CredentialOfferSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialOfferSheet.swift; sourceTree = "<group>"; };
-		CA39CAB42EA248770051934E /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../identity.xcframework; sourceTree = "<group>"; };
+		CA39CAB72EA259870051934E /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../identity.xcframework; sourceTree = "<group>"; };
 		CA4156722D395EC600D7A909 /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../identity/build/XCFrameworks/release/identity.xcframework; sourceTree = "<group>"; };
 		CA4156782D39641800D7A909 /* CredentialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsView.swift; sourceTree = "<group>"; };
 		CA41567A2D3965A800D7A909 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 				CA0CDC972D5E17BA005725B7 /* MRZScanner in Frameworks */,
 				CAD1A8C52D4D1EBD009CD341 /* NFCPassportReader in Frameworks */,
 				CA39CA9E2EA005570051934E /* JOSESwift in Frameworks */,
-				CA39CAB52EA248770051934E /* identity.xcframework in Frameworks */,
+				CA39CAB82EA259880051934E /* identity.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +155,7 @@
 				CA4156722D395EC600D7A909 /* identity.xcframework */,
 				CA1CCA182DB8D3D700399302 /* identity.xcframework */,
 				CA8110FD2E9E435600D326AF /* identity.xcframework */,
-				CA39CAB42EA248770051934E /* identity.xcframework */,
+				CA39CAB72EA259870051934E /* identity.xcframework */,
 				CAB748B42D141AB300F33325 /* sdk.framework */,
 			);
 			name = Frameworks;

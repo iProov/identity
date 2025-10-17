@@ -188,11 +188,11 @@
         {
           "name": "identity-iosArm64Main-0.2.0.klib",
           "url": "identity-iosarm64-0.2.0.klib",
-          "size": 510668,
-          "sha512": "ecb2007f177d5ada7cc5f61dc4f144d485adafb67c4d047aaf22d00b423023c824be29601ecb95e0ecb273589fd3ee7381703bdc6fc7d3762ac9b14be0b909f3",
-          "sha256": "dce438a880b8b772ee009b98fc11e575749da7c20aa2f45913b866894f1953a4",
-          "sha1": "af92b7d7273204b7d8554e7f70626200119a5558",
-          "md5": "3b6d95a68d775d1b9aebe14f95ee7ac8"
+          "size": 510432,
+          "sha512": "18113b4d050cf9435ba373a47538f87fce4ddc50e10a7d1a2eb83eb6ae9c1f8992e970168847169ec77a2e3791ae24618bfa6212674aeba18243eb4fc046c01e",
+          "sha256": "85ab182f4e9026545437cfa7cfb08bcc453bde5136e8c5f3da06e5340c7873e0",
+          "sha1": "be61b77684bfd0205dd36ca0020d601e666ff023",
+          "md5": "4442ee538f5c9098555bf6bea65649eb"
         }
       ]
     },
@@ -211,11 +211,11 @@
         {
           "name": "identity-iosarm64-0.2.0-sources.jar",
           "url": "identity-iosarm64-0.2.0-sources.jar",
-          "size": 76390,
-          "sha512": "7a2784161f172cba982d38f55af358235ecf3af5f5bfd643f8db75583ca944ed520ab45f5b39ca7a7d99f47ef766fdd09675a04d1f78859cedd03b56faf0c204",
-          "sha256": "3df7488b92b02986737dbf929c6cffab467be496e5806ac3ab7d97e01eea4226",
-          "sha1": "a2070033bccb86c9854ce4b4d634ccae10690f30",
-          "md5": "b958826b203d135919870b5bce384e50"
+          "size": 76367,
+          "sha512": "028d4ba1e5457d17f353732744b662e7b95e1fbd8bf45446faec7766d05607292cdb9ecccac4249491d9717be8df360406f70834ec475e3d378a6b89a2df4320",
+          "sha256": "4e4b5b10055dfc79504e8911588ff7a8b3212fb92b79c27fe4f7fdb7c59fc323",
+          "sha1": "dad39e889f72ae93544f4623eee2bc9d11214289",
+          "md5": "c6c481cf88922eb0b352c27ff63a06ba"
         }
       ]
     },

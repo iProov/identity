@@ -692,8 +692,9 @@ MRZ from the document to `wallet.addDocumentWithMrz()`:
 
 val challenge = wallet.addDocumentWithMrz(
     mrtd.mrz,
-    loginRequest = null // If performing a re-verification pass in login request
-)
+    loginRequest = null, // If performing a re-verification pass in login request
+    addLegacyCredential = true // This toggles whether credentials in legacy format are added the wallet, this true by default.
+)   
 ```
 
 </details>
@@ -705,7 +706,8 @@ val challenge = wallet.addDocumentWithMrz(
 do {
     let challenge = try await wallet.addDocumentWithMrz(
         mrz: mrtd.mrz,
-        loginRequest: nil // If performing a re-verification pass in login request
+        loginRequest: nil, // If performing a re-verification pass in login request
+        addLegacyCredential: true // This toggles whether credentials in legacy format are added the wallet, this true by default.
     )
 } catch {
     // Handle error
@@ -721,7 +723,8 @@ do {
 ```swift
 wallet.addDocumentWithMrz(
     mrz: mrtd.mrz,
-    loginRequest: nil // If performing a re-verification pass in login request
+    loginRequest: nil, // If performing a re-verification pass in login request
+    addLegacyCredential: true // This toggles whether credentials in legacy format are added the wallet, this true by default.
 ) { challenge, error in
 
     if let error {
@@ -841,7 +844,8 @@ do {
 ```swift
 wallet.addDocumentWithMrz(
     mrz: "P<GBRMASON<<EDMUND<<<<<<<<<<<<<<<<<<<<<<<<<<8990336246GBR8602049M2801013<<<<<<<<<<<<<<02",
-    loginRequest: nil
+    loginRequest: nil,
+    addLegacyCredential: true // This toggles whether credentials in legacy format are added the wallet, this true by default.
 ) { challenge, error in
 
     if let error {
@@ -865,7 +869,9 @@ Example obtaining a challenge for a document for which you have the document pro
 val challenge = wallet.addDocumentWithFields(
     documentNumber = "899033624",
     dateOfBirth = "860204",
-    dateOfExpiry = "280101"
+    dateOfExpiry = "280101",
+    addLegacyCredential = true // This toggles whether credentials in legacy format are added the wallet, this true by default.
+
 )
 ```
 
@@ -879,7 +885,8 @@ let challenge = try await wallet.addDocumentWithFields(
     documentNumber: "899033624",
     dateOfBirth: "860204",
     dateOfExpiry: "280101",
-    loginRequest: nil
+    loginRequest: nil,
+    addLegacyCredential: true // This toggles whether credentials in legacy format are added the wallet, this true by default.
 )
 ```
 
@@ -893,7 +900,8 @@ wallet.addDocumentWithFields(
     documentNumber: "899033624",
     dateOfBirth: "860204",
     dateOfExpiry: "280101",
-    loginRequest: nil
+    loginRequest: nil,
+    addLegacyCredential: true // This toggles whether credentials in legacy format are added the wallet
 ) { challenge, error in
     if let error {
         // Handle error

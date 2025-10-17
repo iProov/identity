@@ -47,7 +47,7 @@
       ],
       "files": [
         {
-          "name": "identity-0.2.0.jar",
+          "name": "identity-metadata-0.2.0.jar",
           "url": "identity-0.2.0.jar",
           "size": 53656,
           "sha512": "1e650bade5a892b927a2dd141a637341a0a4bbf618d0be2928bc3d10b37478d602d4368cbe83882ebc5108bb579fefb76b07b9e8158c0e1b13df36147f75107b",
@@ -69,13 +69,13 @@
       },
       "files": [
         {
-          "name": "identity-0.2.0-sources.jar",
+          "name": "identity-kotlin-0.2.0-sources.jar",
           "url": "identity-0.2.0-sources.jar",
-          "size": 52757,
-          "sha512": "bcb2087ff3e779fcb26ab7272122d5120e2ab97a8f7e7be13b238f3aeedea0ba3f9f81ae1e0e11ff1be4a050e0bd5c6384c2428ea0afc7a5ca07e4ad5a310374",
-          "sha256": "169f734c1beee42350c6d5bb0a2a3d24bec76ca1adb9f2657462724369729c06",
-          "sha1": "82d7260271ce2998995dae3363ffb98772ead75e",
-          "md5": "6464efeb48faf28bf3698b6e8dcfd002"
+          "size": 52734,
+          "sha512": "ca4ffe15d71559732393500a524d5abd3ad0bf2f2eddb142233740b0f2edcda376e2ebf27fbe513397aac16ea44e1677d8ebea57ba6590ca297640dacd649363",
+          "sha256": "688aa5dbaee507c2de10966b259f6f7be836548b0001f2d03231e610422c88c6",
+          "sha1": "d90425e1de07a7c61be789ee98fa40305f1e41b9",
+          "md5": "3f8ce06ef197695011a565d613b461f2"
         }
       ]
     },

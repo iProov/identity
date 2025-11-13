@@ -46,5 +46,12 @@ struct ScanQRCodeButton : View {
                 }
             }
         }
+        .sheet(item: $viewModel.presentationRequest) { request in
+            PresentationRequestSheet(
+                request: request,
+                onDismiss: { viewModel.dismissPresentationRequest() },
+                onSuccess: { outcome in viewModel.handlePresentationSuccess(outcome) }
+            )
+        }
     }
 }

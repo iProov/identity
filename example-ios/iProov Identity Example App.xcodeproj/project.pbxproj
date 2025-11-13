@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0991C180F7A5401F8EEEA02A /* PresentationRequestSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DB091124AF48D08F44E35F /* PresentationRequestSheet.swift */; };
+		1DC8C249B038450EB3EFEC56 /* PresentationRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6DAE64BF7C4202B77074B2 /* PresentationRequestViewModel.swift */; };
+		37AD14F7E5B74C919B47E195 /* PresentationIdentityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4E461D17004912AE4696E6 /* PresentationIdentityExtensions.swift */; };
 		CA0CDC972D5E17BA005725B7 /* MRZScanner in Frameworks */ = {isa = PBXBuildFile; productRef = CA0CDC962D5E17BA005725B7 /* MRZScanner */; };
 		CA0CDC992D5E17DD005725B7 /* MrzCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0CDC982D5E17DD005725B7 /* MrzCaptureView.swift */; };
 		CA3824182E17B5E2008F4D2C /* ScanQrCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3824172E17B5DA008F4D2C /* ScanQrCodeViewModel.swift */; };
@@ -22,8 +25,6 @@
 		CA388D2D2EA1ECF700E04467 /* CredentialOfferSheetState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA388D2C2EA1ECF700E04467 /* CredentialOfferSheetState.swift */; };
 		CA388D2F2EA1ED7D00E04467 /* CredentialOfferSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA388D2E2EA1ED7D00E04467 /* CredentialOfferSheet.swift */; };
 		CA39CA9E2EA005570051934E /* JOSESwift in Frameworks */ = {isa = PBXBuildFile; productRef = CA39CA9D2EA005570051934E /* JOSESwift */; };
-		CA39CAB82EA259880051934E /* identity.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA39CAB72EA259870051934E /* identity.xcframework */; };
-		CA39CAB92EA259880051934E /* identity.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA39CAB72EA259870051934E /* identity.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CA4156792D39641800D7A909 /* CredentialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4156782D39641800D7A909 /* CredentialsView.swift */; };
 		CA41567B2D3965A800D7A909 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA41567A2D3965A800D7A909 /* HomeViewModel.swift */; };
 		CA41567F2D39732000D7A909 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA41567E2D39732000D7A909 /* ErrorView.swift */; };
@@ -36,6 +37,8 @@
 		CAD1A8C92D50E5EF009CD341 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A8C82D50E5EF009CD341 /* Error.swift */; };
 		CAD1A8CB2D510FD4009CD341 /* AddPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A8CA2D510FD4009CD341 /* AddPhoneView.swift */; };
 		CAD1A8CD2D510FDB009CD341 /* AddEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A8CC2D510FDB009CD341 /* AddEmailView.swift */; };
+		CAE8F6462EC1E4ED00878C97 /* identity.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE8F6452EC1E4ED00878C97 /* identity.xcframework */; };
+		CAE8F6472EC1E4ED00878C97 /* identity.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CAE8F6452EC1E4ED00878C97 /* identity.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CAF398CC2D479925007D62E3 /* JwtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF398CB2D479925007D62E3 /* JwtView.swift */; };
 		CAF398D92D47AD6C007D62E3 /* ScanQrCodeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF398D82D47AD6C007D62E3 /* ScanQrCodeSheet.swift */; };
 		CAF398DF2D48CB71007D62E3 /* SelectiveDisclosureSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF398DE2D48CB71007D62E3 /* SelectiveDisclosureSheet.swift */; };
@@ -44,13 +47,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CA39CAAD2EA1239A0051934E /* Embed Frameworks */ = {
+		CAE8F61A2EBE6D0300878C97 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CA39CAB92EA259880051934E /* identity.xcframework in Embed Frameworks */,
+				CAE8F6472EC1E4ED00878C97 /* identity.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -58,8 +61,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		34DB091124AF48D08F44E35F /* PresentationRequestSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationRequestSheet.swift; sourceTree = "<group>"; };
+		7F4E461D17004912AE4696E6 /* PresentationIdentityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationIdentityExtensions.swift; sourceTree = "<group>"; };
+		BC6DAE64BF7C4202B77074B2 /* PresentationRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationRequestViewModel.swift; sourceTree = "<group>"; };
 		CA0CDC982D5E17DD005725B7 /* MrzCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MrzCaptureView.swift; sourceTree = "<group>"; };
-		CA1CCA182DB8D3D700399302 /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../identity/build/XCFrameworks/debug/identity.xcframework; sourceTree = "<group>"; };
 		CA3824172E17B5DA008F4D2C /* ScanQrCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQrCodeViewModel.swift; sourceTree = "<group>"; };
 		CA3824192E17B621008F4D2C /* ScanQrCodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQrCodeButton.swift; sourceTree = "<group>"; };
 		CA38241B2E17B6B2008F4D2C /* RegisteredViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredViewModel.swift; sourceTree = "<group>"; };
@@ -71,22 +76,19 @@
 		CA388D2A2EA1ECBD00E04467 /* DisplayHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayHelpers.swift; sourceTree = "<group>"; };
 		CA388D2C2EA1ECF700E04467 /* CredentialOfferSheetState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialOfferSheetState.swift; sourceTree = "<group>"; };
 		CA388D2E2EA1ED7D00E04467 /* CredentialOfferSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialOfferSheet.swift; sourceTree = "<group>"; };
-		CA39CAB72EA259870051934E /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../identity.xcframework; sourceTree = "<group>"; };
-		CA4156722D395EC600D7A909 /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../identity/build/XCFrameworks/release/identity.xcframework; sourceTree = "<group>"; };
 		CA4156782D39641800D7A909 /* CredentialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsView.swift; sourceTree = "<group>"; };
 		CA41567A2D3965A800D7A909 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CA41567E2D39732000D7A909 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		CA8110FD2E9E435600D326AF /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../artifacts/identity.xcframework; sourceTree = "<group>"; };
 		CAB748A22D1415BE00F33325 /* iProov Identity Example App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iProov Identity Example App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB748A52D1415BE00F33325 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		CAB748A72D1415BE00F33325 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CAB748A92D1415C000F33325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAB748AC2D1415C000F33325 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		CAB748B42D141AB300F33325 /* sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = sdk.framework; path = ../identity/build/bin/iosX64/releaseFramework/sdk.framework; sourceTree = "<group>"; };
 		CAD1A8C62D4D2D83009CD341 /* AddDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDocumentView.swift; sourceTree = "<group>"; };
 		CAD1A8C82D50E5EF009CD341 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		CAD1A8CA2D510FD4009CD341 /* AddPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhoneView.swift; sourceTree = "<group>"; };
 		CAD1A8CC2D510FDB009CD341 /* AddEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmailView.swift; sourceTree = "<group>"; };
+		CAE8F6452EC1E4ED00878C97 /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../identity.xcframework; sourceTree = "<group>"; };
 		CAF398CB2D479925007D62E3 /* JwtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtView.swift; sourceTree = "<group>"; };
 		CAF398D82D47AD6C007D62E3 /* ScanQrCodeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQrCodeSheet.swift; sourceTree = "<group>"; };
 		CAF398DE2D48CB71007D62E3 /* SelectiveDisclosureSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectiveDisclosureSheet.swift; sourceTree = "<group>"; };
@@ -103,7 +105,7 @@
 				CA0CDC972D5E17BA005725B7 /* MRZScanner in Frameworks */,
 				CAD1A8C52D4D1EBD009CD341 /* NFCPassportReader in Frameworks */,
 				CA39CA9E2EA005570051934E /* JOSESwift in Frameworks */,
-				CA39CAB82EA259880051934E /* identity.xcframework in Frameworks */,
+				CAE8F6462EC1E4ED00878C97 /* identity.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,11 +154,7 @@
 		CAB748B32D141AB300F33325 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CA4156722D395EC600D7A909 /* identity.xcframework */,
-				CA1CCA182DB8D3D700399302 /* identity.xcframework */,
-				CA8110FD2E9E435600D326AF /* identity.xcframework */,
-				CA39CAB72EA259870051934E /* identity.xcframework */,
-				CAB748B42D141AB300F33325 /* sdk.framework */,
+				CAE8F6452EC1E4ED00878C97 /* identity.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -181,6 +179,9 @@
 			isa = PBXGroup;
 			children = (
 				CAF398D82D47AD6C007D62E3 /* ScanQrCodeSheet.swift */,
+				34DB091124AF48D08F44E35F /* PresentationRequestSheet.swift */,
+				BC6DAE64BF7C4202B77074B2 /* PresentationRequestViewModel.swift */,
+				7F4E461D17004912AE4696E6 /* PresentationIdentityExtensions.swift */,
 				CAF398DE2D48CB71007D62E3 /* SelectiveDisclosureSheet.swift */,
 				CAF398E02D48CB87007D62E3 /* SelectiveDisclosureViewModel.swift */,
 			);
@@ -224,7 +225,7 @@
 				CAB7489F2D1415BE00F33325 /* Frameworks */,
 				CAB7489E2D1415BE00F33325 /* Sources */,
 				CAB748A02D1415BE00F33325 /* Resources */,
-				CA39CAAD2EA1239A0051934E /* Embed Frameworks */,
+				CAE8F61A2EBE6D0300878C97 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -321,6 +322,9 @@
 				CA41567B2D3965A800D7A909 /* HomeViewModel.swift in Sources */,
 				CAD1A8CB2D510FD4009CD341 /* AddPhoneView.swift in Sources */,
 				CA3824222E17C41F008F4D2C /* AddPhoneViewModel.swift in Sources */,
+				0991C180F7A5401F8EEEA02A /* PresentationRequestSheet.swift in Sources */,
+				1DC8C249B038450EB3EFEC56 /* PresentationRequestViewModel.swift in Sources */,
+				37AD14F7E5B74C919B47E195 /* PresentationIdentityExtensions.swift in Sources */,
 				CAF398DF2D48CB71007D62E3 /* SelectiveDisclosureSheet.swift in Sources */,
 				CAF398D92D47AD6C007D62E3 /* ScanQrCodeSheet.swift in Sources */,
 			);
@@ -453,6 +457,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_ENTITLEMENTS = "iProov Identity Example App/iProov Identity Example App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -462,6 +467,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iProov-Identity-Example-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "iProov Identity Example App";
+				INFOPLIST_KEY_NFCReaderUsageDescription = "iProov ID uses NFC to scan the chip in your passport to verify your identity.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires the camera to scan QR codes and your face.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -472,6 +478,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACH_O_TYPE = mh_execute;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.iproov.identity.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -490,6 +497,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_ENTITLEMENTS = "iProov Identity Example App/iProov Identity Example App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -499,6 +507,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iProov-Identity-Example-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "iProov Identity Example App";
+				INFOPLIST_KEY_NFCReaderUsageDescription = "iProov ID uses NFC to scan the chip in your passport to verify your identity.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires the camera to scan QR codes and your face.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -509,6 +518,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACH_O_TYPE = mh_execute;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.iproov.identity.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -1,4 +1,4 @@
-# iProov Identity SDK v0.2.0
+# iProov Identity SDK v0.3.0
 
 The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform
 app.
@@ -11,7 +11,7 @@ app.
 
 ## Requirements
 
-- iOS: 13.0+
+- iOS: 16.0+
 - Android: API Level 26+
 - Kotlin Multiplatform: 2.2.0+
 
@@ -1560,7 +1560,59 @@ Each `Claim` has the following properties:
   user at the relevant time. (If the `displayName` is `null`, it means this claim doesn't need to be displayed to the
   user.)
 
+## Presenting Credentials
+
+> [!INFO]
+> We are currently migrating our SDK to use OID4VCI & VP so there are 2 ways of presenting credentials (via login requests and presentation requests)
+
+This section will document the process of presenting credentials via the OID4VP standard that is supported in the SDK. Make sure you're verifier is compatible with the wallet by checking the compatibility matrix below.
+
+Version of OID4VP Supported: `1.0.0`
+
+### Client ID verification
+
+| Verification method              |  Prefix                      | Supported        |
+|----------------------------------|------------------------------|------------------|
+| Pre-registered (default)         |  N/A (None)                  | [x]              |
+| X509 SAN DNS                     |  x509_san_dns                | [ ]              |
+| X509 HASH                        |  x509_hash                   | [ ]              |
+| DID                              |  decentralized_identifier    | [ ]              |
+| Verifier Attestation             |  verifier_attestation        | [ ]              |
+| OpenID Federation                |  openid_federation           | [ ]              |
+| redirect_uri                     |  redirect_uri                | [ ]              |
+
+### Credential Query
+
+We only support `DCQL` (Digital Credential Query Lanaguage) queries in the authorization requests.
+
+> [!TIP]
+> We support adding manadatory credentials for the `org.iso.18013.5.1.mDL` docType so if no claims are queried all claims marked as mandatory in the standard are 'added' / used as the query.
+
+### Response modes
+
+| Response mode              | Supported   | Description                                                                                        |
+|----------------------------|-------------|----------------------------------------------------------------------------------------------------|
+| direct_post                | [x]         | The Verifiable Presentation (VP) is sent in the body of a POST request to the `response_uri`.      |
+| direct_post.jwt            | [x]         | The VP is sent as a JWE in the body of a POST request to the `response_uri`.                       |
+| dc_api                     | [ ]         | The wallet responds via the digital credentials API without encrypting the response.               |
+| dc_api.jwt                 | [ ]         | Same as `dc_api` but the wallet responds with a JWE.                                               |
+| query                      | [ ]         | The VP is sent as a `vp_token` query parameter. The `state` is also returned for CSRF protection.  |
+| fragment                   | [ ]         | The VP is sent as a `vp_token` fragment parameter. The `state` is also returned for CSRF protection. |
+
+### Presentation flow
+
+1. A relying party / verifier must present a QR code or provide a deep link which is a URL encoded authorization request.
+2. URL encoded authorization request is passed to the wallet via `wallet.getPresentationRequest(<uri_encoded_authorization_request>)`
+3. The wallet returns a `RespondablePresentationRequest`. The wallet parses the query and exposes this back to the implementer via the `request.query.definition`.
+4. The implementer should call `request.query.execute()` to match the credentials in the wallet, this will return the matches for each credential query.
+5. The implementer should implement some UI to allow the user to perform a selective disclosure over the credentials matched in the query, remembering to honour the claim sets if provided in each credential query. (Examples can be followed in the example-ios or example-android app)
+6. Using the credentials selectively disclosed by the user you need to build a `CredentialSubmission` object containing the submitted credential for each of the credentail queries.
+7. Respond to the `RespondablePresentationRequest` using this `CredentialSubmission` and the wallet will respond to the verifier.
+
 ## Handling login requests
+
+> [!WARNING]
+> Login requests are used to present the legacy credentials, please follow the section Presenting Credentials to present credentials added using the OID4VCI flow.
 
 There are 5 steps to handling login requests:
 

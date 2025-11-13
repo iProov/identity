@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class IdentityAccessControl, IdentityActiveAuthentication, IdentityActiveAuthenticationCompanion, IdentityApiClient, IdentityApiException, IdentityApiExceptionHttpError, IdentityApiExceptionNetworkError, IdentityApiExceptionSerializationError, IdentityApiExceptionTimeoutError, IdentityAppInfo, IdentityAppInfoCompanion, IdentityAppleKeyPairLocation, IdentityAssuranceType, IdentityAssuranceTypeCompanion, IdentityBacKey, IdentityBacKeyCompanion, IdentityByteArrayAsBase64Serializer, IdentityChallenge, IdentityClaim, IdentityClaimCompanion, IdentityCredentialCompanion, IdentityCredentialDescriptor, IdentityCredentialDescriptorCompanion, IdentityCredentialDeserializer, IdentityCredentialDeserializerCompanion, IdentityCredentialFormat, IdentityCredentialFormatCompanion, IdentityCredentialIssuer, IdentityCredentialIssuerCompanion, IdentityCredentialMetadata, IdentityCredentialMetadataCompanion, IdentityCredentialOffer, IdentityCredentialRecord, IdentityCredentialRecordCompanion, IdentityCredentialRetrievalFailureSerializationFailed, IdentityCredentialRetrievalFailureUnsupportedFormat, IdentityCredentialSummary, IdentityDataAsBase64Serializer, IdentityDeviceInfo, IdentityDeviceInfoCompanion, IdentityDisplayProperties, IdentityDisplayPropertiesCompanion, IdentityDocumentChallenge, IdentityDocumentChallengeCompanion, IdentityDocumentChallengeResponder, IdentityEllipticCurvePublicKey, IdentityEllipticCurvePublicKeyCompanion, IdentityFaceReverificationRequest, IdentityFlowWrapper<__covariant T>, IdentityFormat, IdentityGender, IdentityGrantDetails, IdentityGrantDetailsCompanion, IdentityIdentityPlatformInterface, IdentityIssuanceResultEmpty, IdentityIssuanceResultImmediate, IdentityIssuanceResultTransactionCodeRequired, IdentityIssuanceSummary, IdentityJwk, IdentityJwkCompanion, IdentityJwt, IdentityJwtCompanion, IdentityJwtVerificationStatus, IdentityJwtVerificationStatusExpired, IdentityJwtVerificationStatusInvalid, IdentityJwtVerificationStatusMalformed, IdentityJwtVerificationStatusNotVerified, IdentityJwtVerificationStatusUnsecured, IdentityJwtVerificationStatusValid, IdentityKotlinAbstractCoroutineContextElement, IdentityKotlinAbstractCoroutineContextKey<B, E>, IdentityKotlinArray<T>, IdentityKotlinBase64, IdentityKotlinBase64Default, IdentityKotlinBase64PaddingOption, IdentityKotlinByteArray, IdentityKotlinByteIterator, IdentityKotlinCancellationException, IdentityKotlinEnum<E>, IdentityKotlinEnumCompanion, IdentityKotlinException, IdentityKotlinIllegalStateException, IdentityKotlinInstant, IdentityKotlinInstantCompanion, IdentityKotlinKTypeProjection, IdentityKotlinKTypeProjectionCompanion, IdentityKotlinKVariance, IdentityKotlinNothing, IdentityKotlinPair<__covariant A, __covariant B>, IdentityKotlinRuntimeException, IdentityKotlinThrowable, IdentityKotlinTriple<__covariant A, __covariant B, __covariant C>, IdentityKotlinUnit, IdentityKotlinx_coroutines_coreCoroutineDispatcher, IdentityKotlinx_coroutines_coreCoroutineDispatcherKey, IdentityKotlinx_io_coreBuffer, IdentityKotlinx_serialization_coreSerialKind, IdentityKotlinx_serialization_coreSerializersModule, IdentityKotlinx_serialization_jsonClassDiscriminatorMode, IdentityKotlinx_serialization_jsonJson, IdentityKotlinx_serialization_jsonJsonConfiguration, IdentityKotlinx_serialization_jsonJsonDefault, IdentityKotlinx_serialization_jsonJsonElement, IdentityKotlinx_serialization_jsonJsonElementCompanion, IdentityKtor_client_coreHttpClient, IdentityKtor_client_coreHttpClientCall, IdentityKtor_client_coreHttpClientCallCompanion, IdentityKtor_client_coreHttpClientConfig<T>, IdentityKtor_client_coreHttpClientEngineConfig, IdentityKtor_client_coreHttpReceivePipeline, IdentityKtor_client_coreHttpReceivePipelinePhases, IdentityKtor_client_coreHttpRequestBuilder, IdentityKtor_client_coreHttpRequestBuilderCompanion, IdentityKtor_client_coreHttpRequestData, IdentityKtor_client_coreHttpRequestPipeline, IdentityKtor_client_coreHttpRequestPipelinePhases, IdentityKtor_client_coreHttpResponse, IdentityKtor_client_coreHttpResponseContainer, IdentityKtor_client_coreHttpResponseData, IdentityKtor_client_coreHttpResponsePipeline, IdentityKtor_client_coreHttpResponsePipelinePhases, IdentityKtor_client_coreHttpSendPipeline, IdentityKtor_client_coreHttpSendPipelinePhases, IdentityKtor_client_coreProxyConfig, IdentityKtor_eventsEventDefinition<T>, IdentityKtor_eventsEvents, IdentityKtor_httpContentType, IdentityKtor_httpContentTypeCompanion, IdentityKtor_httpHeaderValueParam, IdentityKtor_httpHeaderValueWithParameters, IdentityKtor_httpHeaderValueWithParametersCompanion, IdentityKtor_httpHeadersBuilder, IdentityKtor_httpHttpMethod, IdentityKtor_httpHttpMethodCompanion, IdentityKtor_httpHttpProtocolVersion, IdentityKtor_httpHttpProtocolVersionCompanion, IdentityKtor_httpHttpStatusCode, IdentityKtor_httpHttpStatusCodeCompanion, IdentityKtor_httpOutgoingContent, IdentityKtor_httpURLBuilder, IdentityKtor_httpURLBuilderCompanion, IdentityKtor_httpURLProtocol, IdentityKtor_httpURLProtocolCompanion, IdentityKtor_httpUrl, IdentityKtor_httpUrlCompanion, IdentityKtor_utilsAttributeKey<T>, IdentityKtor_utilsGMTDate, IdentityKtor_utilsGMTDateCompanion, IdentityKtor_utilsMonth, IdentityKtor_utilsMonthCompanion, IdentityKtor_utilsPipeline<TSubject, TContext>, IdentityKtor_utilsPipelinePhase, IdentityKtor_utilsStringValuesBuilderImpl, IdentityKtor_utilsTypeInfo, IdentityKtor_utilsWeekDay, IdentityKtor_utilsWeekDayCompanion, IdentityLegacyCredential, IdentityLegacyCredentialCompanion, IdentityLegacyCredentialDeserializer, IdentityLegacyCredentialDeserializerCompanion, IdentityLegacyCredentialIdentityCredential, IdentityLegacyCredentialIdentityCredentialCompanion, IdentityLegacyCredentialIdentityCredentialMrtd, IdentityLegacyCredentialIdentityCredentialReference, IdentityLegacyCredentialUriCredential, IdentityLength, IdentityLocalStorage, IdentityLogLevel, IdentityLoginRequest, IdentityLoginRequestCompanion, IdentityLoginResponse, IdentityLoginResponseCompanion, IdentityMrtdCompanion, IdentityMrtdData, IdentityMrtdDataCompanion, IdentityMrzField, IdentityMrzFieldCompanion, IdentityOID4VCICredentialError, IdentityOID4VCIException, IdentityOID4VCIExceptionStep, IdentityPlatformTarget, IdentityRegisterAppleAttestationPayload, IdentityRegisterAppleAttestationPayloadCompanion, IdentityRegisterAppleWalletPayload, IdentityRegisterAppleWalletPayloadCompanion, IdentityRelyingParty, IdentityRelyingPartyCompanion, IdentityRepository, IdentityRequestedClaim, IdentityRespondableChallenge<T>, IdentityRespondableChallengeCompanion, IdentityRespondableCredentialOffer, IdentityRespondableCredentialOfferCompanion, IdentityRespondableLoginRequest, IdentityRespondableLoginRequestCompanion, IdentityResponses, IdentityResponsesExpires, IdentityResponsesExpiresCompanion, IdentityResponsesGetChallenge, IdentityResponsesGetChallengeCompanion, IdentityResponsesOfferedCredentialResponse, IdentityResponsesOfferedCredentialResponseCompanion, IdentityReverificationRequest, IdentityReverificationRequestCompanion, IdentitySdkCamera, IdentitySdkIproovOptions, IdentitySdkIproovOptionsCertificate, IdentitySdkIproovOptionsCloseButton, IdentitySdkIproovOptionsFilter, IdentitySdkIproovOptionsGenuinePresenceAssurance, IdentitySdkIproovOptionsLivenessAssurance, IdentitySdkOrientation, IdentitySymmetricKey, IdentitySymmetricKeyCompanion, IdentityTransactionCodeChallenge, IdentityTxCode, IdentityTxCodeCompanion, IdentityTxInputMode, IdentityTxInputModeCompanion, IdentityTxInputModeSerializer, IdentityUriCredentialChallenge, IdentityUriCredentialChallengeResponder, IdentityUserAgent, IdentityUserAgentCompanion, IdentityVerificationEvent, IdentityVerificationEventCanceled, IdentityVerificationEventCompanion, IdentityVerificationEventCompleted, IdentityVerificationEventError, IdentityVerificationEventErrorCompanion, IdentityVerificationEventLoading, IdentityVerificationEventStarted, IdentityVerificationException, IdentityVerificationMethod, IdentityVerificationMethodCompanion, IdentityVerificationMethodIProov, IdentityVerificationMethodIProovCompanion, IdentityVerificationMethodSkip, IdentityVerificationMethodSkipCompanion, IdentityVerificationResult, IdentityVerificationResultCompanion, IdentityVerificationStatus, IdentityVerificationStatusCompanion, IdentityVerificationSummary, IdentityVerificationSummaryCompanion, IdentityWallet, IdentityWalletCompanion, IdentityWalletFactory, NSData, NSDate, NSDictionary, NSError;
+@class IdentityAccessControl, IdentityActiveAuthentication, IdentityActiveAuthenticationCompanion, IdentityApiClient, IdentityApiException, IdentityApiExceptionHttpError, IdentityApiExceptionNetworkError, IdentityApiExceptionSerializationError, IdentityApiExceptionTimeoutError, IdentityAppInfo, IdentityAppInfoCompanion, IdentityAppleKeyPairLocation, IdentityAssuranceType, IdentityAssuranceTypeCompanion, IdentityAuthorizationRequest, IdentityAuthorizationRequestClientMetadata, IdentityAuthorizationRequestClientMetadataCompanion, IdentityAuthorizationRequestCompanion, IdentityAuthorizationRequestDescriptor, IdentityAuthorizationRequestDescriptorCompanion, IdentityBacKey, IdentityBacKeyCompanion, IdentityByteArrayAsBase64Serializer, IdentityChallenge, IdentityClaim, IdentityClaimCompanion, IdentityClaimQuery, IdentityClaimQueryCompanion, IdentityClientIdType, IdentityClientIdTypeCompanion, IdentityCredentialCompanion, IdentityCredentialDescriptor, IdentityCredentialDescriptorCompanion, IdentityCredentialDeserializer, IdentityCredentialDeserializerCompanion, IdentityCredentialFormat, IdentityCredentialFormatCompanion, IdentityCredentialIssuer, IdentityCredentialIssuerCompanion, IdentityCredentialMetadata, IdentityCredentialMetadataCompanion, IdentityCredentialOffer, IdentityCredentialOfferCompanion, IdentityCredentialQuery, IdentityCredentialQueryCompanion, IdentityCredentialQueryMatchResult, IdentityCredentialRecord, IdentityCredentialRecordCompanion, IdentityCredentialRetrievalFailureSerializationFailed, IdentityCredentialRetrievalFailureUnsupportedFormat, IdentityCredentialSubmission, IdentityCredentialSummary, IdentityDCQLMatchResult, IdentityDCQLMatcher, IdentityDataAsBase64Serializer, IdentityDcSdJwtPrefs, IdentityDcSdJwtPrefsCompanion, IdentityDcqlQuery, IdentityDcqlQueryCompanion, IdentityDefaultOID4VPOrchestratorCompanion, IdentityDeviceAuth, IdentityDeviceAuthCompanion, IdentityDeviceInfo, IdentityDeviceInfoCompanion, IdentityDeviceResponse, IdentityDeviceResponseCompanion, IdentityDeviceSigned, IdentityDeviceSignedCompanion, IdentityDisclosedCredential, IdentityDisplayProperties, IdentityDisplayPropertiesCompanion, IdentityDocumentChallenge, IdentityDocumentChallengeCompanion, IdentityDocumentChallengeResponder, IdentityDocumentResponse, IdentityDocumentResponseCompanion, IdentityEllipticCurvePublicKey, IdentityEllipticCurvePublicKeyCompanion, IdentityFaceReverificationRequest, IdentityFlowWrapper<__covariant T>, IdentityFormat, IdentityGender, IdentityGrantDetails, IdentityGrantDetailsCompanion, IdentityIdentityPlatformInterface, IdentityIssuanceResultEmpty, IdentityIssuanceResultImmediate, IdentityIssuanceResultTransactionCodeRequired, IdentityIssuanceSummary, IdentityIssuerSigned, IdentityIssuerSignedCompanion, IdentityJwk, IdentityJwkCompanion, IdentityJwks, IdentityJwksCompanion, IdentityJwt, IdentityJwtCompanion, IdentityJwtVcJsonPrefs, IdentityJwtVcJsonPrefsCompanion, IdentityKeyUse, IdentityKeyUseCompanion, IdentityKotlinAbstractCoroutineContextElement, IdentityKotlinAbstractCoroutineContextKey<B, E>, IdentityKotlinArray<T>, IdentityKotlinBase64, IdentityKotlinBase64Default, IdentityKotlinBase64PaddingOption, IdentityKotlinByteArray, IdentityKotlinByteIterator, IdentityKotlinCancellationException, IdentityKotlinEnum<E>, IdentityKotlinEnumCompanion, IdentityKotlinException, IdentityKotlinIllegalStateException, IdentityKotlinInstant, IdentityKotlinInstantCompanion, IdentityKotlinKTypeProjection, IdentityKotlinKTypeProjectionCompanion, IdentityKotlinKVariance, IdentityKotlinNothing, IdentityKotlinPair<__covariant A, __covariant B>, IdentityKotlinRuntimeException, IdentityKotlinThrowable, IdentityKotlinTriple<__covariant A, __covariant B, __covariant C>, IdentityKotlinUnit, IdentityKotlinx_coroutines_coreCoroutineDispatcher, IdentityKotlinx_coroutines_coreCoroutineDispatcherKey, IdentityKotlinx_io_coreBuffer, IdentityKotlinx_serialization_cborCbor, IdentityKotlinx_serialization_cborCborConfiguration, IdentityKotlinx_serialization_cborCborDefault, IdentityKotlinx_serialization_coreSerialKind, IdentityKotlinx_serialization_coreSerializersModule, IdentityKotlinx_serialization_jsonClassDiscriminatorMode, IdentityKotlinx_serialization_jsonJson, IdentityKotlinx_serialization_jsonJsonConfiguration, IdentityKotlinx_serialization_jsonJsonDefault, IdentityKotlinx_serialization_jsonJsonElement, IdentityKotlinx_serialization_jsonJsonElementCompanion, IdentityKtor_client_coreHttpClient, IdentityKtor_client_coreHttpClientCall, IdentityKtor_client_coreHttpClientCallCompanion, IdentityKtor_client_coreHttpClientConfig<T>, IdentityKtor_client_coreHttpClientEngineConfig, IdentityKtor_client_coreHttpReceivePipeline, IdentityKtor_client_coreHttpReceivePipelinePhases, IdentityKtor_client_coreHttpRequestBuilder, IdentityKtor_client_coreHttpRequestBuilderCompanion, IdentityKtor_client_coreHttpRequestData, IdentityKtor_client_coreHttpRequestPipeline, IdentityKtor_client_coreHttpRequestPipelinePhases, IdentityKtor_client_coreHttpResponse, IdentityKtor_client_coreHttpResponseContainer, IdentityKtor_client_coreHttpResponseData, IdentityKtor_client_coreHttpResponsePipeline, IdentityKtor_client_coreHttpResponsePipelinePhases, IdentityKtor_client_coreHttpSendPipeline, IdentityKtor_client_coreHttpSendPipelinePhases, IdentityKtor_client_coreProxyConfig, IdentityKtor_eventsEventDefinition<T>, IdentityKtor_eventsEvents, IdentityKtor_httpContentType, IdentityKtor_httpContentTypeCompanion, IdentityKtor_httpHeaderValueParam, IdentityKtor_httpHeaderValueWithParameters, IdentityKtor_httpHeaderValueWithParametersCompanion, IdentityKtor_httpHeadersBuilder, IdentityKtor_httpHttpMethod, IdentityKtor_httpHttpMethodCompanion, IdentityKtor_httpHttpProtocolVersion, IdentityKtor_httpHttpProtocolVersionCompanion, IdentityKtor_httpHttpStatusCode, IdentityKtor_httpHttpStatusCodeCompanion, IdentityKtor_httpOutgoingContent, IdentityKtor_httpURLBuilder, IdentityKtor_httpURLBuilderCompanion, IdentityKtor_httpURLProtocol, IdentityKtor_httpURLProtocolCompanion, IdentityKtor_httpUrl, IdentityKtor_httpUrlCompanion, IdentityKtor_utilsAttributeKey<T>, IdentityKtor_utilsGMTDate, IdentityKtor_utilsGMTDateCompanion, IdentityKtor_utilsMonth, IdentityKtor_utilsMonthCompanion, IdentityKtor_utilsPipeline<TSubject, TContext>, IdentityKtor_utilsPipelinePhase, IdentityKtor_utilsStringValuesBuilderImpl, IdentityKtor_utilsTypeInfo, IdentityKtor_utilsWeekDay, IdentityKtor_utilsWeekDayCompanion, IdentityLdpVcPrefs, IdentityLdpVcPrefsCompanion, IdentityLegacyCredential, IdentityLegacyCredentialCompanion, IdentityLegacyCredentialDeserializer, IdentityLegacyCredentialDeserializerCompanion, IdentityLegacyCredentialIdentityCredential, IdentityLegacyCredentialIdentityCredentialCompanion, IdentityLegacyCredentialIdentityCredentialMrtd, IdentityLegacyCredentialIdentityCredentialReference, IdentityLegacyCredentialUriCredential, IdentityLegacyRelyingParty, IdentityLegacyRelyingPartyCompanion, IdentityLength, IdentityLocalStorage, IdentityLogLevel, IdentityLoginRequest, IdentityLoginRequestCompanion, IdentityLoginResponse, IdentityLoginResponseCompanion, IdentityMDocCredential, IdentityMDocSupportedAlgorithm, IdentityMDocSupportedAlgorithmCompanion, IdentityMDocSupportedAlgorithmSerializer, IdentityMrtdCompanion, IdentityMrtdData, IdentityMrtdDataCompanion, IdentityMrzField, IdentityMrzFieldCompanion, IdentityMsoMdocPrefs, IdentityMsoMdocPrefsCompanion, IdentityOID4VCICredentialError, IdentityOID4VCIException, IdentityOID4VCIExceptionStep, IdentityOID4VPCapabilities, IdentityOID4VPCapabilitiesCompanion, IdentityOID4VPError, IdentityOID4VPErrorInvalidOrExpiredRequest, IdentityOID4VPErrorUnsupportedResponseMode, IdentityOnDeviceKeyPairJwk, IdentityOnDeviceKeyPairJwkCompanion, IdentityOpenID4VPHandover, IdentityOpenID4VPHandoverCompanion, IdentityPlatformTarget, IdentityPresentationOutcomeDeclined, IdentityPresentationOutcomeRejected, IdentityPresentationOutcomeSuccess, IdentityPresentationRequest, IdentityQuery, IdentityRegisterAppleAttestationPayload, IdentityRegisterAppleAttestationPayloadCompanion, IdentityRegisterAppleWalletPayload, IdentityRegisterAppleWalletPayloadCompanion, IdentityRepository, IdentityRequestUriMethod, IdentityRequestedClaim, IdentityRespondableChallenge<T>, IdentityRespondableChallengeCompanion, IdentityRespondableCredentialOffer, IdentityRespondableCredentialOfferCompanion, IdentityRespondableLoginRequest, IdentityRespondableLoginRequestCompanion, IdentityRespondablePresentationRequest, IdentityResponseMode, IdentityResponseModeCompanion, IdentityResponses, IdentityResponsesExpires, IdentityResponsesExpiresCompanion, IdentityResponsesGetChallenge, IdentityResponsesGetChallengeCompanion, IdentityResponsesOfferedCredentialResponse, IdentityResponsesOfferedCredentialResponseCompanion, IdentityReverificationRequest, IdentityReverificationRequestCompanion, IdentitySdkCamera, IdentitySdkIproovOptions, IdentitySdkIproovOptionsCertificate, IdentitySdkIproovOptionsCloseButton, IdentitySdkIproovOptionsFilter, IdentitySdkIproovOptionsGenuinePresenceAssurance, IdentitySdkIproovOptionsLivenessAssurance, IdentitySdkOrientation, IdentitySessionTranscript, IdentitySessionTranscriptCompanion, IdentitySimplePasswordAttestationServiceCompanion, IdentitySupportedJWEEncryptionAlgorithms, IdentitySupportedJWEEncryptionAlgorithmsCompanion, IdentitySupportedJWEEncryptionAlgorithmsSerializer, IdentitySupportedVPFormat, IdentitySupportedVPFormatCompanion, IdentitySupportedVPFormatMDoc, IdentitySupportedVPFormatMDocCompanion, IdentitySymmetricKey, IdentitySymmetricKeyCompanion, IdentityTransactionCodeChallenge, IdentityTxCode, IdentityTxCodeCompanion, IdentityTxInputMode, IdentityTxInputModeCompanion, IdentityTxInputModeSerializer, IdentityUriCredentialChallenge, IdentityUriCredentialChallengeResponder, IdentityUserAgent, IdentityUserAgentCompanion, IdentityVPTokenFactory, IdentityVerificationEvent, IdentityVerificationEventCanceled, IdentityVerificationEventCompanion, IdentityVerificationEventCompleted, IdentityVerificationEventCompletedCompanion, IdentityVerificationEventError, IdentityVerificationEventErrorCompanion, IdentityVerificationEventLoading, IdentityVerificationEventStarted, IdentityVerificationException, IdentityVerificationMethod, IdentityVerificationMethodCompanion, IdentityVerificationMethodIProov, IdentityVerificationMethodIProovCompanion, IdentityVerificationMethodSkip, IdentityVerificationMethodSkipCompanion, IdentityVerificationResult, IdentityVerificationResultCompanion, IdentityVerificationStatus, IdentityVerificationStatusCompanion, IdentityVerificationSummary, IdentityVerificationSummaryCompanion, IdentityVerifier, IdentityVerifierDisplayProperties, IdentityVpFormatsSupported, IdentityVpFormatsSupportedCompanion, IdentityWallet, IdentityWalletCompanion, IdentityWalletFactory, IdentityWaltid_coseCoseCertificate, IdentityWaltid_coseCoseContentType, IdentityWaltid_coseCoseContentTypeCompanion, IdentityWaltid_coseCoseHeaders, IdentityWaltid_coseCoseHeadersCompanion, IdentityWaltid_coseCoseSign1, IdentityWaltid_coseCoseSign1Companion, NSData, NSDate, NSDictionary, NSError;
 
-@protocol IdentityCredential, IdentityCredentialFactory, IdentityCredentialOfferParser, IdentityCredentialRetrievalFailure, IdentityIssuanceResult, IdentityKeyPair, IdentityKotlinAnnotation, IdentityKotlinAppendable, IdentityKotlinAutoCloseable, IdentityKotlinComparable, IdentityKotlinContinuation, IdentityKotlinContinuationInterceptor, IdentityKotlinCoroutineContext, IdentityKotlinCoroutineContextElement, IdentityKotlinCoroutineContextKey, IdentityKotlinFunction, IdentityKotlinIterator, IdentityKotlinKAnnotatedElement, IdentityKotlinKClass, IdentityKotlinKClassifier, IdentityKotlinKDeclarationContainer, IdentityKotlinKType, IdentityKotlinMapEntry, IdentityKotlinSequence, IdentityKotlinSuspendFunction1, IdentityKotlinSuspendFunction2, IdentityKotlinx_coroutines_coreChildHandle, IdentityKotlinx_coroutines_coreChildJob, IdentityKotlinx_coroutines_coreCoroutineScope, IdentityKotlinx_coroutines_coreDeferred, IdentityKotlinx_coroutines_coreDisposableHandle, IdentityKotlinx_coroutines_coreFlow, IdentityKotlinx_coroutines_coreFlowCollector, IdentityKotlinx_coroutines_coreJob, IdentityKotlinx_coroutines_coreParentJob, IdentityKotlinx_coroutines_coreRunnable, IdentityKotlinx_coroutines_coreSelectClause, IdentityKotlinx_coroutines_coreSelectClause0, IdentityKotlinx_coroutines_coreSelectClause1, IdentityKotlinx_coroutines_coreSelectInstance, IdentityKotlinx_io_coreRawSink, IdentityKotlinx_io_coreRawSource, IdentityKotlinx_io_coreSink, IdentityKotlinx_io_coreSource, IdentityKotlinx_serialization_coreCompositeDecoder, IdentityKotlinx_serialization_coreCompositeEncoder, IdentityKotlinx_serialization_coreDecoder, IdentityKotlinx_serialization_coreDeserializationStrategy, IdentityKotlinx_serialization_coreEncoder, IdentityKotlinx_serialization_coreKSerializer, IdentityKotlinx_serialization_coreSerialDescriptor, IdentityKotlinx_serialization_coreSerialFormat, IdentityKotlinx_serialization_coreSerializationStrategy, IdentityKotlinx_serialization_coreSerializersModuleCollector, IdentityKotlinx_serialization_coreStringFormat, IdentityKotlinx_serialization_jsonJsonNamingStrategy, IdentityKtor_client_coreHttpClientEngine, IdentityKtor_client_coreHttpClientEngineCapability, IdentityKtor_client_coreHttpClientPlugin, IdentityKtor_client_coreHttpRequest, IdentityKtor_httpHeaders, IdentityKtor_httpHttpMessage, IdentityKtor_httpHttpMessageBuilder, IdentityKtor_httpParameters, IdentityKtor_httpParametersBuilder, IdentityKtor_ioByteReadChannel, IdentityKtor_ioCloseable, IdentityKtor_ioJvmSerializable, IdentityKtor_utilsAttributes, IdentityKtor_utilsStringValues, IdentityKtor_utilsStringValuesBuilder, IdentityLegacyCredentialFactory, IdentityNetworkClient, IdentityPlatform, IdentityStorageEngine, IdentitySyncedKeyValueStorage;
+@protocol IdentityCredential, IdentityCredentialFactory, IdentityCredentialOfferParser, IdentityCredentialRetrievalFailure, IdentityIssuanceResult, IdentityJWEFactory, IdentityKeyPair, IdentityKotlinAnnotation, IdentityKotlinAppendable, IdentityKotlinAutoCloseable, IdentityKotlinComparable, IdentityKotlinContinuation, IdentityKotlinContinuationInterceptor, IdentityKotlinCoroutineContext, IdentityKotlinCoroutineContextElement, IdentityKotlinCoroutineContextKey, IdentityKotlinFunction, IdentityKotlinIterator, IdentityKotlinKAnnotatedElement, IdentityKotlinKClass, IdentityKotlinKClassifier, IdentityKotlinKDeclarationContainer, IdentityKotlinKType, IdentityKotlinMapEntry, IdentityKotlinSequence, IdentityKotlinSuspendFunction0, IdentityKotlinSuspendFunction1, IdentityKotlinSuspendFunction2, IdentityKotlinx_coroutines_coreChildHandle, IdentityKotlinx_coroutines_coreChildJob, IdentityKotlinx_coroutines_coreCoroutineScope, IdentityKotlinx_coroutines_coreDeferred, IdentityKotlinx_coroutines_coreDisposableHandle, IdentityKotlinx_coroutines_coreFlow, IdentityKotlinx_coroutines_coreFlowCollector, IdentityKotlinx_coroutines_coreJob, IdentityKotlinx_coroutines_coreParentJob, IdentityKotlinx_coroutines_coreRunnable, IdentityKotlinx_coroutines_coreSelectClause, IdentityKotlinx_coroutines_coreSelectClause0, IdentityKotlinx_coroutines_coreSelectClause1, IdentityKotlinx_coroutines_coreSelectInstance, IdentityKotlinx_io_coreRawSink, IdentityKotlinx_io_coreRawSource, IdentityKotlinx_io_coreSink, IdentityKotlinx_io_coreSource, IdentityKotlinx_serialization_coreBinaryFormat, IdentityKotlinx_serialization_coreCompositeDecoder, IdentityKotlinx_serialization_coreCompositeEncoder, IdentityKotlinx_serialization_coreDecoder, IdentityKotlinx_serialization_coreDeserializationStrategy, IdentityKotlinx_serialization_coreEncoder, IdentityKotlinx_serialization_coreKSerializer, IdentityKotlinx_serialization_coreSerialDescriptor, IdentityKotlinx_serialization_coreSerialFormat, IdentityKotlinx_serialization_coreSerializationStrategy, IdentityKotlinx_serialization_coreSerializersModuleCollector, IdentityKotlinx_serialization_coreStringFormat, IdentityKotlinx_serialization_jsonJsonNamingStrategy, IdentityKtor_client_coreHttpClientEngine, IdentityKtor_client_coreHttpClientEngineCapability, IdentityKtor_client_coreHttpClientPlugin, IdentityKtor_client_coreHttpRequest, IdentityKtor_httpHeaders, IdentityKtor_httpHttpMessage, IdentityKtor_httpHttpMessageBuilder, IdentityKtor_httpParameters, IdentityKtor_httpParametersBuilder, IdentityKtor_ioByteReadChannel, IdentityKtor_ioCloseable, IdentityKtor_ioJvmSerializable, IdentityKtor_utilsAttributes, IdentityKtor_utilsStringValues, IdentityKtor_utilsStringValuesBuilder, IdentityLegacyCredentialFactory, IdentityNetworkClient, IdentityOID4VPOrchestrator, IdentityPlatform, IdentityPresentationOutcome, IdentityStorageEngine, IdentitySyncedKeyValueStorage, IdentityWaltid_coseCoseMessage, IdentityWaltid_coseCoseSigner, IdentityWaltid_coseCoseVerifier;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -216,6 +216,7 @@ __attribute__((swift_name("Platform")))
 @required
 @property (readonly) IdentityAppInfo *appInfo __attribute__((swift_name("appInfo")));
 @property (readonly) IdentityDeviceInfo *deviceInfo __attribute__((swift_name("deviceInfo")));
+@property (readonly) BOOL isVirtual __attribute__((swift_name("isVirtual")));
 @property (readonly) IdentityPlatformTarget *target __attribute__((swift_name("target")));
 @end
 
@@ -225,6 +226,7 @@ __attribute__((swift_name("ApplePlatform")))
 - (instancetype)initWithInstanceId:(NSString *)instanceId __attribute__((swift_name("init(instanceId:)"))) __attribute__((objc_designated_initializer));
 @property (readonly) IdentityAppInfo *appInfo __attribute__((swift_name("appInfo")));
 @property (readonly) IdentityDeviceInfo *deviceInfo __attribute__((swift_name("deviceInfo")));
+@property (readonly) BOOL isVirtual __attribute__((swift_name("isVirtual")));
 @property (readonly) IdentityPlatformTarget *target __attribute__((swift_name("target")));
 @end
 
@@ -522,6 +524,12 @@ __attribute__((swift_name("Wallet")))
  * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
+- (void)getPresentationRequestUri:(NSString *)uri completionHandler:(void (^)(IdentityRespondablePresentationRequest * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getPresentationRequest(uri:completionHandler:)")));
+
+/**
+ * @note This method converts instances of Exception to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
 - (void)refreshCredentials:(NSArray<IdentityLegacyCredential *> *)credentials completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("refresh(credentials:completionHandler:)")));
 
 /**
@@ -562,7 +570,7 @@ __attribute__((swift_name("Wallet.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) IdentityWalletCompanion *shared __attribute__((swift_name("shared")));
 @property (readonly) NSString *DTC_CLAIM_NAME __attribute__((swift_name("DTC_CLAIM_NAME")));
-@property (readonly) float LATEST_SUPPORTED_OIDVCI_DRAFT __attribute__((swift_name("LATEST_SUPPORTED_OIDVCI_DRAFT")));
+@property (readonly) float LATEST_SUPPORTED_OID4VCI_DRAFT __attribute__((swift_name("LATEST_SUPPORTED_OID4VCI_DRAFT")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -621,7 +629,7 @@ __attribute__((swift_name("NetworkClient")))
  * @note This method converts instances of CancellationException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (void)submitFormUrl:(NSString *)url params:(id<IdentityKtor_httpParameters>)params completionHandler:(void (^)(IdentityKtor_client_coreHttpResponse * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("submitForm(url:params:completionHandler:)")));
+- (void)submitFormUrl:(NSString *)url params:(id<IdentityKtor_httpParameters>)params headers:(NSDictionary<NSString *, NSString *> *)headers completionHandler:(void (^)(IdentityKtor_client_coreHttpResponse * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("submitForm(url:params:headers:completionHandler:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -651,7 +659,7 @@ __attribute__((swift_name("ApiClient")))
  * @note This method converts instances of CancellationException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (void)submitFormUrl:(NSString *)url params:(id<IdentityKtor_httpParameters>)params completionHandler:(void (^)(IdentityKtor_client_coreHttpResponse * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("submitForm(url:params:completionHandler:)")));
+- (void)submitFormUrl:(NSString *)url params:(id<IdentityKtor_httpParameters>)params headers:(NSDictionary<NSString *, NSString *> *)headers completionHandler:(void (^)(IdentityKtor_client_coreHttpResponse * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("submitForm(url:params:headers:completionHandler:)")));
 @property (readonly) NSString *baseUrl __attribute__((swift_name("baseUrl")));
 @property (readonly) id<IdentityKeyPair> (^keyPairGenerator)(void) __attribute__((swift_name("keyPairGenerator")));
 @property (readonly) id<IdentityPlatform> platform __attribute__((swift_name("platform")));
@@ -738,6 +746,125 @@ __attribute__((swift_name("CredentialOfferParser")))
  * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)parseOfferOffer:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *)offer completionHandler:(void (^)(IdentityCredentialOffer * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("parseOffer(offer:completionHandler:)")));
+@end
+
+
+/**
+ * An orchestrator of the OID4VP flow
+ */
+__attribute__((swift_name("OID4VPOrchestrator")))
+@protocol IdentityOID4VPOrchestrator
+@required
+
+/**
+ * Create a presentation request from the authorization request found at the URI provided
+ *
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)createPresentationRequestUri:(NSString *)uri completionHandler:(void (^)(IdentityRespondablePresentationRequest * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("createPresentationRequest(uri:completionHandler:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DefaultOID4VPOrchestrator")))
+@interface IdentityDefaultOID4VPOrchestrator : IdentityBase <IdentityOID4VPOrchestrator>
+- (instancetype)initWithNetworkClient:(id<IdentityNetworkClient>)networkClient repository:(IdentityRepository *)repository keyPairFactory:(id<IdentityKeyPair> (^)(void))keyPairFactory jweFactory:(id<IdentityJWEFactory>)jweFactory __attribute__((swift_name("init(networkClient:repository:keyPairFactory:jweFactory:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityDefaultOID4VPOrchestratorCompanion *companion __attribute__((swift_name("companion")));
+
+/**
+ * If claims is absent, the Verifier is requesting no claims that are selectively disclosable;
+ * the Wallet MUST return only the claims that are mandatory to present
+ * (e.g., SD-JWT and Key Binding JWT for a Credential of format IETF SD-JWT VC).
+ *
+ * Effectively meaning when 'claims' is not provided in the credential query, there is nothing
+ * optional, whats being asked for is the credentials mandatory claims only.
+ *
+ * These mandatory claims are defined in the credential type spec.
+ */
+- (IdentityDcqlQuery *)addClaimsForKnownCredentialsDcqlQuery:(IdentityDcqlQuery *)dcqlQuery __attribute__((swift_name("addClaimsForKnownCredentials(dcqlQuery:)")));
+- (IdentityQuery *)buildQueryAuthorizationRequest:(IdentityAuthorizationRequest *)authorizationRequest __attribute__((swift_name("buildQuery(authorizationRequest:)")));
+- (IdentityPresentationRequest *)constructPresentationRequestAuthorizationRequest:(IdentityAuthorizationRequest *)authorizationRequest __attribute__((swift_name("constructPresentationRequest(authorizationRequest:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)createPresentationRequestUri:(NSString *)uri completionHandler:(void (^)(IdentityRespondablePresentationRequest * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("createPresentationRequest(uri:completionHandler:)")));
+
+/**
+ * This function handles the submission of the data to the verifier, before this happens
+ * the submitted information is validated against the query.
+ *
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)presentPresentationRequest:(IdentityPresentationRequest *)presentationRequest submission:(IdentityCredentialSubmission *)submission completionHandler:(void (^)(id<IdentityPresentationOutcome> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("present(presentationRequest:submission:completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)presentDirectJwtPostVPTokenForMDocPresentationRequest:(IdentityPresentationRequest *)presentationRequest vpToken:(NSString *)vpToken encryptionKey:(IdentityKotlinTriple<NSString *, NSString *, IdentityJwk *> *)encryptionKey completionHandler:(void (^)(id<IdentityPresentationOutcome> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("presentDirectJwtPostVPTokenForMDoc(presentationRequest:vpToken:encryptionKey:completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)presentDirectPostVPTokenForMDocPresentationRequest:(IdentityPresentationRequest *)presentationRequest vpToken:(NSString *)vpToken completionHandler:(void (^)(id<IdentityPresentationOutcome> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("presentDirectPostVPTokenForMDoc(presentationRequest:vpToken:completionHandler:)")));
+- (IdentityAuthorizationRequestDescriptor *)retrieveAuthorizationRequestDescriptorUri:(NSString *)uri __attribute__((swift_name("retrieveAuthorizationRequestDescriptor(uri:)")));
+- (IdentityKotlinTriple<NSString *, NSString *, IdentityJwk *> * _Nullable)selectKeyForEncryptionRequest:(IdentityAuthorizationRequest *)request __attribute__((swift_name("selectKeyForEncryption(request:)")));
+
+/**
+ * Following the standard check that required properties exist in the request
+ */
+- (void)validateAuthorizationRequestAuthorizationRequest:(IdentityAuthorizationRequest *)authorizationRequest __attribute__((swift_name("validateAuthorizationRequest(authorizationRequest:)")));
+
+/**
+ * Here we are verifying the relying party is actually who they say they are.
+ *
+ * For now we are only looking to support x509 SAN DNS client verification
+ *
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)verifyRelyingPartyAuthorizationRequest:(IdentityAuthorizationRequestDescriptor *)authorizationRequest completionHandler:(void (^)(IdentityBoolean * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("verifyRelyingParty(authorizationRequest:completionHandler:)")));
+
+/**
+ * If a X509 SAN DNS is used then we do know that the client metadata has been provided.
+ *
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)verifyX509CertificateForRPAuthorizationRequest:(IdentityAuthorizationRequestDescriptor *)authorizationRequest completionHandler:(void (^)(IdentityBoolean * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("verifyX509CertificateForRP(authorizationRequest:completionHandler:)")));
+@property (readonly) IdentityDCQLMatcher *dcqlMatcher __attribute__((swift_name("dcqlMatcher")));
+@property (readonly) id<IdentityJWEFactory> jweFactory __attribute__((swift_name("jweFactory")));
+@property (readonly) id<IdentityKeyPair> (^keyPairFactory)(void) __attribute__((swift_name("keyPairFactory")));
+
+/**
+ * TODO: Move this to a trust register or something similar
+ * Credential format -> Credential ID -> Claims
+ */
+@property (readonly) NSDictionary<NSString *, NSDictionary<NSString *, NSArray<IdentityClaimQuery *> *> *> *mandatoryCredentialQueries __attribute__((swift_name("mandatoryCredentialQueries")));
+@property (readonly) id<IdentityNetworkClient> networkClient __attribute__((swift_name("networkClient")));
+@property (readonly) IdentityRepository *repository __attribute__((swift_name("repository")));
+
+/**
+ * Known scopes that the wallet can use instead of the DCQL query
+ */
+@property (readonly) NSDictionary<NSString *, IdentityDcqlQuery *> *scopes __attribute__((swift_name("scopes")));
+@property (readonly) IdentityVPTokenFactory *vpTokenFactory __attribute__((swift_name("vpTokenFactory")));
+@property (readonly) IdentityOID4VPCapabilities *walletVPCapabilities __attribute__((swift_name("walletVPCapabilities")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DefaultOID4VPOrchestrator.Companion")))
+@interface IdentityDefaultOID4VPOrchestratorCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityDefaultOID4VPOrchestratorCompanion *shared __attribute__((swift_name("shared")));
+@property (readonly) NSString *ISO_IEC_18013_5_1_MDOC_DOCTYPE __attribute__((swift_name("ISO_IEC_18013_5_1_MDOC_DOCTYPE")));
+@property (readonly) NSString *ISO_IEC_18013_5_1_NAMESPACE __attribute__((swift_name("ISO_IEC_18013_5_1_NAMESPACE")));
 @end
 
 __attribute__((swift_name("RespondableChallenge")))
@@ -873,7 +1000,7 @@ __attribute__((swift_name("IdentityPlatformInterface")))
 - (void)verifyFaceToken:(NSString *)token completionHandler:(void (^)(IdentityResponsesOfferedCredentialResponse * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("verifyFace(token:completionHandler:)")));
 
 /**
- * @note This method converts instances of CancellationException to errors.
+ * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)verifyMrtdMrtd:(IdentityMrtdData *)mrtd challenge:(IdentityKotlinByteArray *)challenge secret:(IdentityKotlinByteArray *)secret aaSignature:(IdentityKotlinByteArray * _Nullable)aaSignature accessControl:(IdentityAccessControl *)accessControl completionHandler:(void (^)(IdentityResponsesOfferedCredentialResponse * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("verifyMrtd(mrtd:challenge:secret:aaSignature:accessControl:completionHandler:)")));
@@ -910,6 +1037,77 @@ __attribute__((swift_name("OID4VCIOrchestrator")))
  * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)addCredentialOffer:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *)offer completionHandler:(void (^)(IdentityRespondableCredentialOffer * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("addCredential(offer:completionHandler:)")));
+@end
+
+__attribute__((swift_name("OID4VPError")))
+@interface IdentityOID4VPError : IdentityKotlinException
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithCause:(IdentityKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(IdentityKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("OID4VPError.ConstraintNotSatisfiable")))
+@interface IdentityOID4VPErrorConstraintNotSatisfiable : IdentityOID4VPError
+- (instancetype)initWithDetails:(NSString *)details __attribute__((swift_name("init(details:)"))) __attribute__((objc_designated_initializer));
+@property (readonly) NSString *details __attribute__((swift_name("details")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("OID4VPError.FailedToFetchPresentationRequest")))
+@interface IdentityOID4VPErrorFailedToFetchPresentationRequest : IdentityOID4VPError
+- (instancetype)initWithUri:(NSString *)uri message:(NSString *)message cause:(IdentityKotlinThrowable *)cause __attribute__((swift_name("init(uri:message:cause:)"))) __attribute__((objc_designated_initializer));
+@property (readonly) NSString *uri __attribute__((swift_name("uri")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("OID4VPError.InvalidAuthorizationRequest")))
+@interface IdentityOID4VPErrorInvalidAuthorizationRequest : IdentityOID4VPError
+- (instancetype)initWithMessage:(NSString *)message raw:(NSDictionary<NSString *, id> *)raw __attribute__((swift_name("init(message:raw:)"))) __attribute__((objc_designated_initializer));
+@property (readonly) NSDictionary<NSString *, id> *raw __attribute__((swift_name("raw")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("OID4VPError.InvalidAuthorizationRequestDescriptor")))
+@interface IdentityOID4VPErrorInvalidAuthorizationRequestDescriptor : IdentityOID4VPError
+- (instancetype)initWithMessage:(NSString *)message raw:(NSString *)raw __attribute__((swift_name("init(message:raw:)"))) __attribute__((objc_designated_initializer));
+@property (readonly) NSString *raw __attribute__((swift_name("raw")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("OID4VPError.InvalidOrExpiredRequest")))
+@interface IdentityOID4VPErrorInvalidOrExpiredRequest : IdentityOID4VPError
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)invalidOrExpiredRequest __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityOID4VPErrorInvalidOrExpiredRequest *shared __attribute__((swift_name("shared")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("OID4VPError.ResponseRejected")))
+@interface IdentityOID4VPErrorResponseRejected : IdentityOID4VPError
+- (instancetype)initWithCode:(NSString *)code description:(NSString * _Nullable)description __attribute__((swift_name("init(code:description:)"))) __attribute__((objc_designated_initializer));
+@property (readonly) NSString *code __attribute__((swift_name("code")));
+@property (readonly) NSString * _Nullable description_ __attribute__((swift_name("description_")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("OID4VPError.SubmissionFailed")))
+@interface IdentityOID4VPErrorSubmissionFailed : IdentityOID4VPError
+- (instancetype)initWithHttpStatus:(int32_t)httpStatus body:(NSString * _Nullable)body __attribute__((swift_name("init(httpStatus:body:)"))) __attribute__((objc_designated_initializer));
+@property (readonly) NSString * _Nullable body __attribute__((swift_name("body")));
+@property (readonly) int32_t httpStatus __attribute__((swift_name("httpStatus")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("OID4VPError.UnsupportedResponseMode")))
+@interface IdentityOID4VPErrorUnsupportedResponseMode : IdentityOID4VPError
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)unsupportedResponseMode __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityOID4VPErrorUnsupportedResponseMode *shared __attribute__((swift_name("shared")));
 @end
 
 
@@ -1123,6 +1321,68 @@ __attribute__((swift_name("Responses.OfferedCredentialResponseCompanion")))
 - (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
+
+/**
+ * SessionTranscript for OpenID4VP (redirect/direct_post profile).
+ * DeviceEngagementBytes = null, EReaderKeyBytes = null, Handover = ["OpenID4VPHandover", SHA-256(CBOR(info))]
+ *
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SessionTranscript")))
+@interface IdentitySessionTranscript : IdentityBase
+- (instancetype)initWithDeviceEngagementBytes:(IdentityKotlinByteArray * _Nullable)deviceEngagementBytes eReaderKeyBytes:(IdentityKotlinByteArray * _Nullable)eReaderKeyBytes handover:(IdentityOpenID4VPHandover *)handover __attribute__((swift_name("init(deviceEngagementBytes:eReaderKeyBytes:handover:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentitySessionTranscriptCompanion *companion __attribute__((swift_name("companion")));
+- (IdentitySessionTranscript *)doCopyDeviceEngagementBytes:(IdentityKotlinByteArray * _Nullable)deviceEngagementBytes eReaderKeyBytes:(IdentityKotlinByteArray * _Nullable)eReaderKeyBytes handover:(IdentityOpenID4VPHandover *)handover __attribute__((swift_name("doCopy(deviceEngagementBytes:eReaderKeyBytes:handover:)")));
+
+/**
+ * SessionTranscript for OpenID4VP (redirect/direct_post profile).
+ * DeviceEngagementBytes = null, EReaderKeyBytes = null, Handover = ["OpenID4VPHandover", SHA-256(CBOR(info))]
+ */
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+
+/**
+ * SessionTranscript for OpenID4VP (redirect/direct_post profile).
+ * DeviceEngagementBytes = null, EReaderKeyBytes = null, Handover = ["OpenID4VPHandover", SHA-256(CBOR(info))]
+ */
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+
+/**
+ * SessionTranscript for OpenID4VP (redirect/direct_post profile).
+ * DeviceEngagementBytes = null, EReaderKeyBytes = null, Handover = ["OpenID4VPHandover", SHA-256(CBOR(info))]
+ */
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) IdentityKotlinByteArray * _Nullable deviceEngagementBytes __attribute__((swift_name("deviceEngagementBytes")));
+@property (readonly) IdentityKotlinByteArray * _Nullable eReaderKeyBytes __attribute__((swift_name("eReaderKeyBytes")));
+@property (readonly) IdentityOpenID4VPHandover *handover __attribute__((swift_name("handover")));
+@end
+
+
+/**
+ * SessionTranscript for OpenID4VP (redirect/direct_post profile).
+ * DeviceEngagementBytes = null, EReaderKeyBytes = null, Handover = ["OpenID4VPHandover", SHA-256(CBOR(info))]
+ */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SessionTranscript.Companion")))
+@interface IdentitySessionTranscriptCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
+
+/**
+ * SessionTranscript for OpenID4VP (redirect/direct_post profile).
+ * DeviceEngagementBytes = null, EReaderKeyBytes = null, Handover = ["OpenID4VPHandover", SHA-256(CBOR(info))]
+ */
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentitySessionTranscriptCompanion *shared __attribute__((swift_name("shared")));
+
+/**
+ * SessionTranscript for OpenID4VP (redirect/direct_post profile).
+ * DeviceEngagementBytes = null, EReaderKeyBytes = null, Handover = ["OpenID4VPHandover", SHA-256(CBOR(info))]
+ */
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("UriCredentialChallenge")))
 @interface IdentityUriCredentialChallenge : IdentityRespondableChallenge<IdentityUriCredentialChallengeResponder *>
@@ -1178,6 +1438,20 @@ __attribute__((swift_name("UserAgent.Companion")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("VPTokenFactory")))
+@interface IdentityVPTokenFactory : IdentityBase
+- (instancetype)initWithKeyPairFactory:(id<IdentityKeyPair> (^)(void))keyPairFactory __attribute__((swift_name("init(keyPairFactory:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * Create a VP Token based on the provided Authorization Request & Credentials selected by the user.
+ */
+- (NSString *)buildPresentationRequest:(IdentityPresentationRequest *)presentationRequest submission:(IdentityCredentialSubmission *)submission jwkThumbprint:(IdentityKotlinByteArray * _Nullable)jwkThumbprint __attribute__((swift_name("build(presentationRequest:submission:jwkThumbprint:)")));
+@property (readonly) IdentityKotlinx_serialization_cborCbor *cbor __attribute__((swift_name("cbor")));
+@property (readonly) IdentityKotlinx_serialization_jsonJson *json __attribute__((swift_name("json")));
+@property (readonly) id<IdentityKeyPair> (^keyPairFactory)(void) __attribute__((swift_name("keyPairFactory")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("WaltIDCredentialOfferParser")))
 @interface IdentityWaltIDCredentialOfferParser : IdentityBase <IdentityCredentialOfferParser>
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
@@ -1225,6 +1499,90 @@ __attribute__((swift_name("AttestationNotSupportedException")))
 - (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 - (instancetype)initWithCause:(IdentityKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 - (instancetype)initWithMessage:(NSString * _Nullable)message cause:(IdentityKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@end
+
+
+/**
+ * This implementation of the attestation service allows a non-attestable device
+ * to use the DEV environment such as a simulator, emulator or CLI.
+ */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SimplePasswordAttestationService")))
+@interface IdentitySimplePasswordAttestationService : IdentityBase
+
+/**
+ * This implementation of the attestation service allows a non-attestable device
+ * to use the DEV environment such as a simulator, emulator or CLI.
+ */
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
+
+/**
+ * This implementation of the attestation service allows a non-attestable device
+ * to use the DEV environment such as a simulator, emulator or CLI.
+ */
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+@property (class, readonly, getter=companion) IdentitySimplePasswordAttestationServiceCompanion *companion __attribute__((swift_name("companion")));
+
+/**
+ * @note This method converts instances of ApiException, CancellationException, AttestationNotSupportedException, AttestationKeyGenerationException, AttestationException, Exception to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getAttestationTokenWithCompletionHandler:(void (^)(NSString * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getAttestationToken(completionHandler:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SimplePasswordAttestationService.Companion")))
+@interface IdentitySimplePasswordAttestationServiceCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentitySimplePasswordAttestationServiceCompanion *shared __attribute__((swift_name("shared")));
+@property (readonly) NSString *SIMPLE_PASSWORD __attribute__((swift_name("SIMPLE_PASSWORD")));
+@end
+
+
+/**
+ * Interface for a JWE Encryption Engine capable of handling both key management ('alg')
+ * and content encryption ('enc') for specific algorithm combinations.
+ */
+__attribute__((swift_name("JWEFactory")))
+@protocol IdentityJWEFactory
+@required
+
+/**
+ * Performs JWE encryption.
+ * Handles key agreement/wrapping based on `supportedKeyManagementAlg` and
+ * content encryption using the specified `encToUse`.
+ *
+ * @param payload The raw data (e.g., JSON response) to encrypt.
+ * @param recipientPublicKey The public key (JWK) of the recipient.
+ * @param encToUse The specific content encryption algorithm to use (must be in `supportedContentEncryptionEncs`).
+ * @param protectedHeader Extra protected header parameters (optional).
+ * @param aad Additional Authenticated Data (optional, often derived from protected header).
+ * @return The JWE Compact Serialization string.
+ * @throws JWECreationException if encryption fails or algorithms are incompatible.
+ *
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)createPayload:(IdentityKotlinByteArray *)payload recipientPublicKey:(IdentityJwk *)recipientPublicKey alg:(NSString *)alg encToUse:(NSString *)encToUse completionHandler:(void (^)(NSString * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("create(payload:recipientPublicKey:alg:encToUse:completionHandler:)")));
+@property (readonly) NSArray<NSString *> *supportedEncryptionAlgorithms __attribute__((swift_name("supportedEncryptionAlgorithms")));
+@property (readonly) NSArray<NSString *> *supportedKeyManagementAlgorithms __attribute__((swift_name("supportedKeyManagementAlgorithms")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AppleJWEFactory")))
+@interface IdentityAppleJWEFactory : IdentityBase <IdentityJWEFactory>
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)createPayload:(IdentityKotlinByteArray *)payload recipientPublicKey:(IdentityJwk *)recipientPublicKey alg:(NSString *)alg encToUse:(NSString *)encToUse completionHandler:(void (^)(NSString * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("create(payload:recipientPublicKey:alg:encToUse:completionHandler:)")));
+@property (readonly) NSArray<NSString *> *supportedEncryptionAlgorithms __attribute__((swift_name("supportedEncryptionAlgorithms")));
+@property (readonly) NSArray<NSString *> *supportedKeyManagementAlgorithms __attribute__((swift_name("supportedKeyManagementAlgorithms")));
 @end
 
 __attribute__((swift_name("KeyPair")))
@@ -1291,14 +1649,14 @@ __attribute__((swift_name("AppleKeyPair.Location")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("EllipticCurvePublicKey")))
 @interface IdentityEllipticCurvePublicKey : IdentityBase
-- (instancetype)initWithAlg:(NSString *)alg jwk:(IdentityJwk *)jwk __attribute__((swift_name("init(alg:jwk:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithAlg:(NSString *)alg jwk:(IdentityOnDeviceKeyPairJwk *)jwk __attribute__((swift_name("init(alg:jwk:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) IdentityEllipticCurvePublicKeyCompanion *companion __attribute__((swift_name("companion")));
-- (IdentityEllipticCurvePublicKey *)doCopyAlg:(NSString *)alg jwk:(IdentityJwk *)jwk __attribute__((swift_name("doCopy(alg:jwk:)")));
+- (IdentityEllipticCurvePublicKey *)doCopyAlg:(NSString *)alg jwk:(IdentityOnDeviceKeyPairJwk *)jwk __attribute__((swift_name("doCopy(alg:jwk:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString *alg __attribute__((swift_name("alg")));
-@property (readonly) IdentityJwk *jwk __attribute__((swift_name("jwk")));
+@property (readonly) IdentityOnDeviceKeyPairJwk *jwk __attribute__((swift_name("jwk")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -1311,40 +1669,14 @@ __attribute__((swift_name("EllipticCurvePublicKey.Companion")))
 - (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
-
-/**
- * @note annotations
- *   kotlinx.serialization.Serializable
-*/
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Jwk")))
-@interface IdentityJwk : IdentityBase
-- (instancetype)initWithCrv:(NSString *)crv kty:(NSString *)kty x:(NSString *)x y:(NSString *)y keyId:(NSString * _Nullable)keyId __attribute__((swift_name("init(crv:kty:x:y:keyId:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) IdentityJwkCompanion *companion __attribute__((swift_name("companion")));
-- (IdentityJwk *)doCopyCrv:(NSString *)crv kty:(NSString *)kty x:(NSString *)x y:(NSString *)y keyId:(NSString * _Nullable)keyId __attribute__((swift_name("doCopy(crv:kty:x:y:keyId:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *crv __attribute__((swift_name("crv")));
-
-/**
- * @note annotations
- *   kotlinx.serialization.Transient
-*/
-@property (readonly) NSString * _Nullable keyId __attribute__((swift_name("keyId")));
-@property (readonly) NSString *kty __attribute__((swift_name("kty")));
-@property (readonly) NSString *x __attribute__((swift_name("x")));
-@property (readonly) NSString *y __attribute__((swift_name("y")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Jwk.Companion")))
-@interface IdentityJwkCompanion : IdentityBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) IdentityJwkCompanion *shared __attribute__((swift_name("shared")));
-- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+__attribute__((swift_name("JWECreationException")))
+@interface IdentityJWECreationException : IdentityKotlinException
+- (instancetype)initWithMessage:(NSString *)message cause:(IdentityKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithCause:(IdentityKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -1367,6 +1699,42 @@ __attribute__((swift_name("Length")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) int32_t lengthBytes __attribute__((swift_name("lengthBytes")));
 @property (readonly) int32_t value __attribute__((swift_name("value")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("OnDeviceKeyPairJwk")))
+@interface IdentityOnDeviceKeyPairJwk : IdentityBase
+- (instancetype)initWithCrv:(NSString *)crv kty:(NSString *)kty x:(NSString *)x y:(NSString *)y keyId:(NSString * _Nullable)keyId __attribute__((swift_name("init(crv:kty:x:y:keyId:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityOnDeviceKeyPairJwkCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityOnDeviceKeyPairJwk *)doCopyCrv:(NSString *)crv kty:(NSString *)kty x:(NSString *)x y:(NSString *)y keyId:(NSString * _Nullable)keyId __attribute__((swift_name("doCopy(crv:kty:x:y:keyId:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *crv __attribute__((swift_name("crv")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Transient
+*/
+@property (readonly) NSString * _Nullable keyId __attribute__((swift_name("keyId")));
+@property (readonly) NSString *kty __attribute__((swift_name("kty")));
+@property (readonly) NSString *x __attribute__((swift_name("x")));
+@property (readonly) NSString *y __attribute__((swift_name("y")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("OnDeviceKeyPairJwk.Companion")))
+@interface IdentityOnDeviceKeyPairJwkCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityOnDeviceKeyPairJwkCompanion *shared __attribute__((swift_name("shared")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -1442,6 +1810,356 @@ __attribute__((swift_name("AssuranceType.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) IdentityAssuranceTypeCompanion *shared __attribute__((swift_name("shared")));
 - (IdentityAssuranceType *)fromStringValue:(NSString *)value __attribute__((swift_name("fromString(value:)")));
+@end
+
+
+/**
+ * The full set of Authorization Request fields the wallet cares about
+ * after resolving the request object, whether by value or by reference.
+ *
+ * Keep fields OPTIONAL unless the spec marks them REQUIRED.
+ * (Some are conditionally required based on response_type/mode.)
+ *
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AuthorizationRequest")))
+@interface IdentityAuthorizationRequest : IdentityBase
+- (instancetype)initWithIss:(NSString * _Nullable)iss aud:(NSString * _Nullable)aud clientId:(NSString *)clientId clientIdType:(IdentityClientIdType *)clientIdType responseType:(NSString *)responseType responseMode:(IdentityResponseMode *)responseMode redirectUri:(NSString * _Nullable)redirectUri responseUri:(NSString * _Nullable)responseUri nonce:(NSString *)nonce state:(NSString * _Nullable)state dcqlQuery:(IdentityDcqlQuery * _Nullable)dcqlQuery scope:(NSString * _Nullable)scope clientMetadata:(IdentityAuthorizationRequestClientMetadata * _Nullable)clientMetadata transactionData:(NSArray<NSString *> * _Nullable)transactionData verifierAttestations:(NSArray<NSString *> * _Nullable)verifierAttestations idTokenType:(NSString * _Nullable)idTokenType raw:(NSString *)raw __attribute__((swift_name("init(iss:aud:clientId:clientIdType:responseType:responseMode:redirectUri:responseUri:nonce:state:dcqlQuery:scope:clientMetadata:transactionData:verifierAttestations:idTokenType:raw:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityAuthorizationRequestCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityAuthorizationRequest *)doCopyIss:(NSString * _Nullable)iss aud:(NSString * _Nullable)aud clientId:(NSString *)clientId clientIdType:(IdentityClientIdType *)clientIdType responseType:(NSString *)responseType responseMode:(IdentityResponseMode *)responseMode redirectUri:(NSString * _Nullable)redirectUri responseUri:(NSString * _Nullable)responseUri nonce:(NSString *)nonce state:(NSString * _Nullable)state dcqlQuery:(IdentityDcqlQuery * _Nullable)dcqlQuery scope:(NSString * _Nullable)scope clientMetadata:(IdentityAuthorizationRequestClientMetadata * _Nullable)clientMetadata transactionData:(NSArray<NSString *> * _Nullable)transactionData verifierAttestations:(NSArray<NSString *> * _Nullable)verifierAttestations idTokenType:(NSString * _Nullable)idTokenType raw:(NSString *)raw __attribute__((swift_name("doCopy(iss:aud:clientId:clientIdType:responseType:responseMode:redirectUri:responseUri:nonce:state:dcqlQuery:scope:clientMetadata:transactionData:verifierAttestations:idTokenType:raw:)")));
+
+/**
+ * The full set of Authorization Request fields the wallet cares about
+ * after resolving the request object, whether by value or by reference.
+ *
+ * Keep fields OPTIONAL unless the spec marks them REQUIRED.
+ * (Some are conditionally required based on response_type/mode.)
+ */
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+
+/**
+ * The full set of Authorization Request fields the wallet cares about
+ * after resolving the request object, whether by value or by reference.
+ *
+ * Keep fields OPTIONAL unless the spec marks them REQUIRED.
+ * (Some are conditionally required based on response_type/mode.)
+ */
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+
+/**
+ * The full set of Authorization Request fields the wallet cares about
+ * after resolving the request object, whether by value or by reference.
+ *
+ * Keep fields OPTIONAL unless the spec marks them REQUIRED.
+ * (Some are conditionally required based on response_type/mode.)
+ */
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString * _Nullable aud __attribute__((swift_name("aud")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="client_id")
+*/
+@property (readonly) NSString *clientId __attribute__((swift_name("clientId")));
+@property (readonly) IdentityClientIdType *clientIdType __attribute__((swift_name("clientIdType")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="client_metadata")
+*/
+@property (readonly) IdentityAuthorizationRequestClientMetadata * _Nullable clientMetadata __attribute__((swift_name("clientMetadata")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="dcql_query")
+*/
+@property (readonly) IdentityDcqlQuery * _Nullable dcqlQuery __attribute__((swift_name("dcqlQuery")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="id_token_type")
+*/
+@property (readonly) NSString * _Nullable idTokenType __attribute__((swift_name("idTokenType")));
+@property (readonly) NSString * _Nullable iss __attribute__((swift_name("iss")));
+@property (readonly) NSString *nonce __attribute__((swift_name("nonce")));
+@property (readonly) NSString *raw __attribute__((swift_name("raw")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="redirect_uri")
+*/
+@property (readonly) NSString * _Nullable redirectUri __attribute__((swift_name("redirectUri")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="response_mode")
+*/
+@property (readonly) IdentityResponseMode *responseMode __attribute__((swift_name("responseMode")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="response_type")
+*/
+@property (readonly) NSString *responseType __attribute__((swift_name("responseType")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="response_uri")
+*/
+@property (readonly) NSString * _Nullable responseUri __attribute__((swift_name("responseUri")));
+@property (readonly) NSString * _Nullable scope __attribute__((swift_name("scope")));
+@property (readonly) NSString * _Nullable state __attribute__((swift_name("state")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="transaction_data")
+*/
+@property (readonly) NSArray<NSString *> * _Nullable transactionData __attribute__((swift_name("transactionData")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="verifier_attestations")
+*/
+@property (readonly) NSArray<NSString *> * _Nullable verifierAttestations __attribute__((swift_name("verifierAttestations")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AuthorizationRequest.Companion")))
+@interface IdentityAuthorizationRequestCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityAuthorizationRequestCompanion *shared __attribute__((swift_name("shared")));
+
+/** Accepts a signed Request Object (JWT) *or* plain JSON string. */
+- (IdentityAuthorizationRequest *)fromRequestJwtOrJsonRequest:(NSString *)request __attribute__((swift_name("fromRequestJwtOrJson(request:)")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * Verifier-provided metadata (a.k.a. client_metadata) sent in the Authorization Request.
+ * Used by the Wallet to understand the Verifier’s crypto & format preferences.
+ *
+ * Spec usage examples:
+ * - Include a JWKS for encrypting the Authorization Response (e.g., direct_post.jwt)
+ * - Declare supported VP formats/parameters (e.g., proof types for LDP-VC)
+ * - Indicate the JWE encryption content cipher for the response
+ *
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AuthorizationRequestClientMetadata")))
+@interface IdentityAuthorizationRequestClientMetadata : IdentityBase
+- (instancetype)initWithClientName:(NSString * _Nullable)clientName vpFormatsSupported:(IdentityVpFormatsSupported * _Nullable)vpFormatsSupported jwks:(IdentityJwks * _Nullable)jwks encryptedResponseSupportedAlgorithms:(NSArray<NSString *> * _Nullable)encryptedResponseSupportedAlgorithms __attribute__((swift_name("init(clientName:vpFormatsSupported:jwks:encryptedResponseSupportedAlgorithms:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityAuthorizationRequestClientMetadataCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityAuthorizationRequestClientMetadata *)doCopyClientName:(NSString * _Nullable)clientName vpFormatsSupported:(IdentityVpFormatsSupported * _Nullable)vpFormatsSupported jwks:(IdentityJwks * _Nullable)jwks encryptedResponseSupportedAlgorithms:(NSArray<NSString *> * _Nullable)encryptedResponseSupportedAlgorithms __attribute__((swift_name("doCopy(clientName:vpFormatsSupported:jwks:encryptedResponseSupportedAlgorithms:)")));
+
+/**
+ * Verifier-provided metadata (a.k.a. client_metadata) sent in the Authorization Request.
+ * Used by the Wallet to understand the Verifier’s crypto & format preferences.
+ *
+ * Spec usage examples:
+ * - Include a JWKS for encrypting the Authorization Response (e.g., direct_post.jwt)
+ * - Declare supported VP formats/parameters (e.g., proof types for LDP-VC)
+ * - Indicate the JWE encryption content cipher for the response
+ */
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+
+/**
+ * Verifier-provided metadata (a.k.a. client_metadata) sent in the Authorization Request.
+ * Used by the Wallet to understand the Verifier’s crypto & format preferences.
+ *
+ * Spec usage examples:
+ * - Include a JWKS for encrypting the Authorization Response (e.g., direct_post.jwt)
+ * - Declare supported VP formats/parameters (e.g., proof types for LDP-VC)
+ * - Indicate the JWE encryption content cipher for the response
+ */
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+
+/**
+ * Verifier-provided metadata (a.k.a. client_metadata) sent in the Authorization Request.
+ * Used by the Wallet to understand the Verifier’s crypto & format preferences.
+ *
+ * Spec usage examples:
+ * - Include a JWKS for encrypting the Authorization Response (e.g., direct_post.jwt)
+ * - Declare supported VP formats/parameters (e.g., proof types for LDP-VC)
+ * - Indicate the JWE encryption content cipher for the response
+ */
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/** Human-friendly name for UX (optional).
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="client_name")
+*/
+@property (readonly) NSString * _Nullable clientName __attribute__((swift_name("clientName")));
+
+/**
+ * JWE content-encryption algorithm for Authorization Response
+ * when using a JWT-based direct_post.jwt (e.g., "A256GCM").
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="encrypted_response_enc_values_supported")
+*/
+@property (readonly) NSArray<NSString *> * _Nullable encryptedResponseSupportedAlgorithms __attribute__((swift_name("encryptedResponseSupportedAlgorithms")));
+
+/** Verifier's public keys (for encrypting responses, etc.). */
+@property (readonly) IdentityJwks * _Nullable jwks __attribute__((swift_name("jwks")));
+
+/** Which VP formats & knobs the Verifier can process.
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="vp_formats_supported")
+*/
+@property (readonly) IdentityVpFormatsSupported * _Nullable vpFormatsSupported __attribute__((swift_name("vpFormatsSupported")));
+@end
+
+
+/**
+ * Verifier-provided metadata (a.k.a. client_metadata) sent in the Authorization Request.
+ * Used by the Wallet to understand the Verifier’s crypto & format preferences.
+ *
+ * Spec usage examples:
+ * - Include a JWKS for encrypting the Authorization Response (e.g., direct_post.jwt)
+ * - Declare supported VP formats/parameters (e.g., proof types for LDP-VC)
+ * - Indicate the JWE encryption content cipher for the response
+ */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AuthorizationRequestClientMetadata.Companion")))
+@interface IdentityAuthorizationRequestClientMetadataCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
+
+/**
+ * Verifier-provided metadata (a.k.a. client_metadata) sent in the Authorization Request.
+ * Used by the Wallet to understand the Verifier’s crypto & format preferences.
+ *
+ * Spec usage examples:
+ * - Include a JWKS for encrypting the Authorization Response (e.g., direct_post.jwt)
+ * - Declare supported VP formats/parameters (e.g., proof types for LDP-VC)
+ * - Indicate the JWE encryption content cipher for the response
+ */
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityAuthorizationRequestClientMetadataCompanion *shared __attribute__((swift_name("shared")));
+
+/**
+ * Verifier-provided metadata (a.k.a. client_metadata) sent in the Authorization Request.
+ * Used by the Wallet to understand the Verifier’s crypto & format preferences.
+ *
+ * Spec usage examples:
+ * - Include a JWKS for encrypting the Authorization Response (e.g., direct_post.jwt)
+ * - Declare supported VP formats/parameters (e.g., proof types for LDP-VC)
+ * - Indicate the JWE encryption content cipher for the response
+ */
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * AuthorizationRequestDescriptor is parsed from the inbound "authorization" URI.
+ * It tells the wallet how to obtain/resolve the full Authorization Request object.
+ *
+ * Either `request` OR `request_uri` must be present.
+ *
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AuthorizationRequestDescriptor")))
+@interface IdentityAuthorizationRequestDescriptor : IdentityBase
+- (instancetype)initWithClientId:(NSString *)clientId requestUri:(NSString * _Nullable)requestUri clientIdType:(IdentityClientIdType *)clientIdType requestUriMethod:(IdentityRequestUriMethod *)requestUriMethod request:(NSString * _Nullable)request raw:(NSString *)raw __attribute__((swift_name("init(clientId:requestUri:clientIdType:requestUriMethod:request:raw:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityAuthorizationRequestDescriptorCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityAuthorizationRequestDescriptor *)doCopyClientId:(NSString *)clientId requestUri:(NSString * _Nullable)requestUri clientIdType:(IdentityClientIdType *)clientIdType requestUriMethod:(IdentityRequestUriMethod *)requestUriMethod request:(NSString * _Nullable)request raw:(NSString *)raw __attribute__((swift_name("doCopy(clientId:requestUri:clientIdType:requestUriMethod:request:raw:)")));
+
+/**
+ * AuthorizationRequestDescriptor is parsed from the inbound "authorization" URI.
+ * It tells the wallet how to obtain/resolve the full Authorization Request object.
+ *
+ * Either `request` OR `request_uri` must be present.
+ */
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+
+/**
+ * AuthorizationRequestDescriptor is parsed from the inbound "authorization" URI.
+ * It tells the wallet how to obtain/resolve the full Authorization Request object.
+ *
+ * Either `request` OR `request_uri` must be present.
+ */
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+
+/**
+ * Resolve the effective AuthorizationRequest:
+ * 1) If `request` is present: decode it (JWT payload or plain JSON).
+ * 2) Else, fetch from `request_uri` using GET (default) or POST (include wallet metadata).
+ * 3) Parse JSON payload into AuthorizationRequest.
+ *
+ * Signature and client binding validation are intentionally out-of-scope here;
+ * do that in your validator using `clientIdType`.
+ *
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)retrieveAuthorizationRequestNetworkClient:(id<IdentityNetworkClient>)networkClient walletMetadata:(IdentityOID4VPCapabilities *)walletMetadata completionHandler:(void (^)(IdentityAuthorizationRequest * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("retrieveAuthorizationRequest(networkClient:walletMetadata:completionHandler:)")));
+
+/**
+ * AuthorizationRequestDescriptor is parsed from the inbound "authorization" URI.
+ * It tells the wallet how to obtain/resolve the full Authorization Request object.
+ *
+ * Either `request` OR `request_uri` must be present.
+ */
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/** Verifier identifier (how the wallet identifies the Verifier for trust decisions).
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="client_id")
+*/
+@property (readonly) NSString *clientId __attribute__((swift_name("clientId")));
+
+/** Derived type for downstream validation switch (handled elsewhere). */
+@property (readonly) IdentityClientIdType *clientIdType __attribute__((swift_name("clientIdType")));
+
+/**
+ * Original URI
+ */
+@property (readonly) NSString *raw __attribute__((swift_name("raw")));
+
+/**
+ * Optional "by value" Request Object (usually a signed JWT).
+ * If present, use this directly (no network fetch).
+ */
+@property (readonly) NSString * _Nullable request __attribute__((swift_name("request")));
+
+/** Optional "by reference" pointer to fetch the full Request Object (JWT or plain JSON).
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="request_uri")
+*/
+@property (readonly) NSString * _Nullable requestUri __attribute__((swift_name("requestUri")));
+
+/**
+ * If using request_uri, the wallet MAY POST its metadata instead of GET.
+ * Default is GET.
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="request_uri_method")
+*/
+@property (readonly) IdentityRequestUriMethod *requestUriMethod __attribute__((swift_name("requestUriMethod")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AuthorizationRequestDescriptor.Companion")))
+@interface IdentityAuthorizationRequestDescriptorCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityAuthorizationRequestDescriptorCompanion *shared __attribute__((swift_name("shared")));
+- (IdentityAuthorizationRequestDescriptor *)fromHttpParametersUri:(NSString *)uri __attribute__((swift_name("fromHttpParameters(uri:)")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -1532,6 +2250,102 @@ __attribute__((swift_name("Claim.Companion")))
 
 
 /**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ClaimQuery")))
+@interface IdentityClaimQuery : IdentityBase
+- (instancetype)initWithId:(NSString * _Nullable)id path:(NSArray<NSString *> *)path values:(NSArray<IdentityKotlinx_serialization_jsonJsonElement *> * _Nullable)values intentToRetain:(BOOL)intentToRetain __attribute__((swift_name("init(id:path:values:intentToRetain:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityClaimQueryCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityClaimQuery *)doCopyId:(NSString * _Nullable)id path:(NSArray<NSString *> *)path values:(NSArray<IdentityKotlinx_serialization_jsonJsonElement *> * _Nullable)values intentToRetain:(BOOL)intentToRetain __attribute__((swift_name("doCopy(id:path:values:intentToRetain:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * REQUIRED if CredentialQuery has defined [claimSets]
+ */
+@property (readonly) NSString * _Nullable id __attribute__((swift_name("id")));
+
+/**
+ * Whether the issuer intends to retain
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="intent_to_retain")
+*/
+@property (readonly) BOOL intentToRetain __attribute__((swift_name("intentToRetain")));
+
+/**
+ * Where in the VC this can be found
+ */
+@property (readonly) NSArray<NSString *> *path __attribute__((swift_name("path")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ClaimQuery.Companion")))
+@interface IdentityClaimQueryCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityClaimQueryCompanion *shared __attribute__((swift_name("shared")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * How the wallet should interpret and (externally) verify a client_id.
+ * Verification is implemented elsewhere; this enum only documents behavior.
+ *
+ * - PRE_REGISTERED: Local registry lookup (static developer portal / allowlist).
+ * - REDIRECT_URI_PREFIX: "redirect_uri:{uri}" — no signed request support.
+ * - X509_SAN_DNS: "x509_san_dns:{dns}" — Request Object must be JWS signed by a cert whose SAN DNS matches.
+ * - DID: "decentralized_identifier:{did}" — verify DID and signing key resolution.
+ * - VERIFIER_ATTESTATION: "verifier_attestation:{subject}" — verify attestation JWT.
+ * - OPENID_FEDERATION: "openid_federation:{entity_id}" — resolve entity + metadata via federation.
+ */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ClientIdType")))
+@interface IdentityClientIdType : IdentityKotlinEnum<IdentityClientIdType *>
++ (instancetype)alloc __attribute__((unavailable));
+
+/**
+ * How the wallet should interpret and (externally) verify a client_id.
+ * Verification is implemented elsewhere; this enum only documents behavior.
+ *
+ * - PRE_REGISTERED: Local registry lookup (static developer portal / allowlist).
+ * - REDIRECT_URI_PREFIX: "redirect_uri:{uri}" — no signed request support.
+ * - X509_SAN_DNS: "x509_san_dns:{dns}" — Request Object must be JWS signed by a cert whose SAN DNS matches.
+ * - DID: "decentralized_identifier:{did}" — verify DID and signing key resolution.
+ * - VERIFIER_ATTESTATION: "verifier_attestation:{subject}" — verify attestation JWT.
+ * - OPENID_FEDERATION: "openid_federation:{entity_id}" — resolve entity + metadata via federation.
+ */
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@property (class, readonly, getter=companion) IdentityClientIdTypeCompanion *companion __attribute__((swift_name("companion")));
+@property (class, readonly) IdentityClientIdType *preregistered __attribute__((swift_name("preregistered")));
+@property (class, readonly) IdentityClientIdType *redirecturi __attribute__((swift_name("redirecturi")));
+@property (class, readonly) IdentityClientIdType *x509SanDns __attribute__((swift_name("x509SanDns")));
+@property (class, readonly) IdentityClientIdType *x509Hash __attribute__((swift_name("x509Hash")));
+@property (class, readonly) IdentityClientIdType *did __attribute__((swift_name("did")));
+@property (class, readonly) IdentityClientIdType *verifierattestation __attribute__((swift_name("verifierattestation")));
+@property (class, readonly) IdentityClientIdType *openidfederation __attribute__((swift_name("openidfederation")));
++ (IdentityKotlinArray<IdentityClientIdType *> *)values __attribute__((swift_name("values()")));
+@property (class, readonly) NSArray<IdentityClientIdType *> *entries __attribute__((swift_name("entries")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ClientIdType.Companion")))
+@interface IdentityClientIdTypeCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityClientIdTypeCompanion *shared __attribute__((swift_name("shared")));
+- (IdentityClientIdType *)inferValue:(NSString *)value __attribute__((swift_name("infer(value:)")));
+@end
+
+
+/**
  * A base for all verifiable credentials that the wallet will store.
  *
  * The raw credential received through the issuance flow is always what's stored, never an abstraction.
@@ -1547,6 +2361,11 @@ __attribute__((swift_name("Credential")))
  * Function to derive the verification status of the credential
  */
 - (IdentityVerificationSummary *)getVerificationSummary __attribute__((swift_name("getVerificationSummary()")));
+
+/**
+ * JSON object that represents the credential
+ */
+@property (readonly) NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *body __attribute__((swift_name("body")));
 
 /**
  * The format of the credential
@@ -1776,9 +2595,16 @@ __attribute__((swift_name("CredentialMetadata.Companion")))
 - (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((swift_name("CredentialOffer")))
 @interface IdentityCredentialOffer : IdentityBase
 - (instancetype)initWithRaw:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *)raw preAuthorizedCode:(NSString *)preAuthorizedCode transactionCodeDetails:(IdentityTxCode * _Nullable)transactionCodeDetails grants:(NSDictionary<NSString *, IdentityGrantDetails *> *)grants credentials:(NSArray<IdentityCredentialDescriptor *> *)credentials issuer:(IdentityCredentialIssuer *)issuer __attribute__((swift_name("init(raw:preAuthorizedCode:transactionCodeDetails:grants:credentials:issuer:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithSeen0:(int32_t)seen0 raw:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> * _Nullable)raw preAuthorizedCode:(NSString * _Nullable)preAuthorizedCode transactionCodeDetails:(IdentityTxCode * _Nullable)transactionCodeDetails grants:(NSDictionary<NSString *, IdentityGrantDetails *> * _Nullable)grants credentials:(NSArray<IdentityCredentialDescriptor *> * _Nullable)credentials issuer:(IdentityCredentialIssuer * _Nullable)issuer serializationConstructorMarker:(id _Nullable)serializationConstructorMarker __attribute__((swift_name("init(seen0:raw:preAuthorizedCode:transactionCodeDetails:grants:credentials:issuer:serializationConstructorMarker:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityCredentialOfferCompanion *companion __attribute__((swift_name("companion")));
 
 /**
  * A description of the credentials being offered by the issuer
@@ -1805,6 +2631,91 @@ __attribute__((swift_name("CredentialOffer")))
  * this will be populated.
  */
 @property (readonly) IdentityTxCode * _Nullable transactionCodeDetails __attribute__((swift_name("transactionCodeDetails")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("CredentialOffer.Companion")))
+@interface IdentityCredentialOfferCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityCredentialOfferCompanion *shared __attribute__((swift_name("shared")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("CredentialQuery")))
+@interface IdentityCredentialQuery : IdentityBase
+- (instancetype)initWithId:(NSString *)id format:(NSString *)format claims:(NSArray<IdentityClaimQuery *> * _Nullable)claims meta:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> * _Nullable)meta multiple:(BOOL)multiple trustedAuthorities:(NSArray<NSString *> * _Nullable)trustedAuthorities requireCryptographicHolderBinding:(IdentityBoolean * _Nullable)requireCryptographicHolderBinding claimSets:(NSArray<NSArray<NSString *> *> * _Nullable)claimSets __attribute__((swift_name("init(id:format:claims:meta:multiple:trustedAuthorities:requireCryptographicHolderBinding:claimSets:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityCredentialQueryCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityCredentialQuery *)doCopyId:(NSString *)id format:(NSString *)format claims:(NSArray<IdentityClaimQuery *> * _Nullable)claims meta:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> * _Nullable)meta multiple:(BOOL)multiple trustedAuthorities:(NSArray<NSString *> * _Nullable)trustedAuthorities requireCryptographicHolderBinding:(IdentityBoolean * _Nullable)requireCryptographicHolderBinding claimSets:(NSArray<NSArray<NSString *> *> * _Nullable)claimSets __attribute__((swift_name("doCopy(id:format:claims:meta:multiple:trustedAuthorities:requireCryptographicHolderBinding:claimSets:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * Combinations of the claims that can be submitted.
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="claim_sets")
+*/
+@property (readonly) NSArray<NSArray<NSString *> *> * _Nullable claimSets __attribute__((swift_name("claimSets")));
+@property (readonly) NSArray<IdentityClaimQuery *> * _Nullable claims __attribute__((swift_name("claims")));
+
+/**
+ * Format used to identify the credential in the wallet.
+ */
+@property (readonly) NSString *format __attribute__((swift_name("format")));
+@property (readonly) NSString *id __attribute__((swift_name("id")));
+
+/**
+ * Whether multiple credentials can be returned for this query
+ */
+@property (readonly) BOOL multiple __attribute__((swift_name("multiple")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="require_cryptographic_holder_binding")
+*/
+@property (readonly) IdentityBoolean * _Nullable requireCryptographicHolderBinding __attribute__((swift_name("requireCryptographicHolderBinding")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="trusted_authorities")
+*/
+@property (readonly) NSArray<NSString *> * _Nullable trustedAuthorities __attribute__((swift_name("trustedAuthorities")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("CredentialQuery.Companion")))
+@interface IdentityCredentialQueryCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityCredentialQueryCompanion *shared __attribute__((swift_name("shared")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("CredentialQueryMatchResult")))
+@interface IdentityCredentialQueryMatchResult : IdentityBase
+- (instancetype)initWithMetadata:(IdentityCredentialMetadata *)metadata credential:(id<IdentityCredential>)credential matchingClaims:(NSDictionary<IdentityClaimQuery *, id> *)matchingClaims __attribute__((swift_name("init(metadata:credential:matchingClaims:)"))) __attribute__((objc_designated_initializer));
+- (IdentityCredentialQueryMatchResult *)doCopyMetadata:(IdentityCredentialMetadata *)metadata credential:(id<IdentityCredential>)credential matchingClaims:(NSDictionary<IdentityClaimQuery *, id> *)matchingClaims __attribute__((swift_name("doCopy(metadata:credential:matchingClaims:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) id<IdentityCredential> credential __attribute__((swift_name("credential")));
+
+/**
+ * Claim being requested to the value found in the credential
+ */
+@property (readonly) NSDictionary<IdentityClaimQuery *, id> *matchingClaims __attribute__((swift_name("matchingClaims")));
+@property (readonly) IdentityCredentialMetadata *metadata __attribute__((swift_name("metadata")));
 @end
 
 
@@ -1948,6 +2859,241 @@ __attribute__((swift_name("DataAsBase64Serializer")))
 @end
 
 
+/** SD-JWT VC preferences.
+ *
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DcSdJwtPrefs")))
+@interface IdentityDcSdJwtPrefs : IdentityBase
+- (instancetype)initWithVctValues:(NSArray<NSString *> * _Nullable)vctValues __attribute__((swift_name("init(vctValues:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityDcSdJwtPrefsCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityDcSdJwtPrefs *)doCopyVctValues:(NSArray<NSString *> * _Nullable)vctValues __attribute__((swift_name("doCopy(vctValues:)")));
+
+/** SD-JWT VC preferences. */
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+
+/** SD-JWT VC preferences. */
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+
+/** SD-JWT VC preferences. */
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/** Accepted VC Types (vct), e.g., ["MembershipCardCredential"].
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="vct_values")
+*/
+@property (readonly) NSArray<NSString *> * _Nullable vctValues __attribute__((swift_name("vctValues")));
+@end
+
+
+/** SD-JWT VC preferences. */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DcSdJwtPrefs.Companion")))
+@interface IdentityDcSdJwtPrefsCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
+
+/** SD-JWT VC preferences. */
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityDcSdJwtPrefsCompanion *shared __attribute__((swift_name("shared")));
+
+/** SD-JWT VC preferences. */
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/** DCQL — minimal structure needed for matching.
+ *
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DcqlQuery")))
+@interface IdentityDcqlQuery : IdentityBase
+- (instancetype)initWithCredentials:(NSArray<IdentityCredentialQuery *> *)credentials credentialSets:(NSArray<NSArray<NSString *> *> * _Nullable)credentialSets __attribute__((swift_name("init(credentials:credentialSets:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityDcqlQueryCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityDcqlQuery *)doCopyCredentials:(NSArray<IdentityCredentialQuery *> *)credentials credentialSets:(NSArray<NSArray<NSString *> *> * _Nullable)credentialSets __attribute__((swift_name("doCopy(credentials:credentialSets:)")));
+
+/** DCQL — minimal structure needed for matching. */
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+
+/** DCQL — minimal structure needed for matching. */
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+
+/** DCQL — minimal structure needed for matching. */
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="credential_sets")
+*/
+@property (readonly) NSArray<NSArray<NSString *> *> * _Nullable credentialSets __attribute__((swift_name("credentialSets")));
+@property (readonly) NSArray<IdentityCredentialQuery *> *credentials __attribute__((swift_name("credentials")));
+@end
+
+
+/** DCQL — minimal structure needed for matching. */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DcqlQuery.Companion")))
+@interface IdentityDcqlQueryCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
+
+/** DCQL — minimal structure needed for matching. */
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityDcqlQueryCompanion *shared __attribute__((swift_name("shared")));
+
+/** DCQL — minimal structure needed for matching. */
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * Device authentication structure within device-signed portion of mDoc.
+ *
+ * Either deviceSignature OR deviceMac will be present.
+ *
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DeviceAuth")))
+@interface IdentityDeviceAuth : IdentityBase
+- (instancetype)initWithDeviceSignature:(IdentityKotlinByteArray * _Nullable)deviceSignature deviceMac:(IdentityKotlinByteArray * _Nullable)deviceMac __attribute__((swift_name("init(deviceSignature:deviceMac:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityDeviceAuthCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityDeviceAuth *)doCopyDeviceSignature:(IdentityKotlinByteArray * _Nullable)deviceSignature deviceMac:(IdentityKotlinByteArray * _Nullable)deviceMac __attribute__((swift_name("doCopy(deviceSignature:deviceMac:)")));
+
+/**
+ * Device authentication structure within device-signed portion of mDoc.
+ *
+ * Either deviceSignature OR deviceMac will be present.
+ */
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+
+/**
+ * Device authentication structure within device-signed portion of mDoc.
+ *
+ * Either deviceSignature OR deviceMac will be present.
+ */
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+
+/**
+ * Device authentication structure within device-signed portion of mDoc.
+ *
+ * Either deviceSignature OR deviceMac will be present.
+ */
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) IdentityKotlinByteArray * _Nullable deviceMac __attribute__((swift_name("deviceMac")));
+@property (readonly) IdentityKotlinByteArray * _Nullable deviceSignature __attribute__((swift_name("deviceSignature")));
+@end
+
+
+/**
+ * Device authentication structure within device-signed portion of mDoc.
+ *
+ * Either deviceSignature OR deviceMac will be present.
+ */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DeviceAuth.Companion")))
+@interface IdentityDeviceAuthCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
+
+/**
+ * Device authentication structure within device-signed portion of mDoc.
+ *
+ * Either deviceSignature OR deviceMac will be present.
+ */
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityDeviceAuthCompanion *shared __attribute__((swift_name("shared")));
+
+/**
+ * Device authentication structure within device-signed portion of mDoc.
+ *
+ * Either deviceSignature OR deviceMac will be present.
+ */
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DeviceResponse")))
+@interface IdentityDeviceResponse : IdentityBase
+- (instancetype)initWithVersion:(NSString *)version documents:(NSArray<IdentityDocumentResponse *> *)documents status:(int64_t)status __attribute__((swift_name("init(version:documents:status:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityDeviceResponseCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityDeviceResponse *)doCopyVersion:(NSString *)version documents:(NSArray<IdentityDocumentResponse *> *)documents status:(int64_t)status __attribute__((swift_name("doCopy(version:documents:status:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSArray<IdentityDocumentResponse *> *documents __attribute__((swift_name("documents")));
+@property (readonly) int64_t status __attribute__((swift_name("status")));
+@property (readonly) NSString *version __attribute__((swift_name("version")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DeviceResponse.Companion")))
+@interface IdentityDeviceResponseCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityDeviceResponseCompanion *shared __attribute__((swift_name("shared")));
+
+/**
+ * Build a presentation response for this mDoc credential based on the provided
+ * session transcript and claims to be disclosed.
+ *
+ * https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#name-presentation-response-3
+ */
+- (IdentityKotlinByteArray *)buildAuthorizationRequest:(IdentityAuthorizationRequest *)authorizationRequest credential:(IdentityMDocCredential *)credential claims:(NSArray<IdentityClaimQuery *> *)claims deviceKeyPair:(id<IdentityKeyPair>)deviceKeyPair jwkThumbprint:(IdentityKotlinByteArray * _Nullable)jwkThumbprint __attribute__((swift_name("build(authorizationRequest:credential:claims:deviceKeyPair:jwkThumbprint:)")));
+
+/**
+ * Constructs the OpenID4VPHandover-based SessionTranscript.
+ *
+ * OpenID4VPHandoverInfo (conceptually):
+ *   [ client_id, nonce, jwkThumbprint (null for plain direct_post), response_uri ]
+ *
+ * https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#appendix-B.2.6
+ */
+- (IdentitySessionTranscript *)buildOpenID4VPSessionTranscriptClientId:(NSString *)clientId nonce:(NSString *)nonce responseUri:(NSString *)responseUri jwkThumbprintOrNull:(IdentityKotlinByteArray * _Nullable)jwkThumbprintOrNull __attribute__((swift_name("buildOpenID4VPSessionTranscript(clientId:nonce:responseUri:jwkThumbprintOrNull:)")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DeviceSigned")))
+@interface IdentityDeviceSigned : IdentityBase
+- (instancetype)initWithNameSpaces:(IdentityKotlinByteArray *)nameSpaces deviceAuth:(IdentityDeviceAuth *)deviceAuth __attribute__((swift_name("init(nameSpaces:deviceAuth:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityDeviceSignedCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityDeviceSigned *)doCopyNameSpaces:(IdentityKotlinByteArray *)nameSpaces deviceAuth:(IdentityDeviceAuth *)deviceAuth __attribute__((swift_name("doCopy(nameSpaces:deviceAuth:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) IdentityDeviceAuth *deviceAuth __attribute__((swift_name("deviceAuth")));
+@property (readonly) IdentityKotlinByteArray *nameSpaces __attribute__((swift_name("nameSpaces")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DeviceSigned.Companion")))
+@interface IdentityDeviceSignedCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityDeviceSignedCompanion *shared __attribute__((swift_name("shared")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
 /**
  * An abstraction of the display properties of a credential provided by an issuer when the credential
  * is offered.
@@ -2011,6 +3157,44 @@ __attribute__((swift_name("DisplayProperties.Companion")))
  * An abstraction of the display properties of a credential provided by an issuer when the credential
  * is offered.
  */
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DocumentResponse")))
+@interface IdentityDocumentResponse : IdentityBase
+- (instancetype)initWithDocType:(NSString *)docType issuerSigned:(IdentityIssuerSigned *)issuerSigned deviceSigned:(IdentityDeviceSigned * _Nullable)deviceSigned __attribute__((swift_name("init(docType:issuerSigned:deviceSigned:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityDocumentResponseCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityDocumentResponse *)doCopyDocType:(NSString *)docType issuerSigned:(IdentityIssuerSigned *)issuerSigned deviceSigned:(IdentityDeviceSigned * _Nullable)deviceSigned __attribute__((swift_name("doCopy(docType:issuerSigned:deviceSigned:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * The device-signed authentication items proving possession of the device
+ * bound to this credential.
+ */
+@property (readonly) IdentityDeviceSigned * _Nullable deviceSigned __attribute__((swift_name("deviceSigned")));
+@property (readonly) NSString *docType __attribute__((swift_name("docType")));
+
+/**
+ * The subset of the issuer-signed items that have been disclosed in this response.
+ */
+@property (readonly) IdentityIssuerSigned *issuerSigned __attribute__((swift_name("issuerSigned")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DocumentResponse.Companion")))
+@interface IdentityDocumentResponseCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityDocumentResponseCompanion *shared __attribute__((swift_name("shared")));
 - (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
@@ -2241,6 +3425,116 @@ __attribute__((swift_name("IssuanceSummary")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("IssuerSigned")))
+@interface IdentityIssuerSigned : IdentityBase
+- (instancetype)initWithNameSpaces:(NSDictionary<NSString *, NSArray<IdentityKotlinByteArray *> *> *)nameSpaces issuerAuth:(IdentityKotlinByteArray *)issuerAuth __attribute__((swift_name("init(nameSpaces:issuerAuth:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityIssuerSignedCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityIssuerSigned *)doCopyNameSpaces:(NSDictionary<NSString *, NSArray<IdentityKotlinByteArray *> *> *)nameSpaces issuerAuth:(IdentityKotlinByteArray *)issuerAuth __attribute__((swift_name("doCopy(nameSpaces:issuerAuth:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) IdentityKotlinByteArray *issuerAuth __attribute__((swift_name("issuerAuth")));
+@property (readonly) NSDictionary<NSString *, NSArray<IdentityKotlinByteArray *> *> *nameSpaces __attribute__((swift_name("nameSpaces")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("IssuerSigned.Companion")))
+@interface IdentityIssuerSignedCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityIssuerSignedCompanion *shared __attribute__((swift_name("shared")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Jwk")))
+@interface IdentityJwk : IdentityBase
+- (instancetype)initWithKty:(NSString *)kty kid:(NSString * _Nullable)kid use:(IdentityKeyUse * _Nullable)use alg:(NSString * _Nullable)alg crv:(NSString * _Nullable)crv x:(NSString * _Nullable)x y:(NSString * _Nullable)y n:(NSString * _Nullable)n e:(NSString * _Nullable)e x5c:(NSArray<NSString *> * _Nullable)x5c __attribute__((swift_name("init(kty:kid:use:alg:crv:x:y:n:e:x5c:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityJwkCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityKotlinByteArray *)computeThumbprint __attribute__((swift_name("computeThumbprint()")));
+- (IdentityJwk *)doCopyKty:(NSString *)kty kid:(NSString * _Nullable)kid use:(IdentityKeyUse * _Nullable)use alg:(NSString * _Nullable)alg crv:(NSString * _Nullable)crv x:(NSString * _Nullable)x y:(NSString * _Nullable)y n:(NSString * _Nullable)n e:(NSString * _Nullable)e x5c:(NSArray<NSString *> * _Nullable)x5c __attribute__((swift_name("doCopy(kty:kid:use:alg:crv:x:y:n:e:x5c:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString * _Nullable alg __attribute__((swift_name("alg")));
+@property (readonly) NSString * _Nullable crv __attribute__((swift_name("crv")));
+@property (readonly) NSString * _Nullable e __attribute__((swift_name("e")));
+@property (readonly) NSString * _Nullable kid __attribute__((swift_name("kid")));
+@property (readonly) NSString *kty __attribute__((swift_name("kty")));
+@property (readonly) NSString * _Nullable n __attribute__((swift_name("n")));
+@property (readonly) IdentityKeyUse * _Nullable use __attribute__((swift_name("use")));
+@property (readonly) NSString * _Nullable x __attribute__((swift_name("x")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="x5c")
+*/
+@property (readonly) NSArray<NSString *> * _Nullable x5c __attribute__((swift_name("x5c")));
+@property (readonly) NSString * _Nullable y __attribute__((swift_name("y")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Jwk.Companion")))
+@interface IdentityJwkCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityJwkCompanion *shared __attribute__((swift_name("shared")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/** Minimal JWK(S) types for encryption keys.
+ *
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Jwks")))
+@interface IdentityJwks : IdentityBase
+- (instancetype)initWithKeys:(NSArray<IdentityJwk *> *)keys __attribute__((swift_name("init(keys:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityJwksCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityJwks *)doCopyKeys:(NSArray<IdentityJwk *> *)keys __attribute__((swift_name("doCopy(keys:)")));
+
+/** Minimal JWK(S) types for encryption keys. */
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+
+/** Minimal JWK(S) types for encryption keys. */
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+
+/** Minimal JWK(S) types for encryption keys. */
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSArray<IdentityJwk *> *keys __attribute__((swift_name("keys")));
+@end
+
+
+/** Minimal JWK(S) types for encryption keys. */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Jwks.Companion")))
+@interface IdentityJwksCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
+
+/** Minimal JWK(S) types for encryption keys. */
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityJwksCompanion *shared __attribute__((swift_name("shared")));
+
+/** Minimal JWK(S) types for encryption keys. */
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Jwt")))
 @interface IdentityJwt : IdentityBase
 - (instancetype)initWithCompactString:(NSString *)compactString __attribute__((swift_name("init(compactString:)"))) __attribute__((objc_designated_initializer));
@@ -2249,7 +3543,6 @@ __attribute__((swift_name("Jwt")))
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-- (void)wasSignedByPublicKey __attribute__((swift_name("wasSignedByPublicKey()")));
 @property (readonly) NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *body __attribute__((swift_name("body")));
 @property (readonly) NSString *compactString __attribute__((swift_name("compactString")));
 
@@ -2271,7 +3564,6 @@ __attribute__((swift_name("Jwt")))
 @property (readonly) NSString *signature __attribute__((swift_name("signature")));
 @property (readonly) NSString *source __attribute__((swift_name("source")));
 @property (readonly) id _Nullable value __attribute__((swift_name("value")));
-@property (readonly) IdentityJwtVerificationStatus *verificationStatus __attribute__((swift_name("verificationStatus")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -2286,194 +3578,125 @@ __attribute__((swift_name("Jwt.Companion")))
 @property (readonly) IdentityKotlinBase64 *base64 __attribute__((swift_name("base64")));
 @end
 
-__attribute__((swift_name("Jwt.VerificationStatus")))
-@interface IdentityJwtVerificationStatus : IdentityBase
-@end
 
-
-/**
- * Claim (if issued) inside JWT has expired
- */
+/** JWT-VC (W3C VC in JWS) preferences.
+ *
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Jwt.VerificationStatusExpired")))
-@interface IdentityJwtVerificationStatusExpired : IdentityJwtVerificationStatus
-- (instancetype)initWithExpired:(id)expired __attribute__((swift_name("init(expired:)"))) __attribute__((objc_designated_initializer));
-- (IdentityJwtVerificationStatusExpired *)doCopyExpired:(id)expired __attribute__((swift_name("doCopy(expired:)")));
+__attribute__((swift_name("JwtVcJsonPrefs")))
+@interface IdentityJwtVcJsonPrefs : IdentityBase
+- (instancetype)initWithAlgValues:(NSArray<NSString *> * _Nullable)algValues __attribute__((swift_name("init(algValues:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityJwtVcJsonPrefsCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityJwtVcJsonPrefs *)doCopyAlgValues:(NSArray<NSString *> * _Nullable)algValues __attribute__((swift_name("doCopy(algValues:)")));
 
-/**
- * Claim (if issued) inside JWT has expired
- */
+/** JWT-VC (W3C VC in JWS) preferences. */
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 
-/**
- * Claim (if issued) inside JWT has expired
- */
+/** JWT-VC (W3C VC in JWS) preferences. */
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 
-/**
- * Claim (if issued) inside JWT has expired
- */
+/** JWT-VC (W3C VC in JWS) preferences. */
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) id expired __attribute__((swift_name("expired")));
+
+/** Preferred JWS algs, e.g., ["ES256"].
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="alg_values")
+*/
+@property (readonly) NSArray<NSString *> * _Nullable algValues __attribute__((swift_name("algValues")));
 @end
 
 
-/**
- * Invalid Signature
- */
+/** JWT-VC (W3C VC in JWS) preferences. */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Jwt.VerificationStatusInvalid")))
-@interface IdentityJwtVerificationStatusInvalid : IdentityJwtVerificationStatus
+__attribute__((swift_name("JwtVcJsonPrefs.Companion")))
+@interface IdentityJwtVcJsonPrefsCompanion : IdentityBase
 + (instancetype)alloc __attribute__((unavailable));
 
-/**
- * Invalid Signature
- */
+/** JWT-VC (W3C VC in JWS) preferences. */
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)invalid __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) IdentityJwtVerificationStatusInvalid *shared __attribute__((swift_name("shared")));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityJwtVcJsonPrefsCompanion *shared __attribute__((swift_name("shared")));
 
-/**
- * Invalid Signature
- */
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-
-/**
- * Invalid Signature
- */
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-
-/**
- * Invalid Signature
- */
-- (NSString *)description __attribute__((swift_name("description()")));
+/** JWT-VC (W3C VC in JWS) preferences. */
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
 
 /**
- * JWT was malformed when it was received or parsing failed
- */
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Jwt.VerificationStatusMalformed")))
-@interface IdentityJwtVerificationStatusMalformed : IdentityJwtVerificationStatus
+__attribute__((swift_name("KeyUse")))
+@interface IdentityKeyUse : IdentityKotlinEnum<IdentityKeyUse *>
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@property (class, readonly, getter=companion) IdentityKeyUseCompanion *companion __attribute__((swift_name("companion")));
+@property (class, readonly) IdentityKeyUse *sig __attribute__((swift_name("sig")));
+@property (class, readonly) IdentityKeyUse *enc __attribute__((swift_name("enc")));
++ (IdentityKotlinArray<IdentityKeyUse *> *)values __attribute__((swift_name("values()")));
+@property (class, readonly) NSArray<IdentityKeyUse *> *entries __attribute__((swift_name("entries")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KeyUse.Companion")))
+@interface IdentityKeyUseCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityKeyUseCompanion *shared __attribute__((swift_name("shared")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(IdentityKotlinArray<id<IdentityKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
+@end
+
+
+/** Linked-Data VC preferences.
+ *
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("LdpVcPrefs")))
+@interface IdentityLdpVcPrefs : IdentityBase
+- (instancetype)initWithProofTypeValues:(NSArray<NSString *> * _Nullable)proofTypeValues __attribute__((swift_name("init(proofTypeValues:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityLdpVcPrefsCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityLdpVcPrefs *)doCopyProofTypeValues:(NSArray<NSString *> * _Nullable)proofTypeValues __attribute__((swift_name("doCopy(proofTypeValues:)")));
+
+/** Linked-Data VC preferences. */
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+
+/** Linked-Data VC preferences. */
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+
+/** Linked-Data VC preferences. */
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/** Proof suites the Verifier accepts, e.g., ["DataIntegrityProof"].
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="proof_type_values")
+*/
+@property (readonly) NSArray<NSString *> * _Nullable proofTypeValues __attribute__((swift_name("proofTypeValues")));
+@end
+
+
+/** Linked-Data VC preferences. */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("LdpVcPrefs.Companion")))
+@interface IdentityLdpVcPrefsCompanion : IdentityBase
 + (instancetype)alloc __attribute__((unavailable));
 
-/**
- * JWT was malformed when it was received or parsing failed
- */
+/** Linked-Data VC preferences. */
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)malformed __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) IdentityJwtVerificationStatusMalformed *shared __attribute__((swift_name("shared")));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityLdpVcPrefsCompanion *shared __attribute__((swift_name("shared")));
 
-/**
- * JWT was malformed when it was received or parsing failed
- */
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-
-/**
- * JWT was malformed when it was received or parsing failed
- */
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-
-/**
- * JWT was malformed when it was received or parsing failed
- */
-- (NSString *)description __attribute__((swift_name("description()")));
-@end
-
-
-/**
- * No public key present to check the signature of the JWT
- */
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Jwt.VerificationStatusNotVerified")))
-@interface IdentityJwtVerificationStatusNotVerified : IdentityJwtVerificationStatus
-+ (instancetype)alloc __attribute__((unavailable));
-
-/**
- * No public key present to check the signature of the JWT
- */
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)notVerified __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) IdentityJwtVerificationStatusNotVerified *shared __attribute__((swift_name("shared")));
-
-/**
- * No public key present to check the signature of the JWT
- */
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-
-/**
- * No public key present to check the signature of the JWT
- */
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-
-/**
- * No public key present to check the signature of the JWT
- */
-- (NSString *)description __attribute__((swift_name("description()")));
-@end
-
-
-/**
- * There is no signature present (this is an Unsecure JWS)
- */
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Jwt.VerificationStatusUnsecured")))
-@interface IdentityJwtVerificationStatusUnsecured : IdentityJwtVerificationStatus
-+ (instancetype)alloc __attribute__((unavailable));
-
-/**
- * There is no signature present (this is an Unsecure JWS)
- */
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)unsecured __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) IdentityJwtVerificationStatusUnsecured *shared __attribute__((swift_name("shared")));
-
-/**
- * There is no signature present (this is an Unsecure JWS)
- */
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-
-/**
- * There is no signature present (this is an Unsecure JWS)
- */
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-
-/**
- * There is no signature present (this is an Unsecure JWS)
- */
-- (NSString *)description __attribute__((swift_name("description()")));
-@end
-
-
-/**
- * JWT was in a valid format, has not expired and signature was verified
- * @param signature Signature of the signer that was valid
- */
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("Jwt.VerificationStatusValid")))
-@interface IdentityJwtVerificationStatusValid : IdentityJwtVerificationStatus
-- (instancetype)initWithSignature:(id)signature __attribute__((swift_name("init(signature:)"))) __attribute__((objc_designated_initializer));
-- (IdentityJwtVerificationStatusValid *)doCopySignature:(id)signature __attribute__((swift_name("doCopy(signature:)")));
-
-/**
- * JWT was in a valid format, has not expired and signature was verified
- * @param signature Signature of the signer that was valid
- */
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-
-/**
- * JWT was in a valid format, has not expired and signature was verified
- * @param signature Signature of the signer that was valid
- */
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-
-/**
- * JWT was in a valid format, has not expired and signature was verified
- * @param signature Signature of the signer that was valid
- */
-- (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) id signature __attribute__((swift_name("signature")));
+/** Linked-Data VC preferences. */
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
 __attribute__((swift_name("LegacyCredential")))
@@ -2578,6 +3801,41 @@ __attribute__((swift_name("LegacyCredential.UriCredentialPhoneNumber")))
 - (instancetype)initWithSource:(NSString *)source claims:(NSArray<IdentityClaim *> *)claims __attribute__((swift_name("init(source:claims:)"))) __attribute__((objc_designated_initializer));
 @end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("LegacyRelyingParty")))
+@interface IdentityLegacyRelyingParty : IdentityBase
+- (instancetype)initWithLogoUri:(NSString *)logoUri name:(NSString *)name description:(NSString *)description reason:(NSString *)reason __attribute__((swift_name("init(logoUri:name:description:reason:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityLegacyRelyingPartyCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityLegacyRelyingParty *)doCopyLogoUri:(NSString *)logoUri name:(NSString *)name description:(NSString *)description reason:(NSString *)reason __attribute__((swift_name("doCopy(logoUri:name:description:reason:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *description_ __attribute__((swift_name("description_")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="logo_uri")
+*/
+@property (readonly) NSString *logoUri __attribute__((swift_name("logoUri")));
+@property (readonly) NSString *name __attribute__((swift_name("name")));
+@property (readonly) NSString *reason __attribute__((swift_name("reason")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("LegacyRelyingParty.Companion")))
+@interface IdentityLegacyRelyingPartyCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityLegacyRelyingPartyCompanion *shared __attribute__((swift_name("shared")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
 __attribute__((swift_name("LoginRequest")))
 @interface IdentityLoginRequest : IdentityBase
 - (instancetype)initWithJwt:(IdentityJwt *)jwt translations:(NSDictionary<NSString *, id> *)translations __attribute__((swift_name("init(jwt:translations:)"))) __attribute__((objc_designated_initializer));
@@ -2585,14 +3843,14 @@ __attribute__((swift_name("LoginRequest")))
 /**
  * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
 */
-- (instancetype)initWithTranslations:(NSDictionary<NSString *, id> *)translations claims:(NSArray<IdentityRequestedClaim *> *)claims acrs:(NSArray<NSString *> *)acrs relyingParty:(IdentityRelyingParty *)relyingParty json:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *)json jwt:(IdentityJwt *)jwt __attribute__((swift_name("init(translations:claims:acrs:relyingParty:json:jwt:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithTranslations:(NSDictionary<NSString *, id> *)translations claims:(NSArray<IdentityRequestedClaim *> *)claims acrs:(NSArray<NSString *> *)acrs relyingParty:(IdentityLegacyRelyingParty *)relyingParty json:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *)json jwt:(IdentityJwt *)jwt __attribute__((swift_name("init(translations:claims:acrs:relyingParty:json:jwt:)"))) __attribute__((objc_designated_initializer));
 @property (class, readonly, getter=companion) IdentityLoginRequestCompanion *companion __attribute__((swift_name("companion")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSArray<NSString *> *acrs __attribute__((swift_name("acrs")));
 @property (readonly) NSArray<IdentityRequestedClaim *> *claims __attribute__((swift_name("claims")));
 @property (readonly) NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *json __attribute__((swift_name("json")));
 @property (readonly) IdentityJwt *jwt __attribute__((swift_name("jwt")));
-@property (readonly) IdentityRelyingParty *relyingParty __attribute__((swift_name("relyingParty")));
+@property (readonly) IdentityLegacyRelyingParty *relyingParty __attribute__((swift_name("relyingParty")));
 @property (readonly) NSMutableArray<IdentityJwt *> *reverificationJwts __attribute__((swift_name("reverificationJwts")));
 @property (readonly) NSDictionary<NSString *, id> *translations __attribute__((swift_name("translations")));
 @end
@@ -2645,13 +3903,59 @@ __attribute__((swift_name("LoginResponse.Companion")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MDocCredential")))
 @interface IdentityMDocCredential : IdentityBase <IdentityCredential>
-- (instancetype)initWithRaw:(NSString *)raw docType:(NSString *)docType nameSpaces:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)nameSpaces onCheckVerificationStatus:(id<IdentityKotlinSuspendFunction1>)onCheckVerificationStatus __attribute__((swift_name("init(raw:docType:nameSpaces:onCheckVerificationStatus:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithRaw:(NSString *)raw body:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *)body docType:(NSString *)docType nameSpaces:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)nameSpaces onCheckVerificationStatus:(id<IdentityKotlinSuspendFunction1>)onCheckVerificationStatus __attribute__((swift_name("init(raw:body:docType:nameSpaces:onCheckVerificationStatus:)"))) __attribute__((objc_designated_initializer));
+@property (readonly) NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *body __attribute__((swift_name("body")));
 @property (readonly) NSString *docType __attribute__((swift_name("docType")));
 @property (readonly) IdentityCredentialFormat *format __attribute__((swift_name("format")));
 @property (readonly) NSDictionary<NSString *, NSDictionary<NSString *, id> *> *nameSpaces __attribute__((swift_name("nameSpaces")));
 @property (readonly) id<IdentityKotlinSuspendFunction1> onCheckVerificationStatus __attribute__((swift_name("onCheckVerificationStatus")));
 @property (readonly) NSString *raw __attribute__((swift_name("raw")));
 @property (readonly) NSString *uuid __attribute__((swift_name("uuid")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable(with=NormalClass(value=com/iproov/identity/models/MDocSupportedAlgorithmSerializer))
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("MDocSupportedAlgorithm")))
+@interface IdentityMDocSupportedAlgorithm : IdentityKotlinEnum<IdentityMDocSupportedAlgorithm *>
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@property (class, readonly, getter=companion) IdentityMDocSupportedAlgorithmCompanion *companion __attribute__((swift_name("companion")));
+@property (class, readonly) IdentityMDocSupportedAlgorithm *hmac256EcdhP256 __attribute__((swift_name("hmac256EcdhP256")));
+@property (class, readonly) IdentityMDocSupportedAlgorithm *hmac256EcdhP384 __attribute__((swift_name("hmac256EcdhP384")));
+@property (class, readonly) IdentityMDocSupportedAlgorithm *hmac256EcdhP521 __attribute__((swift_name("hmac256EcdhP521")));
+@property (class, readonly) IdentityMDocSupportedAlgorithm *hmac256EcdhX25519 __attribute__((swift_name("hmac256EcdhX25519")));
++ (IdentityKotlinArray<IdentityMDocSupportedAlgorithm *> *)values __attribute__((swift_name("values()")));
+@property (class, readonly) NSArray<IdentityMDocSupportedAlgorithm *> *entries __attribute__((swift_name("entries")));
+@property (readonly) int32_t algorithmValue __attribute__((swift_name("algorithmValue")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("MDocSupportedAlgorithm.Companion")))
+@interface IdentityMDocSupportedAlgorithmCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityMDocSupportedAlgorithmCompanion *shared __attribute__((swift_name("shared")));
+- (IdentityMDocSupportedAlgorithm *)fromValueAlgorithmValue:(int32_t)algorithmValue __attribute__((swift_name("fromValue(algorithmValue:)")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(IdentityKotlinArray<id<IdentityKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("MDocSupportedAlgorithmSerializer")))
+@interface IdentityMDocSupportedAlgorithmSerializer : IdentityBase <IdentityKotlinx_serialization_coreKSerializer>
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)mDocSupportedAlgorithmSerializer __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityMDocSupportedAlgorithmSerializer *shared __attribute__((swift_name("shared")));
+- (IdentityMDocSupportedAlgorithm *)deserializeDecoder:(id<IdentityKotlinx_serialization_coreDecoder>)decoder __attribute__((swift_name("deserialize(decoder:)")));
+- (void)serializeEncoder:(id<IdentityKotlinx_serialization_coreEncoder>)encoder value:(IdentityMDocSupportedAlgorithm *)value __attribute__((swift_name("serialize(encoder:value:)")));
+@property (readonly) id<IdentityKotlinx_serialization_coreSerialDescriptor> descriptor __attribute__((swift_name("descriptor")));
 @end
 
 
@@ -2721,6 +4025,52 @@ __attribute__((swift_name("MrzField.Companion")))
 @property (class, readonly, getter=shared) IdentityMrzFieldCompanion *shared __attribute__((swift_name("shared")));
 - (IdentityMrzField *)fromStringWithChecksumValueWithChecksum:(NSString *)valueWithChecksum __attribute__((swift_name("fromStringWithChecksum(valueWithChecksum:)")));
 - (IdentityMrzField *)fromValueValue:(NSString *)value __attribute__((swift_name("fromValue(value:)")));
+@end
+
+
+/** mDL / mdoc preferences.
+ *
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("MsoMdocPrefs")))
+@interface IdentityMsoMdocPrefs : IdentityBase
+- (instancetype)initWithDoctypeValues:(NSArray<NSString *> * _Nullable)doctypeValues __attribute__((swift_name("init(doctypeValues:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityMsoMdocPrefsCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityMsoMdocPrefs *)doCopyDoctypeValues:(NSArray<NSString *> * _Nullable)doctypeValues __attribute__((swift_name("doCopy(doctypeValues:)")));
+
+/** mDL / mdoc preferences. */
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+
+/** mDL / mdoc preferences. */
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+
+/** mDL / mdoc preferences. */
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/** Accepted doc types, e.g., ["org.iso.18013.5.1.mDL"].
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="doctype_values")
+*/
+@property (readonly) NSArray<NSString *> * _Nullable doctypeValues __attribute__((swift_name("doctypeValues")));
+@end
+
+
+/** mDL / mdoc preferences. */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("MsoMdocPrefs.Companion")))
+@interface IdentityMsoMdocPrefsCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
+
+/** mDL / mdoc preferences. */
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityMsoMdocPrefsCompanion *shared __attribute__((swift_name("shared")));
+
+/** mDL / mdoc preferences. */
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
 
@@ -2861,33 +4211,149 @@ __attribute__((swift_name("OID4VCIException.UnsupportedCredentialOffer")))
  *   kotlinx.serialization.Serializable
 */
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("RelyingParty")))
-@interface IdentityRelyingParty : IdentityBase
-- (instancetype)initWithLogoUri:(NSString *)logoUri name:(NSString *)name description:(NSString *)description reason:(NSString *)reason __attribute__((swift_name("init(logoUri:name:description:reason:)"))) __attribute__((objc_designated_initializer));
-@property (class, readonly, getter=companion) IdentityRelyingPartyCompanion *companion __attribute__((swift_name("companion")));
-- (IdentityRelyingParty *)doCopyLogoUri:(NSString *)logoUri name:(NSString *)name description:(NSString *)description reason:(NSString *)reason __attribute__((swift_name("doCopy(logoUri:name:description:reason:)")));
+__attribute__((swift_name("OID4VPCapabilities")))
+@interface IdentityOID4VPCapabilities : IdentityBase
+- (instancetype)initWithSupportedVPFormat:(IdentitySupportedVPFormat *)supportedVPFormat supportedResponseEncryptionAlgorithms:(NSArray<NSString *> * _Nullable)supportedResponseEncryptionAlgorithms __attribute__((swift_name("init(supportedVPFormat:supportedResponseEncryptionAlgorithms:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityOID4VPCapabilitiesCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityOID4VPCapabilities *)doCopySupportedVPFormat:(IdentitySupportedVPFormat *)supportedVPFormat supportedResponseEncryptionAlgorithms:(NSArray<NSString *> * _Nullable)supportedResponseEncryptionAlgorithms __attribute__((swift_name("doCopy(supportedVPFormat:supportedResponseEncryptionAlgorithms:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSString *description_ __attribute__((swift_name("description_")));
 
 /**
  * @note annotations
- *   kotlinx.serialization.SerialName(value="logo_uri")
+ *   kotlinx.serialization.SerialName(value="encrypted_response_enc_values_supported")
 */
-@property (readonly) NSString *logoUri __attribute__((swift_name("logoUri")));
-@property (readonly) NSString *name __attribute__((swift_name("name")));
-@property (readonly) NSString *reason __attribute__((swift_name("reason")));
+@property (readonly) NSArray<NSString *> * _Nullable supportedResponseEncryptionAlgorithms __attribute__((swift_name("supportedResponseEncryptionAlgorithms")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="vp_formats_supported")
+*/
+@property (readonly) IdentitySupportedVPFormat *supportedVPFormat __attribute__((swift_name("supportedVPFormat")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("RelyingParty.Companion")))
-@interface IdentityRelyingPartyCompanion : IdentityBase
+__attribute__((swift_name("OID4VPCapabilities.Companion")))
+@interface IdentityOID4VPCapabilitiesCompanion : IdentityBase
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) IdentityRelyingPartyCompanion *shared __attribute__((swift_name("shared")));
+@property (class, readonly, getter=shared) IdentityOID4VPCapabilitiesCompanion *shared __attribute__((swift_name("shared")));
 - (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("OpenID4VPHandover")))
+@interface IdentityOpenID4VPHandover : IdentityBase
+- (instancetype)initWithName:(NSString *)name hash:(IdentityKotlinByteArray *)hash __attribute__((swift_name("init(name:hash:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityOpenID4VPHandoverCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityOpenID4VPHandover *)doCopyName:(NSString *)name hash:(IdentityKotlinByteArray *)hash __attribute__((swift_name("doCopy(name:hash:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly, getter=hash_) IdentityKotlinByteArray *hash __attribute__((swift_name("hash")));
+@property (readonly) NSString *name __attribute__((swift_name("name")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("OpenID4VPHandover.Companion")))
+@interface IdentityOpenID4VPHandoverCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityOpenID4VPHandoverCompanion *shared __attribute__((swift_name("shared")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+__attribute__((swift_name("PresentationOutcome")))
+@protocol IdentityPresentationOutcome
+@required
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("PresentationOutcomeDeclined")))
+@interface IdentityPresentationOutcomeDeclined : IdentityBase <IdentityPresentationOutcome>
+- (instancetype)initWithReason:(NSString * _Nullable)reason __attribute__((swift_name("init(reason:)"))) __attribute__((objc_designated_initializer));
+- (IdentityPresentationOutcomeDeclined *)doCopyReason:(NSString * _Nullable)reason __attribute__((swift_name("doCopy(reason:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString * _Nullable reason __attribute__((swift_name("reason")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("PresentationOutcomeRejected")))
+@interface IdentityPresentationOutcomeRejected : IdentityBase <IdentityPresentationOutcome>
+- (instancetype)initWithCode:(NSString *)code description:(NSString * _Nullable)description __attribute__((swift_name("init(code:description:)"))) __attribute__((objc_designated_initializer));
+- (IdentityPresentationOutcomeRejected *)doCopyCode:(NSString *)code description:(NSString * _Nullable)description __attribute__((swift_name("doCopy(code:description:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *code __attribute__((swift_name("code")));
+@property (readonly) NSString * _Nullable description_ __attribute__((swift_name("description_")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("PresentationOutcomeSuccess")))
+@interface IdentityPresentationOutcomeSuccess : IdentityBase <IdentityPresentationOutcome>
+- (instancetype)initWithRedirectUri:(NSString * _Nullable)redirectUri __attribute__((swift_name("init(redirectUri:)"))) __attribute__((objc_designated_initializer));
+- (IdentityPresentationOutcomeSuccess *)doCopyRedirectUri:(NSString * _Nullable)redirectUri __attribute__((swift_name("doCopy(redirectUri:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString * _Nullable redirectUri __attribute__((swift_name("redirectUri")));
+@end
+
+__attribute__((swift_name("PresentationRequest")))
+@interface IdentityPresentationRequest : IdentityBase
+- (instancetype)initWithRaw:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *)raw verifier:(IdentityVerifier *)verifier request:(IdentityAuthorizationRequest *)request query:(IdentityQuery *)query __attribute__((swift_name("init(raw:verifier:request:query:)"))) __attribute__((objc_designated_initializer));
+@property (readonly) IdentityQuery *query __attribute__((swift_name("query")));
+@property (readonly) IdentityAuthorizationRequest *request __attribute__((swift_name("request")));
+
+/**
+ * Information about the relying party.
+ */
+@property (readonly) IdentityVerifier *verifier __attribute__((swift_name("verifier")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Query")))
+@interface IdentityQuery : IdentityBase
+- (instancetype)initWithRaw:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *)raw definition:(IdentityDcqlQuery *)definition onExecute:(id<IdentityKotlinSuspendFunction0>)onExecute __attribute__((swift_name("init(raw:definition:onExecute:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)executeWithCompletionHandler:(void (^)(IdentityDCQLMatchResult * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("execute(completionHandler:)")));
+
+/**
+ * A derived definition of what the verifier is asking for
+ */
+@property (readonly) IdentityDcqlQuery *definition __attribute__((swift_name("definition")));
+@property (readonly) NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *raw __attribute__((swift_name("raw")));
+@end
+
+
+/** GET or POST to the Verifier's request_uri endpoint (per spec's "request_uri_method"). */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("RequestUriMethod")))
+@interface IdentityRequestUriMethod : IdentityKotlinEnum<IdentityRequestUriMethod *>
++ (instancetype)alloc __attribute__((unavailable));
+
+/** GET or POST to the Verifier's request_uri endpoint (per spec's "request_uri_method"). */
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@property (class, readonly) IdentityRequestUriMethod *get __attribute__((swift_name("get")));
+@property (class, readonly) IdentityRequestUriMethod *post __attribute__((swift_name("post")));
++ (IdentityKotlinArray<IdentityRequestUriMethod *> *)values __attribute__((swift_name("values()")));
+@property (class, readonly) NSArray<IdentityRequestUriMethod *> *entries __attribute__((swift_name("entries")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -2914,6 +4380,7 @@ __attribute__((swift_name("RespondableCredentialOffer")))
 @interface IdentityRespondableCredentialOffer : IdentityCredentialOffer
 - (instancetype)initWithRaw:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *)raw credentials:(NSArray<IdentityCredentialDescriptor *> *)credentials issuer:(IdentityCredentialIssuer *)issuer preAuthorizedCode:(NSString *)preAuthorizedCode grants:(NSDictionary<NSString *, IdentityGrantDetails *> *)grants transactionCodeDetails:(IdentityTxCode * _Nullable)transactionCodeDetails onAccept:(id<IdentityKotlinSuspendFunction1>)onAccept __attribute__((swift_name("init(raw:credentials:issuer:preAuthorizedCode:grants:transactionCodeDetails:onAccept:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithRaw:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *)raw preAuthorizedCode:(NSString *)preAuthorizedCode transactionCodeDetails:(IdentityTxCode * _Nullable)transactionCodeDetails grants:(NSDictionary<NSString *, IdentityGrantDetails *> *)grants credentials:(NSArray<IdentityCredentialDescriptor *> *)credentials issuer:(IdentityCredentialIssuer *)issuer __attribute__((swift_name("init(raw:preAuthorizedCode:transactionCodeDetails:grants:credentials:issuer:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithSeen0:(int32_t)seen0 raw:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> * _Nullable)raw preAuthorizedCode:(NSString * _Nullable)preAuthorizedCode transactionCodeDetails:(IdentityTxCode * _Nullable)transactionCodeDetails grants:(NSDictionary<NSString *, IdentityGrantDetails *> * _Nullable)grants credentials:(NSArray<IdentityCredentialDescriptor *> * _Nullable)credentials issuer:(IdentityCredentialIssuer * _Nullable)issuer serializationConstructorMarker:(id _Nullable)serializationConstructorMarker __attribute__((swift_name("init(seen0:raw:preAuthorizedCode:transactionCodeDetails:grants:credentials:issuer:serializationConstructorMarker:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @property (class, readonly, getter=companion) IdentityRespondableCredentialOfferCompanion *companion __attribute__((swift_name("companion")));
 
 /**
@@ -2923,7 +4390,6 @@ __attribute__((swift_name("RespondableCredentialOffer")))
  * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)acceptCredentials:(NSArray<IdentityCredentialDescriptor *> *)credentials completionHandler:(void (^)(id<IdentityIssuanceResult> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("accept(credentials:completionHandler:)")));
-@property (readonly) id<IdentityKotlinSuspendFunction1> onAccept __attribute__((swift_name("onAccept")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -2944,7 +4410,7 @@ __attribute__((swift_name("RespondableLoginRequest")))
 /**
  * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
 */
-- (instancetype)initWithTranslations:(NSDictionary<NSString *, id> *)translations claims:(NSArray<IdentityRequestedClaim *> *)claims acrs:(NSArray<NSString *> *)acrs relyingParty:(IdentityRelyingParty *)relyingParty json:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *)json jwt:(IdentityJwt *)jwt __attribute__((swift_name("init(translations:claims:acrs:relyingParty:json:jwt:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithTranslations:(NSDictionary<NSString *, id> *)translations claims:(NSArray<IdentityRequestedClaim *> *)claims acrs:(NSArray<NSString *> *)acrs relyingParty:(IdentityLegacyRelyingParty *)relyingParty json:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *)json jwt:(IdentityJwt *)jwt __attribute__((swift_name("init(translations:claims:acrs:relyingParty:json:jwt:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @property (class, readonly, getter=companion) IdentityRespondableLoginRequestCompanion *companion __attribute__((swift_name("companion")));
 
 /**
@@ -2972,6 +4438,52 @@ __attribute__((swift_name("RespondableLoginRequest.Companion")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("RespondablePresentationRequest")))
+@interface IdentityRespondablePresentationRequest : IdentityPresentationRequest
+- (instancetype)initWithPresentationRequest:(IdentityPresentationRequest *)presentationRequest onRespond:(id<IdentityKotlinSuspendFunction1>)onRespond __attribute__((swift_name("init(presentationRequest:onRespond:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithRaw:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> *)raw verifier:(IdentityVerifier *)verifier request:(IdentityAuthorizationRequest *)request query:(IdentityQuery *)query __attribute__((swift_name("init(raw:verifier:request:query:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)respondSubmission:(IdentityCredentialSubmission *)submission completionHandler:(void (^)(id<IdentityPresentationOutcome> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("respond(submission:completionHandler:)")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ResponseMode")))
+@interface IdentityResponseMode : IdentityKotlinEnum<IdentityResponseMode *>
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@property (class, readonly, getter=companion) IdentityResponseModeCompanion *companion __attribute__((swift_name("companion")));
+@property (class, readonly) IdentityResponseMode *fragment __attribute__((swift_name("fragment")));
+@property (class, readonly) IdentityResponseMode *query __attribute__((swift_name("query")));
+@property (class, readonly) IdentityResponseMode *directPost __attribute__((swift_name("directPost")));
+@property (class, readonly) IdentityResponseMode *directPostJwt __attribute__((swift_name("directPostJwt")));
+@property (class, readonly) IdentityResponseMode *dcApi __attribute__((swift_name("dcApi")));
+@property (class, readonly) IdentityResponseMode *dcApiJwt __attribute__((swift_name("dcApiJwt")));
++ (IdentityKotlinArray<IdentityResponseMode *> *)values __attribute__((swift_name("values()")));
+@property (class, readonly) NSArray<IdentityResponseMode *> *entries __attribute__((swift_name("entries")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ResponseMode.Companion")))
+@interface IdentityResponseModeCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityResponseModeCompanion *shared __attribute__((swift_name("shared")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(IdentityKotlinArray<id<IdentityKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ReverificationRequest.Companion")))
 @interface IdentityReverificationRequestCompanion : IdentityBase
 + (instancetype)alloc __attribute__((unavailable));
@@ -2984,6 +4496,116 @@ __attribute__((swift_name("ReverificationRequest.Companion")))
  * Other uncaught Kotlin exceptions are fatal.
 */
 - (IdentityReverificationRequest * _Nullable)forAcrString:(NSString *)string loginRequest:(IdentityLoginRequest *)loginRequest error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("forAcr(string:loginRequest:)")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable(with=NormalClass(value=com/iproov/identity/models/SupportedJWEEncryptionAlgorithmsSerializer))
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SupportedJWEEncryptionAlgorithms")))
+@interface IdentitySupportedJWEEncryptionAlgorithms : IdentityKotlinEnum<IdentitySupportedJWEEncryptionAlgorithms *>
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@property (class, readonly, getter=companion) IdentitySupportedJWEEncryptionAlgorithmsCompanion *companion __attribute__((swift_name("companion")));
+@property (class, readonly) IdentitySupportedJWEEncryptionAlgorithms *aesGcm128 __attribute__((swift_name("aesGcm128")));
++ (IdentityKotlinArray<IdentitySupportedJWEEncryptionAlgorithms *> *)values __attribute__((swift_name("values()")));
+@property (class, readonly) NSArray<IdentitySupportedJWEEncryptionAlgorithms *> *entries __attribute__((swift_name("entries")));
+@property (readonly) NSString *algorithmValue __attribute__((swift_name("algorithmValue")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SupportedJWEEncryptionAlgorithms.Companion")))
+@interface IdentitySupportedJWEEncryptionAlgorithmsCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentitySupportedJWEEncryptionAlgorithmsCompanion *shared __attribute__((swift_name("shared")));
+- (IdentitySupportedJWEEncryptionAlgorithms *)fromValueAlgorithmValue:(NSString *)algorithmValue __attribute__((swift_name("fromValue(algorithmValue:)")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(IdentityKotlinArray<id<IdentityKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SupportedJWEEncryptionAlgorithmsSerializer")))
+@interface IdentitySupportedJWEEncryptionAlgorithmsSerializer : IdentityBase <IdentityKotlinx_serialization_coreKSerializer>
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)supportedJWEEncryptionAlgorithmsSerializer __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentitySupportedJWEEncryptionAlgorithmsSerializer *shared __attribute__((swift_name("shared")));
+- (IdentitySupportedJWEEncryptionAlgorithms *)deserializeDecoder:(id<IdentityKotlinx_serialization_coreDecoder>)decoder __attribute__((swift_name("deserialize(decoder:)")));
+- (void)serializeEncoder:(id<IdentityKotlinx_serialization_coreEncoder>)encoder value:(IdentitySupportedJWEEncryptionAlgorithms *)value __attribute__((swift_name("serialize(encoder:value:)")));
+@property (readonly) id<IdentityKotlinx_serialization_coreSerialDescriptor> descriptor __attribute__((swift_name("descriptor")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SupportedVPFormat")))
+@interface IdentitySupportedVPFormat : IdentityBase
+- (instancetype)initWithMdoc:(IdentitySupportedVPFormatMDoc * _Nullable)mdoc __attribute__((swift_name("init(mdoc:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentitySupportedVPFormatCompanion *companion __attribute__((swift_name("companion")));
+- (IdentitySupportedVPFormat *)doCopyMdoc:(IdentitySupportedVPFormatMDoc * _Nullable)mdoc __attribute__((swift_name("doCopy(mdoc:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) IdentitySupportedVPFormatMDoc * _Nullable mdoc __attribute__((swift_name("mdoc")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SupportedVPFormat.Companion")))
+@interface IdentitySupportedVPFormatCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentitySupportedVPFormatCompanion *shared __attribute__((swift_name("shared")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SupportedVPFormat.MDoc")))
+@interface IdentitySupportedVPFormatMDoc : IdentityBase
+- (instancetype)initWithIssuerAuthAlgorithm:(NSArray<IdentityMDocSupportedAlgorithm *> * _Nullable)issuerAuthAlgorithm deviceAuthAlgorithms:(NSArray<IdentityMDocSupportedAlgorithm *> * _Nullable)deviceAuthAlgorithms __attribute__((swift_name("init(issuerAuthAlgorithm:deviceAuthAlgorithms:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentitySupportedVPFormatMDocCompanion *companion __attribute__((swift_name("companion")));
+- (IdentitySupportedVPFormatMDoc *)doCopyIssuerAuthAlgorithm:(NSArray<IdentityMDocSupportedAlgorithm *> * _Nullable)issuerAuthAlgorithm deviceAuthAlgorithms:(NSArray<IdentityMDocSupportedAlgorithm *> * _Nullable)deviceAuthAlgorithms __attribute__((swift_name("doCopy(issuerAuthAlgorithm:deviceAuthAlgorithms:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="deviceauth_alg_values")
+*/
+@property (readonly) NSArray<IdentityMDocSupportedAlgorithm *> * _Nullable deviceAuthAlgorithms __attribute__((swift_name("deviceAuthAlgorithms")));
+
+/**
+ * A list of  algorithms the wallet will accept from an issuer when issuing a credential
+ * (found in the IssuerAuth)
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="issuerauth_alg_values")
+*/
+@property (readonly) NSArray<IdentityMDocSupportedAlgorithm *> * _Nullable issuerAuthAlgorithm __attribute__((swift_name("issuerAuthAlgorithm")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SupportedVPFormat.MDocCompanion")))
+@interface IdentitySupportedVPFormatMDocCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentitySupportedVPFormatMDocCompanion *shared __attribute__((swift_name("shared")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -3144,17 +4766,34 @@ __attribute__((swift_name("VerificationEvent.Companion")))
 
 /**
  * @note annotations
+ *   kotlinx.serialization.Serializable
  *   kotlinx.serialization.SerialName(value="completed")
 */
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("VerificationEvent.Completed")))
 @interface IdentityVerificationEventCompleted : IdentityVerificationEvent
 - (instancetype)initWithOffer:(IdentityRespondableCredentialOffer * _Nullable)offer __attribute__((swift_name("init(offer:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityVerificationEventCompletedCompanion *companion __attribute__((swift_name("companion")));
 - (IdentityVerificationEventCompleted *)doCopyOffer:(IdentityRespondableCredentialOffer * _Nullable)offer __attribute__((swift_name("doCopy(offer:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Transient
+*/
 @property (readonly) IdentityRespondableCredentialOffer * _Nullable offer __attribute__((swift_name("offer")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("VerificationEvent.CompletedCompanion")))
+@interface IdentityVerificationEventCompletedCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityVerificationEventCompletedCompanion *shared __attribute__((swift_name("shared")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
 
@@ -3392,6 +5031,147 @@ __attribute__((swift_name("VerificationSummary.Companion")))
 - (IdentityVerificationSummary *)start __attribute__((swift_name("start()")));
 @end
 
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Verifier")))
+@interface IdentityVerifier : IdentityBase
+- (instancetype)initWithClientId:(NSString *)clientId display:(IdentityVerifierDisplayProperties *)display jwks:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> * _Nullable)jwks __attribute__((swift_name("init(clientId:display:jwks:)"))) __attribute__((objc_designated_initializer));
+- (IdentityVerifier *)doCopyClientId:(NSString *)clientId display:(IdentityVerifierDisplayProperties *)display jwks:(NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> * _Nullable)jwks __attribute__((swift_name("doCopy(clientId:display:jwks:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *clientId __attribute__((swift_name("clientId")));
+@property (readonly) IdentityVerifierDisplayProperties *display __attribute__((swift_name("display")));
+
+/**
+ *
+ */
+@property (readonly) NSDictionary<NSString *, IdentityKotlinx_serialization_jsonJsonElement *> * _Nullable jwks __attribute__((swift_name("jwks")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("VerifierDisplayProperties")))
+@interface IdentityVerifierDisplayProperties : IdentityBase
+- (instancetype)initWithDisplayName:(NSString * _Nullable)displayName logoUri:(NSString * _Nullable)logoUri userHint:(NSString * _Nullable)userHint __attribute__((swift_name("init(displayName:logoUri:userHint:)"))) __attribute__((objc_designated_initializer));
+- (IdentityVerifierDisplayProperties *)doCopyDisplayName:(NSString * _Nullable)displayName logoUri:(NSString * _Nullable)logoUri userHint:(NSString * _Nullable)userHint __attribute__((swift_name("doCopy(displayName:logoUri:userHint:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString * _Nullable displayName __attribute__((swift_name("displayName")));
+@property (readonly) NSString * _Nullable logoUri __attribute__((swift_name("logoUri")));
+@property (readonly) NSString * _Nullable userHint __attribute__((swift_name("userHint")));
+@end
+
+
+/**
+ * Structured “vp_formats_supported”.
+ * Keep fields optional so it remains forward-compatible.
+ *
+ * Examples from the spec:
+ * - LDP VC: proof_type_values = ["DataIntegrityProof"]
+ * - SD-JWT VC: vct_values = ["MembershipCardCredential"]
+ *
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("VpFormatsSupported")))
+@interface IdentityVpFormatsSupported : IdentityBase
+- (instancetype)initWithJwtVcJson:(IdentityJwtVcJsonPrefs * _Nullable)jwtVcJson ldpVc:(IdentityLdpVcPrefs * _Nullable)ldpVc msoMdoc:(IdentityMsoMdocPrefs * _Nullable)msoMdoc dcSdJwt:(IdentityDcSdJwtPrefs * _Nullable)dcSdJwt __attribute__((swift_name("init(jwtVcJson:ldpVc:msoMdoc:dcSdJwt:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityVpFormatsSupportedCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityVpFormatsSupported *)doCopyJwtVcJson:(IdentityJwtVcJsonPrefs * _Nullable)jwtVcJson ldpVc:(IdentityLdpVcPrefs * _Nullable)ldpVc msoMdoc:(IdentityMsoMdocPrefs * _Nullable)msoMdoc dcSdJwt:(IdentityDcSdJwtPrefs * _Nullable)dcSdJwt __attribute__((swift_name("doCopy(jwtVcJson:ldpVc:msoMdoc:dcSdJwt:)")));
+
+/**
+ * Structured “vp_formats_supported”.
+ * Keep fields optional so it remains forward-compatible.
+ *
+ * Examples from the spec:
+ * - LDP VC: proof_type_values = ["DataIntegrityProof"]
+ * - SD-JWT VC: vct_values = ["MembershipCardCredential"]
+ */
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+
+/**
+ * Structured “vp_formats_supported”.
+ * Keep fields optional so it remains forward-compatible.
+ *
+ * Examples from the spec:
+ * - LDP VC: proof_type_values = ["DataIntegrityProof"]
+ * - SD-JWT VC: vct_values = ["MembershipCardCredential"]
+ */
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+
+/**
+ * Structured “vp_formats_supported”.
+ * Keep fields optional so it remains forward-compatible.
+ *
+ * Examples from the spec:
+ * - LDP VC: proof_type_values = ["DataIntegrityProof"]
+ * - SD-JWT VC: vct_values = ["MembershipCardCredential"]
+ */
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="dc+sd-jwt")
+*/
+@property (readonly) IdentityDcSdJwtPrefs * _Nullable dcSdJwt __attribute__((swift_name("dcSdJwt")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="jwt_vc_json")
+*/
+@property (readonly) IdentityJwtVcJsonPrefs * _Nullable jwtVcJson __attribute__((swift_name("jwtVcJson")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="ldp_vc")
+*/
+@property (readonly) IdentityLdpVcPrefs * _Nullable ldpVc __attribute__((swift_name("ldpVc")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="mso_mdoc")
+*/
+@property (readonly) IdentityMsoMdocPrefs * _Nullable msoMdoc __attribute__((swift_name("msoMdoc")));
+@end
+
+
+/**
+ * Structured “vp_formats_supported”.
+ * Keep fields optional so it remains forward-compatible.
+ *
+ * Examples from the spec:
+ * - LDP VC: proof_type_values = ["DataIntegrityProof"]
+ * - SD-JWT VC: vct_values = ["MembershipCardCredential"]
+ */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("VpFormatsSupported.Companion")))
+@interface IdentityVpFormatsSupportedCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
+
+/**
+ * Structured “vp_formats_supported”.
+ * Keep fields optional so it remains forward-compatible.
+ *
+ * Examples from the spec:
+ * - LDP VC: proof_type_values = ["DataIntegrityProof"]
+ * - SD-JWT VC: vct_values = ["MembershipCardCredential"]
+ */
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityVpFormatsSupportedCompanion *shared __attribute__((swift_name("shared")));
+
+/**
+ * Structured “vp_formats_supported”.
+ * Keep fields optional so it remains forward-compatible.
+ *
+ * Examples from the spec:
+ * - LDP VC: proof_type_values = ["DataIntegrityProof"]
+ * - SD-JWT VC: vct_values = ["MembershipCardCredential"]
+ */
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
 
 /**
  * A deserializer for Credentials that can be extended by registering custom CredentialFactory instances.
@@ -3471,6 +5251,46 @@ __attribute__((swift_name("CredentialFactory")))
 @property (readonly) NSString *format __attribute__((swift_name("format")));
 @end
 
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("CredentialSubmission")))
+@interface IdentityCredentialSubmission : IdentityBase
+- (instancetype)initWithDisclosedCredentials:(NSDictionary<IdentityCredentialQuery *, IdentityDisclosedCredential *> *)disclosedCredentials matchResult:(IdentityDCQLMatchResult *)matchResult __attribute__((swift_name("init(disclosedCredentials:matchResult:)"))) __attribute__((objc_designated_initializer));
+- (IdentityCredentialSubmission *)doCopyDisclosedCredentials:(NSDictionary<IdentityCredentialQuery *, IdentityDisclosedCredential *> *)disclosedCredentials matchResult:(IdentityDCQLMatchResult *)matchResult __attribute__((swift_name("doCopy(disclosedCredentials:matchResult:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSDictionary<IdentityCredentialQuery *, IdentityDisclosedCredential *> *disclosedCredentials __attribute__((swift_name("disclosedCredentials")));
+@property (readonly) IdentityDCQLMatchResult *matchResult __attribute__((swift_name("matchResult")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DCQLMatchResult")))
+@interface IdentityDCQLMatchResult : IdentityBase
+- (instancetype)initWithCredentials:(NSDictionary<IdentityCredentialQuery *, NSArray<IdentityCredentialQueryMatchResult *> *> *)credentials satisfiedSets:(NSArray<NSArray<NSString *> *> *)satisfiedSets __attribute__((swift_name("init(credentials:satisfiedSets:)"))) __attribute__((objc_designated_initializer));
+- (IdentityDCQLMatchResult *)doCopyCredentials:(NSDictionary<IdentityCredentialQuery *, NSArray<IdentityCredentialQueryMatchResult *> *> *)credentials satisfiedSets:(NSArray<NSArray<NSString *> *> *)satisfiedSets __attribute__((swift_name("doCopy(credentials:satisfiedSets:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/** Map from CredentialQuery -> list of credential candidates that fully satisfy that query */
+@property (readonly) NSDictionary<IdentityCredentialQuery *, NSArray<IdentityCredentialQueryMatchResult *> *> *credentials __attribute__((swift_name("credentials")));
+
+/** Which top-level credential_sets options (if any) are fully satisfiable with available candidates */
+@property (readonly) NSArray<NSArray<NSString *> *> *satisfiedSets __attribute__((swift_name("satisfiedSets")));
+@end
+
+
+/**
+ * Matches a DCQL query a set of credentials
+ */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DCQLMatcher")))
+@interface IdentityDCQLMatcher : IdentityBase
+- (instancetype)initWithRepository:(IdentityRepository *)repository __attribute__((swift_name("init(repository:)"))) __attribute__((objc_designated_initializer));
+- (IdentityDCQLMatchResult *)matchQuery:(IdentityDcqlQuery *)query __attribute__((swift_name("match(query:)")));
+- (void)validateSubmissionSubmission:(IdentityCredentialSubmission *)submission __attribute__((swift_name("validateSubmission(submission:)")));
+@end
+
 __attribute__((swift_name("StorageEngine")))
 @protocol IdentityStorageEngine
 @required
@@ -3507,6 +5327,18 @@ __attribute__((swift_name("DeviceBoundAppleStorageEngine")))
  * Other uncaught Kotlin exceptions are fatal.
 */
 - (BOOL)writeKey:(NSString *)key value:(NSString * _Nullable)value error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("write(key:value:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DisclosedCredential")))
+@interface IdentityDisclosedCredential : IdentityBase
+- (instancetype)initWithCredential:(id<IdentityCredential>)credential claims:(NSSet<IdentityClaimQuery *> *)claims __attribute__((swift_name("init(credential:claims:)"))) __attribute__((objc_designated_initializer));
+- (IdentityDisclosedCredential *)doCopyCredential:(id<IdentityCredential>)credential claims:(NSSet<IdentityClaimQuery *> *)claims __attribute__((swift_name("doCopy(credential:claims:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSSet<IdentityClaimQuery *> *claims __attribute__((swift_name("claims")));
+@property (readonly) id<IdentityCredential> credential __attribute__((swift_name("credential")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -3786,6 +5618,10 @@ __attribute__((swift_name("StorageException")))
 @property (readonly) NSData *secret __attribute__((swift_name("secret")));
 @end
 
+@interface IdentityClaimQuery (Extensions)
+@property (readonly) NSArray<id> * _Nullable values __attribute__((swift_name("values")));
+@end
+
 @interface IdentityCredentialDescriptor (Extensions)
 @property (readonly) id _Nullable raw __attribute__((swift_name("raw")));
 @end
@@ -3802,6 +5638,10 @@ __attribute__((swift_name("StorageException")))
 @property (readonly) id _Nullable raw_ __attribute__((swift_name("raw_")));
 @end
 
+@interface IdentityCredentialQuery (Extensions)
+@property (readonly) id _Nullable meta __attribute__((swift_name("meta")));
+@end
+
 @interface IdentityFaceReverificationRequest (Extensions)
 
 /**
@@ -3813,6 +5653,11 @@ __attribute__((swift_name("StorageException")))
 
 @interface IdentityJwt (Extensions)
 - (BOOL)isSameAsOther:(IdentityJwt *)other __attribute__((swift_name("isSameAs(other:)")));
+@property (readonly) NSString *name_ __attribute__((swift_name("name_")));
+@end
+
+@interface IdentityLoginRequest (Extensions)
+@property (readonly) id _Nullable json_ __attribute__((swift_name("json_")));
 @end
 
 @interface IdentityMrtdData (Extensions)
@@ -3835,6 +5680,10 @@ __attribute__((swift_name("StorageException")))
 @property (readonly) NSData * _Nullable dg8 __attribute__((swift_name("dg8")));
 @property (readonly) NSData * _Nullable dg9 __attribute__((swift_name("dg9")));
 @property (readonly) NSData *sod __attribute__((swift_name("sod")));
+@end
+
+@interface IdentityPresentationRequest (Extensions)
+@property (readonly) id _Nullable raw_ __attribute__((swift_name("raw_")));
 @end
 
 
@@ -4018,9 +5867,84 @@ __attribute__((swift_name("AttestationService_appleKt")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("CertificateUtilsKt")))
+@interface IdentityCertificateUtilsKt : IdentityBase
+
+/**
+ * Converts a DER-encoded ECDSA signature (SEQUENCE { INTEGER r, INTEGER s })
+ * into the raw concatenated r||s format required by COSE.
+ *
+ * Handles definite-length DER encoding and pads/truncates r and s
+ * to the specified size. Correctly handles the DER INTEGER format,
+ * including potential leading zero bytes for positive numbers.
+ *
+ * @param der The byte array containing the DER-encoded signature.
+ * @param sizeBytes The exact number of bytes expected for each of r and s (e.g., 32 for P-256/ES256).
+ * @return A ByteArray containing r concatenated with s, each padded/truncated to sizeBytes.
+ * @throws IllegalArgumentException if the input is not valid DER or integers are too large.
+ */
++ (IdentityKotlinByteArray *)derEcdsaToConcatDer:(IdentityKotlinByteArray *)der sizeBytes:(int32_t)sizeBytes __attribute__((swift_name("derEcdsaToConcat(der:sizeBytes:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Credential_appleKt")))
+@interface IdentityCredential_appleKt : IdentityBase
++ (id _Nullable)body:(id<IdentityCredential>)receiver __attribute__((swift_name("body(_:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DeviceResponseKt")))
+@interface IdentityDeviceResponseKt : IdentityBase
+
+/**
+ * Creates the DeviceAuthentication COSE_Sign1 structure (DeviceSignature) as defined in
+ * ISO/IEC 18013-5:2021 section 9.1.3.6.
+ *
+ * This function performs the following steps according to the standard:
+ * 1. Constructs the `DeviceAuthentication` array.
+ * 2. CBOR encodes the `DeviceAuthentication` array and wraps it in a tagged CBOR byte string (#6.24)
+ * to create `DeviceAuthenticationBytes`.
+ * 3. Constructs the `Sig_structure` array for signing. This includes:
+ * - The context string "Signature1".
+ * - CBOR-encoded protected headers containing the algorithm identifier (ES256 -> -7).
+ * - An empty byte string for external authenticated data.
+ * - The `DeviceAuthenticationBytes` as the payload.
+ * 4. CBOR encodes the `Sig_structure`.
+ * 5. Signs the encoded `Sig_structure` using the provided KeyPair's private key (SHA256withECDSA).
+ * 6. Converts the DER-encoded signature from Android Keystore to the required R||S format for COSE ES256.
+ * 7. Constructs the final `COSE_Sign1` array containing:
+ * - The CBOR-encoded protected headers (same as in `Sig_structure`).
+ * - An empty CBOR map for unprotected headers.
+ * - `null` for the detached payload.
+ * - The R||S signature bytes.
+ * 8. CBOR encodes the final `COSE_Sign1` array and returns the bytes.
+ *
+ * @param sessionTranscriptBytes The CBOR-encoded SessionTranscript (#6.24(bstr.cbor SessionTranscript))
+ * as defined in section 9.1.5.1.
+ * @param docType The document type string (e.g., "org.iso.18013.5.1.mDL").
+ * @param deviceNameSpacesBytes The CBOR-encoded DeviceNameSpaces structure wrapped in a tagged CBOR
+ * byte string (#6.24(bstr.cbor DeviceNameSpaces)) as defined in
+ * section 8.3.2.1.2.2.
+ * @param keyPair The KeyPair instance containing the ES256 private key for signing.
+ * @return The CBOR-encoded COSE_Sign1 structure (DeviceSignature) as ByteArray.
+ * @throws Exception if signing or CBOR encoding fails.
+ */
++ (IdentityKotlinByteArray *)buildDeviceAuthenticationSessionTranscriptBytes:(IdentityKotlinByteArray *)sessionTranscriptBytes docType:(NSString *)docType deviceNameSpacesBytes:(IdentityKotlinByteArray *)deviceNameSpacesBytes keyPair:(id<IdentityKeyPair>)keyPair __attribute__((swift_name("buildDeviceAuthentication(sessionTranscriptBytes:docType:deviceNameSpacesBytes:keyPair:)")));
++ (IdentityKotlinByteArray *)encodeCoseSign1ToCborBytesCoseSign1:(IdentityWaltid_coseCoseSign1 *)coseSign1 __attribute__((swift_name("encodeCoseSign1ToCborBytes(coseSign1:)")));
++ (IdentityKotlinByteArray *)encodeDeviceResponseToCborBytesResponse:(IdentityDeviceResponse *)response __attribute__((swift_name("encodeDeviceResponseToCborBytes(response:)")));
+@property (class, readonly) IdentityKotlinByteArray *TAGGED_EMPTY_CBOR_MAP_BYTES __attribute__((swift_name("TAGGED_EMPTY_CBOR_MAP_BYTES")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("JWEFactory_appleKt")))
+@interface IdentityJWEFactory_appleKt : IdentityBase
++ (id<IdentityJWEFactory>)getPlatformJWEFactory __attribute__((swift_name("getPlatformJWEFactory()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("KeyPair_appleKt")))
 @interface IdentityKeyPair_appleKt : IdentityBase
-+ (IdentityJwk *)derToJwkDerBytes:(IdentityKotlinByteArray *)derBytes __attribute__((swift_name("derToJwk(derBytes:)")));
++ (IdentityOnDeviceKeyPairJwk *)derToJwkDerBytes:(IdentityKotlinByteArray *)derBytes __attribute__((swift_name("derToJwk(derBytes:)")));
 + (id _Nullable)getCFDictionaryValueDictionary:(void * _Nullable)dictionary key:(void * _Nullable)key __attribute__((swift_name("getCFDictionaryValue(dictionary:key:)")));
 + (id<IdentityKeyPair>)getKeyPair __attribute__((swift_name("getKeyPair()")));
 + (IdentityKotlinTriple<NSString *, IdentityKotlinByteArray *, IdentityKotlinByteArray *> *)parseEcPublicKeyFromDerDerBytes:(IdentityKotlinByteArray *)derBytes __attribute__((swift_name("parseEcPublicKeyFromDer(derBytes:)")));
@@ -4300,6 +6224,19 @@ __attribute__((swift_name("KotlinInstant")))
 @property (readonly) int32_t nanosecondsOfSecond __attribute__((swift_name("nanosecondsOfSecond")));
 @end
 
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinTriple")))
+@interface IdentityKotlinTriple<__covariant A, __covariant B, __covariant C> : IdentityBase
+- (instancetype)initWithFirst:(A _Nullable)first second:(B _Nullable)second third:(C _Nullable)third __attribute__((swift_name("init(first:second:third:)"))) __attribute__((objc_designated_initializer));
+- (IdentityKotlinTriple<A, B, C> *)doCopyFirst:(A _Nullable)first second:(B _Nullable)second third:(C _Nullable)third __attribute__((swift_name("doCopy(first:second:third:)")));
+- (BOOL)equalsOther:(id _Nullable)other __attribute__((swift_name("equals(other:)")));
+- (int32_t)hashCode __attribute__((swift_name("hashCode()")));
+- (NSString *)toString __attribute__((swift_name("toString()")));
+@property (readonly) A _Nullable first __attribute__((swift_name("first")));
+@property (readonly) B _Nullable second __attribute__((swift_name("second")));
+@property (readonly) C _Nullable third __attribute__((swift_name("third")));
+@end
+
 
 /**
  * @note annotations
@@ -4391,6 +6328,27 @@ __attribute__((swift_name("Kotlinx_coroutines_coreDeferred")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("KotlinNothing")))
 @interface IdentityKotlinNothing : IdentityBase
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreBinaryFormat")))
+@protocol IdentityKotlinx_serialization_coreBinaryFormat <IdentityKotlinx_serialization_coreSerialFormat>
+@required
+- (id _Nullable)decodeFromByteArrayDeserializer:(id<IdentityKotlinx_serialization_coreDeserializationStrategy>)deserializer bytes:(IdentityKotlinByteArray *)bytes __attribute__((swift_name("decodeFromByteArray(deserializer:bytes:)")));
+- (IdentityKotlinByteArray *)encodeToByteArraySerializer:(id<IdentityKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToByteArray(serializer:value:)")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+__attribute__((swift_name("Kotlinx_serialization_cborCbor")))
+@interface IdentityKotlinx_serialization_cborCbor : IdentityBase <IdentityKotlinx_serialization_coreBinaryFormat>
+@property (class, readonly, getter=companion) IdentityKotlinx_serialization_cborCborDefault *companion __attribute__((swift_name("companion")));
+- (id _Nullable)decodeFromByteArrayDeserializer:(id<IdentityKotlinx_serialization_coreDeserializationStrategy>)deserializer bytes:(IdentityKotlinByteArray *)bytes __attribute__((swift_name("decodeFromByteArray(deserializer:bytes:)")));
+- (IdentityKotlinByteArray *)encodeToByteArraySerializer:(id<IdentityKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToByteArray(serializer:value:)")));
+@property (readonly) IdentityKotlinx_serialization_cborCborConfiguration *configuration __attribute__((swift_name("configuration")));
+@property (readonly) IdentityKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
 @end
 
 __attribute__((swift_name("Kotlinx_serialization_coreEncoder")))
@@ -4559,6 +6517,17 @@ __attribute__((swift_name("KotlinSuspendFunction1")))
  * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)invokeP1:(id _Nullable)p1 completionHandler:(void (^)(id _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(p1:completionHandler:)")));
+@end
+
+__attribute__((swift_name("KotlinSuspendFunction0")))
+@protocol IdentityKotlinSuspendFunction0 <IdentityKotlinFunction>
+@required
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)invokeWithCompletionHandler:(void (^)(id _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
 @end
 
 __attribute__((swift_name("KotlinIllegalArgumentException")))
@@ -5311,17 +7280,62 @@ __attribute__((swift_name("Ktor_client_coreHttpClient")))
 @property (readonly) IdentityKtor_client_coreHttpSendPipeline *sendPipeline __attribute__((swift_name("sendPipeline")));
 @end
 
+
+/** A base interface for all top-level COSE messages. */
+__attribute__((swift_name("Waltid_coseCoseMessage")))
+@protocol IdentityWaltid_coseCoseMessage
+@required
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("KotlinTriple")))
-@interface IdentityKotlinTriple<__covariant A, __covariant B, __covariant C> : IdentityBase
-- (instancetype)initWithFirst:(A _Nullable)first second:(B _Nullable)second third:(C _Nullable)third __attribute__((swift_name("init(first:second:third:)"))) __attribute__((objc_designated_initializer));
-- (IdentityKotlinTriple<A, B, C> *)doCopyFirst:(A _Nullable)first second:(B _Nullable)second third:(C _Nullable)third __attribute__((swift_name("doCopy(first:second:third:)")));
-- (BOOL)equalsOther:(id _Nullable)other __attribute__((swift_name("equals(other:)")));
-- (int32_t)hashCode __attribute__((swift_name("hashCode()")));
-- (NSString *)toString __attribute__((swift_name("toString()")));
-@property (readonly) A _Nullable first __attribute__((swift_name("first")));
-@property (readonly) B _Nullable second __attribute__((swift_name("second")));
-@property (readonly) C _Nullable third __attribute__((swift_name("third")));
+__attribute__((swift_name("Waltid_coseCoseSign1")))
+@interface IdentityWaltid_coseCoseSign1 : IdentityBase <IdentityWaltid_coseCoseMessage>
+- (instancetype)initWithProtected:(IdentityKotlinByteArray *)protected_ unprotected:(IdentityWaltid_coseCoseHeaders *)unprotected payload:(IdentityKotlinByteArray * _Nullable)payload signature:(IdentityKotlinByteArray *)signature __attribute__((swift_name("init(protected:unprotected:payload:signature:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityWaltid_coseCoseSign1Companion *companion __attribute__((swift_name("companion")));
+- (IdentityWaltid_coseCoseSign1 *)doCopyProtected:(IdentityKotlinByteArray *)protected_ unprotected:(IdentityWaltid_coseCoseHeaders *)unprotected payload:(IdentityKotlinByteArray * _Nullable)payload signature:(IdentityKotlinByteArray *)signature __attribute__((swift_name("doCopy(protected:unprotected:payload:signature:)")));
+- (id _Nullable)decodeIsoPayload __attribute__((swift_name("decodeIsoPayload()")));
+- (id _Nullable)decodePayload __attribute__((swift_name("decodePayload()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (IdentityKotlinByteArray *)serialize __attribute__((swift_name("serialize()")));
+- (IdentityKotlinByteArray *)stripCborTag:(IdentityKotlinByteArray *)receiver tag:(int8_t)tag __attribute__((swift_name("stripCborTag(_:tag:)")));
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/**
+ * Encodes this CoseSign1 object into its tagged CBOR representation as per RFC 9052.
+ * A COSE_Sign1 object is tagged with CBOR tag 18.
+ */
+- (IdentityKotlinByteArray *)toTagged __attribute__((swift_name("toTagged()")));
+
+/**
+ * Verifies the signature of this COSE_Sign1 object - against an ATTACHED payload.
+ *
+ * @param verifier The verifier for the cryptographic algorithm used.
+ * @param externalAad Externally supplied authenticated data, if any.
+ * @return True if the signature is valid, false otherwise.
+ *
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)verifyVerifier:(id<IdentityWaltid_coseCoseVerifier>)verifier externalAad:(IdentityKotlinByteArray *)externalAad completionHandler:(void (^)(IdentityBoolean * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("verify(verifier:externalAad:completionHandler:)")));
+
+/**
+ * Verifies the signature of this COSE_Sign1 object against a DETACHED payload.
+ * The payload field of this CoseSign1 object MUST be null.
+ *
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)verifyDetachedVerifier:(id<IdentityWaltid_coseCoseVerifier>)verifier detachedPayload:(IdentityKotlinByteArray *)detachedPayload externalAad:(IdentityKotlinByteArray *)externalAad completionHandler:(void (^)(IdentityBoolean * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("verifyDetached(verifier:detachedPayload:externalAad:completionHandler:)")));
+@property (readonly) IdentityKotlinByteArray * _Nullable payload __attribute__((swift_name("payload")));
+@property (readonly, getter=protected) IdentityKotlinByteArray *protected_ __attribute__((swift_name("protected_")));
+@property (readonly) IdentityKotlinByteArray *signature __attribute__((swift_name("signature")));
+@property (readonly) IdentityWaltid_coseCoseHeaders *unprotected __attribute__((swift_name("unprotected")));
 @end
 
 __attribute__((swift_name("Kotlinx_serialization_coreSerializersModule")))
@@ -5596,6 +7610,38 @@ __attribute__((swift_name("Kotlinx_coroutines_coreSelectClause0")))
 __attribute__((swift_name("KotlinCoroutineContextKey")))
 @protocol IdentityKotlinCoroutineContextKey
 @required
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_cborCbor.Default")))
+@interface IdentityKotlinx_serialization_cborCborDefault : IdentityKotlinx_serialization_cborCbor
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)default_ __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityKotlinx_serialization_cborCborDefault *shared __attribute__((swift_name("shared")));
+@property (readonly) IdentityKotlinx_serialization_cborCbor *CoseCompliant __attribute__((swift_name("CoseCompliant")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_cborCborConfiguration")))
+@interface IdentityKotlinx_serialization_cborCborConfiguration : IdentityBase
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) BOOL alwaysUseByteString __attribute__((swift_name("alwaysUseByteString")));
+@property (readonly) BOOL encodeDefaults __attribute__((swift_name("encodeDefaults")));
+@property (readonly) BOOL encodeKeyTags __attribute__((swift_name("encodeKeyTags")));
+@property (readonly) BOOL encodeObjectTags __attribute__((swift_name("encodeObjectTags")));
+@property (readonly) BOOL encodeValueTags __attribute__((swift_name("encodeValueTags")));
+@property (readonly) BOOL ignoreUnknownKeys __attribute__((swift_name("ignoreUnknownKeys")));
+@property (readonly) BOOL preferCborLabelsOverNames __attribute__((swift_name("preferCborLabelsOverNames")));
+@property (readonly) BOOL useDefiniteLengthEncoding __attribute__((swift_name("useDefiniteLengthEncoding")));
+@property (readonly) BOOL verifyKeyTags __attribute__((swift_name("verifyKeyTags")));
+@property (readonly) BOOL verifyObjectTags __attribute__((swift_name("verifyObjectTags")));
+@property (readonly) BOOL verifyValueTags __attribute__((swift_name("verifyValueTags")));
 @end
 
 __attribute__((swift_name("Kotlinx_serialization_coreCompositeEncoder")))
@@ -6894,6 +8940,171 @@ __attribute__((swift_name("Ktor_client_coreHttpSendPipeline")))
 
 
 /**
+ * Represents COSE Header Parameters.
+ * See: https://www.iana.org/assignments/cose/cose.xhtml#header-parameters
+ *
+ * **IMPORTANT**: For COSE compliance, properties **MUST** be declared in
+ * ascending order of their integer `@CborLabel`. This class adheres to that rule.
+ * The library relies on `kotlinx.serialization`'s behaviour of serializing properties
+ * in their declaration order.
+ *
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Waltid_coseCoseHeaders")))
+@interface IdentityWaltid_coseCoseHeaders : IdentityBase
+- (instancetype)initWithAlgorithm:(IdentityInt * _Nullable)algorithm criticalHeaders:(NSArray<IdentityInt *> * _Nullable)criticalHeaders contentType:(IdentityWaltid_coseCoseContentType * _Nullable)contentType kid:(IdentityKotlinByteArray * _Nullable)kid iv:(IdentityKotlinByteArray * _Nullable)iv partialIv:(IdentityKotlinByteArray * _Nullable)partialIv kidContext:(IdentityKotlinByteArray * _Nullable)kidContext type:(IdentityWaltid_coseCoseContentType * _Nullable)type x5chain:(NSArray<IdentityWaltid_coseCoseCertificate *> * _Nullable)x5chain __attribute__((swift_name("init(algorithm:criticalHeaders:contentType:kid:iv:partialIv:kidContext:type:x5chain:)"))) __attribute__((objc_designated_initializer));
+@property (class, readonly, getter=companion) IdentityWaltid_coseCoseHeadersCompanion *companion __attribute__((swift_name("companion")));
+- (IdentityWaltid_coseCoseHeaders *)doCopyAlgorithm:(IdentityInt * _Nullable)algorithm criticalHeaders:(NSArray<IdentityInt *> * _Nullable)criticalHeaders contentType:(IdentityWaltid_coseCoseContentType * _Nullable)contentType kid:(IdentityKotlinByteArray * _Nullable)kid iv:(IdentityKotlinByteArray * _Nullable)iv partialIv:(IdentityKotlinByteArray * _Nullable)partialIv kidContext:(IdentityKotlinByteArray * _Nullable)kidContext type:(IdentityWaltid_coseCoseContentType * _Nullable)type x5chain:(NSArray<IdentityWaltid_coseCoseCertificate *> * _Nullable)x5chain __attribute__((swift_name("doCopy(algorithm:criticalHeaders:contentType:kid:iv:partialIv:kidContext:type:x5chain:)")));
+
+/**
+ * Represents COSE Header Parameters.
+ * See: https://www.iana.org/assignments/cose/cose.xhtml#header-parameters
+ *
+ * **IMPORTANT**: For COSE compliance, properties **MUST** be declared in
+ * ascending order of their integer `@CborLabel`. This class adheres to that rule.
+ * The library relies on `kotlinx.serialization`'s behaviour of serializing properties
+ * in their declaration order.
+ */
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+
+/**
+ * Represents COSE Header Parameters.
+ * See: https://www.iana.org/assignments/cose/cose.xhtml#header-parameters
+ *
+ * **IMPORTANT**: For COSE compliance, properties **MUST** be declared in
+ * ascending order of their integer `@CborLabel`. This class adheres to that rule.
+ * The library relies on `kotlinx.serialization`'s behaviour of serializing properties
+ * in their declaration order.
+ */
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+
+/**
+ * Represents COSE Header Parameters.
+ * See: https://www.iana.org/assignments/cose/cose.xhtml#header-parameters
+ *
+ * **IMPORTANT**: For COSE compliance, properties **MUST** be declared in
+ * ascending order of their integer `@CborLabel`. This class adheres to that rule.
+ * The library relies on `kotlinx.serialization`'s behaviour of serializing properties
+ * in their declaration order.
+ */
+- (NSString *)description __attribute__((swift_name("description()")));
+
+/** 1: Cryptographic algorithm to use
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="alg")
+*/
+@property (readonly) IdentityInt * _Nullable algorithm __attribute__((swift_name("algorithm")));
+
+/** 3: Content type of the payload
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="content type")
+*/
+@property (readonly) IdentityWaltid_coseCoseContentType * _Nullable contentType __attribute__((swift_name("contentType")));
+
+/** 2: Critical headers to be understood
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="crit")
+*/
+@property (readonly) NSArray<IdentityInt *> * _Nullable criticalHeaders __attribute__((swift_name("criticalHeaders")));
+
+/** 5: Full Initialization Vector
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="IV")
+*/
+@property (readonly) IdentityKotlinByteArray * _Nullable iv __attribute__((swift_name("iv")));
+
+/** 4: Key identifier
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="kid")
+*/
+@property (readonly) IdentityKotlinByteArray * _Nullable kid __attribute__((swift_name("kid")));
+
+/** 10: Identifies the context for the key identifier (RFC 8613) */
+@property (readonly) IdentityKotlinByteArray * _Nullable kidContext __attribute__((swift_name("kidContext")));
+
+/** 6: Partial Initialization Vector
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="Partial IV")
+*/
+@property (readonly) IdentityKotlinByteArray * _Nullable partialIv __attribute__((swift_name("partialIv")));
+
+/** 16: Content type of the complete COSE object (RFC 9596)
+ *
+ * @note annotations
+ *   kotlinx.serialization.SerialName(value="typ")
+*/
+@property (readonly) IdentityWaltid_coseCoseContentType * _Nullable type __attribute__((swift_name("type")));
+
+/**
+ * 33: An ordered chain of X.509 certificates (RFC 9360)
+ * = array (a list) of one or more X.509 certificates - each certificate in that list is a byte string
+ *
+ *
+ *
+ * @note annotations
+ *   kotlinx.serialization.Serializable(with=NormalClass(value=id/walt/cose/CoseCertificateSerializer))
+ *   kotlinx.serialization.SerialName(value="x5chain")
+*/
+@property (readonly) NSArray<IdentityWaltid_coseCoseCertificate *> * _Nullable x5chain __attribute__((swift_name("x5chain")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Waltid_coseCoseSign1.Companion")))
+@interface IdentityWaltid_coseCoseSign1Companion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityWaltid_coseCoseSign1Companion *shared __attribute__((swift_name("shared")));
+
+/**
+ * Creates and signs a CoseSign1 object with an ATTACHED payload.
+ *
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)createAndSignProtectedHeaders:(IdentityWaltid_coseCoseHeaders *)protectedHeaders unprotectedHeaders:(IdentityWaltid_coseCoseHeaders *)unprotectedHeaders payload:(IdentityKotlinByteArray * _Nullable)payload signer:(id<IdentityWaltid_coseCoseSigner>)signer externalAad:(IdentityKotlinByteArray *)externalAad completionHandler:(void (^)(IdentityWaltid_coseCoseSign1 * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("createAndSign(protectedHeaders:unprotectedHeaders:payload:signer:externalAad:completionHandler:)")));
+
+/**
+ * Creates and signs a CoseSign1 object with a DETACHED payload.
+ * The payload of the returned CoseSign1 object will be null.
+ *
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)createAndSignDetachedProtectedHeaders:(IdentityWaltid_coseCoseHeaders *)protectedHeaders unprotectedHeaders:(IdentityWaltid_coseCoseHeaders *)unprotectedHeaders detachedPayload:(IdentityKotlinByteArray *)detachedPayload signer:(id<IdentityWaltid_coseCoseSigner>)signer externalAad:(IdentityKotlinByteArray *)externalAad completionHandler:(void (^)(IdentityWaltid_coseCoseSign1 * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("createAndSignDetached(protectedHeaders:unprotectedHeaders:detachedPayload:signer:externalAad:completionHandler:)")));
+
+/**
+ * Decodes a CoseSign1 object from its tagged CBOR representation.
+ * The CBOR tag for a COSE Single Signer Data Object is 18.
+ */
+- (IdentityWaltid_coseCoseSign1 *)fromTaggedCborBytes:(IdentityKotlinByteArray *)cborBytes __attribute__((swift_name("fromTagged(cborBytes:)")));
+- (IdentityWaltid_coseCoseSign1 *)fromTaggedCborHex:(NSString *)cborHex __attribute__((swift_name("fromTagged(cborHex:)")));
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/** A suspendable interface for a COSE-compatible verifier. */
+__attribute__((swift_name("Waltid_coseCoseVerifier")))
+@protocol IdentityWaltid_coseCoseVerifier
+@required
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)verifyData:(IdentityKotlinByteArray *)data signature:(IdentityKotlinByteArray *)signature completionHandler:(void (^)(IdentityBoolean * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("verify(data:signature:completionHandler:)")));
+@end
+
+
+/**
  * @note annotations
  *   kotlinx.serialization.ExperimentalSerializationApi
 */
@@ -7976,6 +10187,83 @@ __attribute__((swift_name("Ktor_client_coreHttpSendPipeline.Phases")))
 @property (readonly) IdentityKtor_utilsPipelinePhase *State __attribute__((swift_name("State")));
 @end
 
+
+/**
+ * Represents the COSE Content Type header, which can be an Int or a String.
+ * This is used for both the 'content type' (3) and 'typ' (16) headers.
+ *
+ * @note annotations
+ *   kotlinx.serialization.Serializable(with=NormalClass(value=id/walt/cose/CoseContentTypeSerializer))
+*/
+__attribute__((swift_name("Waltid_coseCoseContentType")))
+@interface IdentityWaltid_coseCoseContentType : IdentityBase
+@property (class, readonly, getter=companion) IdentityWaltid_coseCoseContentTypeCompanion *companion __attribute__((swift_name("companion")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Waltid_coseCoseCertificate")))
+@interface IdentityWaltid_coseCoseCertificate : IdentityBase
+- (instancetype)initWithRawBytes:(IdentityKotlinByteArray *)rawBytes __attribute__((swift_name("init(rawBytes:)"))) __attribute__((objc_designated_initializer));
+- (IdentityWaltid_coseCoseCertificate *)doCopyRawBytes:(IdentityKotlinByteArray *)rawBytes __attribute__((swift_name("doCopy(rawBytes:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) IdentityKotlinByteArray *rawBytes __attribute__((swift_name("rawBytes")));
+@end
+
+
+/**
+ * Represents COSE Header Parameters.
+ * See: https://www.iana.org/assignments/cose/cose.xhtml#header-parameters
+ *
+ * **IMPORTANT**: For COSE compliance, properties **MUST** be declared in
+ * ascending order of their integer `@CborLabel`. This class adheres to that rule.
+ * The library relies on `kotlinx.serialization`'s behaviour of serializing properties
+ * in their declaration order.
+ */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Waltid_coseCoseHeaders.Companion")))
+@interface IdentityWaltid_coseCoseHeadersCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
+
+/**
+ * Represents COSE Header Parameters.
+ * See: https://www.iana.org/assignments/cose/cose.xhtml#header-parameters
+ *
+ * **IMPORTANT**: For COSE compliance, properties **MUST** be declared in
+ * ascending order of their integer `@CborLabel`. This class adheres to that rule.
+ * The library relies on `kotlinx.serialization`'s behaviour of serializing properties
+ * in their declaration order.
+ */
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityWaltid_coseCoseHeadersCompanion *shared __attribute__((swift_name("shared")));
+
+/**
+ * Represents COSE Header Parameters.
+ * See: https://www.iana.org/assignments/cose/cose.xhtml#header-parameters
+ *
+ * **IMPORTANT**: For COSE compliance, properties **MUST** be declared in
+ * ascending order of their integer `@CborLabel`. This class adheres to that rule.
+ * The library relies on `kotlinx.serialization`'s behaviour of serializing properties
+ * in their declaration order.
+ */
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+
+/** A suspendable interface for a COSE-compatible signer. */
+__attribute__((swift_name("Waltid_coseCoseSigner")))
+@protocol IdentityWaltid_coseCoseSigner
+@required
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)signData:(IdentityKotlinByteArray *)data completionHandler:(void (^)(IdentityKotlinByteArray * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("sign(data:completionHandler:)")));
+@end
+
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Ktor_httpUrl.Companion")))
 @interface IdentityKtor_httpUrlCompanion : IdentityBase
@@ -8357,6 +10645,31 @@ __attribute__((swift_name("Ktor_httpURLBuilder")))
 @property IdentityKtor_httpURLProtocol * _Nullable protocolOrNull __attribute__((swift_name("protocolOrNull")));
 @property BOOL trailingQuery __attribute__((swift_name("trailingQuery")));
 @property NSString * _Nullable user __attribute__((swift_name("user")));
+@end
+
+
+/**
+ * Represents the COSE Content Type header, which can be an Int or a String.
+ * This is used for both the 'content type' (3) and 'typ' (16) headers.
+ */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Waltid_coseCoseContentType.Companion")))
+@interface IdentityWaltid_coseCoseContentTypeCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
+
+/**
+ * Represents the COSE Content Type header, which can be an Int or a String.
+ * This is used for both the 'content type' (3) and 'typ' (16) headers.
+ */
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityWaltid_coseCoseContentTypeCompanion *shared __attribute__((swift_name("shared")));
+
+/**
+ * Represents the COSE Content Type header, which can be an Int or a String.
+ * This is used for both the 'content type' (3) and 'typ' (16) headers.
+ */
+- (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
 __attribute__((objc_subclassing_restricted))

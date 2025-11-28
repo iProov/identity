@@ -6,7 +6,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class IdentityAccessControl, IdentityActiveAuthentication, IdentityActiveAuthenticationCompanion, IdentityApiClient, IdentityApiException, IdentityApiExceptionHttpError, IdentityApiExceptionNetworkError, IdentityApiExceptionSerializationError, IdentityApiExceptionTimeoutError, IdentityAppInfo, IdentityAppInfoCompanion, IdentityAppleKeyPairLocation, IdentityAssuranceType, IdentityAssuranceTypeCompanion, IdentityAuthorizationRequest, IdentityAuthorizationRequestClientMetadata, IdentityAuthorizationRequestClientMetadataCompanion, IdentityAuthorizationRequestCompanion, IdentityAuthorizationRequestDescriptor, IdentityAuthorizationRequestDescriptorCompanion, IdentityBacKey, IdentityBacKeyCompanion, IdentityByteArrayAsBase64Serializer, IdentityChallenge, IdentityClaim, IdentityClaimCompanion, IdentityClaimQuery, IdentityClaimQueryCompanion, IdentityClientIdType, IdentityClientIdTypeCompanion, IdentityCredentialCompanion, IdentityCredentialDescriptor, IdentityCredentialDescriptorCompanion, IdentityCredentialDeserializer, IdentityCredentialDeserializerCompanion, IdentityCredentialFormat, IdentityCredentialFormatCompanion, IdentityCredentialIssuer, IdentityCredentialIssuerCompanion, IdentityCredentialMetadata, IdentityCredentialMetadataCompanion, IdentityCredentialOffer, IdentityCredentialOfferCompanion, IdentityCredentialQuery, IdentityCredentialQueryCompanion, IdentityCredentialQueryMatchResult, IdentityCredentialRecord, IdentityCredentialRecordCompanion, IdentityCredentialRetrievalFailureSerializationFailed, IdentityCredentialRetrievalFailureUnsupportedFormat, IdentityCredentialSubmission, IdentityCredentialSummary, IdentityDCQLMatchResult, IdentityDCQLMatcher, IdentityDataAsBase64Serializer, IdentityDcSdJwtPrefs, IdentityDcSdJwtPrefsCompanion, IdentityDcqlQuery, IdentityDcqlQueryCompanion, IdentityDefaultOID4VPOrchestratorCompanion, IdentityDeviceAuth, IdentityDeviceAuthCompanion, IdentityDeviceInfo, IdentityDeviceInfoCompanion, IdentityDeviceResponse, IdentityDeviceResponseCompanion, IdentityDeviceSigned, IdentityDeviceSignedCompanion, IdentityDisclosedCredential, IdentityDisplayProperties, IdentityDisplayPropertiesCompanion, IdentityDocumentChallenge, IdentityDocumentChallengeCompanion, IdentityDocumentChallengeResponder, IdentityDocumentResponse, IdentityDocumentResponseCompanion, IdentityEllipticCurvePublicKey, IdentityEllipticCurvePublicKeyCompanion, IdentityFaceReverificationRequest, IdentityFlowWrapper<__covariant T>, IdentityFormat, IdentityGender, IdentityGrantDetails, IdentityGrantDetailsCompanion, IdentityIdentityPlatformInterface, IdentityIssuanceResultEmpty, IdentityIssuanceResultImmediate, IdentityIssuanceResultTransactionCodeRequired, IdentityIssuanceSummary, IdentityIssuerSigned, IdentityIssuerSignedCompanion, IdentityJwk, IdentityJwkCompanion, IdentityJwks, IdentityJwksCompanion, IdentityJwt, IdentityJwtCompanion, IdentityJwtVcJsonPrefs, IdentityJwtVcJsonPrefsCompanion, IdentityKeyUse, IdentityKeyUseCompanion, IdentityKotlinAbstractCoroutineContextElement, IdentityKotlinAbstractCoroutineContextKey<B, E>, IdentityKotlinArray<T>, IdentityKotlinBase64, IdentityKotlinBase64Default, IdentityKotlinBase64PaddingOption, IdentityKotlinByteArray, IdentityKotlinByteIterator, IdentityKotlinCancellationException, IdentityKotlinEnum<E>, IdentityKotlinEnumCompanion, IdentityKotlinException, IdentityKotlinIllegalStateException, IdentityKotlinInstant, IdentityKotlinInstantCompanion, IdentityKotlinKTypeProjection, IdentityKotlinKTypeProjectionCompanion, IdentityKotlinKVariance, IdentityKotlinNothing, IdentityKotlinPair<__covariant A, __covariant B>, IdentityKotlinRuntimeException, IdentityKotlinThrowable, IdentityKotlinTriple<__covariant A, __covariant B, __covariant C>, IdentityKotlinUnit, IdentityKotlinx_coroutines_coreCoroutineDispatcher, IdentityKotlinx_coroutines_coreCoroutineDispatcherKey, IdentityKotlinx_io_coreBuffer, IdentityKotlinx_serialization_cborCbor, IdentityKotlinx_serialization_cborCborConfiguration, IdentityKotlinx_serialization_cborCborDefault, IdentityKotlinx_serialization_coreSerialKind, IdentityKotlinx_serialization_coreSerializersModule, IdentityKotlinx_serialization_jsonClassDiscriminatorMode, IdentityKotlinx_serialization_jsonJson, IdentityKotlinx_serialization_jsonJsonConfiguration, IdentityKotlinx_serialization_jsonJsonDefault, IdentityKotlinx_serialization_jsonJsonElement, IdentityKotlinx_serialization_jsonJsonElementCompanion, IdentityKtor_client_coreHttpClient, IdentityKtor_client_coreHttpClientCall, IdentityKtor_client_coreHttpClientCallCompanion, IdentityKtor_client_coreHttpClientConfig<T>, IdentityKtor_client_coreHttpClientEngineConfig, IdentityKtor_client_coreHttpReceivePipeline, IdentityKtor_client_coreHttpReceivePipelinePhases, IdentityKtor_client_coreHttpRequestBuilder, IdentityKtor_client_coreHttpRequestBuilderCompanion, IdentityKtor_client_coreHttpRequestData, IdentityKtor_client_coreHttpRequestPipeline, IdentityKtor_client_coreHttpRequestPipelinePhases, IdentityKtor_client_coreHttpResponse, IdentityKtor_client_coreHttpResponseContainer, IdentityKtor_client_coreHttpResponseData, IdentityKtor_client_coreHttpResponsePipeline, IdentityKtor_client_coreHttpResponsePipelinePhases, IdentityKtor_client_coreHttpSendPipeline, IdentityKtor_client_coreHttpSendPipelinePhases, IdentityKtor_client_coreProxyConfig, IdentityKtor_eventsEventDefinition<T>, IdentityKtor_eventsEvents, IdentityKtor_httpContentType, IdentityKtor_httpContentTypeCompanion, IdentityKtor_httpHeaderValueParam, IdentityKtor_httpHeaderValueWithParameters, IdentityKtor_httpHeaderValueWithParametersCompanion, IdentityKtor_httpHeadersBuilder, IdentityKtor_httpHttpMethod, IdentityKtor_httpHttpMethodCompanion, IdentityKtor_httpHttpProtocolVersion, IdentityKtor_httpHttpProtocolVersionCompanion, IdentityKtor_httpHttpStatusCode, IdentityKtor_httpHttpStatusCodeCompanion, IdentityKtor_httpOutgoingContent, IdentityKtor_httpURLBuilder, IdentityKtor_httpURLBuilderCompanion, IdentityKtor_httpURLProtocol, IdentityKtor_httpURLProtocolCompanion, IdentityKtor_httpUrl, IdentityKtor_httpUrlCompanion, IdentityKtor_utilsAttributeKey<T>, IdentityKtor_utilsGMTDate, IdentityKtor_utilsGMTDateCompanion, IdentityKtor_utilsMonth, IdentityKtor_utilsMonthCompanion, IdentityKtor_utilsPipeline<TSubject, TContext>, IdentityKtor_utilsPipelinePhase, IdentityKtor_utilsStringValuesBuilderImpl, IdentityKtor_utilsTypeInfo, IdentityKtor_utilsWeekDay, IdentityKtor_utilsWeekDayCompanion, IdentityLdpVcPrefs, IdentityLdpVcPrefsCompanion, IdentityLegacyCredential, IdentityLegacyCredentialCompanion, IdentityLegacyCredentialDeserializer, IdentityLegacyCredentialDeserializerCompanion, IdentityLegacyCredentialIdentityCredential, IdentityLegacyCredentialIdentityCredentialCompanion, IdentityLegacyCredentialIdentityCredentialMrtd, IdentityLegacyCredentialIdentityCredentialReference, IdentityLegacyCredentialUriCredential, IdentityLegacyRelyingParty, IdentityLegacyRelyingPartyCompanion, IdentityLength, IdentityLocalStorage, IdentityLogLevel, IdentityLoginRequest, IdentityLoginRequestCompanion, IdentityLoginResponse, IdentityLoginResponseCompanion, IdentityMDocCredential, IdentityMDocSupportedAlgorithm, IdentityMDocSupportedAlgorithmCompanion, IdentityMDocSupportedAlgorithmSerializer, IdentityMrtdCompanion, IdentityMrtdData, IdentityMrtdDataCompanion, IdentityMrzField, IdentityMrzFieldCompanion, IdentityMsoMdocPrefs, IdentityMsoMdocPrefsCompanion, IdentityOID4VCICredentialError, IdentityOID4VCIException, IdentityOID4VCIExceptionStep, IdentityOID4VPCapabilities, IdentityOID4VPCapabilitiesCompanion, IdentityOID4VPError, IdentityOID4VPErrorInvalidOrExpiredRequest, IdentityOID4VPErrorUnsupportedResponseMode, IdentityOnDeviceKeyPairJwk, IdentityOnDeviceKeyPairJwkCompanion, IdentityOpenID4VPHandover, IdentityOpenID4VPHandoverCompanion, IdentityPlatformTarget, IdentityPresentationOutcomeDeclined, IdentityPresentationOutcomeRejected, IdentityPresentationOutcomeSuccess, IdentityPresentationRequest, IdentityQuery, IdentityRegisterAppleAttestationPayload, IdentityRegisterAppleAttestationPayloadCompanion, IdentityRegisterAppleWalletPayload, IdentityRegisterAppleWalletPayloadCompanion, IdentityRepository, IdentityRequestUriMethod, IdentityRequestedClaim, IdentityRespondableChallenge<T>, IdentityRespondableChallengeCompanion, IdentityRespondableCredentialOffer, IdentityRespondableCredentialOfferCompanion, IdentityRespondableLoginRequest, IdentityRespondableLoginRequestCompanion, IdentityRespondablePresentationRequest, IdentityResponseMode, IdentityResponseModeCompanion, IdentityResponses, IdentityResponsesExpires, IdentityResponsesExpiresCompanion, IdentityResponsesGetChallenge, IdentityResponsesGetChallengeCompanion, IdentityResponsesOfferedCredentialResponse, IdentityResponsesOfferedCredentialResponseCompanion, IdentityReverificationRequest, IdentityReverificationRequestCompanion, IdentitySdkCamera, IdentitySdkIproovOptions, IdentitySdkIproovOptionsCertificate, IdentitySdkIproovOptionsCloseButton, IdentitySdkIproovOptionsFilter, IdentitySdkIproovOptionsGenuinePresenceAssurance, IdentitySdkIproovOptionsLivenessAssurance, IdentitySdkOrientation, IdentitySessionTranscript, IdentitySessionTranscriptCompanion, IdentitySimplePasswordAttestationServiceCompanion, IdentitySupportedJWEEncryptionAlgorithms, IdentitySupportedJWEEncryptionAlgorithmsCompanion, IdentitySupportedJWEEncryptionAlgorithmsSerializer, IdentitySupportedVPFormat, IdentitySupportedVPFormatCompanion, IdentitySupportedVPFormatMDoc, IdentitySupportedVPFormatMDocCompanion, IdentitySymmetricKey, IdentitySymmetricKeyCompanion, IdentityTransactionCodeChallenge, IdentityTxCode, IdentityTxCodeCompanion, IdentityTxInputMode, IdentityTxInputModeCompanion, IdentityTxInputModeSerializer, IdentityUriCredentialChallenge, IdentityUriCredentialChallengeResponder, IdentityUserAgent, IdentityUserAgentCompanion, IdentityVPTokenFactory, IdentityVerificationEvent, IdentityVerificationEventCanceled, IdentityVerificationEventCompanion, IdentityVerificationEventCompleted, IdentityVerificationEventCompletedCompanion, IdentityVerificationEventError, IdentityVerificationEventErrorCompanion, IdentityVerificationEventLoading, IdentityVerificationEventStarted, IdentityVerificationException, IdentityVerificationMethod, IdentityVerificationMethodCompanion, IdentityVerificationMethodIProov, IdentityVerificationMethodIProovCompanion, IdentityVerificationMethodSkip, IdentityVerificationMethodSkipCompanion, IdentityVerificationResult, IdentityVerificationResultCompanion, IdentityVerificationStatus, IdentityVerificationStatusCompanion, IdentityVerificationSummary, IdentityVerificationSummaryCompanion, IdentityVerifier, IdentityVerifierDisplayProperties, IdentityVpFormatsSupported, IdentityVpFormatsSupportedCompanion, IdentityWallet, IdentityWalletCompanion, IdentityWalletFactory, IdentityWaltid_coseCoseCertificate, IdentityWaltid_coseCoseContentType, IdentityWaltid_coseCoseContentTypeCompanion, IdentityWaltid_coseCoseHeaders, IdentityWaltid_coseCoseHeadersCompanion, IdentityWaltid_coseCoseSign1, IdentityWaltid_coseCoseSign1Companion, NSData, NSDate, NSDictionary, NSError;
+@class IdentityAccessControl, IdentityActiveAuthentication, IdentityActiveAuthenticationCompanion, IdentityApiClient, IdentityApiException, IdentityApiExceptionHttpError, IdentityApiExceptionNetworkError, IdentityApiExceptionSerializationError, IdentityApiExceptionTimeoutError, IdentityAppInfo, IdentityAppInfoCompanion, IdentityAppleKeyPairLocation, IdentityAssuranceType, IdentityAssuranceTypeCompanion, IdentityAuthenticationAvailability, IdentityAuthorizationRequest, IdentityAuthorizationRequestClientMetadata, IdentityAuthorizationRequestClientMetadataCompanion, IdentityAuthorizationRequestCompanion, IdentityAuthorizationRequestDescriptor, IdentityAuthorizationRequestDescriptorCompanion, IdentityBacKey, IdentityBacKeyCompanion, IdentityByteArrayAsBase64Serializer, IdentityChallenge, IdentityClaim, IdentityClaimCompanion, IdentityClaimQuery, IdentityClaimQueryCompanion, IdentityClientIdType, IdentityClientIdTypeCompanion, IdentityCredentialCompanion, IdentityCredentialDescriptor, IdentityCredentialDescriptorCompanion, IdentityCredentialDeserializer, IdentityCredentialDeserializerCompanion, IdentityCredentialFormat, IdentityCredentialFormatCompanion, IdentityCredentialIssuer, IdentityCredentialIssuerCompanion, IdentityCredentialMetadata, IdentityCredentialMetadataCompanion, IdentityCredentialOffer, IdentityCredentialOfferCompanion, IdentityCredentialQuery, IdentityCredentialQueryCompanion, IdentityCredentialQueryMatchResult, IdentityCredentialRecord, IdentityCredentialRecordCompanion, IdentityCredentialRetrievalFailureSerializationFailed, IdentityCredentialRetrievalFailureUnsupportedFormat, IdentityCredentialSubmission, IdentityCredentialSummary, IdentityDCQLMatchResult, IdentityDCQLMatcher, IdentityDataAsBase64Serializer, IdentityDcSdJwtPrefs, IdentityDcSdJwtPrefsCompanion, IdentityDcqlQuery, IdentityDcqlQueryCompanion, IdentityDefaultOID4VPOrchestratorCompanion, IdentityDeviceAuth, IdentityDeviceAuthCompanion, IdentityDeviceInfo, IdentityDeviceInfoCompanion, IdentityDeviceResponse, IdentityDeviceResponseCompanion, IdentityDeviceSigned, IdentityDeviceSignedCompanion, IdentityDisclosedCredential, IdentityDisplayProperties, IdentityDisplayPropertiesCompanion, IdentityDocumentChallenge, IdentityDocumentChallengeCompanion, IdentityDocumentChallengeResponder, IdentityDocumentResponse, IdentityDocumentResponseCompanion, IdentityEllipticCurvePublicKey, IdentityEllipticCurvePublicKeyCompanion, IdentityFaceReverificationRequest, IdentityFlowWrapper<__covariant T>, IdentityFormat, IdentityGender, IdentityGrantDetails, IdentityGrantDetailsCompanion, IdentityIdentityPlatformInterface, IdentityIssuanceResultEmpty, IdentityIssuanceResultImmediate, IdentityIssuanceResultTransactionCodeRequired, IdentityIssuanceSummary, IdentityIssuerSigned, IdentityIssuerSignedCompanion, IdentityJwk, IdentityJwkCompanion, IdentityJwks, IdentityJwksCompanion, IdentityJwt, IdentityJwtCompanion, IdentityJwtVcJsonPrefs, IdentityJwtVcJsonPrefsCompanion, IdentityKeyPairAccessPolicy, IdentityKeyPairAccessPolicyCompanion, IdentityKeyPairAuthenticationException, IdentityKeyPairException, IdentityKeyUse, IdentityKeyUseCompanion, IdentityKotlinAbstractCoroutineContextElement, IdentityKotlinAbstractCoroutineContextKey<B, E>, IdentityKotlinArray<T>, IdentityKotlinBase64, IdentityKotlinBase64Default, IdentityKotlinBase64PaddingOption, IdentityKotlinByteArray, IdentityKotlinByteIterator, IdentityKotlinCancellationException, IdentityKotlinEnum<E>, IdentityKotlinEnumCompanion, IdentityKotlinException, IdentityKotlinIllegalStateException, IdentityKotlinInstant, IdentityKotlinInstantCompanion, IdentityKotlinKTypeProjection, IdentityKotlinKTypeProjectionCompanion, IdentityKotlinKVariance, IdentityKotlinNothing, IdentityKotlinPair<__covariant A, __covariant B>, IdentityKotlinRuntimeException, IdentityKotlinThrowable, IdentityKotlinTriple<__covariant A, __covariant B, __covariant C>, IdentityKotlinUnit, IdentityKotlinx_coroutines_coreCoroutineDispatcher, IdentityKotlinx_coroutines_coreCoroutineDispatcherKey, IdentityKotlinx_io_coreBuffer, IdentityKotlinx_serialization_cborCbor, IdentityKotlinx_serialization_cborCborConfiguration, IdentityKotlinx_serialization_cborCborDefault, IdentityKotlinx_serialization_coreSerialKind, IdentityKotlinx_serialization_coreSerializersModule, IdentityKotlinx_serialization_jsonClassDiscriminatorMode, IdentityKotlinx_serialization_jsonJson, IdentityKotlinx_serialization_jsonJsonConfiguration, IdentityKotlinx_serialization_jsonJsonDefault, IdentityKotlinx_serialization_jsonJsonElement, IdentityKotlinx_serialization_jsonJsonElementCompanion, IdentityKtor_client_coreHttpClient, IdentityKtor_client_coreHttpClientCall, IdentityKtor_client_coreHttpClientCallCompanion, IdentityKtor_client_coreHttpClientConfig<T>, IdentityKtor_client_coreHttpClientEngineConfig, IdentityKtor_client_coreHttpReceivePipeline, IdentityKtor_client_coreHttpReceivePipelinePhases, IdentityKtor_client_coreHttpRequestBuilder, IdentityKtor_client_coreHttpRequestBuilderCompanion, IdentityKtor_client_coreHttpRequestData, IdentityKtor_client_coreHttpRequestPipeline, IdentityKtor_client_coreHttpRequestPipelinePhases, IdentityKtor_client_coreHttpResponse, IdentityKtor_client_coreHttpResponseContainer, IdentityKtor_client_coreHttpResponseData, IdentityKtor_client_coreHttpResponsePipeline, IdentityKtor_client_coreHttpResponsePipelinePhases, IdentityKtor_client_coreHttpSendPipeline, IdentityKtor_client_coreHttpSendPipelinePhases, IdentityKtor_client_coreProxyConfig, IdentityKtor_eventsEventDefinition<T>, IdentityKtor_eventsEvents, IdentityKtor_httpContentType, IdentityKtor_httpContentTypeCompanion, IdentityKtor_httpHeaderValueParam, IdentityKtor_httpHeaderValueWithParameters, IdentityKtor_httpHeaderValueWithParametersCompanion, IdentityKtor_httpHeadersBuilder, IdentityKtor_httpHttpMethod, IdentityKtor_httpHttpMethodCompanion, IdentityKtor_httpHttpProtocolVersion, IdentityKtor_httpHttpProtocolVersionCompanion, IdentityKtor_httpHttpStatusCode, IdentityKtor_httpHttpStatusCodeCompanion, IdentityKtor_httpOutgoingContent, IdentityKtor_httpURLBuilder, IdentityKtor_httpURLBuilderCompanion, IdentityKtor_httpURLProtocol, IdentityKtor_httpURLProtocolCompanion, IdentityKtor_httpUrl, IdentityKtor_httpUrlCompanion, IdentityKtor_utilsAttributeKey<T>, IdentityKtor_utilsGMTDate, IdentityKtor_utilsGMTDateCompanion, IdentityKtor_utilsMonth, IdentityKtor_utilsMonthCompanion, IdentityKtor_utilsPipeline<TSubject, TContext>, IdentityKtor_utilsPipelinePhase, IdentityKtor_utilsStringValuesBuilderImpl, IdentityKtor_utilsTypeInfo, IdentityKtor_utilsWeekDay, IdentityKtor_utilsWeekDayCompanion, IdentityLdpVcPrefs, IdentityLdpVcPrefsCompanion, IdentityLegacyCredential, IdentityLegacyCredentialCompanion, IdentityLegacyCredentialDeserializer, IdentityLegacyCredentialDeserializerCompanion, IdentityLegacyCredentialIdentityCredential, IdentityLegacyCredentialIdentityCredentialCompanion, IdentityLegacyCredentialIdentityCredentialMrtd, IdentityLegacyCredentialIdentityCredentialReference, IdentityLegacyCredentialUriCredential, IdentityLegacyRelyingParty, IdentityLegacyRelyingPartyCompanion, IdentityLength, IdentityLocalStorage, IdentityLogLevel, IdentityLoginRequest, IdentityLoginRequestCompanion, IdentityLoginResponse, IdentityLoginResponseCompanion, IdentityMDocCredential, IdentityMDocSupportedAlgorithm, IdentityMDocSupportedAlgorithmCompanion, IdentityMDocSupportedAlgorithmSerializer, IdentityMrtdCompanion, IdentityMrtdData, IdentityMrtdDataCompanion, IdentityMrzField, IdentityMrzFieldCompanion, IdentityMsoMdocPrefs, IdentityMsoMdocPrefsCompanion, IdentityOID4VCICredentialError, IdentityOID4VCIException, IdentityOID4VCIExceptionStep, IdentityOID4VPCapabilities, IdentityOID4VPCapabilitiesCompanion, IdentityOID4VPError, IdentityOID4VPErrorInvalidOrExpiredRequest, IdentityOID4VPErrorUnsupportedResponseMode, IdentityOnDeviceKeyPairJwk, IdentityOnDeviceKeyPairJwkCompanion, IdentityOpenID4VPHandover, IdentityOpenID4VPHandoverCompanion, IdentityPlatformTarget, IdentityPresentationOutcomeDeclined, IdentityPresentationOutcomeRejected, IdentityPresentationOutcomeSuccess, IdentityPresentationRequest, IdentityQuery, IdentityRegisterAppleAttestationPayload, IdentityRegisterAppleAttestationPayloadCompanion, IdentityRegisterAppleWalletPayload, IdentityRegisterAppleWalletPayloadCompanion, IdentityRepository, IdentityRequestUriMethod, IdentityRequestedClaim, IdentityRespondableChallenge<T>, IdentityRespondableChallengeCompanion, IdentityRespondableCredentialOffer, IdentityRespondableCredentialOfferCompanion, IdentityRespondableLoginRequest, IdentityRespondableLoginRequestCompanion, IdentityRespondablePresentationRequest, IdentityResponseMode, IdentityResponseModeCompanion, IdentityResponses, IdentityResponsesExpires, IdentityResponsesExpiresCompanion, IdentityResponsesGetChallenge, IdentityResponsesGetChallengeCompanion, IdentityResponsesOfferedCredentialResponse, IdentityResponsesOfferedCredentialResponseCompanion, IdentityReverificationRequest, IdentityReverificationRequestCompanion, IdentitySdkCamera, IdentitySdkIproovOptions, IdentitySdkIproovOptionsCertificate, IdentitySdkIproovOptionsCloseButton, IdentitySdkIproovOptionsFilter, IdentitySdkIproovOptionsGenuinePresenceAssurance, IdentitySdkIproovOptionsLivenessAssurance, IdentitySdkOrientation, IdentitySessionTranscript, IdentitySessionTranscriptCompanion, IdentitySimplePasswordAttestationServiceCompanion, IdentitySupportedJWEEncryptionAlgorithms, IdentitySupportedJWEEncryptionAlgorithmsCompanion, IdentitySupportedJWEEncryptionAlgorithmsSerializer, IdentitySupportedVPFormat, IdentitySupportedVPFormatCompanion, IdentitySupportedVPFormatMDoc, IdentitySupportedVPFormatMDocCompanion, IdentitySymmetricKey, IdentitySymmetricKeyCompanion, IdentityTransactionCodeChallenge, IdentityTxCode, IdentityTxCodeCompanion, IdentityTxInputMode, IdentityTxInputModeCompanion, IdentityTxInputModeSerializer, IdentityUriCredentialChallenge, IdentityUriCredentialChallengeResponder, IdentityUserAgent, IdentityUserAgentCompanion, IdentityVPTokenFactory, IdentityVerificationEvent, IdentityVerificationEventCanceled, IdentityVerificationEventCompanion, IdentityVerificationEventCompleted, IdentityVerificationEventCompletedCompanion, IdentityVerificationEventError, IdentityVerificationEventErrorCompanion, IdentityVerificationEventLoading, IdentityVerificationEventStarted, IdentityVerificationException, IdentityVerificationMethod, IdentityVerificationMethodCompanion, IdentityVerificationMethodIProov, IdentityVerificationMethodIProovCompanion, IdentityVerificationMethodSkip, IdentityVerificationMethodSkipCompanion, IdentityVerificationResult, IdentityVerificationResultCompanion, IdentityVerificationStatus, IdentityVerificationStatusCompanion, IdentityVerificationSummary, IdentityVerificationSummaryCompanion, IdentityVerifier, IdentityVerifierDisplayProperties, IdentityVpFormatsSupported, IdentityVpFormatsSupportedCompanion, IdentityWallet, IdentityWalletCompanion, IdentityWalletFactory, IdentityWaltid_coseCoseCertificate, IdentityWaltid_coseCoseContentType, IdentityWaltid_coseCoseContentTypeCompanion, IdentityWaltid_coseCoseHeaders, IdentityWaltid_coseCoseHeadersCompanion, IdentityWaltid_coseCoseSign1, IdentityWaltid_coseCoseSign1Companion, NSData, NSDate, NSDictionary, NSError;
 
 @protocol IdentityCredential, IdentityCredentialFactory, IdentityCredentialOfferParser, IdentityCredentialRetrievalFailure, IdentityIssuanceResult, IdentityJWEFactory, IdentityKeyPair, IdentityKotlinAnnotation, IdentityKotlinAppendable, IdentityKotlinAutoCloseable, IdentityKotlinComparable, IdentityKotlinContinuation, IdentityKotlinContinuationInterceptor, IdentityKotlinCoroutineContext, IdentityKotlinCoroutineContextElement, IdentityKotlinCoroutineContextKey, IdentityKotlinFunction, IdentityKotlinIterator, IdentityKotlinKAnnotatedElement, IdentityKotlinKClass, IdentityKotlinKClassifier, IdentityKotlinKDeclarationContainer, IdentityKotlinKType, IdentityKotlinMapEntry, IdentityKotlinSequence, IdentityKotlinSuspendFunction0, IdentityKotlinSuspendFunction1, IdentityKotlinSuspendFunction2, IdentityKotlinx_coroutines_coreChildHandle, IdentityKotlinx_coroutines_coreChildJob, IdentityKotlinx_coroutines_coreCoroutineScope, IdentityKotlinx_coroutines_coreDeferred, IdentityKotlinx_coroutines_coreDisposableHandle, IdentityKotlinx_coroutines_coreFlow, IdentityKotlinx_coroutines_coreFlowCollector, IdentityKotlinx_coroutines_coreJob, IdentityKotlinx_coroutines_coreParentJob, IdentityKotlinx_coroutines_coreRunnable, IdentityKotlinx_coroutines_coreSelectClause, IdentityKotlinx_coroutines_coreSelectClause0, IdentityKotlinx_coroutines_coreSelectClause1, IdentityKotlinx_coroutines_coreSelectInstance, IdentityKotlinx_io_coreRawSink, IdentityKotlinx_io_coreRawSource, IdentityKotlinx_io_coreSink, IdentityKotlinx_io_coreSource, IdentityKotlinx_serialization_coreBinaryFormat, IdentityKotlinx_serialization_coreCompositeDecoder, IdentityKotlinx_serialization_coreCompositeEncoder, IdentityKotlinx_serialization_coreDecoder, IdentityKotlinx_serialization_coreDeserializationStrategy, IdentityKotlinx_serialization_coreEncoder, IdentityKotlinx_serialization_coreKSerializer, IdentityKotlinx_serialization_coreSerialDescriptor, IdentityKotlinx_serialization_coreSerialFormat, IdentityKotlinx_serialization_coreSerializationStrategy, IdentityKotlinx_serialization_coreSerializersModuleCollector, IdentityKotlinx_serialization_coreStringFormat, IdentityKotlinx_serialization_jsonJsonNamingStrategy, IdentityKtor_client_coreHttpClientEngine, IdentityKtor_client_coreHttpClientEngineCapability, IdentityKtor_client_coreHttpClientPlugin, IdentityKtor_client_coreHttpRequest, IdentityKtor_httpHeaders, IdentityKtor_httpHttpMessage, IdentityKtor_httpHttpMessageBuilder, IdentityKtor_httpParameters, IdentityKtor_httpParametersBuilder, IdentityKtor_ioByteReadChannel, IdentityKtor_ioCloseable, IdentityKtor_ioJvmSerializable, IdentityKtor_utilsAttributes, IdentityKtor_utilsStringValues, IdentityKtor_utilsStringValuesBuilder, IdentityLegacyCredentialFactory, IdentityNetworkClient, IdentityOID4VPOrchestrator, IdentityPlatform, IdentityPresentationOutcome, IdentityStorageEngine, IdentitySyncedKeyValueStorage, IdentityWaltid_coseCoseMessage, IdentityWaltid_coseCoseSigner, IdentityWaltid_coseCoseVerifier;
 
@@ -444,7 +444,7 @@ __attribute__((swift_name("Wallet")))
  * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (BOOL)deleteCredentialMetadata:(IdentityCredentialMetadata *)metadata error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("deleteCredential(metadata:)")));
+- (void)deleteCredentialMetadata:(IdentityCredentialMetadata *)metadata completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("deleteCredential(metadata:completionHandler:)")));
 
 /**
  * Delete a credential from the wallet.
@@ -452,7 +452,7 @@ __attribute__((swift_name("Wallet")))
  * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (BOOL)deleteCredentialCredential:(IdentityLegacyCredential *)credential error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("deleteCredential(credential:)"))) __attribute__((deprecated("Legacy credentials are deprecated & support will be removed. Please use new credential format")));
+- (void)deleteCredentialCredential:(IdentityLegacyCredential *)credential completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("deleteCredential(credential:completionHandler:)"))) __attribute__((deprecated("Legacy credentials are deprecated & support will be removed. Please use new credential format")));
 
 /**
  * Helper method for deleting a credential with and ID
@@ -460,25 +460,25 @@ __attribute__((swift_name("Wallet")))
  * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (BOOL)deleteCredentialSource:(NSString *)source error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("deleteCredential(source:)"))) __attribute__((deprecated("Legacy credentials are deprecated & support will be removed. Please use new credential format")));
+- (void)deleteCredentialSource:(NSString *)source completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("deleteCredential(source:completionHandler:)"))) __attribute__((deprecated("Legacy credentials are deprecated & support will be removed. Please use new credential format")));
 
 /**
  * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (BOOL)destroyAndReturnError:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("destroy()")));
-
-/**
- * @note This method converts instances of StorageException, WalletNotRegisteredException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (NSArray<IdentityClaim *> * _Nullable)getAllClaimsAndReturnError:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("getAllClaims()"))) __attribute__((deprecated("Legacy credentials are deprecated & support will be removed. Please use new credential format")));
+- (void)destroyWithCompletionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("destroy(completionHandler:)")));
 
 /**
  * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (id<IdentityCredential> _Nullable)getCredentialMetadata:(IdentityCredentialMetadata *)metadata error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("getCredential(metadata:)")));
+- (void)getAllClaimsWithCompletionHandler:(void (^)(NSArray<IdentityClaim *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getAllClaims(completionHandler:)"))) __attribute__((deprecated("Legacy credentials are deprecated & support will be removed. Please use new credential format")));
+
+/**
+ * @note This method converts instances of Exception to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getCredentialMetadata:(IdentityCredentialMetadata *)metadata completionHandler:(void (^)(id<IdentityCredential> _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getCredential(metadata:completionHandler:)")));
 
 /**
  * Fetch all credentials stored issued to the wallet.
@@ -486,7 +486,7 @@ __attribute__((swift_name("Wallet")))
  * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (NSArray<IdentityCredentialMetadata *> * _Nullable)getCredentialMetadataAndReturnError:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("getCredentialMetadata()")));
+- (void)getCredentialMetadataWithCompletionHandler:(void (^)(NSArray<IdentityCredentialMetadata *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getCredentialMetadata(completionHandler:)")));
 
 /**
  * Fetch all credentials stored issued to the wallet.
@@ -494,25 +494,25 @@ __attribute__((swift_name("Wallet")))
  * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (IdentityCredentialSummary * _Nullable)getCredentialsAndReturnError:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("getCredentials()")));
+- (void)getCredentialsWithCompletionHandler:(void (^)(IdentityCredentialSummary * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getCredentials(completionHandler:)")));
 
 /**
  * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (IdentityCredentialSummary * _Nullable)getCredentialsMetadata:(NSArray<IdentityCredentialMetadata *> *)metadata error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("getCredentials(metadata:)")));
+- (void)getCredentialsMetadata:(NSArray<IdentityCredentialMetadata *> *)metadata completionHandler:(void (^)(IdentityCredentialSummary * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getCredentials(metadata:completionHandler:)")));
 
 /**
  * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (NSArray<IdentityLegacyCredential *> * _Nullable)getLegacyCredentialsAndReturnError:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("getLegacyCredentials()"))) __attribute__((deprecated("Legacy credentials are deprecated & support will be removed. Please use new credential format")));
+- (void)getLegacyCredentialsWithCompletionHandler:(void (^)(NSArray<IdentityLegacyCredential *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getLegacyCredentials(completionHandler:)"))) __attribute__((deprecated("Legacy credentials are deprecated & support will be removed. Please use new credential format")));
 
 /**
  * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (IdentityLegacyCredential * _Nullable)getLegacyCredentialsSource:(NSString *)source error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("getLegacyCredentials(source:)"))) __attribute__((swift_error(nonnull_error))) __attribute__((deprecated("Legacy credentials are deprecated & support will be removed. Please use new credential format")));
+- (void)getLegacyCredentialsSource:(NSString *)source completionHandler:(void (^)(IdentityLegacyCredential * _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("getLegacyCredentials(source:completionHandler:)"))) __attribute__((deprecated("Legacy credentials are deprecated & support will be removed. Please use new credential format")));
 
 /**
  * @note This method converts instances of Exception to errors.
@@ -525,6 +525,11 @@ __attribute__((swift_name("Wallet")))
  * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)getPresentationRequestUri:(NSString *)uri completionHandler:(void (^)(IdentityRespondablePresentationRequest * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getPresentationRequest(uri:completionHandler:)")));
+
+/**
+ * @note This method converts all Kotlin exceptions to errors.
+*/
+- (void)isRegisteredWithCompletionHandler:(void (^)(IdentityBoolean * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("isRegistered(completionHandler:)")));
 
 /**
  * @note This method converts instances of Exception to errors.
@@ -545,11 +550,16 @@ __attribute__((swift_name("Wallet")))
 - (void)registerWithCompletionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("register(completionHandler:)")));
 
 /**
- * @note This method converts instances of WalletNotRegisteredException to errors.
+ * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (BOOL)throwIfNotRegisteredAndReturnError:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("throwIfNotRegistered()")));
-- (NSArray<IdentityJwt *> *)updateJwtsJwts:(NSArray<IdentityJwt *> *)jwts loginRequest:(IdentityLoginRequest * _Nullable)loginRequest __attribute__((swift_name("updateJwts(jwts:loginRequest:)")));
+- (void)throwIfNotRegisteredWithCompletionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("throwIfNotRegistered(completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)updateJwtsJwts:(NSArray<IdentityJwt *> *)jwts loginRequest:(IdentityLoginRequest * _Nullable)loginRequest completionHandler:(void (^)(NSArray<IdentityJwt *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("updateJwts(jwts:loginRequest:completionHandler:)")));
 
 /**
  * @note This method converts instances of Exception to errors.
@@ -557,7 +567,6 @@ __attribute__((swift_name("Wallet")))
 */
 - (void)verifyUriCredentialUri:(NSString *)uri token:(NSString *)token completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("verifyUriCredential(uri:token:completionHandler:)")));
 @property (readonly) IdentityIdentityPlatformInterface *identityPlatformInterface __attribute__((swift_name("identityPlatformInterface")));
-@property (readonly) BOOL isRegistered __attribute__((swift_name("isRegistered")));
 @property (readonly) IdentityKotlinx_serialization_jsonJson *json __attribute__((swift_name("json")));
 @property (readonly) IdentityRepository *repository __attribute__((swift_name("repository")));
 @end
@@ -590,12 +599,7 @@ __attribute__((swift_name("WalletFactory")))
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)walletFactory __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) IdentityWalletFactory *shared __attribute__((swift_name("shared")));
-- (IdentityWallet *)getInstanceBaseUrl:(NSString *)baseUrl isLoggingEnabled:(BOOL)isLoggingEnabled __attribute__((swift_name("getInstance(baseUrl:isLoggingEnabled:)")));
-- (IdentityWallet *)getInstanceBaseUrl:(NSString *)baseUrl isLoggingEnabled:(BOOL)isLoggingEnabled storageEngine:(id<IdentityStorageEngine>)storageEngine __attribute__((swift_name("getInstance(baseUrl:isLoggingEnabled:storageEngine:)")));
-- (IdentityWallet *)getInstanceBaseUrl:(NSString *)baseUrl isLoggingEnabled:(BOOL)isLoggingEnabled keyPairFactory:(id<IdentityKeyPair> (^)(void))keyPairFactory __attribute__((swift_name("getInstance(baseUrl:isLoggingEnabled:keyPairFactory:)")));
-- (IdentityWallet *)getInstanceBaseUrl:(NSString *)baseUrl isLoggingEnabled:(BOOL)isLoggingEnabled credentialDeserializer:(IdentityCredentialDeserializer *)credentialDeserializer legacyCredentialDeserializer:(IdentityLegacyCredentialDeserializer *)legacyCredentialDeserializer __attribute__((swift_name("getInstance(baseUrl:isLoggingEnabled:credentialDeserializer:legacyCredentialDeserializer:)")));
-- (IdentityWallet *)getInstanceBaseUrl:(NSString *)baseUrl isLoggingEnabled:(BOOL)isLoggingEnabled storageEngine:(id<IdentityStorageEngine>)storageEngine credentialDeserializer:(IdentityCredentialDeserializer *)credentialDeserializer legacyCredentialDeserializer:(IdentityLegacyCredentialDeserializer *)legacyCredentialDeserializer __attribute__((swift_name("getInstance(baseUrl:isLoggingEnabled:storageEngine:credentialDeserializer:legacyCredentialDeserializer:)")));
-- (IdentityWallet *)getInstanceBaseUrl:(NSString *)baseUrl isLoggingEnabled:(BOOL)isLoggingEnabled storageEngine:(id<IdentityStorageEngine>)storageEngine keyPairFactory:(id<IdentityKeyPair> (^)(void))keyPairFactory credentialDeserializer:(IdentityCredentialDeserializer *)credentialDeserializer legacyCredentialDeserializer:(IdentityLegacyCredentialDeserializer *)legacyCredentialDeserializer __attribute__((swift_name("getInstance(baseUrl:isLoggingEnabled:storageEngine:keyPairFactory:credentialDeserializer:legacyCredentialDeserializer:)")));
+- (IdentityWallet *)getInstanceBaseUrl:(NSString *)baseUrl isLoggingEnabled:(BOOL)isLoggingEnabled storageEngine:(id<IdentityStorageEngine>)storageEngine signingKeyPairFactory:(id<IdentityKeyPair> (^)(void))signingKeyPairFactory credentialDeserializer:(IdentityCredentialDeserializer *)credentialDeserializer legacyCredentialDeserializer:(IdentityLegacyCredentialDeserializer *)legacyCredentialDeserializer __attribute__((swift_name("getInstance(baseUrl:isLoggingEnabled:storageEngine:signingKeyPairFactory:credentialDeserializer:legacyCredentialDeserializer:)")));
 @property IdentityWallet * _Nullable instance __attribute__((swift_name("instance")));
 @end
 
@@ -1603,7 +1607,7 @@ __attribute__((swift_name("KeyPair")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("AppleKeyPair")))
 @interface IdentityAppleKeyPair : IdentityBase <IdentityKeyPair>
-- (instancetype)initWithTag:(NSString *)tag __attribute__((swift_name("init(tag:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithTag:(NSString *)tag accessControlPolicy:(IdentityKeyPairAccessPolicy *)accessControlPolicy __attribute__((swift_name("init(tag:accessControlPolicy:)"))) __attribute__((objc_designated_initializer));
 
 /**
  * @note This method converts instances of KeyPairException to errors.
@@ -1641,6 +1645,20 @@ __attribute__((swift_name("AppleKeyPair.Location")))
 @property (readonly) NSString *stringValue __attribute__((swift_name("stringValue")));
 @end
 
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AuthenticationAvailability")))
+@interface IdentityAuthenticationAvailability : IdentityKotlinEnum<IdentityAuthenticationAvailability *>
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@property (class, readonly) IdentityAuthenticationAvailability *available __attribute__((swift_name("available")));
+@property (class, readonly) IdentityAuthenticationAvailability *devicenotsecure __attribute__((swift_name("devicenotsecure")));
+@property (class, readonly) IdentityAuthenticationAvailability *biometricsnotenrolled __attribute__((swift_name("biometricsnotenrolled")));
+@property (class, readonly) IdentityAuthenticationAvailability *biometricsnotsupported __attribute__((swift_name("biometricsnotsupported")));
++ (IdentityKotlinArray<IdentityAuthenticationAvailability *> *)values __attribute__((swift_name("values()")));
+@property (class, readonly) NSArray<IdentityAuthenticationAvailability *> *entries __attribute__((swift_name("entries")));
+@end
+
 
 /**
  * @note annotations
@@ -1669,6 +1687,13 @@ __attribute__((swift_name("EllipticCurvePublicKey.Companion")))
 - (id<IdentityKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
 @end
 
+__attribute__((swift_name("EncryptionKey")))
+@protocol IdentityEncryptionKey
+@required
+- (IdentityKotlinByteArray *)decryptData:(IdentityKotlinByteArray *)data __attribute__((swift_name("decrypt(data:)")));
+- (IdentityKotlinByteArray *)encryptData:(IdentityKotlinByteArray *)data __attribute__((swift_name("encrypt(data:)")));
+@end
+
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("JWECreationException")))
 @interface IdentityJWECreationException : IdentityKotlinException
@@ -1679,7 +1704,123 @@ __attribute__((swift_name("JWECreationException")))
 - (instancetype)initWithCause:(IdentityKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @end
 
+__attribute__((swift_name("KeyPairAccessPolicy")))
+@interface IdentityKeyPairAccessPolicy : IdentityBase
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+@property (class, readonly, getter=companion) IdentityKeyPairAccessPolicyCompanion *companion __attribute__((swift_name("companion")));
+
+/**
+ * Checks if the device is capable of authenticating with the methods required by the current [accessControlPolicy].
+ *
+ * Assumptions:
+ * - [accessControlPolicy.laPolicy] returns a valid LAPolicy for this context.
+ */
+- (IdentityAuthenticationAvailability *)canAuthenticate __attribute__((swift_name("canAuthenticate()")));
+@property (readonly) uint64_t accessControlFlags __attribute__((swift_name("accessControlFlags")));
+@property (readonly) int64_t laPolicy __attribute__((swift_name("laPolicy")));
+@end
+
+
+/**
+ * Any set of biometrics can be used to access the private key, new biometrics can be enrolled and used to access
+ * the private key.
+ */
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KeyPairAccessPolicy.AnyBiometrics")))
+@interface IdentityKeyPairAccessPolicyAnyBiometrics : IdentityKeyPairAccessPolicy
+
+/**
+ * Any set of biometrics can be used to access the private key, new biometrics can be enrolled and used to access
+ * the private key.
+ */
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
+
+/**
+ * Any set of biometrics can be used to access the private key, new biometrics can be enrolled and used to access
+ * the private key.
+ */
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+@property (readonly) uint64_t accessControlFlags __attribute__((swift_name("accessControlFlags")));
+@property (readonly) int64_t laPolicy __attribute__((swift_name("laPolicy")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KeyPairAccessPolicy.Companion")))
+@interface IdentityKeyPairAccessPolicyCompanion : IdentityBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) IdentityKeyPairAccessPolicyCompanion *shared __attribute__((swift_name("shared")));
+@property (readonly) IdentityKeyPairAccessPolicy *DeviceUnlocked __attribute__((swift_name("DeviceUnlocked")));
+@end
+
+
+/**
+ * Only the current set of biometrics enrolled on the device can be used to access the private key, if the biometrics
+ * enrolled on the device are changed, the private key is inaccessible.
+ */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KeyPairAccessPolicy.CurrentBiometrics")))
+@interface IdentityKeyPairAccessPolicyCurrentBiometrics : IdentityKeyPairAccessPolicy
+
+/**
+ * Only the current set of biometrics enrolled on the device can be used to access the private key, if the biometrics
+ * enrolled on the device are changed, the private key is inaccessible.
+ */
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
+
+/**
+ * Only the current set of biometrics enrolled on the device can be used to access the private key, if the biometrics
+ * enrolled on the device are changed, the private key is inaccessible.
+ */
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+@property (readonly) uint64_t accessControlFlags __attribute__((swift_name("accessControlFlags")));
+@property (readonly) int64_t laPolicy __attribute__((swift_name("laPolicy")));
+@end
+
+
+/**
+ * No further authentication required
+ */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KeyPairAccessPolicy.DeviceUnlocked")))
+@interface IdentityKeyPairAccessPolicyDeviceUnlocked : IdentityKeyPairAccessPolicy
+
+/**
+ * No further authentication required
+ */
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
+
+/**
+ * No further authentication required
+ */
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+@property (readonly) uint64_t accessControlFlags __attribute__((swift_name("accessControlFlags")));
+@property (readonly) int64_t laPolicy __attribute__((swift_name("laPolicy")));
+@end
+
+
+/**
+ * Any form of user presence is required to use the private key (pin or any biometrics)
+ */
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KeyPairAccessPolicy.UserPresent")))
+@interface IdentityKeyPairAccessPolicyUserPresent : IdentityKeyPairAccessPolicy
+
+/**
+ * Any form of user presence is required to use the private key (pin or any biometrics)
+ */
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
+
+/**
+ * Any form of user presence is required to use the private key (pin or any biometrics)
+ */
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+@property (readonly) uint64_t accessControlFlags __attribute__((swift_name("accessControlFlags")));
+@property (readonly) int64_t laPolicy __attribute__((swift_name("laPolicy")));
+@end
+
 __attribute__((swift_name("KeyPairException")))
 @interface IdentityKeyPairException : IdentityKotlinException
 - (instancetype)initWithMessage:(NSString *)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
@@ -1687,6 +1828,24 @@ __attribute__((swift_name("KeyPairException")))
 + (instancetype)new __attribute__((unavailable));
 - (instancetype)initWithCause:(IdentityKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 - (instancetype)initWithMessage:(NSString * _Nullable)message cause:(IdentityKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@end
+
+__attribute__((swift_name("KeyPairAuthenticationException")))
+@interface IdentityKeyPairAuthenticationException : IdentityKeyPairException
+- (instancetype)initWithMessage:(NSString *)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KeyPairAuthenticationException.AuthenticationCanceled")))
+@interface IdentityKeyPairAuthenticationExceptionAuthenticationCanceled : IdentityKeyPairAuthenticationException
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KeyPairAuthenticationException.Error")))
+@interface IdentityKeyPairAuthenticationExceptionError : IdentityKeyPairAuthenticationException
+- (instancetype)initWithMessage:(NSString *)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -5287,46 +5446,61 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("DCQLMatcher")))
 @interface IdentityDCQLMatcher : IdentityBase
 - (instancetype)initWithRepository:(IdentityRepository *)repository __attribute__((swift_name("init(repository:)"))) __attribute__((objc_designated_initializer));
-- (IdentityDCQLMatchResult *)matchQuery:(IdentityDcqlQuery *)query __attribute__((swift_name("match(query:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)matchQuery:(IdentityDcqlQuery *)query completionHandler:(void (^)(IdentityDCQLMatchResult * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("match(query:completionHandler:)")));
 - (void)validateSubmissionSubmission:(IdentityCredentialSubmission *)submission __attribute__((swift_name("validateSubmission(submission:)")));
 @end
 
 __attribute__((swift_name("StorageEngine")))
 @protocol IdentityStorageEngine
 @required
-- (void)deleteAll __attribute__((swift_name("deleteAll()")));
 
 /**
- * @note This method converts instances of IOException to errors.
+ * @note This method converts instances of CancellationException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (NSString * _Nullable)readKey:(NSString *)key error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("read(key:)"))) __attribute__((swift_error(nonnull_error)));
+- (void)deleteAllWithCompletionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("deleteAll(completionHandler:)")));
 
 /**
- * @note This method converts instances of IOException to errors.
+ * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (BOOL)writeKey:(NSString *)key value:(NSString * _Nullable)value error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("write(key:value:)")));
+- (void)readKey:(NSString *)key completionHandler:(void (^)(NSString * _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("read(key:completionHandler:)")));
+
+/**
+ * @note This method converts instances of Exception to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)writeKey:(NSString *)key value:(NSString * _Nullable)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("write(key:value:completionHandler:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("DeviceBoundAppleStorageEngine")))
 @interface IdentityDeviceBoundAppleStorageEngine : IdentityBase <IdentityStorageEngine>
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (void)deleteAll __attribute__((swift_name("deleteAll()")));
+- (instancetype)initWithAccessControlPolicy:(IdentityKeyPairAccessPolicy *)accessControlPolicy __attribute__((swift_name("init(accessControlPolicy:)"))) __attribute__((objc_designated_initializer));
 
 /**
- * @note This method converts instances of IOException to errors.
+ * @note This method converts instances of CancellationException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (NSString * _Nullable)readKey:(NSString *)key error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("read(key:)"))) __attribute__((swift_error(nonnull_error)));
+- (void)deleteAllWithCompletionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("deleteAll(completionHandler:)")));
 
 /**
- * @note This method converts instances of IOException to errors.
+ * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (BOOL)writeKey:(NSString *)key value:(NSString * _Nullable)value error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("write(key:value:)")));
+- (void)readKey:(NSString *)key completionHandler:(void (^)(NSString * _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("read(key:completionHandler:)")));
+
+/**
+ * @note This method converts instances of Exception to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)writeKey:(NSString *)key value:(NSString * _Nullable)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("write(key:value:completionHandler:)")));
+@property (readonly) IdentityKeyPairAccessPolicy *accessControlPolicy __attribute__((swift_name("accessControlPolicy")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -5405,8 +5579,8 @@ __attribute__((swift_name("FileStorage")))
 __attribute__((swift_name("SyncedKeyValueStorage")))
 @protocol IdentitySyncedKeyValueStorage
 @required
-- (NSString * _Nullable)readKey:(NSString *)key __attribute__((swift_name("read(key_:)")));
-- (void)writeKey:(NSString *)key value:(NSString * _Nullable)value __attribute__((swift_name("write(key:value_:)")));
+- (NSString * _Nullable)readKey:(NSString *)key __attribute__((swift_name("read(key:)")));
+- (void)writeKey:(NSString *)key value:(NSString * _Nullable)value __attribute__((swift_name("write(key:value:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -5414,8 +5588,8 @@ __attribute__((swift_name("ICloudKeyValueStorage")))
 @interface IdentityICloudKeyValueStorage : IdentityBase <IdentitySyncedKeyValueStorage>
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (NSString * _Nullable)readKey:(NSString *)key __attribute__((swift_name("read(key_:)")));
-- (void)writeKey:(NSString *)key value:(NSString * _Nullable)value __attribute__((swift_name("write(key:value_:)")));
+- (NSString * _Nullable)readKey:(NSString *)key __attribute__((swift_name("read(key:)")));
+- (void)writeKey:(NSString *)key value:(NSString * _Nullable)value __attribute__((swift_name("write(key:value:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -5423,19 +5597,24 @@ __attribute__((swift_name("InMemoryStorageEngine")))
 @interface IdentityInMemoryStorageEngine : IdentityBase <IdentityStorageEngine>
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (void)deleteAll __attribute__((swift_name("deleteAll()")));
 
 /**
- * @note This method converts instances of IOException to errors.
+ * @note This method converts instances of CancellationException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (NSString * _Nullable)readKey:(NSString *)key error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("read(key:)"))) __attribute__((swift_error(nonnull_error)));
+- (void)deleteAllWithCompletionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("deleteAll(completionHandler:)")));
 
 /**
- * @note This method converts instances of IOException to errors.
+ * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (BOOL)writeKey:(NSString *)key value:(NSString * _Nullable)value error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("write(key:value:)")));
+- (void)readKey:(NSString *)key completionHandler:(void (^)(NSString * _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("read(key:completionHandler:)")));
+
+/**
+ * @note This method converts instances of Exception to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)writeKey:(NSString *)key value:(NSString * _Nullable)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("write(key:value:completionHandler:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -5532,16 +5711,76 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("LocalStorage")))
 @interface IdentityLocalStorage : IdentityBase
 - (instancetype)initWithStorageEngine:(id<IdentityStorageEngine>)storageEngine __attribute__((swift_name("init(storageEngine:)"))) __attribute__((objc_designated_initializer));
-- (void)deleteAll __attribute__((swift_name("deleteAll()")));
-@property NSString * _Nullable attestationToken __attribute__((swift_name("attestationToken")));
-@property NSArray<IdentityCredentialMetadata *> *credentialMetadata __attribute__((swift_name("credentialMetadata")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)deleteAllWithCompletionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("deleteAll(completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getAttestationTokenWithCompletionHandler:(void (^)(NSString * _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("getAttestationToken(completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getCredentialMetadataWithCompletionHandler:(void (^)(NSArray<IdentityCredentialMetadata *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getCredentialMetadata(completionHandler:)")));
 
 /**
  * Maps metadata uuid -> record
- */
-@property NSDictionary<NSString *, IdentityCredentialRecord *> *credentials __attribute__((swift_name("credentials")));
-@property NSArray<IdentityJwt *> *jwts __attribute__((swift_name("jwts")));
-@property NSDictionary<NSString *, id> * _Nullable translations __attribute__((swift_name("translations")));
+ *
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getCredentialsWithCompletionHandler:(void (^)(NSDictionary<NSString *, IdentityCredentialRecord *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getCredentials(completionHandler:)")));
+
+/**
+ * mapped as List<String> to ensure clean serialization of the compact string
+ *
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getJwtsWithCompletionHandler:(void (^)(NSArray<IdentityJwt *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getJwts(completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getTranslationsWithCompletionHandler:(void (^)(NSDictionary<NSString *, id> * _Nullable_result, NSError * _Nullable))completionHandler __attribute__((swift_name("getTranslations(completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)setAttestationTokenValue:(NSString * _Nullable)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("setAttestationToken(value:completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)setCredentialMetadataValue:(NSArray<IdentityCredentialMetadata *> *)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("setCredentialMetadata(value:completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)setCredentialsValue:(NSDictionary<NSString *, IdentityCredentialRecord *> *)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("setCredentials(value:completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)setJwtsValue:(NSArray<IdentityJwt *> *)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("setJwts(value:completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)setTranslationsValue:(NSDictionary<NSString *, id> *)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("setTranslations(value:completionHandler:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -5557,15 +5796,60 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Repository")))
 @interface IdentityRepository : IdentityBase
 - (instancetype)initWithLocalStorage:(IdentityLocalStorage *)localStorage legacyCredentialDeserializer:(IdentityLegacyCredentialDeserializer *)legacyCredentialDeserializer credentialDeserializer:(IdentityCredentialDeserializer *)credentialDeserializer __attribute__((swift_name("init(localStorage:legacyCredentialDeserializer:credentialDeserializer:)"))) __attribute__((objc_designated_initializer));
-- (IdentityKotlinPair<IdentityCredentialMetadata *, IdentityCredentialRecord *> *)addCredentialRecordMetadata:(IdentityCredentialMetadata *)metadata record:(IdentityCredentialRecord *)record __attribute__((swift_name("addCredentialRecord(metadata:record:)")));
-- (NSArray<IdentityJwt *> *)addOrUpdateJwtsJwts:(NSArray<IdentityJwt *> *)jwts __attribute__((swift_name("addOrUpdateJwts(jwts:)")));
-- (void)deleteCredentialMetadata:(IdentityCredentialMetadata *)metadata __attribute__((swift_name("deleteCredential(metadata:)")));
-- (void)deleteJwtsJwtsToDelete:(NSArray<IdentityJwt *> *)jwtsToDelete __attribute__((swift_name("deleteJwts(jwtsToDelete:)")));
-- (NSArray<IdentityClaim *> *)getAllClaims __attribute__((swift_name("getAllClaims()")));
-- (NSArray<IdentityLegacyCredential *> *)getAllCredentials __attribute__((swift_name("getAllCredentials()")));
-- (IdentityCredentialSummary *)getCredentialMetadata:(IdentityCredentialMetadata *)metadata __attribute__((swift_name("getCredential(metadata:)")));
-- (NSArray<IdentityCredentialMetadata *> *)getCredentialMetadata __attribute__((swift_name("getCredentialMetadata()")));
-- (IdentityCredentialSummary *)getCredentialsMetadata:(NSArray<IdentityCredentialMetadata *> *)metadata __attribute__((swift_name("getCredentials(metadata:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)addCredentialRecordMetadata:(IdentityCredentialMetadata *)metadata record:(IdentityCredentialRecord *)record completionHandler:(void (^)(IdentityKotlinPair<IdentityCredentialMetadata *, IdentityCredentialRecord *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("addCredentialRecord(metadata:record:completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)addOrUpdateJwtsJwts:(NSArray<IdentityJwt *> *)jwts completionHandler:(void (^)(NSArray<IdentityJwt *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("addOrUpdateJwts(jwts:completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)deleteCredentialMetadata:(IdentityCredentialMetadata *)metadata completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("deleteCredential(metadata:completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)deleteJwtsJwtsToDelete:(NSArray<IdentityJwt *> *)jwtsToDelete completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("deleteJwts(jwtsToDelete:completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getAllClaimsWithCompletionHandler:(void (^)(NSArray<IdentityClaim *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getAllClaims(completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getAllCredentialsWithCompletionHandler:(void (^)(NSArray<IdentityLegacyCredential *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getAllCredentials(completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getCredentialMetadata:(IdentityCredentialMetadata *)metadata completionHandler:(void (^)(IdentityCredentialSummary * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getCredential(metadata:completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getCredentialMetadataWithCompletionHandler:(void (^)(NSArray<IdentityCredentialMetadata *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getCredentialMetadata(completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)getCredentialsMetadata:(NSArray<IdentityCredentialMetadata *> *)metadata completionHandler:(void (^)(IdentityCredentialSummary * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("getCredentials(metadata:completionHandler:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -5597,6 +5881,13 @@ __attribute__((swift_name("StorageException")))
  * Other uncaught Kotlin exceptions are fatal.
 */
 - (void)refreshExpiredCredentialsWithCompletionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("refreshExpiredCredentials(completionHandler:)")));
+@end
+
+@interface IdentityWalletFactory (Extensions)
+- (IdentityWallet *)getInstanceBaseUrl:(NSString *)baseUrl __attribute__((swift_name("getInstance(baseUrl:)")));
+- (IdentityWallet *)getInstanceBaseUrl:(NSString *)baseUrl isLoggingEnabled:(BOOL)isLoggingEnabled __attribute__((swift_name("getInstance(baseUrl:isLoggingEnabled:)")));
+- (IdentityWallet *)getInstanceBaseUrl:(NSString *)baseUrl isLoggingEnabled:(BOOL)isLoggingEnabled storageEngine:(id<IdentityStorageEngine>)storageEngine __attribute__((swift_name("getInstance(baseUrl:isLoggingEnabled:storageEngine:)")));
+- (IdentityWallet *)getInstanceBaseUrl:(NSString *)baseUrl isLoggingEnabled:(BOOL)isLoggingEnabled storageEngine:(id<IdentityStorageEngine>)storageEngine signingKeyPairFactory:(id<IdentityKeyPair> (^)(void))signingKeyPairFactory __attribute__((swift_name("getInstance(baseUrl:isLoggingEnabled:storageEngine:signingKeyPairFactory:)")));
 @end
 
 @interface IdentityChallenge (Extensions)
@@ -5946,7 +6237,7 @@ __attribute__((swift_name("KeyPair_appleKt")))
 @interface IdentityKeyPair_appleKt : IdentityBase
 + (IdentityOnDeviceKeyPairJwk *)derToJwkDerBytes:(IdentityKotlinByteArray *)derBytes __attribute__((swift_name("derToJwk(derBytes:)")));
 + (id _Nullable)getCFDictionaryValueDictionary:(void * _Nullable)dictionary key:(void * _Nullable)key __attribute__((swift_name("getCFDictionaryValue(dictionary:key:)")));
-+ (id<IdentityKeyPair>)getKeyPair __attribute__((swift_name("getKeyPair()")));
++ (id<IdentityKeyPair>)getDeviceBoundKeyPairPolicy:(IdentityKeyPairAccessPolicy *)policy alias:(NSString *)alias __attribute__((swift_name("getDeviceBoundKeyPair(policy:alias:)")));
 + (IdentityKotlinTriple<NSString *, IdentityKotlinByteArray *, IdentityKotlinByteArray *> *)parseEcPublicKeyFromDerDerBytes:(IdentityKotlinByteArray *)derBytes __attribute__((swift_name("parseEcPublicKeyFromDer(derBytes:)")));
 + (IdentityLength *)toLength:(int8_t)receiver input:(IdentityKotlinByteArray *)input startIndex:(int32_t)startIndex __attribute__((swift_name("toLength(_:input:startIndex:)")));
 @end
@@ -5976,8 +6267,7 @@ __attribute__((swift_name("Keychain_appleKt")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("StorageEngine_appleKt")))
 @interface IdentityStorageEngine_appleKt : IdentityBase
-+ (id<IdentityStorageEngine>)getDeviceBoundStorageEngine __attribute__((swift_name("getDeviceBoundStorageEngine()")));
-+ (id<IdentityStorageEngine>)getSyncedKeyValueStorageEngine __attribute__((swift_name("getSyncedKeyValueStorageEngine()")));
++ (id<IdentityStorageEngine>)getDeviceBoundStorageEngineAccessPolicy:(IdentityKeyPairAccessPolicy *)accessPolicy __attribute__((swift_name("getDeviceBoundStorageEngine(accessPolicy:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -6002,7 +6292,7 @@ __attribute__((swift_name("UserAgent_appleKt")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Wallet_appleKt")))
 @interface IdentityWallet_appleKt : IdentityBase
-+ (IdentityWallet *)getWalletInstanceBaseUrl:(NSString *)baseUrl isLoggingEnabled:(BOOL)isLoggingEnabled storageEngine:(id<IdentityStorageEngine>)storageEngine keyPairFactory:(id<IdentityKeyPair> (^)(void))keyPairFactory legacyCredentialDeserializer:(IdentityLegacyCredentialDeserializer *)legacyCredentialDeserializer credentialDeserializer:(IdentityCredentialDeserializer *)credentialDeserializer __attribute__((swift_name("getWalletInstance(baseUrl:isLoggingEnabled:storageEngine:keyPairFactory:legacyCredentialDeserializer:credentialDeserializer:)")));
++ (IdentityWallet *)getWalletInstanceBaseUrl:(NSString *)baseUrl isLoggingEnabled:(BOOL)isLoggingEnabled storageEngine:(id<IdentityStorageEngine>)storageEngine signingKeyPairFactory:(id<IdentityKeyPair> (^)(void))signingKeyPairFactory legacyCredentialDeserializer:(IdentityLegacyCredentialDeserializer *)legacyCredentialDeserializer credentialDeserializer:(IdentityCredentialDeserializer *)credentialDeserializer __attribute__((swift_name("getWalletInstance(baseUrl:isLoggingEnabled:storageEngine:signingKeyPairFactory:legacyCredentialDeserializer:credentialDeserializer:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -6024,33 +6314,6 @@ __attribute__((swift_name("KotlinEnumCompanion")))
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) IdentityKotlinEnumCompanion *shared __attribute__((swift_name("shared")));
-@end
-
-__attribute__((swift_name("Kotlinx_serialization_coreSerialFormat")))
-@protocol IdentityKotlinx_serialization_coreSerialFormat
-@required
-@property (readonly) IdentityKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
-@end
-
-__attribute__((swift_name("Kotlinx_serialization_coreStringFormat")))
-@protocol IdentityKotlinx_serialization_coreStringFormat <IdentityKotlinx_serialization_coreSerialFormat>
-@required
-- (id _Nullable)decodeFromStringDeserializer:(id<IdentityKotlinx_serialization_coreDeserializationStrategy>)deserializer string:(NSString *)string __attribute__((swift_name("decodeFromString(deserializer:string:)")));
-- (NSString *)encodeToStringSerializer:(id<IdentityKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToString(serializer:value:)")));
-@end
-
-__attribute__((swift_name("Kotlinx_serialization_jsonJson")))
-@interface IdentityKotlinx_serialization_jsonJson : IdentityBase <IdentityKotlinx_serialization_coreStringFormat>
-@property (class, readonly, getter=companion) IdentityKotlinx_serialization_jsonJsonDefault *companion __attribute__((swift_name("companion")));
-- (id _Nullable)decodeFromJsonElementDeserializer:(id<IdentityKotlinx_serialization_coreDeserializationStrategy>)deserializer element:(IdentityKotlinx_serialization_jsonJsonElement *)element __attribute__((swift_name("decodeFromJsonElement(deserializer:element:)")));
-- (id _Nullable)decodeFromStringString:(NSString *)string __attribute__((swift_name("decodeFromString(string:)")));
-- (id _Nullable)decodeFromStringDeserializer:(id<IdentityKotlinx_serialization_coreDeserializationStrategy>)deserializer string:(NSString *)string __attribute__((swift_name("decodeFromString(deserializer:string:)")));
-- (IdentityKotlinx_serialization_jsonJsonElement *)encodeToJsonElementSerializer:(id<IdentityKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToJsonElement(serializer:value:)")));
-- (NSString *)encodeToStringValue:(id _Nullable)value __attribute__((swift_name("encodeToString(value:)")));
-- (NSString *)encodeToStringSerializer:(id<IdentityKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToString(serializer:value:)")));
-- (IdentityKotlinx_serialization_jsonJsonElement *)parseToJsonElementString:(NSString *)string __attribute__((swift_name("parseToJsonElement(string:)")));
-@property (readonly) IdentityKotlinx_serialization_jsonJsonConfiguration *configuration __attribute__((swift_name("configuration")));
-@property (readonly) IdentityKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
 @end
 
 __attribute__((swift_name("KotlinRuntimeException")))
@@ -6083,6 +6346,33 @@ __attribute__((swift_name("KotlinCancellationException")))
 - (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithCause:(IdentityKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)initWithMessage:(NSString * _Nullable)message cause:(IdentityKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreSerialFormat")))
+@protocol IdentityKotlinx_serialization_coreSerialFormat
+@required
+@property (readonly) IdentityKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreStringFormat")))
+@protocol IdentityKotlinx_serialization_coreStringFormat <IdentityKotlinx_serialization_coreSerialFormat>
+@required
+- (id _Nullable)decodeFromStringDeserializer:(id<IdentityKotlinx_serialization_coreDeserializationStrategy>)deserializer string:(NSString *)string __attribute__((swift_name("decodeFromString(deserializer:string:)")));
+- (NSString *)encodeToStringSerializer:(id<IdentityKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToString(serializer:value:)")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_jsonJson")))
+@interface IdentityKotlinx_serialization_jsonJson : IdentityBase <IdentityKotlinx_serialization_coreStringFormat>
+@property (class, readonly, getter=companion) IdentityKotlinx_serialization_jsonJsonDefault *companion __attribute__((swift_name("companion")));
+- (id _Nullable)decodeFromJsonElementDeserializer:(id<IdentityKotlinx_serialization_coreDeserializationStrategy>)deserializer element:(IdentityKotlinx_serialization_jsonJsonElement *)element __attribute__((swift_name("decodeFromJsonElement(deserializer:element:)")));
+- (id _Nullable)decodeFromStringString:(NSString *)string __attribute__((swift_name("decodeFromString(string:)")));
+- (id _Nullable)decodeFromStringDeserializer:(id<IdentityKotlinx_serialization_coreDeserializationStrategy>)deserializer string:(NSString *)string __attribute__((swift_name("decodeFromString(deserializer:string:)")));
+- (IdentityKotlinx_serialization_jsonJsonElement *)encodeToJsonElementSerializer:(id<IdentityKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToJsonElement(serializer:value:)")));
+- (NSString *)encodeToStringValue:(id _Nullable)value __attribute__((swift_name("encodeToString(value:)")));
+- (NSString *)encodeToStringSerializer:(id<IdentityKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeToString(serializer:value:)")));
+- (IdentityKotlinx_serialization_jsonJsonElement *)parseToJsonElementString:(NSString *)string __attribute__((swift_name("parseToJsonElement(string:)")));
+@property (readonly) IdentityKotlinx_serialization_jsonJsonConfiguration *configuration __attribute__((swift_name("configuration")));
+@property (readonly) IdentityKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
 @end
 
 
@@ -6532,15 +6822,6 @@ __attribute__((swift_name("KotlinSuspendFunction0")))
 
 __attribute__((swift_name("KotlinIllegalArgumentException")))
 @interface IdentityKotlinIllegalArgumentException : IdentityKotlinRuntimeException
-- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
-+ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithCause:(IdentityKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
-- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(IdentityKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
-@end
-
-__attribute__((swift_name("Kotlinx_io_coreIOException")))
-@interface IdentityKotlinx_io_coreIOException : IdentityKotlinException
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));

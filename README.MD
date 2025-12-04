@@ -508,7 +508,8 @@ do {
 ```
 
 </details>
-<summary>Swift (Pre-concurrency)</summary>
+<details>
+<summary>Swift (pre-concurrency)</summary>
 
 ```swift
 

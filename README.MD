@@ -1,4 +1,4 @@
-# iProov Identity SDK v0.3.0
+# iProov Identity SDK v0.3.1
 
 The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform
 app.
@@ -324,7 +324,8 @@ You can always check if your wallet is already registered with `wallet.isRegiste
 <summary>Kotlin</summary>
 
 ```kotlin
-val isRegistered = wallet.isRegistered
+// In a coroutine scope
+val isRegistered = wallet.isRegistered()
 ```
 
 </details>
@@ -492,7 +493,7 @@ summary.failures.forEach { (metadata, failure) ->
 
 ```swift
 do {
-    let summary = try wallet.getCredentials()
+    let summary = try await wallet.getCredentials()
 
     for (metadata, credential) in summary.credentials {
         // Present credential; metadata.display contains issuer supplied strings
@@ -503,6 +504,29 @@ do {
     }
 } catch {
     // Handle error
+}
+```
+
+</details>
+<summary>Swift (Pre-concurrency)</summary>
+
+```swift
+
+let summary = wallet.getCredentials() { credentials, error in
+
+    if let error {
+        // Handle error
+        return
+    }
+
+    for (metadata, credential) in summary.credentials {
+        // Present credential; metadata.display contains issuer supplied strings
+    }
+
+    for (metadata, failure) in summary.failures {
+        // Handle failure.description (e.g. prompt the user to retry)
+    } 
+
 }
 ```
 
@@ -1975,6 +1999,63 @@ For the iOS example app, see the `/example-ios` folder. For the Android example 
 `/example-android`.
 
 ## Advanced topics
+
+### Configuring Key Pair Access Policy
+
+By default, the wallet uses a 'device bound' key pair for signing and another device bound key pair for storage encryption. The default access policies for these key pairs are `DeviceUnlocked`. You can configure the wallet to use a different access policy (e.g. requiring biometrics for example) for signing, by overriding the `signingKeyPairFactory` param in getInstance, or for storage in the `DeviceBoundStorageEngine` class.
+
+The available access policies for iOS are:
+
+- `KeyPairAccessPolicy.DeviceUnlocked` - Requires the device to be unlocked.
+- `KeyPairAccessPolicy.UserPresent` - Requires user presence (e.g. biometrics or passcode).
+- `KeyPairAccessPolicy.AnyBiometrics` - Requires any biometrics enrolled on the device.
+- `KeyPairAccessPolicy.CurrentBiometrics` - Requires the current set of biometrics enrolled on the device (invalidated if new biometrics are added).
+
+The available access policies for Android are:
+
+- `KeyPairAccessPolicy.DeviceUnlocked` - Requires the device to be unlocked.
+- `KeyPairAccessPolicy.AnyBiometric` - Requires any biometrics enrolled on the device.
+- `KeyPairAccessPolicy.CurrentBiometrics` - Requires the current set of biometrics enrolled on the device (invalidated if new biometrics are added).
+
+<details>
+<summary>Koltin</summary>
+
+```kotlin
+val tenMinutes = 10 * 60
+val accessPolicy = KeyPairAccessPolicy.AnyBiometric(authenticationValidityDuration: tenMinutes)
+val storageEngine = DeviceBoundStorageEngine(accessPolicy: accessPolicy)
+
+val wallet = WalletFactory.getInstance(
+    baseUrl="https://api.beta.iproov.id",
+    isLoggingEnabled= true,
+    storageEngine=storageEngine,
+    signingKeyPairFactory={
+        AndroidDefaultKeyPair(context, "com.iproov.identity", accessControlPolicy=accessPolicy)
+    }
+)
+```
+
+</details>
+
+<details>
+<summary>Swift</summary>
+
+```swift
+let tenMinutes = 10 * 60
+let accessPolicy = KeyPairAccessPolicy.AnyBiometrics(authenticationValidityDuration: tenMinutes)
+let storageEngine = DeviceBoundStorageEngine(accessPolicy: accessPolicy)
+
+let wallet = WalletFactory.shared.getInstance(
+    baseUrl: "https://api.beta.iproov.id",
+    isLoggingEnabled: true,
+    storageEngine: storageEngine,
+    signingKeyPairFactory: {
+        return AppleKeyPair(tag: "com.iproov.identity", accessControlPolicy: accessPolicy)
+    }
+)
+```
+
+</details>
 
 ### Adding a document by reference
 

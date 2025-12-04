@@ -202,11 +202,11 @@
         {
           "name": "identity-iosArm64Main-0.3.1.klib",
           "url": "identity-iosarm64-0.3.1.klib",
-          "size": 761596,
-          "sha512": "fd4e022e7349eddfdd1aa3201df84e50a90a06ae77dd0c129e09114b4b0ca10ed4a7afce09f957a7d02b852a0a85c6b4be7d70066082e2713553bd3eb80e9c6a",
-          "sha256": "772efbf01e9c8a4f779aada835c6e87c203bb000e90d71e0ff671d1b719d8de3",
-          "sha1": "636f37a70ad98333c22a5a39075e7250b0f3298f",
-          "md5": "a8f7093c54fcaead2358e63fc557841c"
+          "size": 770994,
+          "sha512": "f4ea06cad34358824b39a7b0cc9c5000777c48690b4232fe5b97e46c27dc945fb39b633a39ebcbc605ae6f86022546023adbadf18a87d26c2a0aace8df46761e",
+          "sha256": "925a3a73fc75bffa210568be4ed93c266acc9a1ab553ff91c5e63934f51ca075",
+          "sha1": "a8a20d6815a9b58f06d57c2da3b74f099a14201a",
+          "md5": "86c2dbe2d8855125efa8de1b7a7d7e68"
         },
         {
           "name": "identity-iosArm64Cinterop-iProovMain-0.3.1.klib",
@@ -252,11 +252,11 @@
         {
           "name": "identity-iosarm64-0.3.1-sources.jar",
           "url": "identity-iosarm64-0.3.1-sources.jar",
-          "size": 111563,
-          "sha512": "93ab40372baae38db590d9b890c59e2e114e96e44a55353d0301f8b391c74f4dc40366f38a010484191a65fa9269a25986cde513e9da73f6151ad3c641336599",
-          "sha256": "1030f429ec68b5b6674881a205f2ee44dbba8f5359290706ca21d757a4b43a6d",
-          "sha1": "5797b5175310eb54a505a7d5f0d7dd763dc478aa",
-          "md5": "e30ccc4a0fed9f94e82c294aa394a2c1"
+          "size": 113634,
+          "sha512": "8431e95fb80d319a881b542490006d2efa83343bcea5d622e5a0d4e651a694b57a49a237f4ce1410aa5ac81ab8aefc75800e92b75fc6137ddf20ddfb91499dd6",
+          "sha256": "fb32524f4756317e357bae1757052ff895ba56ec7ecc8d6186c1f13293ba8459",
+          "sha1": "1f850eb80cef0b53288d994848b4fe1596a2d252",
+          "md5": "fdb7ea1403abfbfd6b1b4e605564fd85"
         }
       ]
     },
@@ -448,10 +448,10 @@
           "name": "identity-iosarm64-0.3.1-metadata.jar",
           "url": "identity-iosarm64-0.3.1-metadata.jar",
           "size": 261,
-          "sha512": "a0e75d262af07dc4b14f2e87c66b18a51e1e5f0d104ac9e71fe41bf23964ea1a02df13a281ebebbac46c6249031072e5384cafadcf89c98e45e96c1cce4fcc9e",
-          "sha256": "d740e01f93ade5c54dc6298ca39fa279695783c6ef6a4a840f8782ece92de849",
-          "sha1": "770e00829ded3da3a6542695a007c97ff9dd697a",
-          "md5": "822f070579424348c3186920ef026ed4"
+          "sha512": "56429799bf3c4df6c84d5f11430e6e5100c337c2010b4a27f0aef538bfbbf8ef3ee2606ba91b1d12f6e9231874b61e3a554b75d483ab1760fc79e0333b52a604",
+          "sha256": "12fee7fd98ab2054ba717a396ac9e92d5960bb7d3ee3a87b86c97d6f3d0ae6c2",
+          "sha1": "a00e56edbc3759252e0872f917aecfaa347e953d",
+          "md5": "e0fca21131cdad717fa89bb8ae2c41a0"
         }
       ]
     }

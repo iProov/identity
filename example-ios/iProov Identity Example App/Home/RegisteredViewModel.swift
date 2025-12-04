@@ -23,8 +23,8 @@ class RegisteredViewModel: ObservableObject {
         isLoading = true
         Task {
             do {
-                let summary = try wallet.getCredentials()
-                let legacy = try wallet.getLegacyCredentials()
+                let summary = try await wallet.getCredentials()
+                let legacy = try await wallet.getLegacyCredentials()
 
                 await MainActor.run {
                     credentialSummary = summary
@@ -46,7 +46,7 @@ class RegisteredViewModel: ObservableObject {
         isLoading = true
         Task {
             do {
-                try wallet.deleteCredential(credential: credential)
+                try await wallet.deleteCredential(credential: credential)
                 loadCredentials()  // Reload to reflect the change
             } catch {
                 alert = AlertDialog(title: "Failed to delete credential", message: error.localizedDescription)
@@ -59,7 +59,7 @@ class RegisteredViewModel: ObservableObject {
         isLoading = true
         Task {
             do {
-                try wallet.deleteCredential(metadata: metadata)
+                try await wallet.deleteCredential(metadata: metadata)
                 loadCredentials()
             } catch {
                 alert = AlertDialog(title: "Failed to delete credential", message: error.localizedDescription)

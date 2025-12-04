@@ -37,8 +37,8 @@ class SelectiveDisclosureViewModel: ObservableObject{
     
     func load(){
         isLoading = true
-        DispatchQueue.global(qos: .userInitiated).async {
-            let claims = (try? WalletFactory.shared.instance!.getAllClaims()) ?? []
+        Task {
+            let claims = (try? await WalletFactory.shared.instance!.getAllClaims()) ?? []
             var inWallet : ClaimNameToValue = [:]
             for claim in claims{ inWallet[claim.name] = claim }
             

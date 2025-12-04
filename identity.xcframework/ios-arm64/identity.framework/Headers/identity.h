@@ -530,12 +530,6 @@ __attribute__((swift_name("Wallet")))
  * @note This method converts instances of Exception to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (void)isRegisteredWithCompletionHandler:(void (^)(IdentityBoolean * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("isRegistered(completionHandler:)")));
-
-/**
- * @note This method converts instances of Exception to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
 - (void)refreshCredentials:(NSArray<IdentityLegacyCredential *> *)credentials completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("refresh(credentials:completionHandler:)")));
 
 /**
@@ -5853,6 +5847,12 @@ __attribute__((swift_name("StorageException")))
  * Other uncaught Kotlin exceptions are fatal.
 */
 - (IdentityFlowWrapper<IdentityVerificationEvent *> * _Nullable)addFaceVerificationCredential:(IdentityLegacyCredential *)credential loginRequest:(IdentityLoginRequest * _Nullable)loginRequest options:(IdentitySdkIproovOptions * _Nullable)options error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("addFaceVerification(credential:loginRequest:options:)")));
+
+/**
+ * @note This method converts instances of Exception to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (BOOL)isRegisteredAndReturnError:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("isRegistered()"))) __attribute__((swift_error(nonnull_error)));
 
 /**
  * @note This method converts instances of Exception to errors.

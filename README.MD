@@ -51,10 +51,10 @@ as a manual process.
 Please contact [support@iproov.com](mailto:support@iproov.com) with the following information:
 
 - For iOS apps:
-    - Your bundle (app) ID.
+  - Your bundle (app) ID.
 - For Android apps:
-    - Your Android application ID.
-    - The fingerprint of your Android
+  - Your Android application ID.
+  - The fingerprint of your Android
       app [signing key certificate](https://play.google.com/console/developers/app/keymanagement). (For further details,
       see [here](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en-GB#:~:text=signing%20to%20continue.-,Step%203,-%3A%20Register%20your%20app)).
 
@@ -152,6 +152,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
       }
     }
     ```
+
     </details>
 
 2. You then need to configure your app:
@@ -207,8 +208,8 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
             </device-transfer-rules>
         </data-extraction-rules>
         ```
-    </details>
 
+    </details>
 
 3. Finally, you can now import the SDK to use it from your project:
 
@@ -218,6 +219,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
     ```kotlin
     import com.iproov.identity.*
     ```
+
     </details>
 
     <details>
@@ -226,6 +228,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
     ```swift
     import identity
     ```
+
     </details>
 
 ## The wallet
@@ -315,7 +318,7 @@ wallet.register() { error in
 > You must only register your wallet the very first time you create it. You must not call `register()` each time your
 > app runs, or you will end up with a `WalletAlreadyRegisteredException`.
 
-You can always check if your wallet is already registered with `wallet.isRegistered`:
+You can always check if your wallet is already registered with `wallet.isRegistered()`:
 
 <details>
 <summary>Kotlin</summary>
@@ -330,7 +333,7 @@ val isRegistered = wallet.isRegistered
 <summary>Swift</summary>
 
 ```swift
-let isRegistered = wallet.isRegistered
+let isRegistered = wallet.isRegistered()
 ```
 
 </details>
@@ -715,7 +718,6 @@ do {
 ```
 
 </details>
-
 
 <details>
 <summary>Swift (pre-concurrency)</summary>

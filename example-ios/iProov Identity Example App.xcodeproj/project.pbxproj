@@ -37,8 +37,8 @@
 		CAD1A8C92D50E5EF009CD341 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A8C82D50E5EF009CD341 /* Error.swift */; };
 		CAD1A8CB2D510FD4009CD341 /* AddPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A8CA2D510FD4009CD341 /* AddPhoneView.swift */; };
 		CAD1A8CD2D510FDB009CD341 /* AddEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A8CC2D510FDB009CD341 /* AddEmailView.swift */; };
-		CAE8F6462EC1E4ED00878C97 /* identity.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE8F6452EC1E4ED00878C97 /* identity.xcframework */; };
-		CAE8F6472EC1E4ED00878C97 /* identity.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CAE8F6452EC1E4ED00878C97 /* identity.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CAEE65CD2EE1D29E0088151B /* identity.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE8F6452EC1E4ED00878C97 /* identity.xcframework */; };
+		CAEE65CE2EE1D29E0088151B /* identity.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CAE8F6452EC1E4ED00878C97 /* identity.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CAF398CC2D479925007D62E3 /* JwtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF398CB2D479925007D62E3 /* JwtView.swift */; };
 		CAF398D92D47AD6C007D62E3 /* ScanQrCodeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF398D82D47AD6C007D62E3 /* ScanQrCodeSheet.swift */; };
 		CAF398DF2D48CB71007D62E3 /* SelectiveDisclosureSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF398DE2D48CB71007D62E3 /* SelectiveDisclosureSheet.swift */; };
@@ -47,13 +47,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CAE8F61A2EBE6D0300878C97 /* Embed Frameworks */ = {
+		CAEE65CF2EE1D29E0088151B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CAE8F6472EC1E4ED00878C97 /* identity.xcframework in Embed Frameworks */,
+				CAEE65CE2EE1D29E0088151B /* identity.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,7 +105,7 @@
 				CA0CDC972D5E17BA005725B7 /* MRZScanner in Frameworks */,
 				CAD1A8C52D4D1EBD009CD341 /* NFCPassportReader in Frameworks */,
 				CA39CA9E2EA005570051934E /* JOSESwift in Frameworks */,
-				CAE8F6462EC1E4ED00878C97 /* identity.xcframework in Frameworks */,
+				CAEE65CD2EE1D29E0088151B /* identity.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +225,7 @@
 				CAB7489F2D1415BE00F33325 /* Frameworks */,
 				CAB7489E2D1415BE00F33325 /* Sources */,
 				CAB748A02D1415BE00F33325 /* Resources */,
-				CAE8F61A2EBE6D0300878C97 /* Embed Frameworks */,
+				CAEE65CF2EE1D29E0088151B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

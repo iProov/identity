@@ -110,7 +110,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     dependencies {
-      implementation("com.iproov.identity:identity-android:0.2.0")
+      implementation("com.iproov.identity:identity-android:0.3.1")
       implementation("com.iproov.sdk:iproov:<latest-version>")
     }
     ```
@@ -146,7 +146,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
       sourceSets {
           val commonMain by getting {
               dependencies {
-                  implementation("com.iproov.identity:identity:0.2.0")
+                  implementation("com.iproov.identity:identity:0.3.1")
               }
           }
       }

@@ -31,18 +31,31 @@ class HomeViewModel: ObservableObject{
     
     func load(){
         self.state = getInitialSate()
-        if wallet.isRegistered {
-            wallet.refreshExpiredCredentials{ error in
-                print("Failed to refresh expired credentials")
-//                if error != nil {
-//                    self.state = .error(error!.localizedDescription)
-//                }
+        do {
+            if try wallet.isRegistered() {
+                wallet.refreshExpiredCredentials{ error in
+                    print("Failed to refresh expired credentials")
+                    //                if error != nil {
+                    //                    self.state = .error(error!.localizedDescription)
+                    //                }
+                }
             }
+        }
+        catch {
+            print("Failed to check if registered")
+            self.state = .error(error.localizedDescription)
         }
     }
     
     func getInitialSate() -> State {
-        if (!wallet.isRegistered) {return State.notRegistered}
+        do {
+            if (try !wallet.isRegistered()) {
+                return State.notRegistered
+            }
+        }
+        catch {
+            state = .error(error.localizedDescription)
+        }
         
         return State.registered
     }
@@ -51,7 +64,7 @@ class HomeViewModel: ObservableObject{
         await MainActor.run{state = State.loading}
         
         do {
-            try self.wallet.destroy()
+            try await self.wallet.destroy()
             try await self.wallet.register()
             await MainActor.run{self.state = .registered}
         }
@@ -71,7 +84,7 @@ class HomeViewModel: ObservableObject{
             print("Failed to delete / revoke wallet \(error.localizedDescription)")
             print("Destroying wallet instead")
             do {
-                try self.wallet.destroy()
+                try await self.wallet.destroy()
                 await MainActor.run{self.state = getInitialSate()}
             }
             catch let destroyException {

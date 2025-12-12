@@ -202,20 +202,20 @@
         {
           "name": "identity-iosArm64Main-0.3.2.klib",
           "url": "identity-iosarm64-0.3.2.klib",
-          "size": 771696,
-          "sha512": "c81b1b424af1b2bbbb4e1ef3964e9a0a5296a41ef94ed72f8f73957c2438cc34f3bbee2b812131c23f0710c3a060793f11117c3dd421ae70dcdc2011d00dfb00",
-          "sha256": "14bf5fb5144a9ed4bcfa2b9ae34d53c12cb0ed80210cba0691a33fad9001bb8d",
-          "sha1": "bbed860b4b4c40e04f9365620681a2546c95f83f",
-          "md5": "c2d9d38e2d64c28eb023d0f975e377b1"
+          "size": 771730,
+          "sha512": "423ce17cded6081c618ab9188b6465ae1a04bb2ab71e59af9a4894deb2f88a9783e6c47e1b435b26ee8075b07ff959fcdc7b109a4aed81ed89c62d8df107418c",
+          "sha256": "4a7e484c9e39a68e97d4117903335df22e73d5a80c74b793b2b12afabc854991",
+          "sha1": "35223d5489207f60bffe16c66511203223c10aac",
+          "md5": "bc1e1a1569b9604bb63c71f7409d5fc3"
         },
         {
           "name": "identity-iosArm64Cinterop-iProovMain-0.3.2.klib",
           "url": "identity-iosarm64-0.3.2-cinterop-iProov.klib",
-          "size": 12712,
-          "sha512": "d1cf78ce7c5931715056c8071862ee78e289a1ac8745326805d3875eed87c82dd97a6a2863bcafc045f431f74b7f9eed5f4d84b45cbed8504966912c2f3a35a4",
-          "sha256": "5aa9ecffbf7e6edcb41db176dc6a7efc97d40402aaf4f45f5940e8c0e5a3a061",
-          "sha1": "73733c37fce43e762550bf9561656868ec8acddc",
-          "md5": "48bb2e7f99b19cc139246fbb81902ee3"
+          "size": 4404,
+          "sha512": "5f3a32553fdc58c7f8c3adbbb933a9e62babd09b6d2b17946894acce1c4f905b21e0b88f93b815f87d5ce89e5a2647e88d43294731dc30114e5e139290279190",
+          "sha256": "a6574363b299e686c9178377ae098a9bd651cf6514dfeab2cdd97d26c91a3504",
+          "sha1": "eac24465c2211b753aeaa8314fd126f6479a2609",
+          "md5": "f10fb514edb655d497a7a21a1e4be118"
         },
         {
           "name": "identity-iosArm64Cinterop-JOSESwiftMain-0.3.2.klib",
@@ -252,11 +252,11 @@
         {
           "name": "identity-iosarm64-0.3.2-sources.jar",
           "url": "identity-iosarm64-0.3.2-sources.jar",
-          "size": 113630,
-          "sha512": "b7688e0e00fab2d45b069dafa9029a43a25c25acdf816179385c5c2b2fc5b22dc1adcc9d706b5e09599e174189287bb31d41bf8656060884d74a5dc28265e24d",
-          "sha256": "f4f3414773d8bd432320a0e59d461dcada298f7bcdf91098b11f3ad982ce0c37",
-          "sha1": "7feca879e080f63391aecf71fe1f7e229cc7a351",
-          "md5": "a66b0d89d8d719ac1bd2033ff3bb9d78"
+          "size": 113644,
+          "sha512": "d2f4a1df0bf8a7b04120b42ac760a83c93032b70e478772ea7e7f5e09cbecf906aab2a462031d5c572df9a92d39f1870f8f90d50fd9ed6434de46c56fe6ce665",
+          "sha256": "2e588bb582016fd80ec51601e1ee92ff4ffb26fa6463aa7780414696fec95c7c",
+          "sha1": "f2c128c725124fd3448050569c80173e910e9861",
+          "md5": "bfe9b11794442eea4b13c5d825884b7d"
         }
       ]
     },
@@ -448,10 +448,10 @@
           "name": "identity-iosarm64-0.3.2-metadata.jar",
           "url": "identity-iosarm64-0.3.2-metadata.jar",
           "size": 261,
-          "sha512": "950a9c7af7f9d211636e56aac08c726e967ad4c2c45f827a8458dc079a6750abcb302cb3bde2db5d7fe2d66bb94fbfd34d9835cb7827d46a64a7a006c46ed50d",
-          "sha256": "fbae1505033602bb492991b6440f99e45f4e5b24af20568e71985d647eac86cf",
-          "sha1": "eb0e73737e2221ccfdb26e18ab6494076dec07c8",
-          "md5": "4bbe9ee3646a01ee075891ab7cce9a84"
+          "sha512": "31d16f707012a775045d6d7784f609dfcf471760cd4665d37592f13a6cd6f2f3301aa54e230ca19930e2f8962648e5c84af3835a08d7b26374005709e7a5b318",
+          "sha256": "d4d898fd4aec63169b583aa15aa541bbbde383f11c21216c07b50ba0d9913f31",
+          "sha1": "ecbb314ec45511f52c79d750fe834aabe5cb4f33",
+          "md5": "1e228f653ca530ae3d879ffeda4d0510"
         }
       ]
     }

@@ -1,4 +1,4 @@
-# iProov Identity SDK v0.3.1
+# iProov Identity SDK v0.3.2
 
 The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform
 app.
@@ -110,7 +110,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     dependencies {
-      implementation("com.iproov.identity:identity-android:0.3.1")
+      implementation("com.iproov.identity:identity-android:0.3.2")
       implementation("com.iproov.sdk:iproov:<latest-version>")
     }
     ```
@@ -146,7 +146,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
       sourceSets {
           val commonMain by getting {
               dependencies {
-                  implementation("com.iproov.identity:identity:0.3.1")
+                  implementation("com.iproov.identity:identity:0.3.2")
               }
           }
       }

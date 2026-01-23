@@ -11,7 +11,7 @@ import identity
 @main
 struct SampleApp: App {
 
-    let wallet = WalletFactory.shared.getInstance(baseUrl: "https://api.dev-eu.iproov.me", isLoggingEnabled: true)
+    let wallet = WalletFactory.shared.getInstance(baseUrl: "https://api.beta-eu.iproov.id", isLoggingEnabled: true)
     
     var body: some Scene {
         WindowGroup {

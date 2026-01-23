@@ -1,4 +1,4 @@
-# iProov Identity SDK v0.3.2
+# iProov Identity SDK v0.3.3
 
 The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform
 app.
@@ -83,9 +83,9 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
    > **Note**: Ensure you add the .xcframework file, rather than the .framework file.
 
-    5. Add [JOSESwift](https://github.com/airsidemobile/JOSESwift) as a dependency
-    6. Under the Embed column, ensure Embed & Sign is set.
-    7. Follow installation instructions to add the iProov SDK to your app [here](https://github.com/iProov/iOS)
+    1. Add [JOSESwift](https://github.com/airsidemobile/JOSESwift) as a dependency
+    2. Under the Embed column, ensure Embed & Sign is set.
+    3. Follow installation instructions to add the iProov SDK to your app [here](https://github.com/iProov/iOS)
 
     </details>
 
@@ -110,7 +110,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     dependencies {
-      implementation("com.iproov.identity:identity-android:0.3.2")
+      implementation("com.iproov.identity:identity-android:0.3.3")
       implementation("com.iproov.sdk:iproov:<latest-version>")
     }
     ```
@@ -146,7 +146,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
       sourceSets {
           val commonMain by getting {
               dependencies {
-                  implementation("com.iproov.identity:identity:0.3.2")
+                  implementation("com.iproov.identity:identity:0.3.3")
               }
           }
       }
@@ -188,7 +188,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
    You could also consider adding `android:allowBackup="false"`, however this will prevent **all** data from your app
    being backed up.
 
-    2. Add the following contents to `res/xml/backup_rules.xml` (for Android 11 and below):
+    1. Add the following contents to `res/xml/backup_rules.xml` (for Android 11 and below):
 
         ```xml
         <full-backup-content>
@@ -196,7 +196,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
         </full-backup-content>
         ```
 
-    3. Add the following contents to `res/xml/data_extraction_rules.xml` (for Android 12 and above):
+    2. Add the following contents to `res/xml/data_extraction_rules.xml` (for Android 12 and above):
 
         ```xml
         <data-extraction-rules>

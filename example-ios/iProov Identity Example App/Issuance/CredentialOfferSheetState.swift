@@ -14,7 +14,22 @@ struct CredentialOfferSheetState: Identifiable {
         case submitting
         case completed(summary: IssuanceSummary)
         case failed(message: String)
-        case transactionCodeRequired(description: String)
+        case transactionCodeRequired(challenge: TransactionCodeChallenge)
+
+        static func == (lhs: Status, rhs: Status) -> Bool {
+            switch (lhs, rhs) {
+            case (.idle, .idle), (.submitting, .submitting):
+                return true
+            case (.completed(let l), .completed(let r)):
+                return l === r
+            case (.failed(let l), .failed(let r)):
+                return l == r
+            case (.transactionCodeRequired(let l), .transactionCodeRequired(let r)):
+                return l === r
+            default:
+                return false
+            }
+        }
     }
 
     let id = UUID()
@@ -26,7 +41,7 @@ struct CredentialOfferSheetState: Identifiable {
     init(offer: RespondableCredentialOffer) {
         self.offer = offer
         self.issuerDisplay = offer.issuer.bestDisplay
-        let descriptors = (offer.credentials as? [CredentialDescriptor]) ?? []
+        let descriptors = offer.credentials
         self.items = descriptors.map { descriptor in
             Item(descriptor: descriptor, display: descriptor.bestDisplay, isSelected: true)
         }

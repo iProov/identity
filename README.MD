@@ -1,4 +1,4 @@
-# iProov Identity SDK v0.3.3
+# iProov Identity SDK v0.3.4
 
 The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform
 app.
@@ -12,8 +12,9 @@ app.
 ## Requirements
 
 - iOS: 16.0+
-- Android: API Level 26+
+- Android: API Level 26+ (DC API requires Android 14+)
 - Kotlin Multiplatform: 2.2.0+
+- Xcode: 26+ (required for building iOS targets)
 
 ## Concepts and terminology
 
@@ -26,8 +27,8 @@ which describes the core functionality of the SDK:
 - **Wallet** - the wallet is the core of the iProov Identity SDK. It holds all of your credentials and any claims
   associated with those credentials. You will only have one wallet for your entire app.
 
-- **Credential** - a credential is an encapsulation of information issued, by a OID4VCI Draft 13 compliant issuer, in a
-  specific format such as `mso_mdoc` and `jwt_vc_json-ld`. The only format that's supported currently is `mso_mdoc`.
+- **Credential** - a credential is an encapsulation of information issued, by an OID4VCI 1.0 compliant issuer, in a
+  specific format. Supported formats are `mso_mdoc` and `vc+sd-jwt`.
 
 - **LegacyCredential** - a legacy credential is a piece of information about a user. LegacyCurrently supported
   credentials are documents (specifically, NFC-enabled passports and ID cards following the ICAO 9303 standard), email
@@ -100,8 +101,6 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
           mavenCentral()
           maven("https://raw.githubusercontent.com/iProov/android/master/maven/")
           maven("https://raw.githubusercontent.com/iProov/identity/master/maven/")
-          maven("https://raw.githubusercontent.com/iProovOpenSource/waltid-identity/master/maven/")
-          maven("https://maven.waltid.dev/snapshots") 
       }
     }
     ```
@@ -110,7 +109,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     dependencies {
-      implementation("com.iproov.identity:identity-android:0.3.3")
+      implementation("com.iproov.identity:identity-android:0.3.4")
       implementation("com.iproov.sdk:iproov:<latest-version>")
     }
     ```
@@ -130,11 +129,10 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
     ```kotlin
     dependencyResolutionManagement {
       repositories {
+          google()
           mavenCentral()
           maven("https://raw.githubusercontent.com/iProov/android/master/maven/")
           maven("https://raw.githubusercontent.com/iProov/identity/master/maven/")
-          maven("https://raw.githubusercontent.com/iProovOpenSource/waltid-identity/master/maven/")
-          maven("https://maven.waltid.dev/snapshots") 
       }
     }
     ```
@@ -146,7 +144,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
       sourceSets {
           val commonMain by getting {
               dependencies {
-                  implementation("com.iproov.identity:identity:0.3.3")
+                  implementation("com.iproov.identity:identity:0.3.4")
               }
           }
       }
@@ -526,7 +524,7 @@ let summary = wallet.getCredentials() { credentials, error in
 
     for (metadata, failure) in summary.failures {
         // Handle failure.description (e.g. prompt the user to retry)
-    } 
+    }
 
 }
 ```
@@ -1590,56 +1588,136 @@ Each `Claim` has the following properties:
 ## Presenting Credentials
 
 > [!INFO]
-> We are currently migrating our SDK to use OID4VCI & VP so there are 2 ways of presenting credentials (via login requests and presentation requests)
+> We are currently migrating our SDK to use OID4VCI & VP so there are 2 ways of presenting credentials (via login
+> requests and presentation requests)
 
-This section will document the process of presenting credentials via the OID4VP standard that is supported in the SDK. Make sure you're verifier is compatible with the wallet by checking the compatibility matrix below.
+This section will document the process of presenting credentials via the OID4VP standard that is supported in the SDK.
+Make sure you're verifier is compatible with the wallet by checking the compatibility matrix below.
 
 Version of OID4VP Supported: `1.0.0`
 
 ### Client ID verification
 
-| Verification method              |  Prefix                      | Supported        |
-|----------------------------------|------------------------------|------------------|
-| Pre-registered (default)         |  N/A (None)                  | [x]              |
-| X509 SAN DNS                     |  x509_san_dns                | [ ]              |
-| X509 HASH                        |  x509_hash                   | [ ]              |
-| DID                              |  decentralized_identifier    | [ ]              |
-| Verifier Attestation             |  verifier_attestation        | [ ]              |
-| OpenID Federation                |  openid_federation           | [ ]              |
-| redirect_uri                     |  redirect_uri                | [ ]              |
+| Verification method      | Prefix                   | Supported |
+|--------------------------|--------------------------|-----------|
+| Pre-registered (default) | N/A (None)               | [x]       |
+| X509 SAN DNS             | x509_san_dns             | [ ]       |
+| X509 HASH                | x509_hash                | [ ]       |
+| DID                      | decentralized_identifier | [ ]       |
+| Verifier Attestation     | verifier_attestation     | [ ]       |
+| OpenID Federation        | openid_federation        | [ ]       |
+| redirect_uri             | redirect_uri             | [ ]       |
 
 ### Credential Query
 
 We only support `DCQL` (Digital Credential Query Lanaguage) queries in the authorization requests.
 
 > [!TIP]
-> We support adding manadatory credentials for the `org.iso.18013.5.1.mDL` docType so if no claims are queried all claims marked as mandatory in the standard are 'added' / used as the query.
+> We support adding manadatory credentials for the `org.iso.18013.5.1.mDL` docType so if no claims are queried all
+> claims marked as mandatory in the standard are 'added' / used as the query.
 
 ### Response modes
 
-| Response mode              | Supported   | Description                                                                                        |
-|----------------------------|-------------|----------------------------------------------------------------------------------------------------|
-| direct_post                | [x]         | The Verifiable Presentation (VP) is sent in the body of a POST request to the `response_uri`.      |
-| direct_post.jwt            | [x]         | The VP is sent as a JWE in the body of a POST request to the `response_uri`.                       |
-| dc_api                     | [ ]         | The wallet responds via the digital credentials API without encrypting the response.               |
-| dc_api.jwt                 | [ ]         | Same as `dc_api` but the wallet responds with a JWE.                                               |
-| query                      | [ ]         | The VP is sent as a `vp_token` query parameter. The `state` is also returned for CSRF protection.  |
-| fragment                   | [ ]         | The VP is sent as a `vp_token` fragment parameter. The `state` is also returned for CSRF protection. |
+| Response mode   | Supported | Description                                                                                                                                   |
+|-----------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| direct_post     | [x]       | The Verifiable Presentation (VP) is sent in the body of a POST request to the `response_uri`.                                                 |
+| direct_post.jwt | [x]       | The VP is sent as a JWE in the body of a POST request to the `response_uri`.                                                                  |
+| dc_api          | [x]       | The wallet responds via the Digital Credentials API (Android 14+). See [Digital Credentials API (Android)](#digital-credentials-api-android). |
+| dc_api.jwt      | [x]       | Same as `dc_api` but the wallet responds with a JWE (Android 14+). See [Digital Credentials API (Android)](#digital-credentials-api-android). |
+| query           | [ ]       | The VP is sent as a `vp_token` query parameter. The `state` is also returned for CSRF protection.                                             |
+| fragment        | [ ]       | The VP is sent as a `vp_token` fragment parameter. The `state` is also returned for CSRF protection.                                          |
 
 ### Presentation flow
 
-1. A relying party / verifier must present a QR code or provide a deep link which is a URL encoded authorization request.
-2. URL encoded authorization request is passed to the wallet via `wallet.getPresentationRequest(<uri_encoded_authorization_request>)`
-3. The wallet returns a `RespondablePresentationRequest`. The wallet parses the query and exposes this back to the implementer via the `request.query.definition`.
-4. The implementer should call `request.query.execute()` to match the credentials in the wallet, this will return the matches for each credential query.
-5. The implementer should implement some UI to allow the user to perform a selective disclosure over the credentials matched in the query, remembering to honour the claim sets if provided in each credential query. (Examples can be followed in the example-ios or example-android app)
-6. Using the credentials selectively disclosed by the user you need to build a `CredentialSubmission` object containing the submitted credential for each of the credentail queries.
-7. Respond to the `RespondablePresentationRequest` using this `CredentialSubmission` and the wallet will respond to the verifier.
+1. A relying party / verifier must present a QR code or provide a deep link which is a URL encoded authorization
+   request.
+2. URL encoded authorization request is passed to the wallet via
+   `wallet.getPresentationRequest(<uri_encoded_authorization_request>)`
+3. The wallet returns a `RespondablePresentationRequest`. The wallet parses the query and exposes this back to the
+   implementer via the `request.query.definition`.
+4. The implementer should call `request.query.execute()` to match the credentials in the wallet, this will return the
+   matches for each credential query.
+5. The implementer should implement some UI to allow the user to perform a selective disclosure over the credentials
+   matched in the query, remembering to honour the claim sets if provided in each credential query. (Examples can be
+   followed in the example-ios or example-android app)
+6. Using the credentials selectively disclosed by the user you need to build a `CredentialSubmission` object containing
+   the submitted credential for each of the credentail queries.
+7. Respond to the `RespondablePresentationRequest` using this `CredentialSubmission` and the wallet will respond to the
+   verifier.
+
+### Digital Credentials API (Android)
+
+The [Digital Credentials API](https://developer.android.com/identity/digital-credentials) allows browser-initiated
+credential requests to be handled via the Android system credential picker. When a website calls
+`navigator.credentials.get()` with a digital credential request, Android presents matching credentials to the user and
+delegates the response to your wallet app.
+
+#### Requirements
+
+- Android API 34+ (Android 14)
+- Google Play Services with credential manager support
+
+#### Manifest configuration
+
+The integrating app must declare the `CredentialSelectionActivity` in its `AndroidManifest.xml`:
+
+```xml
+
+<activity android:name="com.iproov.identity.CredentialSelectionActivity" android:exported="true">
+    <intent-filter>
+        <action android:name="androidx.identitycredentials.action.GET_CREDENTIALS" />
+        <action android:name="androidx.credentials.registry.provider.action.GET_CREDENTIAL" />
+        <category android:name="android.intent.category.DEFAULT" />
+    </intent-filter>
+</activity>
+```
+
+> [!NOTE]
+> The SDK's own manifest (merged automatically via manifest merging) already declares the
+`IdentityCredentialProviderService` and `credential_provider.xml`. You only need to declare the activity above.
+
+#### Registering credentials
+
+After issuing credentials via OID4VCI, register them with the system credential manager so they appear in the system
+picker. Call this on app startup to ensure all credentials are available for DC API requests:
+
+```kotlin
+wallet.registerAllCredentialsForDCApi()
+```
+
+This retrieves all stored credentials and registers them with the OS credential manager. On platforms that don't support
+DC API (Android < 14, iOS < 26), this is a no-op.
+
+#### Checking availability
+
+You can check whether DC API is supported on the current device:
+
+```kotlin
+if (wallet.isDCApiAvailable()) {
+    // DC API is supported — register credentials
+    wallet.registerAllCredentialsForDCApi()
+}
+```
+
+#### How it works
+
+1. A website calls the Digital Credentials API in the browser via `navigator.credentials.get()`
+2. Android shows the system credential picker with registered credentials
+3. The user selects a credential; Android launches `CredentialSelectionActivity`
+4. The SDK processes the request, builds a VP token, and returns the response to the browser
+
+> [!TIP]
+> `CredentialSelectionActivity` is provided by the SDK and handles the full flow automatically (request parsing,
+> credential matching, VP token construction, response delivery). No custom activity code is needed.
+
+> [!NOTE]
+> iOS 26+ Digital Credentials API support is coming in a future release.
 
 ## Handling login requests
 
 > [!WARNING]
-> Login requests are used to present the legacy credentials, please follow the section Presenting Credentials to present credentials added using the OID4VCI flow.
+> Login requests are used to present the legacy credentials, please follow the section Presenting Credentials to present
+> credentials added using the OID4VCI flow.
 
 There are 5 steps to handling login requests:
 
@@ -2003,20 +2081,25 @@ For the iOS example app, see the `/example-ios` folder. For the Android example 
 
 ### Configuring Key Pair Access Policy
 
-By default, the wallet uses a 'device bound' key pair for signing and another device bound key pair for storage encryption. The default access policies for these key pairs are `DeviceUnlocked`. You can configure the wallet to use a different access policy (e.g. requiring biometrics for example) for signing, by overriding the `signingKeyPairFactory` param in getInstance, or for storage in the `DeviceBoundStorageEngine` class.
+By default, the wallet uses a 'device bound' key pair for signing and another device bound key pair for storage
+encryption. The default access policies for these key pairs are `DeviceUnlocked`. You can configure the wallet to use a
+different access policy (e.g. requiring biometrics for example) for signing, by overriding the `signingKeyPairFactory`
+param in getInstance, or for storage in the `DeviceBoundStorageEngine` class.
 
 The available access policies for iOS are:
 
 - `KeyPairAccessPolicy.DeviceUnlocked` - Requires the device to be unlocked.
 - `KeyPairAccessPolicy.UserPresent` - Requires user presence (e.g. biometrics or passcode).
 - `KeyPairAccessPolicy.AnyBiometrics` - Requires any biometrics enrolled on the device.
-- `KeyPairAccessPolicy.CurrentBiometrics` - Requires the current set of biometrics enrolled on the device (invalidated if new biometrics are added).
+- `KeyPairAccessPolicy.CurrentBiometrics` - Requires the current set of biometrics enrolled on the device (invalidated
+  if new biometrics are added).
 
 The available access policies for Android are:
 
 - `KeyPairAccessPolicy.DeviceUnlocked` - Requires the device to be unlocked.
 - `KeyPairAccessPolicy.AnyBiometric` - Requires any biometrics enrolled on the device.
-- `KeyPairAccessPolicy.CurrentBiometrics` - Requires the current set of biometrics enrolled on the device (invalidated if new biometrics are added).
+- `KeyPairAccessPolicy.CurrentBiometrics` - Requires the current set of biometrics enrolled on the device (invalidated
+  if new biometrics are added).
 
 <details>
 <summary>Koltin</summary>
@@ -2027,11 +2110,11 @@ val accessPolicy = KeyPairAccessPolicy.AnyBiometric(authenticationValidityDurati
 val storageEngine = DeviceBoundStorageEngine(accessPolicy: accessPolicy)
 
 val wallet = WalletFactory.getInstance(
-    baseUrl="https://api.beta.iproov.id",
-    isLoggingEnabled= true,
-    storageEngine=storageEngine,
-    signingKeyPairFactory={
-        AndroidDefaultKeyPair(context, "com.iproov.identity", accessControlPolicy=accessPolicy)
+    baseUrl = "https://api.beta.iproov.id",
+    isLoggingEnabled = true,
+    storageEngine = storageEngine,
+    signingKeyPairFactory = {
+        AndroidDefaultKeyPair(context, "com.iproov.identity", accessControlPolicy = accessPolicy)
     }
 )
 ```

@@ -1,5 +1,5 @@
 //
-//  PresentationSheet.swift
+//  ScanQrCodeSheet.swift
 //  iProov Identity Sample App
 //
 //  Created by Josh Everett on 27/01/2025.
@@ -7,89 +7,122 @@
 
 import Foundation
 import SwiftUI
-import identity
 import AVFoundation
 import Vision
 
-
 struct ScanQrCodeSheet: View {
-
     let dismiss: () -> Void
     let onQrScanned: (_ qr: String) -> Void
-        
+
     var body: some View {
         ScannerView(onQrScanned: onQrScanned)
+            .ignoresSafeArea()
     }
 }
 
-@MainActor
 struct ScannerView: UIViewControllerRepresentable {
-
     let onQrScanned: (_ qr: String) -> Void
-    
-    let captureSession = AVCaptureSession()
-    
-    func makeUIViewController(context: Context) -> UIViewController {
-        let viewController = UIViewController()
-        
+
+    func makeUIViewController(context: Context) -> QRScannerViewController {
+        let controller = QRScannerViewController()
+        controller.onQrScanned = { payload in
+            Task { @MainActor in
+                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+                onQrScanned(payload)
+            }
+        }
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: QRScannerViewController, context: Context) {}
+}
+
+/// UIViewController that manages the camera capture session lifecycle.
+final class QRScannerViewController: UIViewController {
+    var onQrScanned: ((String) -> Void)?
+
+    private let captureSession = AVCaptureSession()
+    private var previewLayer: AVCaptureVideoPreviewLayer?
+    private let videoQueue = DispatchQueue(label: "com.iproov.identity.qrscanner")
+    private var hasScanned = false
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupCamera()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hasScanned = false
+        startScanning()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopScanning()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        previewLayer?.frame = view.bounds
+    }
+
+    private func setupCamera() {
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video),
               let videoInput = try? AVCaptureDeviceInput(device: videoCaptureDevice),
-              captureSession.canAddInput(videoInput) else { return viewController }
-        
+              captureSession.canAddInput(videoInput) else {
+            return
+        }
+
         captureSession.addInput(videoInput)
-        
+
         let videoOutput = AVCaptureVideoDataOutput()
-        
         if captureSession.canAddOutput(videoOutput) {
-            videoOutput.setSampleBufferDelegate(context.coordinator, queue: DispatchQueue(label: "videoQueue"))
+            videoOutput.setSampleBufferDelegate(self, queue: videoQueue)
             captureSession.addOutput(videoOutput)
         }
-        
-        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = viewController.view.bounds
-        previewLayer.videoGravity = .resizeAspectFill
-        viewController.view.layer.addSublayer(previewLayer)
-        
-        captureSession.startRunning()
-        
-        return viewController
+
+        let preview = AVCaptureVideoPreviewLayer(session: captureSession)
+        preview.videoGravity = .resizeAspectFill
+        preview.frame = view.bounds
+        view.layer.addSublayer(preview)
+        previewLayer = preview
     }
-    
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    class Coordinator: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
-            var parent: ScannerView
-            
-            init(_ parent: ScannerView) {
-                self.parent = parent
-            }
-            
-            func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-                guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-                self.detectBarcode(in: pixelBuffer)
-            }
-            
-            func detectBarcode(in pixelBuffer: CVPixelBuffer) {
-                let request = VNDetectBarcodesRequest()
-                let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up, options: [:])
-                
-                do {
-                    try handler.perform([request])
-                    if let results = request.results, let payload = results.first?.payloadStringValue {
-                        Task {
-                            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-                            await self.parent.onQrScanned(payload)
-                        }
-                        // Optionally, stop scanning after first detection
-                         self.parent.captureSession.stopRunning()
-                    }
-                } catch {
-                    print("Barcode detection failed: \\(error)")
-                }
-            }
+
+    private func startScanning() {
+        guard !captureSession.isRunning else { return }
+        videoQueue.async { [weak self] in
+            self?.captureSession.startRunning()
         }
+    }
+
+    private func stopScanning() {
+        guard captureSession.isRunning else { return }
+        videoQueue.async { [weak self] in
+            self?.captureSession.stopRunning()
+        }
+    }
+}
+
+extension QRScannerViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard !hasScanned,
+              let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+
+        let request = VNDetectBarcodesRequest()
+        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up, options: [:])
+
+        do {
+            try handler.perform([request])
+            if let payload = request.results?.first?.payloadStringValue {
+                hasScanned = true
+                captureSession.stopRunning()
+                onQrScanned?(payload)
+            }
+        } catch {
+            print("Barcode detection failed: \(error)")
+        }
+    }
 }

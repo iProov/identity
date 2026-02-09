@@ -217,6 +217,13 @@ private struct StoredCredentialDetailView: View {
                         MDocClaimsView(nameSpaces: mdoc.nameSpaces)
                     }
                 }
+            } else if let sdjwt = item.credential as? SdJwtVcCredential {
+                Section("SDJWT-VC") {
+                    DetailRow(label: "Doc Type", value: sdjwt.vct)
+                    NavigationLink("View Raw Claims") {
+                        SDJwtClaimsView(nameSpaces: sdjwt.body)
+                    }
+                }
             }
 
             Section("Raw Credential") {
@@ -351,6 +358,33 @@ private struct MDocClaimsView: View {
         .navigationTitle("Claims")
     }
 }
+
+private struct SDJwtClaimsView: View {
+    let nameSpaces: [String: Any]
+    
+
+    var body: some View {
+
+        List {
+            ForEach(nameSpaces.keys.sorted(), id: \.self) { key in
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(key)
+                        .font(.headline)
+                    
+                    let text = nameSpaces[key].map { String(describing: $0) } ?? "null"
+                    Text(text)
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .textSelection(.enabled)
+                    
+                }
+                .padding(.vertical, 4)
+            }
+        }
+        .navigationTitle("Claims")
+    }
+}
+
 
 // MARK: - Legacy Credentials
 

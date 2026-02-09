@@ -143,6 +143,34 @@ class AddDocumentReferenceViewModel: ObservableObject {
         }
     }
 
+    func submitTransactionCode(_ code: String) {
+        guard let sheet = offerSheet,
+              case .transactionCodeRequired(let challenge) = sheet.status else { return }
+
+        var submitting = sheet
+        submitting.status = .submitting
+        offerSheet = submitting
+
+        let sheetId = sheet.id
+
+        Task {
+            do {
+                let summary = try await challenge.respond(txCode: code)
+                await MainActor.run {
+                    self.updateOfferSheet(id: sheetId) { state in
+                        state.status = .completed(summary: summary)
+                    }
+                }
+            } catch {
+                await MainActor.run {
+                    self.updateOfferSheet(id: sheetId) { state in
+                        state.status = .failed(message: error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+
     func dismissOfferSheet() {
         let shouldComplete: Bool
         if case .completed = offerSheet?.status {
@@ -176,8 +204,7 @@ class AddDocumentReferenceViewModel: ObservableObject {
         }
 
         if let txRequired = result as? IssuanceResultTransactionCodeRequired {
-            let description = txRequired.challenge.details.description_ ?? "A transaction code is required to complete issuance."
-            state.status = .transactionCodeRequired(description: description)
+            state.status = .transactionCodeRequired(challenge: txRequired.challenge)
             return
         }
 

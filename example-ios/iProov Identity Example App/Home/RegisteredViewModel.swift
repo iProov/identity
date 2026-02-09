@@ -22,23 +22,27 @@ class RegisteredViewModel: ObservableObject {
     func loadCredentials() {
         isLoading = true
         Task {
-            do {
-                let summary = try await wallet.getCredentials()
-                let legacy = try await wallet.getLegacyCredentials()
-
-                await MainActor.run {
-                    credentialSummary = summary
-                    legacyCredentials = legacy
-                    isLoading = false
-                }
-            } catch {
-                await MainActor.run {
-                    alert = AlertDialog(title: "Failed to load credentials", message: error.localizedDescription)
-                    credentialSummary = CredentialSummary(credentials: [:], failures: [:])
-                    isLoading = false
-                }
-            }
+            await performLoadCredentials()
         }
+    }
+
+    /// Async version for use with SwiftUI's refreshable modifier.
+    func loadCredentialsAsync() async {
+        isLoading = true
+        await performLoadCredentials()
+    }
+
+    private func performLoadCredentials() async {
+        do {
+            let summary = try await wallet.getCredentials()
+            let legacy = try await wallet.getLegacyCredentials()
+            credentialSummary = summary
+            legacyCredentials = legacy
+        } catch {
+            alert = AlertDialog(title: "Failed to load credentials", message: error.localizedDescription)
+            credentialSummary = CredentialSummary(credentials: [:], failures: [:])
+        }
+        isLoading = false
     }
 
     /// Deletes a specific credential from the wallet and reloads the list.

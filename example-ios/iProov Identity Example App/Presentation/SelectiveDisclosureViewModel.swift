@@ -65,7 +65,7 @@ class SelectiveDisclosureViewModel: ObservableObject{
 
     // Determines if all essential claims are present in the claimsToShare dictionary
     var canShare: Bool {
-       loginRequest.claims.filter { $0.isEssential }.allSatisfy { claimsToShare[$0.name] != nil }
+        loginRequest.claims.filter { $0.isEssential && !$0.name.contains("_present")}.allSatisfy { claimsToShare[$0.name] != nil }
     }
    
     // Returns an array of requested claims that are essential but not yet included in claimsToShare

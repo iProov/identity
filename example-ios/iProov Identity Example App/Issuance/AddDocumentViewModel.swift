@@ -16,14 +16,53 @@ class AddDocumentViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var failure: AlertDialog? = nil
     @Published var offerSheet: CredentialOfferSheetState? = nil
-    
+    @Published var isScanningCredentialOffer = false
+
     private let wallet = WalletFactory.shared.instance!
     private let loginRequest: LoginRequest?
     private let completion: () -> Void
-    
+
     init(loginRequest: LoginRequest?, completion: @escaping () -> Void) {
         self.loginRequest = loginRequest
         self.completion = completion
+    }
+
+    // MARK: - OID4VCI Credential Offer
+
+    /// Handles a scanned OID4VCI credential offer QR code.
+    /// LIMITATION: Only supports `openid-credential-offer://` and `haip-vci://` URI scheme.
+    /// Other credential offer formats (e.g., deep links) are not supported.
+    func handleCredentialOfferQrCode(_ code: String) {
+        isScanningCredentialOffer = false
+
+        guard let url = URL(string: code),
+              url.scheme?.lowercased() == "openid-credential-offer" || url.scheme?.lowercased() == "haip-vci" else {
+            failure = AlertDialog(
+                title: "Invalid QR Code",
+                message: "The scanned QR code is not a valid OID4VCI credential offer. Expected scheme: openid-credential-offer://"
+            )
+            return
+        }
+
+        addCredentialWithOffer(uri: code)
+    }
+
+    /// Initiates the OID4VCI credential offer flow with the given URI.
+    private func addCredentialWithOffer(uri: String) {
+        isLoading = true
+        Task {
+            do {
+                let offer = try await wallet.addCredentialWithOffer(uri: uri)
+                isLoading = false
+                presentOffer(offer)
+            } catch {
+                isLoading = false
+                failure = AlertDialog(
+                    title: "Failed to resolve credential offer",
+                    message: error.localizedDescription
+                )
+            }
+        }
     }
     
     /// Adds a pre-defined demo MRTD credential to the wallet.
@@ -160,6 +199,34 @@ class AddDocumentViewModel: ObservableObject {
         }
     }
 
+    func submitTransactionCode(_ code: String) {
+        guard let sheet = offerSheet,
+              case .transactionCodeRequired(let challenge) = sheet.status else { return }
+
+        var submitting = sheet
+        submitting.status = .submitting
+        offerSheet = submitting
+
+        let sheetId = sheet.id
+
+        Task {
+            do {
+                let summary = try await challenge.respond(txCode: code)
+                await MainActor.run {
+                    self.updateOfferSheet(id: sheetId) { state in
+                        state.status = .completed(summary: summary)
+                    }
+                }
+            } catch {
+                await MainActor.run {
+                    self.updateOfferSheet(id: sheetId) { state in
+                        state.status = .failed(message: error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+
     func dismissOfferSheet() {
         let shouldComplete: Bool
         if case .completed = offerSheet?.status {
@@ -193,8 +260,7 @@ class AddDocumentViewModel: ObservableObject {
         }
 
         if let txRequired = result as? IssuanceResultTransactionCodeRequired {
-            let description = txRequired.challenge.details.description_ ?? "A transaction code is required to complete issuance."
-            state.status = .transactionCodeRequired(description: description)
+            state.status = .transactionCodeRequired(challenge: txRequired.challenge)
             return
         }
 

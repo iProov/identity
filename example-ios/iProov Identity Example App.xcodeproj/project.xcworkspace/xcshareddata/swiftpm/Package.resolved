@@ -1,13 +1,13 @@
 {
-  "originHash" : "5241873169bbcd126fc7dcb8a9377e5b4b647863f79d7d7e5645d49decb1f604",
+  "originHash" : "891f39f6596f5fa65b151f0520ba2a222b6205857d2c32201b0dad50ae2ce1b5",
   "pins" : [
     {
       "identity" : "ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/iProov/ios",
       "state" : {
-        "revision" : "150757800c7020d088c48dc850766662bda4474b",
-        "version" : "12.4.1"
+        "revision" : "1715e64ba336a2b154f5fd6a4795442a8dae4a5a",
+        "version" : "13.1.0"
       }
     },
     {

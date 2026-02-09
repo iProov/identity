@@ -41,6 +41,7 @@ struct AddDocumentReferenceView: View {
                     state: sheet,
                     onToggleSelection: viewModel.toggleCredentialSelection,
                     onConfirm: viewModel.confirmCredentialSelection,
+                    onSubmitTransactionCode: viewModel.submitTransactionCode,
                     onDismiss: viewModel.dismissOfferSheet
                 )
                 .presentationDetents([.medium, .large])

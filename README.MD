@@ -1,4 +1,4 @@
-# iProov Identity SDK v0.3.4
+# iProov Identity SDK v0.3.5
 
 The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform
 app.
@@ -52,10 +52,10 @@ as a manual process.
 Please contact [support@iproov.com](mailto:support@iproov.com) with the following information:
 
 - For iOS apps:
-  - Your bundle (app) ID.
+    - Your bundle (app) ID.
 - For Android apps:
-  - Your Android application ID.
-  - The fingerprint of your Android
+    - Your Android application ID.
+    - The fingerprint of your Android
       app [signing key certificate](https://play.google.com/console/developers/app/keymanagement). (For further details,
       see [here](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en-GB#:~:text=signing%20to%20continue.-,Step%203,-%3A%20Register%20your%20app)).
 
@@ -84,9 +84,9 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
    > **Note**: Ensure you add the .xcframework file, rather than the .framework file.
 
-    1. Add [JOSESwift](https://github.com/airsidemobile/JOSESwift) as a dependency
-    2. Under the Embed column, ensure Embed & Sign is set.
-    3. Follow installation instructions to add the iProov SDK to your app [here](https://github.com/iProov/iOS)
+    5. Add [JOSESwift](https://github.com/airsidemobile/JOSESwift) as a dependency
+    6. Under the Embed column, ensure Embed & Sign is set.
+    7. Follow installation instructions to add the iProov SDK to your app [here](https://github.com/iProov/iOS)
 
     </details>
 
@@ -100,6 +100,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
       repositories {
           mavenCentral()
           maven("https://raw.githubusercontent.com/iProov/android/master/maven/")
+          maven("https://raw.githubusercontent.com/iProov/kotlin-multiplatform/master/maven/")
           maven("https://raw.githubusercontent.com/iProov/identity/master/maven/")
       }
     }
@@ -109,7 +110,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     dependencies {
-      implementation("com.iproov.identity:identity-android:0.3.4")
+      implementation("com.iproov.identity:identity-android:0.3.5")
       implementation("com.iproov.sdk:iproov:<latest-version>")
     }
     ```
@@ -144,7 +145,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
       sourceSets {
           val commonMain by getting {
               dependencies {
-                  implementation("com.iproov.identity:identity:0.3.4")
+                  implementation("com.iproov.identity:identity:0.3.5")
               }
           }
       }
@@ -186,7 +187,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
    You could also consider adding `android:allowBackup="false"`, however this will prevent **all** data from your app
    being backed up.
 
-    1. Add the following contents to `res/xml/backup_rules.xml` (for Android 11 and below):
+    2. Add the following contents to `res/xml/backup_rules.xml` (for Android 11 and below):
 
         ```xml
         <full-backup-content>
@@ -194,7 +195,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
         </full-backup-content>
         ```
 
-    2. Add the following contents to `res/xml/data_extraction_rules.xml` (for Android 12 and above):
+    3. Add the following contents to `res/xml/data_extraction_rules.xml` (for Android 12 and above):
 
         ```xml
         <data-extraction-rules>
@@ -240,7 +241,7 @@ You can get a reference to the wallet as follows (in this case, pointing to the 
 <summary>Kotlin</summary>
 
 ```kotlin
-val wallet = WalletFactory.getInstance(baseUrl = "https://api.beta-eu.iproov.me")
+val wallet = WalletFactory.getInstance(baseUrl = "https://api.beta-eu.iproov.id")
 ```
 
 </details>
@@ -249,7 +250,7 @@ val wallet = WalletFactory.getInstance(baseUrl = "https://api.beta-eu.iproov.me"
 <summary>Swift</summary>
 
 ```swift
-let wallet = WalletFactory.shared.getInstance(baseUrl: "https://api.beta-eu.iproov.me", isLoggingEnabled: true)
+let wallet = WalletFactory.shared.getInstance(baseUrl: "https://api.beta-eu.iproov.id", isLoggingEnabled: true)
 ```
 
 </details>
@@ -648,6 +649,95 @@ if let immediate = result as? IssuanceResultImmediate {
 > `TransactionCodeChallenge.details` describes how to prompt the user (numeric vs text, length, optional description).
 > Both document and face verification flows surface `RespondableCredentialOffer` objects in their completion callbacks—
 > see the sections below for integration points.
+
+### Authorization code flow
+
+Some issuers require the user to authenticate in a browser before credentials can be issued (the **authorization code**
+grant). Check `offer.availableGrants` to see which flows the issuer supports:
+
+- `AvailableGrant.PreAuthorizedCode` — use `offer.accept(credentials)`
+- `AvailableGrant.AuthorizationCode` — use `offer.authorize(credentials)`
+
+When you call `authorize()`, the SDK returns `IssuanceResult.AuthorizationRequired` containing an `authorizationUrl`.
+Open this URL in a browser (Custom Tab on Android, `ASWebAuthenticationSession` on iOS). After the user authenticates,
+the issuer redirects back to your app with an authorization code. Extract the code and pass it to `respond()`.
+
+<details>
+<summary>Kotlin</summary>
+
+```kotlin
+val offer = wallet.addCredentialWithOffer(uri)
+
+// Check which grant types are available
+val hasAuthCode = offer.availableGrants.any { it is AvailableGrant.AuthorizationCode }
+
+val issuance = if (hasAuthCode) {
+    offer.authorize(offer.credentials)
+} else {
+    offer.accept(offer.credentials)
+}
+
+when (issuance) {
+    is IssuanceResult.AuthorizationRequired -> {
+        // Open issuance.authorizationUrl in a Custom Tab or browser
+        // After redirect, extract the authorization code from the callback URI
+        val authCode = extractAuthCodeFromRedirect(callbackUri)
+        val summary = issuance.respond(authCode)
+        // Process summary.credentialsAdded / summary.errors
+    }
+    // ... handle other IssuanceResult types as shown above
+}
+```
+
+</details>
+
+<details>
+<summary>Swift</summary>
+
+```swift
+let offer = try await wallet.addCredentialWithOffer(uri: offerUri)
+
+let hasAuthCode = (offer.availableGrants as? [AvailableGrant] ?? [])
+    .contains {
+        $0 is AvailableGrantAuthorizationCode
+    }
+
+let result: IssuanceResult
+if hasAuthCode {
+    result = try await offer.authorize(credentials: offer.credentials as? [CredentialDescriptor] ?? [])
+} else {
+    result = try await offer.accept(credentials: offer.credentials as? [CredentialDescriptor] ?? [])
+}
+
+if let authRequired = result as? IssuanceResultAuthorizationRequired {
+    // Present authRequired.authorizationUrl in ASWebAuthenticationSession
+    // Extract authorization code from the callback
+    let summary = try await authRequired.respond(authorizationCode: authCode)
+    // Process summary
+}
+```
+
+</details>
+
+> [!IMPORTANT]
+> **Callback URL scheme setup:** The authorization code flow redirects back to your app using the
+> `com.iproov.identity://callback` URL scheme. You must register this scheme in your app:
+> - **iOS:** Add `com.iproov.identity` to `CFBundleURLSchemes` in your `Info.plist`
+> - **Android:** Add an intent filter for `com.iproov.identity://callback` in your `AndroidManifest.xml`
+
+### Known limitations
+
+The following features are not yet fully implemented. They are documented here and in the relevant
+code entry points so SDK consumers are aware of the current scope:
+
+- **Deferred credential issuance** is not supported. If an issuer returns a deferred credential,
+  it will be reported as an error in `IssuanceSummary.errors` with code `deferred_not_supported`.
+- **iOS App Attestation** for Proof of Possession is not yet implemented. The SDK passes `nil` for
+  the `clientAttestationPoPBuilder` parameter.
+- **Callback URI** is currently hardcoded to `com.iproov.identity://callback` and cannot be
+  customized per-app.
+- **Trusted authority matching** in DCQL queries compares against the issuer name. A full trust
+  store with certificate chain verification is planned but not yet implemented.
 
 ## Demo identity credentials
 

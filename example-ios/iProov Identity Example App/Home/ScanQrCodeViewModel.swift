@@ -28,7 +28,7 @@ class ScanQRCodeViewModel: ObservableObject {
     }
 
     /// Handles the scanned QR code content.
-    func handleQrCode(code: String) {
+    func handleQrCode(code: String, onCredentialOfferScanned: (String) -> Void) {
         guard let normalized = normalizedQrCode(code),
               let url = URL(string: normalized) else {
             alert = AlertDialog(title: "Invalid QR Code", message: "The scanned QR code does not contain a valid URL.")
@@ -43,10 +43,15 @@ class ScanQRCodeViewModel: ObservableObject {
         switch scheme {
         case "https":
             handleHttpsRequest(url)
-        case "openid4vp":
-            handleOpenId4VpRequest(normalized)
         default:
-            alert = AlertDialog(title: "Unsupported QR Code", message: "The scanned QR code uses an unsupported protocol.")
+            switch OpenIdSchemeSupport.route(for: url) {
+            case .credentialOffer:
+                onCredentialOfferScanned(normalized)
+            case .presentation:
+                handleOpenId4VpRequest(normalized)
+            case nil:
+                alert = AlertDialog(title: "Unsupported QR Code", message: "The scanned QR code uses an unsupported protocol.")
+            }
         }
     }
 
@@ -154,7 +159,10 @@ class ScanQRCodeViewModel: ObservableObject {
         let trimmed = code.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return nil }
 
-        guard trimmed.lowercased().hasPrefix("openid4vp://"),
+        let vpSchemePrefixes = ["openid4vp://", "haip-vc://", "haip-vp://", "eudi-openid4vp://"]
+        let lowercased = trimmed.lowercased()
+
+        guard vpSchemePrefixes.contains(where: { lowercased.hasPrefix($0) }),
               let requestUriRange = trimmed.range(of: "request_uri=") else {
             return trimmed
         }

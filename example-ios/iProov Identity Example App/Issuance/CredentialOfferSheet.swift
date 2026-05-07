@@ -1,4 +1,5 @@
 import SwiftUI
+import AuthenticationServices
 import identity
 
 // MARK: - Display Properties Helpers
@@ -376,13 +377,13 @@ struct CredentialOfferSheet: View {
         switch state.status {
         case .completed(let summary):
             completedContent(summary: summary)
-            
+
         case .failed(let message):
             failedContent(message: message)
-            
+
         case .transactionCodeRequired(let challenge):
             transactionCodeContent(challenge: challenge)
-            
+
         case .idle, .submitting:
             selectionContent
         }
@@ -500,6 +501,23 @@ struct CredentialOfferSheet: View {
             onSubmit: onSubmitTransactionCode,
             onCancel: onDismiss
         )
+    }
+
+}
+
+/// Provides a presentation anchor for ASWebAuthenticationSession.
+class WebAuthContextProvider: NSObject, ASWebAuthenticationPresentationContextProviding {
+    static let shared = WebAuthContextProvider()
+
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        guard let scene = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene })
+            .first(where: { $0.activationState == .foregroundActive }),
+              let window = scene.keyWindow ?? scene.windows.first else {
+            print("[AuthBrowser] No foreground window scene found for presentation anchor")
+            return ASPresentationAnchor()
+        }
+        return window
     }
 }
 

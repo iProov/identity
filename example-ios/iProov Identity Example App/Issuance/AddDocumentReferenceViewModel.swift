@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import identity
+import AuthenticationServices
 
 @MainActor
 class AddDocumentReferenceViewModel: ObservableObject {
@@ -17,8 +18,8 @@ class AddDocumentReferenceViewModel: ObservableObject {
     @Published var offerSheet: CredentialOfferSheetState? = nil
 
     private let completion: () -> Void
-
     private let wallet = WalletFactory.shared.instance!
+    private var activeAuthSession: ASWebAuthenticationSession?
 
     init(completion: @escaping () -> Void) {
         self.completion = completion
@@ -34,7 +35,9 @@ class AddDocumentReferenceViewModel: ObservableObject {
                 reference: reference,
                 demoReferencePhoto: nil,
                 loginRequest: nil,
-                options: nil
+                options: nil,
+                addLegacyCredential: false,
+                
             )
 
             events.collect(
@@ -124,24 +127,117 @@ class AddDocumentReferenceViewModel: ObservableObject {
 
         let offer = sheet.offer
         let sheetId = sheet.id
+        let hasPreAuth = offer.availableGrants.contains { $0 is AvailableGrant.PreAuthorizedCode }
+        let hasAuthCode = offer.availableGrants.contains { $0 is AvailableGrant.AuthorizationCode }
+        let preferAuthCode = AppSettings.shared.preferAuthorizationCode
+        let useAuthCode = (preferAuthCode && hasAuthCode) || !hasPreAuth
 
         Task {
             do {
-                let result = try await offer.accept(credentials: selected)
-                await MainActor.run {
-                    self.updateOfferSheet(id: sheetId) { state in
-                        self.apply(result: result, to: &state)
-                    }
+                let result = useAuthCode
+                    ? try await offer.authorize(credentials: selected)
+                    : try await offer.accept(credentials: selected)
+
+                // Authorization code flow: dismiss sheet and launch browser externally
+                if let authRequired = result as? IssuanceResultAuthorizationRequired {
+                    await handleAuthorizationRequired(authRequired, offer: offer)
+                    return
+                }
+
+                self.updateOfferSheet(id: sheetId) { state in
+                    self.apply(result: result, to: &state)
                 }
             } catch {
-                await MainActor.run {
-                    self.updateOfferSheet(id: sheetId) { state in
-                        state.status = .failed(message: error.localizedDescription)
-                    }
+                self.updateOfferSheet(id: sheetId) { state in
+                    state.status = .failed(message: error.localizedDescription)
                 }
             }
         }
     }
+
+    // MARK: - Authorization Code Flow
+
+    private func handleAuthorizationRequired(
+        _ authRequired: IssuanceResultAuthorizationRequired,
+        offer: RespondableCredentialOffer
+    ) async {
+        guard let url = URL(string: authRequired.authorizationUrl) else {
+            alert = AlertDialog(title: "Authorization Error", message: "Invalid authorization URL")
+            return
+        }
+
+        // Dismiss the sheet first - ASWebAuthenticationSession can't present over it
+        offerSheet = nil
+        isLoading = true
+
+        // Wait for sheet dismissal animation to complete
+        try? await Task.sleep(nanoseconds: 600_000_000)
+
+        do {
+            let code = try await launchAuthSession(url: url)
+            isLoading = true
+            let summary = try await authRequired.respond(authorizationCode: code)
+            isLoading = false
+
+            // Re-present the offer sheet with completed status
+            var completedSheet = CredentialOfferSheetState(offer: offer)
+            completedSheet.status = .completed(summary: summary)
+            offerSheet = completedSheet
+        } catch is CancellationError {
+            isLoading = false
+        } catch {
+            isLoading = false
+            alert = AlertDialog(title: "Authorization Failed", message: error.localizedDescription)
+        }
+    }
+
+    private func launchAuthSession(url: URL) async throws -> String {
+        defer { activeAuthSession = nil }
+
+        return try await withCheckedThrowingContinuation { continuation in
+            let session = ASWebAuthenticationSession(
+                url: url,
+                callbackURLScheme: "com.iproov.identity"
+            ) { callbackURL, error in
+                if let error = error as? ASWebAuthenticationSessionError,
+                   error.code == .canceledLogin {
+                    continuation.resume(throwing: CancellationError())
+                    return
+                }
+
+                if let error = error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+
+                guard let callbackURL = callbackURL,
+                      let components = URLComponents(url: callbackURL, resolvingAgainstBaseURL: false),
+                      let code = components.queryItems?.first(where: { $0.name == "code" })?.value else {
+                    continuation.resume(throwing: NSError(
+                        domain: "AuthError", code: 1,
+                        userInfo: [NSLocalizedDescriptionKey: "No authorization code received"]
+                    ))
+                    return
+                }
+
+                continuation.resume(returning: code)
+            }
+
+            session.presentationContextProvider = WebAuthContextProvider.shared
+            session.prefersEphemeralWebBrowserSession = false
+            activeAuthSession = session
+
+            if !session.start() {
+                activeAuthSession = nil
+                continuation.resume(throwing: NSError(
+                    domain: "AuthError", code: 2,
+                    userInfo: [NSLocalizedDescriptionKey: "Failed to start authorization browser"]
+                ))
+            }
+        }
+    }
+
+    // MARK: - Transaction Code Flow
 
     func submitTransactionCode(_ code: String) {
         guard let sheet = offerSheet,
@@ -156,16 +252,12 @@ class AddDocumentReferenceViewModel: ObservableObject {
         Task {
             do {
                 let summary = try await challenge.respond(txCode: code)
-                await MainActor.run {
-                    self.updateOfferSheet(id: sheetId) { state in
-                        state.status = .completed(summary: summary)
-                    }
+                self.updateOfferSheet(id: sheetId) { state in
+                    state.status = .completed(summary: summary)
                 }
             } catch {
-                await MainActor.run {
-                    self.updateOfferSheet(id: sheetId) { state in
-                        state.status = .failed(message: error.localizedDescription)
-                    }
+                self.updateOfferSheet(id: sheetId) { state in
+                    state.status = .failed(message: error.localizedDescription)
                 }
             }
         }
@@ -208,6 +300,7 @@ class AddDocumentReferenceViewModel: ObservableObject {
             return
         }
 
+        // AuthorizationRequired is handled before reaching apply()
         state.status = .failed(message: "Unsupported issuance result")
     }
 }

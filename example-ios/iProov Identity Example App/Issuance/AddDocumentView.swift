@@ -16,9 +16,20 @@ struct AddDocumentView: View {
     @Binding var path: NavigationPath
     @State private var isScanningMrz = false
     
-    init(path: Binding<NavigationPath>, loginRequest: LoginRequest?, completion: @escaping () -> Void) {
+    init(
+        path: Binding<NavigationPath>,
+        loginRequest: LoginRequest?,
+        initialCredentialOfferUri: String? = nil,
+        completion: @escaping () -> Void
+    ) {
         _path = path
-        _viewModel = StateObject(wrappedValue: AddDocumentViewModel(loginRequest: loginRequest, completion: completion))
+        _viewModel = StateObject(
+            wrappedValue: AddDocumentViewModel(
+                loginRequest: loginRequest,
+                initialCredentialOfferUri: initialCredentialOfferUri,
+                completion: completion
+            )
+        )
     }
     
     var body: some View {
@@ -43,6 +54,9 @@ struct AddDocumentView: View {
         .navigationTitle("Add Document")
         .navigationBarTitleDisplayMode(.large)
         .navigationBarBackButtonHidden(viewModel.isLoading)
+        .onAppear {
+            viewModel.handleAppear()
+        }
         .sheet(isPresented: $isScanningMrz) {
             MrzCaptureView { result in
                 isScanningMrz = false
@@ -62,14 +76,16 @@ struct AddDocumentView: View {
                 dismissButton: .default(Text("OK"))
             )
         }
-        .sheet(item: $viewModel.offerSheet) { sheet in
-            CredentialOfferSheet(
-                state: sheet,
-                onToggleSelection: viewModel.toggleCredentialSelection,
-                onConfirm: viewModel.confirmCredentialSelection,
-                onSubmitTransactionCode: viewModel.submitTransactionCode,
-                onDismiss: viewModel.dismissOfferSheet
-            )
+        .sheet(item: $viewModel.offerSheet, onDismiss: viewModel.onOfferSheetDismissed) { _ in
+            if let currentState = viewModel.offerSheet {
+                CredentialOfferSheet(
+                    state: currentState,
+                    onToggleSelection: viewModel.toggleCredentialSelection,
+                    onConfirm: viewModel.confirmCredentialSelection,
+                    onSubmitTransactionCode: viewModel.submitTransactionCode,
+                    onDismiss: viewModel.dismissOfferSheet
+                )
+            }
         }
         .interactiveDismissDisabled(viewModel.isLoading)
     }

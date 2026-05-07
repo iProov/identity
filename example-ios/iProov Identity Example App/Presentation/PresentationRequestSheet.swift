@@ -4,7 +4,6 @@ import identity
 struct PresentationRequestSheet: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var viewModel: PresentationRequestViewModel
-    @State private var isShowingBlockers = false
 
     let onDismiss: () -> Void
     let onSuccess: (PresentationOutcomeSuccess) -> Void
@@ -25,29 +24,36 @@ struct PresentationRequestSheet: View {
                 VStack(alignment: .leading, spacing: 16) {
                     HeaderView(verifier: viewModel.request.verifier)
 
-                    if viewModel.isLoading && viewModel.availableQueries.isEmpty {
+                    if viewModel.isLoading && viewModel.matchableQueries.isEmpty {
                         ProgressView()
                             .frame(maxWidth: .infinity, alignment: .center)
                     }
 
-                    ForEach(viewModel.availableQueries) { query in
+                    ForEach(viewModel.matchableQueries) { query in
                         QueryCard(
                             query: query,
-                            matches: viewModel.matches(for: query),
+                            matches: viewModel.matchingCredentials(for: query),
                             viewModel: viewModel
                         )
                     }
 
-                    if viewModel.availableQueries.isEmpty && !viewModel.isLoading {
-                        Text("No credentials in this wallet satisfy the verifier’s request.")
+                    if viewModel.matchableQueries.isEmpty && !viewModel.isLoading {
+                        Text(
+                            viewModel.canShare
+                                ? "No optional credentials in this wallet matched the verifier's request. You can continue without sharing them."
+                                : "No credentials in this wallet satisfy the verifier's request."
+                        )
                             .foregroundStyle(.secondary)
+                    }
+
+                    if !viewModel.shareBlockers.isEmpty {
+                        ShareBlockersCard(reasons: viewModel.shareBlockers)
                     }
 
                     ShareBar(
                         canShare: viewModel.canShare,
                         isLoading: viewModel.isLoading,
-                        share: { Task { await viewModel.share() } },
-                        explain: { isShowingBlockers = true }
+                        share: { Task { await viewModel.share() } }
                     )
                 }
                 .padding()
@@ -64,33 +70,13 @@ struct PresentationRequestSheet: View {
             Alert(
                 title: Text(alert.title),
                 message: Text(alert.message),
-                dismissButton: .default(Text("OK"), action: viewModel.clearAlert)
+                dismissButton: .default(Text("OK"))
             )
-        }
-        .sheet(isPresented: $isShowingBlockers) {
-            NavigationStack {
-                List {
-                    if viewModel.shareBlockers.isEmpty {
-                        Text("Sharing is available once the request has loaded.")
-                    } else {
-                        ForEach(viewModel.shareBlockers, id: \.self) { reason in
-                            Text(reason)
-                                .padding(.vertical, 4)
-                        }
-                    }
-                }
-                .navigationTitle("Why sharing is disabled")
-                .toolbar {
-                    ToolbarItem(placement: .confirmationAction) {
-                        Button("Done") { isShowingBlockers = false }
-                    }
-                }
-            }
         }
         .onChange(of: viewModel.successOutcome) { outcome in
             guard let outcome else { return }
             onSuccess(outcome)
-            viewModel.clearSuccess()
+            viewModel.successOutcome = nil
             dismiss()
             onDismiss()
         }
@@ -126,8 +112,14 @@ private struct QueryCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(query.id.isEmpty ? "Requested information" : query.id)
-                .font(.headline)
+            HStack {
+                Text(viewModel.queryTitle(query))
+                    .font(.headline)
+                if !viewModel.isQueryRequired(query) {
+                    OptionalBadge()
+                }
+                Spacer()
+            }
 
             if matches.isEmpty {
                 Text("No credentials match this requirement.")
@@ -136,13 +128,13 @@ private struct QueryCard: View {
                 ForEach(matches) { match in
                     CredentialOptionRow(
                         match: match,
-                        isSelected: viewModel.selectedCredentials[query] == match,
+                        isSelected: viewModel.selections[query]?.match == match,
                         select: { viewModel.select(match, for: query) }
                     )
                 }
             }
 
-            if let selected = viewModel.selectedCredentials[query] {
+            if let selected = viewModel.selections[query]?.match {
                 ClaimSelectionList(
                     query: query,
                     match: selected,
@@ -193,7 +185,7 @@ private struct ClaimSelectionList: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
 
-            ForEach(viewModel.selectableClaims(for: query, match: match), id: \.self) { claim in
+            ForEach(viewModel.claims(for: query, match: match), id: \.self) { claim in
                 let isRequired = viewModel.isClaimRequired(claim, for: query)
                 let isSelected = viewModel.selectedClaims(for: query).contains(claim) || isRequired
 
@@ -207,7 +199,7 @@ private struct ClaimSelectionList: View {
 
                     VStack(alignment: .leading, spacing: 2) {
                         HStack {
-                            Text(viewModel.claimDisplayName(claim))
+                            Text(viewModel.claimName(claim))
                                 .fontWeight(.semibold)
                             if isRequired {
                                 RequiredBadge()
@@ -240,36 +232,58 @@ private struct RequiredBadge: View {
     }
 }
 
+private struct OptionalBadge: View {
+    var body: some View {
+        Text("Optional")
+            .font(.caption2.bold())
+            .padding(.horizontal, 8)
+            .padding(.vertical, 2)
+            .background(Color.secondary.opacity(0.15))
+            .clipShape(Capsule())
+    }
+}
+
+private struct ShareBlockersCard: View {
+    let reasons: [String]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Sharing isn't available yet")
+                .font(.subheadline.weight(.semibold))
+
+            ForEach(reasons, id: \.self) { reason in
+                Text(reason)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color(uiColor: .secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+    }
+}
+
 private struct ShareBar: View {
     let canShare: Bool
     let isLoading: Bool
     let share: () -> Void
-    let explain: () -> Void
 
     var body: some View {
-        HStack(spacing: 12) {
-            Button(action: share) {
-                Group {
-                    if isLoading {
-                        ProgressView()
-                            .progressViewStyle(.circular)
-                            .tint(.white)
-                    } else {
-                        Text("Share")
-                            .fontWeight(.semibold)
-                    }
+        Button(action: share) {
+            Group {
+                if isLoading {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .tint(.white)
+                } else {
+                    Text("Share")
+                        .fontWeight(.semibold)
                 }
-                .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.borderedProminent)
-            .disabled(!canShare || isLoading)
-
-            if !canShare {
-                Button(action: explain) {
-                    Image(systemName: "info.circle")
-                }
-                .buttonStyle(.bordered)
-            }
+            .frame(maxWidth: .infinity)
         }
+        .buttonStyle(.borderedProminent)
+        .disabled(!canShare || isLoading)
     }
 }

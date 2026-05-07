@@ -8,13 +8,22 @@ import SwiftUI
 
 struct ScanQRCodeButton : View {
     @StateObject private var viewModel: ScanQRCodeViewModel
-    
-    init(failure: Binding<AlertDialog?>, reloadCredentials: @escaping () -> Void) {
+    @Binding private var pendingDeepLinkURI: String?
+    private let onCredentialOfferScanned: (String) -> Void
+
+    init(
+        failure: Binding<AlertDialog?>,
+        reloadCredentials: @escaping () -> Void,
+        pendingDeepLinkURI: Binding<String?>,
+        onCredentialOfferScanned: @escaping (String) -> Void
+    ) {
         _viewModel = StateObject(
             wrappedValue: ScanQRCodeViewModel(failure: failure, reloadCredentials: reloadCredentials)
         )
+        _pendingDeepLinkURI = pendingDeepLinkURI
+        self.onCredentialOfferScanned = onCredentialOfferScanned
     }
-    
+
     var body: some View {
         Button(action: {
             viewModel.isShowingSheet = true
@@ -33,7 +42,7 @@ struct ScanQRCodeButton : View {
                 dismiss: { viewModel.isShowingSheet = false },
                 onQrScanned: { qr in
                     viewModel.isShowingSheet = false
-                    viewModel.handleQrCode(code: qr)
+                    viewModel.handleQrCode(code: qr, onCredentialOfferScanned: onCredentialOfferScanned)
                 }
             )
         }
@@ -53,5 +62,17 @@ struct ScanQRCodeButton : View {
                 onSuccess: { outcome in viewModel.handlePresentationSuccess(outcome) }
             )
         }
+        .onAppear {
+            consumePendingDeepLink()
+        }
+        .onChange(of: pendingDeepLinkURI) { _, _ in
+            consumePendingDeepLink()
+        }
+    }
+
+    private func consumePendingDeepLink() {
+        guard let uri = pendingDeepLinkURI else { return }
+        pendingDeepLinkURI = nil
+        viewModel.handleQrCode(code: uri, onCredentialOfferScanned: onCredentialOfferScanned)
     }
 }

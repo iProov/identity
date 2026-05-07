@@ -8,8 +8,38 @@
 import SwiftUI
 import identity
 
+enum OpenIdUrlRoute {
+    case credentialOffer
+    case presentation
+}
+
+enum OpenIdSchemeSupport {
+    static let credentialOfferSchemes: Set<String> = ["openid-credential-offer", "haip-vci"]
+    static let presentationSchemes: Set<String> = ["openid4vp", "eudi-openid4vp", "haip-vp", "haip-vc"]
+
+    static func route(for url: URL) -> OpenIdUrlRoute? {
+        route(forScheme: url.scheme)
+    }
+
+    static func route(forScheme scheme: String?) -> OpenIdUrlRoute? {
+        let normalized = scheme?.lowercased() ?? ""
+
+        if credentialOfferSchemes.contains(normalized) {
+            return .credentialOffer
+        }
+
+        if presentationSchemes.contains(normalized) {
+            return .presentation
+        }
+
+        return nil
+    }
+}
+
 struct HomeView: View {
     @StateObject private var viewModel: HomeViewModel
+    @State private var pendingPresentationUri: String? = nil
+    @State private var pendingCredentialOfferUri: String? = nil
 
     init(wallet: Wallet) {
         _viewModel = StateObject(wrappedValue: HomeViewModel(wallet: wallet))
@@ -23,6 +53,20 @@ struct HomeView: View {
         }
         .onAppear {
             viewModel.load()
+        }
+        .onOpenURL { url in
+            handleOpenURL(url)
+        }
+    }
+
+    private func handleOpenURL(_ url: URL) {
+        switch OpenIdSchemeSupport.route(for: url) {
+        case .credentialOffer:
+            pendingCredentialOfferUri = url.absoluteString
+        case .presentation:
+            pendingPresentationUri = url.absoluteString
+        case nil:
+            return
         }
     }
 
@@ -38,9 +82,11 @@ struct HomeView: View {
             })
 
         case .registered:
-            RegisteredView(deleteWallet: {
-                Task { await viewModel.deleteWallet() }
-            })
+            RegisteredView(
+                deleteWallet: { Task { await viewModel.deleteWallet() } },
+                pendingPresentationUri: $pendingPresentationUri,
+                pendingCredentialOfferUri: $pendingCredentialOfferUri
+            )
 
         case .error(let message):
             ErrorContent(reason: message, onRetry: viewModel.retry)

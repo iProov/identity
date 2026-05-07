@@ -8,15 +8,28 @@ import SwiftUI
 import identity
 import CoreNFC
 
+private struct DocumentRoute: Hashable {
+    let initialCredentialOfferUri: String?
+}
+
 struct RegisteredView: View {
     @StateObject private var viewModel = RegisteredViewModel()
     @State private var path = NavigationPath()
     let deleteWallet: () -> Void
+    @Binding var pendingPresentationUri: String?
+    @Binding var pendingCredentialOfferUri: String?
 
     private var hasCredentials: Bool {
         !viewModel.credentialSummary.credentials.isEmpty ||
         !viewModel.credentialSummary.failures.isEmpty ||
         !viewModel.legacyCredentials.isEmpty
+    }
+
+    private var credentialAddedCompletion: () -> Void {
+        {
+            path.removeLast()
+            viewModel.loadCredentials()
+        }
     }
 
     var body: some View {
@@ -37,13 +50,20 @@ struct RegisteredView: View {
                         Spacer()
                         ScanQRCodeButton(
                             failure: $viewModel.alert,
-                            reloadCredentials: viewModel.loadCredentials
+                            reloadCredentials: viewModel.loadCredentials,
+                            pendingDeepLinkURI: $pendingPresentationUri,
+                            onCredentialOfferScanned: openCredentialOffer
                         )
                         .padding()
                     }
                 }
             }
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    NavigationLink(destination: SettingsView()) {
+                        Label("Settings", systemImage: "gear")
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     AddCredentialButton(path: $path)
                         .disabled(viewModel.isLoading)
@@ -56,9 +76,21 @@ struct RegisteredView: View {
             .navigationDestination(for: CredentialType.self) { type in
                 credentialCreationView(for: type)
             }
+            .navigationDestination(for: DocumentRoute.self) { route in
+                AddDocumentView(
+                    path: $path,
+                    loginRequest: nil,
+                    initialCredentialOfferUri: route.initialCredentialOfferUri,
+                    completion: credentialAddedCompletion
+                )
+            }
         }
         .onAppear {
             viewModel.loadCredentials()
+            openPendingCredentialOfferIfNeeded()
+        }
+        .onChange(of: pendingCredentialOfferUri) { _, _ in
+            openPendingCredentialOfferIfNeeded()
         }
         .refreshable {
             await viewModel.loadCredentialsAsync()
@@ -90,21 +122,26 @@ struct RegisteredView: View {
 
     @ViewBuilder
     private func credentialCreationView(for type: CredentialType) -> some View {
-        let completion = {
-            path.removeLast()
-            viewModel.loadCredentials()
-        }
-
         switch type {
         case .Document:
-            AddDocumentView(path: $path, loginRequest: nil, completion: completion)
+            AddDocumentView(path: $path, loginRequest: nil, completion: credentialAddedCompletion)
         case .Email:
-            AddEmailView(path: $path, completion: completion)
+            AddEmailView(path: $path, completion: credentialAddedCompletion)
         case .Phone:
-            AddPhoneView(completion: completion)
+            AddPhoneView(completion: credentialAddedCompletion)
         case .Reference:
-            AddDocumentReferenceView(completion: completion)
+            AddDocumentReferenceView(completion: credentialAddedCompletion)
         }
+    }
+
+    private func openPendingCredentialOfferIfNeeded() {
+        guard let uri = pendingCredentialOfferUri else { return }
+        pendingCredentialOfferUri = nil
+        openCredentialOffer(uri)
+    }
+
+    private func openCredentialOffer(_ uri: String) {
+        path.append(DocumentRoute(initialCredentialOfferUri: uri))
     }
 }
 

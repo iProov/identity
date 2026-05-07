@@ -10,6 +10,7 @@ import SwiftUI
 import identity
 import NFCPassportReader
 import MRZScanner
+import AuthenticationServices
 
 @MainActor
 class AddDocumentViewModel: ObservableObject {
@@ -20,31 +21,49 @@ class AddDocumentViewModel: ObservableObject {
 
     private let wallet = WalletFactory.shared.instance!
     private let loginRequest: LoginRequest?
+    private let initialCredentialOfferUri: String?
     private let completion: () -> Void
+    private var activeAuthSession: ASWebAuthenticationSession?
+    private var sheetDismissalContinuation: CheckedContinuation<Void, Never>?
+    private var hasHandledInitialCredentialOffer = false
 
-    init(loginRequest: LoginRequest?, completion: @escaping () -> Void) {
+    init(
+        loginRequest: LoginRequest?,
+        initialCredentialOfferUri: String?,
+        completion: @escaping () -> Void
+    ) {
         self.loginRequest = loginRequest
+        self.initialCredentialOfferUri = initialCredentialOfferUri
         self.completion = completion
+    }
+
+    func handleAppear() {
+        guard !hasHandledInitialCredentialOffer,
+              let initialCredentialOfferUri else { return }
+
+        hasHandledInitialCredentialOffer = true
+        handleCredentialOfferUri(initialCredentialOfferUri)
     }
 
     // MARK: - OID4VCI Credential Offer
 
     /// Handles a scanned OID4VCI credential offer QR code.
-    /// LIMITATION: Only supports `openid-credential-offer://` and `haip-vci://` URI scheme.
-    /// Other credential offer formats (e.g., deep links) are not supported.
     func handleCredentialOfferQrCode(_ code: String) {
         isScanningCredentialOffer = false
+        handleCredentialOfferUri(code)
+    }
 
-        guard let url = URL(string: code),
-              url.scheme?.lowercased() == "openid-credential-offer" || url.scheme?.lowercased() == "haip-vci" else {
+    private func handleCredentialOfferUri(_ uri: String) {
+        guard let url = URL(string: uri),
+              OpenIdSchemeSupport.route(for: url) == .credentialOffer else {
             failure = AlertDialog(
                 title: "Invalid QR Code",
-                message: "The scanned QR code is not a valid OID4VCI credential offer. Expected scheme: openid-credential-offer://"
+                message: "The scanned QR code is not a valid OID4VCI credential offer. Expected scheme: openid-credential-offer:// or haip-vci://"
             )
             return
         }
 
-        addCredentialWithOffer(uri: code)
+        addCredentialWithOffer(uri: uri)
     }
 
     /// Initiates the OID4VCI credential offer flow with the given URI.
@@ -180,24 +199,144 @@ class AddDocumentViewModel: ObservableObject {
 
         let offer = sheet.offer
         let sheetId = sheet.id
+        let hasPreAuth = offer.availableGrants.contains { $0 is AvailableGrant.PreAuthorizedCode }
+        let hasAuthCode = offer.availableGrants.contains { $0 is AvailableGrant.AuthorizationCode }
+        let preferAuthCode = AppSettings.shared.preferAuthorizationCode
+        let useAuthCode = (preferAuthCode && hasAuthCode) || !hasPreAuth
 
         Task {
             do {
-                let result = try await offer.accept(credentials: selected)
-                await MainActor.run {
-                    self.updateOfferSheet(id: sheetId) { state in
-                        self.apply(result: result, to: &state)
-                    }
+                let result = useAuthCode
+                    ? try await offer.authorize(credentials: selected)
+                    : try await offer.accept(credentials: selected)
+
+                // Authorization code flow: dismiss sheet and launch browser externally
+                if let authRequired = result as? IssuanceResultAuthorizationRequired {
+                    await handleAuthorizationRequired(authRequired, offer: offer)
+                    return
+                }
+
+                self.updateOfferSheet(id: sheetId) { state in
+                    self.apply(result: result, to: &state)
                 }
             } catch {
-                await MainActor.run {
-                    self.updateOfferSheet(id: sheetId) { state in
-                        state.status = .failed(message: error.localizedDescription)
-                    }
+                self.updateOfferSheet(id: sheetId) { state in
+                    state.status = .failed(message: error.localizedDescription)
                 }
             }
         }
     }
+
+    // MARK: - Authorization Code Flow
+
+    /// Called by the sheet's `onDismiss` callback to signal that the sheet has fully dismissed.
+    func onOfferSheetDismissed() {
+        sheetDismissalContinuation?.resume()
+        sheetDismissalContinuation = nil
+    }
+
+    /// Handles the authorization code flow by dismissing the sheet and launching
+    /// ASWebAuthenticationSession directly (can't present browser over a sheet).
+    private func handleAuthorizationRequired(
+        _ authRequired: IssuanceResultAuthorizationRequired,
+        offer: RespondableCredentialOffer
+    ) async {
+        guard let url = URL(string: authRequired.authorizationUrl) else {
+            failure = AlertDialog(title: "Authorization Error", message: "Invalid authorization URL")
+            return
+        }
+
+        // Dismiss the sheet and wait for the dismiss animation to fully complete
+        // before presenting ASWebAuthenticationSession (can't present over a sheet).
+        isLoading = true
+        await withCheckedContinuation { continuation in
+            sheetDismissalContinuation = continuation
+            offerSheet = nil
+        }
+
+        do {
+            let code = try await launchAuthSession(url: url)
+            isLoading = true
+            let summary = try await authRequired.respond(authorizationCode: code)
+            isLoading = false
+
+            // Re-present the offer sheet with completed status
+            var completedSheet = CredentialOfferSheetState(offer: offer)
+            completedSheet.status = .completed(summary: summary)
+            offerSheet = completedSheet
+        } catch is CancellationError {
+            isLoading = false
+        } catch {
+            isLoading = false
+            failure = AlertDialog(title: "Authorization Failed", message: error.localizedDescription)
+        }
+    }
+
+    /// Launches ASWebAuthenticationSession and returns the authorization code.
+    private func launchAuthSession(url: URL) async throws -> String {
+        defer { activeAuthSession = nil }
+
+        return try await withCheckedThrowingContinuation { continuation in
+            let session = ASWebAuthenticationSession(
+                url: url,
+                callbackURLScheme: "com.iproov.identity"
+            ) { callbackURL, error in
+                if let error = error as? ASWebAuthenticationSessionError,
+                   error.code == .canceledLogin {
+                    continuation.resume(throwing: CancellationError())
+                    return
+                }
+
+                if let error = error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+
+                guard let callbackURL = callbackURL,
+                      let components = URLComponents(url: callbackURL, resolvingAgainstBaseURL: false) else {
+                    continuation.resume(throwing: NSError(
+                        domain: "AuthError", code: 1,
+                        userInfo: [NSLocalizedDescriptionKey: "No authorization code received"]
+                    ))
+                    return
+                }
+
+                // Check for OAuth2 error parameters before looking for the code
+                if let oauthError = components.queryItems?.first(where: { $0.name == "error" })?.value {
+                    let desc = components.queryItems?.first(where: { $0.name == "error_description" })?.value
+                    continuation.resume(throwing: NSError(
+                        domain: "OAuthError", code: 0,
+                        userInfo: [NSLocalizedDescriptionKey: desc ?? "Authorization error: \(oauthError)"]
+                    ))
+                    return
+                }
+
+                guard let code = components.queryItems?.first(where: { $0.name == "code" })?.value else {
+                    continuation.resume(throwing: NSError(
+                        domain: "AuthError", code: 1,
+                        userInfo: [NSLocalizedDescriptionKey: "No authorization code received"]
+                    ))
+                    return
+                }
+
+                continuation.resume(returning: code)
+            }
+
+            session.presentationContextProvider = WebAuthContextProvider.shared
+            session.prefersEphemeralWebBrowserSession = false
+            activeAuthSession = session
+
+            if !session.start() {
+                activeAuthSession = nil
+                continuation.resume(throwing: NSError(
+                    domain: "AuthError", code: 2,
+                    userInfo: [NSLocalizedDescriptionKey: "Failed to start authorization browser"]
+                ))
+            }
+        }
+    }
+
+    // MARK: - Transaction Code Flow
 
     func submitTransactionCode(_ code: String) {
         guard let sheet = offerSheet,
@@ -212,16 +351,12 @@ class AddDocumentViewModel: ObservableObject {
         Task {
             do {
                 let summary = try await challenge.respond(txCode: code)
-                await MainActor.run {
-                    self.updateOfferSheet(id: sheetId) { state in
-                        state.status = .completed(summary: summary)
-                    }
+                self.updateOfferSheet(id: sheetId) { state in
+                    state.status = .completed(summary: summary)
                 }
             } catch {
-                await MainActor.run {
-                    self.updateOfferSheet(id: sheetId) { state in
-                        state.status = .failed(message: error.localizedDescription)
-                    }
+                self.updateOfferSheet(id: sheetId) { state in
+                    state.status = .failed(message: error.localizedDescription)
                 }
             }
         }
@@ -264,6 +399,7 @@ class AddDocumentViewModel: ObservableObject {
             return
         }
 
+        // AuthorizationRequired is handled before reaching apply()
         state.status = .failed(message: "Unsupported issuance result")
     }
 }

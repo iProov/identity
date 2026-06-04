@@ -1,4 +1,4 @@
-# iProov Identity SDK v0.3.5
+# iProov Identity SDK v0.3.6
 
 The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform
 app.
@@ -66,7 +66,38 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
     <details>
     <summary>iOS (Swift Package Manager)</summary>
 
-   Not currently supported, will be added in a future release. For now please follow the manual steps.
+   In Xcode, choose **File → Add Package Dependencies…**, enter `https://github.com/iProov/identity`, select version
+   **0.3.6** (Up to Next Minor), and add the **Identity** library to your app target.
+
+   Or in a `Package.swift`:
+
+    ```swift
+    dependencies: [
+        .package(url: "https://github.com/iProov/identity.git", from: "0.3.6")
+    ],
+    targets: [
+        .target(name: "YourApp", dependencies: [
+            .product(name: "Identity", package: "identity")
+        ])
+    ]
+    ```
+
+   The Identity binary does not bundle its dependencies, so also add
+   [JOSESwift](https://github.com/airsidemobile/JOSESwift) and the
+   [iProov Biometrics SDK](https://github.com/iProov/iOS) to your project. Then `import identity`.
+    </details>
+
+    <details>
+    <summary>iOS (CocoaPods)</summary>
+
+   Add the following to your `Podfile`:
+
+    ```ruby
+    pod 'iProovIdentity', '~> 0.3.6'
+    ```
+
+   Then run `pod install`. The podspec pulls in JOSESwift and the iProov Biometrics SDK automatically. Then
+   `import identity`.
     </details>
 
     <details>
@@ -110,7 +141,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     dependencies {
-      implementation("com.iproov.identity:identity-android:0.3.5")
+      implementation("com.iproov.identity:identity-android:0.3.6")
       implementation("com.iproov.sdk:iproov:<latest-version>")
     }
     ```
@@ -145,7 +176,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
       sourceSets {
           val commonMain by getting {
               dependencies {
-                  implementation("com.iproov.identity:identity:0.3.5")
+                  implementation("com.iproov.identity:identity:0.3.6")
               }
           }
       }
@@ -1802,6 +1833,52 @@ if (wallet.isDCApiAvailable()) {
 
 > [!NOTE]
 > iOS 26+ Digital Credentials API support is coming in a future release.
+
+## Proximity (ISO/IEC 18013-5)
+
+In-person mdoc exchange over BLE. The wallet can act as the **holder** (presenting credentials) or the **reader**
+(retrieving them).
+
+### Presentation flow (wallet presents to a reader)
+
+1. Call `wallet.startProximityPresentation(config)` to get a `ProximityPresentationSession`.
+2. Collect `session.events` and render the QR from the `QrEngagementReady` event so the reader can scan it
+   (`GeneratingEngagement → QrEngagementReady → Connecting → SessionCreated → RequestReceived → PresentationSent →
+   Disconnected`).
+3. On `RequestReceived`, call `request.match()` to find which stored credentials satisfy the reader's request.
+4. Show selective-disclosure UI, then call `request.respond(disclosed)` with the user's picks (an empty map declines).
+5. `PresentationSent` (success), `Disconnected`, and `Failure` are terminal. Call `session.close()` to cancel.
+
+### Reading flow (wallet reads from a holder)
+
+1. Call `wallet.startProximityRetrieval(uri, requestedDocuments)` to get a `ProximityRetrievalSession`.
+2. Collect `session.events` (`Decoding → Connecting → SendingRequest → WaitingForResponse → ProcessingResponse →
+   Completed`).
+3. The `Completed` event carries the received documents; `Error` carries a message.
+
+### Bluetooth permissions
+
+Both roles use BLE, so each platform needs Bluetooth access granted before a session starts.
+
+**Android** — declare the permissions in `AndroidManifest.xml` **and** request them at runtime *before* starting a
+session:
+
+```xml
+
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" /><uses-permission
+android:name="android.permission.BLUETOOTH_SCAN" /><uses-permission
+android:name="android.permission.BLUETOOTH_ADVERTISE" /><!-- BLE on Android 11 and below -->
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+```
+
+> [!IMPORTANT]
+> Declaring the permissions is not enough. On Android 12+ the presenter opens a GATT server
+> (`BluetoothManager.openGattServer`) and advertises, which require `BLUETOOTH_CONNECT` and `BLUETOOTH_ADVERTISE` to be
+> **granted at runtime** — otherwise the session throws
+> `SecurityException: Need android.permission.BLUETOOTH_CONNECT`. Gate both proximity entry points behind the grant.
+
+**iOS** — add `NSBluetoothAlwaysUsageDescription` to `Info.plist`; iOS prompts for access automatically on first BLE
+use (no manual runtime request). See `example-ios`.
 
 ## Handling login requests
 

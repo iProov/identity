@@ -11,6 +11,7 @@ import identity
 enum OpenIdUrlRoute {
     case credentialOffer
     case presentation
+    case proximityRetrieval
 }
 
 enum OpenIdSchemeSupport {
@@ -23,6 +24,10 @@ enum OpenIdSchemeSupport {
 
     static func route(forScheme scheme: String?) -> OpenIdUrlRoute? {
         let normalized = scheme?.lowercased() ?? ""
+
+        if normalized == "mdoc" {
+            return .proximityRetrieval
+        }
 
         if credentialOfferSchemes.contains(normalized) {
             return .credentialOffer
@@ -64,6 +69,8 @@ struct HomeView: View {
         case .credentialOffer:
             pendingCredentialOfferUri = url.absoluteString
         case .presentation:
+            pendingPresentationUri = url.absoluteString
+        case .proximityRetrieval:
             pendingPresentationUri = url.absoluteString
         case nil:
             return

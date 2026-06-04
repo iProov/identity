@@ -43,17 +43,20 @@ struct RegisteredView: View {
                         .controlSize(.large)
                 }
 
-                // QR scan button
+                // Present (holder) + QR scan (reader) buttons
                 VStack {
                     Spacer()
                     HStack {
                         Spacer()
-                        ScanQRCodeButton(
-                            failure: $viewModel.alert,
-                            reloadCredentials: viewModel.loadCredentials,
-                            pendingDeepLinkURI: $pendingPresentationUri,
-                            onCredentialOfferScanned: openCredentialOffer
-                        )
+                        VStack(spacing: 16) {
+                            PresentProximityButton()
+                            ScanQRCodeButton(
+                                failure: $viewModel.alert,
+                                reloadCredentials: viewModel.loadCredentials,
+                                pendingDeepLinkURI: $pendingPresentationUri,
+                                onCredentialOfferScanned: openCredentialOffer
+                            )
+                        }
                         .padding()
                     }
                 }

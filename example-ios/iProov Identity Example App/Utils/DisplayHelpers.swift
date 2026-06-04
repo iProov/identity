@@ -2,6 +2,29 @@ import Foundation
 import SwiftUI
 import identity
 
+// MARK: - Proximity document formatting (shared by the reader + holder screens)
+
+func displayNameForDocType(_ docType: String) -> String {
+    switch docType {
+    case "org.iso.18013.5.1.mDL": return "Mobile Driving Licence"
+    case "eu.europa.ec.eudi.pid.1": return "EU Digital Identity"
+    default: return docType.components(separatedBy: ".").last ?? docType
+    }
+}
+
+func iconForDocType(_ docType: String) -> String {
+    switch docType {
+    case "org.iso.18013.5.1.mDL": return "car.fill"
+    case "eu.europa.ec.eudi.pid.1": return "person.text.rectangle.fill"
+    default: return "doc.fill"
+    }
+}
+
+/// Turn a data-element identifier (e.g. "family_name") into a human label.
+func formatClaimName(_ name: String) -> String {
+    name.replacingOccurrences(of: "_", with: " ").capitalized
+}
+
 enum DisplaySelector {
 
     static func select(from displays: [DisplayProperties]) -> DisplayProperties? {

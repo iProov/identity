@@ -18,9 +18,14 @@
 				<string>haip-vp</string>
 				<string>openid-credential-offer</string>
 				<string>openid4vp</string>
+				<string>mdoc</string>
 			</array>
 		</dict>
 	</array>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Bluetooth is required to communicate with nearby devices for identity verification.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Bluetooth is required to communicate with nearby devices for identity verification.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

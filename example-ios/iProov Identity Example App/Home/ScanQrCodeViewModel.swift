@@ -16,6 +16,7 @@ class ScanQRCodeViewModel: ObservableObject {
     @Published var isShowingSheet = false
     @Published var loginRequest: RespondableLoginRequest? = nil
     @Published var presentationRequest: RespondablePresentationRequest? = nil
+    @Published var proximityRetrievalUri: String? = nil
     @Published var isLoading = false
     @Binding var alert: AlertDialog?
     let reloadCredentials: () -> Void
@@ -49,6 +50,8 @@ class ScanQRCodeViewModel: ObservableObject {
                 onCredentialOfferScanned(normalized)
             case .presentation:
                 handleOpenId4VpRequest(normalized)
+            case .proximityRetrieval:
+                proximityRetrievalUri = normalized
             case nil:
                 alert = AlertDialog(title: "Unsupported QR Code", message: "The scanned QR code uses an unsupported protocol.")
             }
@@ -153,6 +156,17 @@ class ScanQRCodeViewModel: ObservableObject {
         alert = AlertDialog(title: "Success", message: message)
         presentationRequest = nil
         reloadCredentials()
+    }
+
+    func handleProximitySuccess(_ response: ProximityRetrievalResponse) {
+        let docCount = response.documents.count
+        let claimCount = response.documents.reduce(0) { total, doc in
+            total + doc.nameSpaces.values.reduce(0) { $0 + (($1 as? [String: Any?])?.count ?? 0) }
+        }
+        alert = AlertDialog(
+            title: "Verification Complete",
+            message: "Successfully verified \(docCount) document\(docCount == 1 ? "" : "s") with \(claimCount) claim\(claimCount == 1 ? "" : "s")."
+        )
     }
 
     private func normalizedQrCode(_ code: String) -> String? {

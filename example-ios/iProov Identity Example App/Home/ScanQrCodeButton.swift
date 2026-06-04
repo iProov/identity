@@ -62,6 +62,21 @@ struct ScanQRCodeButton : View {
                 onSuccess: { outcome in viewModel.handlePresentationSuccess(outcome) }
             )
         }
+        .sheet(isPresented: Binding(
+            get: { viewModel.proximityRetrievalUri != nil },
+            set: { if !$0 { viewModel.proximityRetrievalUri = nil } }
+        )) {
+            if let uri = viewModel.proximityRetrievalUri {
+                ProximityRetrievalSheet(
+                    uri: uri,
+                    onDismiss: { viewModel.proximityRetrievalUri = nil },
+                    onCompleted: { response in
+                        viewModel.proximityRetrievalUri = nil
+                        viewModel.handleProximitySuccess(response)
+                    }
+                )
+            }
+        }
         .onAppear {
             consumePendingDeepLink()
         }

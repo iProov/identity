@@ -10,10 +10,9 @@
 		0991C180F7A5401F8EEEA02A /* PresentationRequestSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DB091124AF48D08F44E35F /* PresentationRequestSheet.swift */; };
 		1DC8C249B038450EB3EFEC56 /* PresentationRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6DAE64BF7C4202B77074B2 /* PresentationRequestViewModel.swift */; };
 		37AD14F7E5B74C919B47E195 /* PresentationIdentityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4E461D17004912AE4696E6 /* PresentationIdentityExtensions.swift */; };
+		AABB0100000000000000000A /* ProximityPresentationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB0200000000000000000B /* ProximityPresentationFlow.swift */; };
 		CA0CDC972D5E17BA005725B7 /* MRZScanner in Frameworks */ = {isa = PBXBuildFile; productRef = CA0CDC962D5E17BA005725B7 /* MRZScanner */; };
 		CA0CDC992D5E17DD005725B7 /* MrzCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0CDC982D5E17DD005725B7 /* MrzCaptureView.swift */; };
-		CA19803C2F9B94E200C2E1E2 /* identity.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA91D88B2F87A19100CC9D38 /* identity.xcframework */; };
-		CA19803D2F9B94E200C2E1E2 /* identity.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA91D88B2F87A19100CC9D38 /* identity.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CA3824182E17B5E2008F4D2C /* ScanQrCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3824172E17B5DA008F4D2C /* ScanQrCodeViewModel.swift */; };
 		CA38241A2E17B625008F4D2C /* ScanQrCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3824192E17B621008F4D2C /* ScanQrCodeButton.swift */; };
 		CA38241C2E17B6B5008F4D2C /* RegisteredViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA38241B2E17B6B2008F4D2C /* RegisteredViewModel.swift */; };
@@ -35,12 +34,15 @@
 		CAB748A82D1415BE00F33325 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB748A72D1415BE00F33325 /* HomeView.swift */; };
 		CAB748AA2D1415C000F33325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB748A92D1415C000F33325 /* Assets.xcassets */; };
 		CAB748AD2D1415C000F33325 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB748AC2D1415C000F33325 /* Preview Assets.xcassets */; };
+		CACB6F612FBF2493001A2E04 /* ProximityRetrievalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACB6F602FBF2493001A2E04 /* ProximityRetrievalViewModel.swift */; };
+		CACB6F622FBF2493001A2E04 /* ProximityRetrievalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACB6F5F2FBF2493001A2E04 /* ProximityRetrievalSheet.swift */; };
 		CAD1A8C52D4D1EBD009CD341 /* NFCPassportReader in Frameworks */ = {isa = PBXBuildFile; productRef = CAD1A8C42D4D1EBD009CD341 /* NFCPassportReader */; };
 		CAD1A8C72D4D2D83009CD341 /* AddDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A8C62D4D2D83009CD341 /* AddDocumentView.swift */; };
 		CAD1A8C92D50E5EF009CD341 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A8C82D50E5EF009CD341 /* Error.swift */; };
 		CAD1A8CB2D510FD4009CD341 /* AddPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A8CA2D510FD4009CD341 /* AddPhoneView.swift */; };
 		CAD1A8CD2D510FDB009CD341 /* AddEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A8CC2D510FDB009CD341 /* AddEmailView.swift */; };
 		CAEE65D52EEC5FAC0088151B /* iProov in Frameworks */ = {isa = PBXBuildFile; productRef = CAEE65D42EEC5FAC0088151B /* iProov */; };
+		CA65D77A2FD1B1DE003FDC8A /* Identity in Frameworks */ = {isa = PBXBuildFile; productRef = CA65D77B2FD1B1DE003FDC8A /* Identity */; };
 		CAF398CC2D479925007D62E3 /* JwtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF398CB2D479925007D62E3 /* JwtView.swift */; };
 		CAF398D92D47AD6C007D62E3 /* ScanQrCodeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF398D82D47AD6C007D62E3 /* ScanQrCodeSheet.swift */; };
 		CAF398DF2D48CB71007D62E3 /* SelectiveDisclosureSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF398DE2D48CB71007D62E3 /* SelectiveDisclosureSheet.swift */; };
@@ -55,7 +57,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CA19803D2F9B94E200C2E1E2 /* identity.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,6 +66,7 @@
 /* Begin PBXFileReference section */
 		34DB091124AF48D08F44E35F /* PresentationRequestSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationRequestSheet.swift; sourceTree = "<group>"; };
 		7F4E461D17004912AE4696E6 /* PresentationIdentityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationIdentityExtensions.swift; sourceTree = "<group>"; };
+		AABB0200000000000000000B /* ProximityPresentationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProximityPresentationFlow.swift; sourceTree = "<group>"; };
 		BC6DAE64BF7C4202B77074B2 /* PresentationRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationRequestViewModel.swift; sourceTree = "<group>"; };
 		CA0CDC982D5E17DD005725B7 /* MrzCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MrzCaptureView.swift; sourceTree = "<group>"; };
 		CA3824172E17B5DA008F4D2C /* ScanQrCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQrCodeViewModel.swift; sourceTree = "<group>"; };
@@ -83,12 +85,13 @@
 		CA4156782D39641800D7A909 /* CredentialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsView.swift; sourceTree = "<group>"; };
 		CA41567A2D3965A800D7A909 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CA41567E2D39732000D7A909 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		CA91D88B2F87A19100CC9D38 /* identity.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = identity.xcframework; path = ../identity.xcframework; sourceTree = "<group>"; };
 		CAB748A22D1415BE00F33325 /* iProov Identity Example App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iProov Identity Example App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB748A52D1415BE00F33325 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		CAB748A72D1415BE00F33325 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CAB748A92D1415C000F33325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAB748AC2D1415C000F33325 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CACB6F5F2FBF2493001A2E04 /* ProximityRetrievalSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProximityRetrievalSheet.swift; sourceTree = "<group>"; };
+		CACB6F602FBF2493001A2E04 /* ProximityRetrievalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProximityRetrievalViewModel.swift; sourceTree = "<group>"; };
 		CAD1A8C62D4D2D83009CD341 /* AddDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDocumentView.swift; sourceTree = "<group>"; };
 		CAD1A8C82D50E5EF009CD341 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		CAD1A8CA2D510FD4009CD341 /* AddPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhoneView.swift; sourceTree = "<group>"; };
@@ -109,7 +112,7 @@
 				CAEE65D52EEC5FAC0088151B /* iProov in Frameworks */,
 				CAD1A8C52D4D1EBD009CD341 /* NFCPassportReader in Frameworks */,
 				CA39CA9E2EA005570051934E /* JOSESwift in Frameworks */,
-				CA19803C2F9B94E200C2E1E2 /* identity.xcframework in Frameworks */,
+				CA65D77A2FD1B1DE003FDC8A /* Identity in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,7 +161,6 @@
 		CAB748B32D141AB300F33325 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CA91D88B2F87A19100CC9D38 /* identity.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -183,6 +185,9 @@
 		CAF398DB2D47F675007D62E3 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				CACB6F5F2FBF2493001A2E04 /* ProximityRetrievalSheet.swift */,
+				AABB0200000000000000000B /* ProximityPresentationFlow.swift */,
+				CACB6F602FBF2493001A2E04 /* ProximityRetrievalViewModel.swift */,
 				CAF398D82D47AD6C007D62E3 /* ScanQrCodeSheet.swift */,
 				34DB091124AF48D08F44E35F /* PresentationRequestSheet.swift */,
 				BC6DAE64BF7C4202B77074B2 /* PresentationRequestViewModel.swift */,
@@ -243,6 +248,7 @@
 				CA0CDC962D5E17BA005725B7 /* MRZScanner */,
 				CA39CA9D2EA005570051934E /* JOSESwift */,
 				CAEE65D42EEC5FAC0088151B /* iProov */,
+				CA65D77B2FD1B1DE003FDC8A /* Identity */,
 			);
 			productName = "iProov Identity Sample App";
 			productReference = CAB748A22D1415BE00F33325 /* iProov Identity Example App.app */;
@@ -277,6 +283,7 @@
 				CA0CDC952D5E17BA005725B7 /* XCRemoteSwiftPackageReference "MRZScanner" */,
 				CA39CA9C2EA005570051934E /* XCRemoteSwiftPackageReference "JOSESwift" */,
 				CAEE65D32EEC5FAC0088151B /* XCRemoteSwiftPackageReference "ios" */,
+				CA65D7792FD1B1DE003FDC8A /* XCRemoteSwiftPackageReference "identity" */,
 			);
 			productRefGroup = CAB748A32D1415BE00F33325 /* Products */;
 			projectDirPath = "";
@@ -325,6 +332,9 @@
 				CA3824202E17C3C1008F4D2C /* AddEmailViewModel.swift in Sources */,
 				CA38241A2E17B625008F4D2C /* ScanQrCodeButton.swift in Sources */,
 				CA4156792D39641800D7A909 /* CredentialsView.swift in Sources */,
+				CACB6F612FBF2493001A2E04 /* ProximityRetrievalViewModel.swift in Sources */,
+				CACB6F622FBF2493001A2E04 /* ProximityRetrievalSheet.swift in Sources */,
+				AABB0100000000000000000A /* ProximityPresentationFlow.swift in Sources */,
 				CA41567B2D3965A800D7A909 /* HomeViewModel.swift in Sources */,
 				CAD1A8CB2D510FD4009CD341 /* AddPhoneView.swift in Sources */,
 				CA3824222E17C41F008F4D2C /* AddPhoneViewModel.swift in Sources */,
@@ -582,6 +592,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		CA65D7792FD1B1DE003FDC8A /* XCRemoteSwiftPackageReference "identity" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/iProov/identity.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.6;
+			};
+		};
 		CAD1A8C32D4D1EBD009CD341 /* XCRemoteSwiftPackageReference "NFCPassportReader" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AndyQ/NFCPassportReader";
@@ -620,6 +638,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CAEE65D32EEC5FAC0088151B /* XCRemoteSwiftPackageReference "ios" */;
 			productName = iProov;
+		};
+		CA65D77B2FD1B1DE003FDC8A /* Identity */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA65D7792FD1B1DE003FDC8A /* XCRemoteSwiftPackageReference "identity" */;
+			productName = Identity;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

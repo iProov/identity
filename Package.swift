@@ -11,7 +11,7 @@ let package = Package(
         .binaryTarget(
             name: "identity",
             url: "https://github.com/iProov/identity/releases/download/0.3.6/identity.xcframework.zip",
-            checksum: "959f266d9daad2df53593b91a32072706ad05f6e89919e7b4aa3a69f2c4b4621"
+            checksum: "ee629dc7c2755223a4b336f6f8725a31ff2e62c8f522a3ac9eac3766d0c17012"
         )
     ]
 )

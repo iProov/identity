@@ -1,6 +1,15 @@
 {
-  "originHash" : "4886238ad4fcda81136ccc11f7b50c375d49e78f81e0954dc37ba7ca97ef47b4",
+  "originHash" : "c9055b4502b4220b128a892ecee8ee5300592a77272004e544dcda6d6c07d1a6",
   "pins" : [
+    {
+      "identity" : "identity",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/iproov/identity",
+      "state" : {
+        "revision" : "7dc0d5ad6d6901f6d51d7d07250563c5840a0261",
+        "version" : "0.3.6"
+      }
+    },
     {
       "identity" : "ios",
       "kind" : "remoteSourceControl",

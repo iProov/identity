@@ -1,22 +1,22 @@
 {
-  "originHash" : "c9055b4502b4220b128a892ecee8ee5300592a77272004e544dcda6d6c07d1a6",
+  "originHash" : "227cbee030a438159c0f3122d34601a3781853c599b938ac08dd98f09eca9afd",
   "pins" : [
     {
       "identity" : "identity",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/iproov/identity",
       "state" : {
-        "revision" : "7dc0d5ad6d6901f6d51d7d07250563c5840a0261",
-        "version" : "0.3.6"
+        "revision" : "8aafa6da48a5cf7589a993fee1954869df2f2466",
+        "version" : "0.4.0"
       }
     },
     {
       "identity" : "ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/iProov/ios",
+      "location" : "https://github.com/iproov/ios",
       "state" : {
-        "revision" : "1715e64ba336a2b154f5fd6a4795442a8dae4a5a",
-        "version" : "13.1.0"
+        "revision" : "9811cd9234cf1139318d6eb11ec7549379c9060c",
+        "version" : "13.1.1"
       }
     },
     {
@@ -51,17 +51,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/AndyQ/NFCPassportReader",
       "state" : {
-        "revision" : "84e11ec67a5c0d5ff54f918182fd4658801cc7f2",
-        "version" : "2.1.1"
+        "revision" : "deec44982fa9bf2704a5f2138eb01dab7dcf9299",
+        "version" : "2.3.0"
       }
     },
     {
-      "identity" : "openssl",
+      "identity" : "openssl-package",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/krzyzanowskim/OpenSSL.git",
+      "location" : "https://github.com/krzyzanowskim/OpenSSL-Package.git",
       "state" : {
-        "revision" : "8cb1d641ab5ebce2cd7cf31c93baef07bed672d4",
-        "version" : "1.1.2301"
+        "revision" : "71dbe0b4514cdaad95961470db72e8231f5943a6",
+        "version" : "3.3.3001"
       }
     }
   ],

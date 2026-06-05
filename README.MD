@@ -1,4 +1,4 @@
-# iProov Identity SDK v0.3.6
+# iProov Identity SDK v0.4.0
 
 The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform
 app.
@@ -66,58 +66,16 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
     <details>
     <summary>iOS (Swift Package Manager)</summary>
 
-   In Xcode, choose **File → Add Package Dependencies…**, enter `https://github.com/iProov/identity`, select version
-   **0.3.6** (Up to Next Minor), and add the **Identity** library to your app target.
+    1. In Xcode, go to File → Add Package Dependencies.
 
-   Or in a `Package.swift`:
+    2. Enter the repository URL for the iProov Identity SDK.
 
-    ```swift
-    dependencies: [
-        .package(url: "https://github.com/iProov/identity.git", from: "0.3.6")
-    ],
-    targets: [
-        .target(name: "YourApp", dependencies: [
-            .product(name: "Identity", package: "identity")
-        ])
-    ]
-    ```
+    3. Select your desired version rule (e.g. Up to Next Major Version from `0.4.0`).
 
-   The Identity binary does not bundle its dependencies, so also add
-   [JOSESwift](https://github.com/airsidemobile/JOSESwift) and the
-   [iProov Biometrics SDK](https://github.com/iProov/iOS) to your project. Then `import identity`.
-    </details>
+    4. Add the `identity` library product to your app target.
 
-    <details>
-    <summary>iOS (CocoaPods)</summary>
-
-   Add the following to your `Podfile`:
-
-    ```ruby
-    pod 'iProovIdentity', '~> 0.3.6'
-    ```
-
-   Then run `pod install`. The podspec pulls in JOSESwift and the iProov Biometrics SDK automatically. Then
-   `import identity`.
-    </details>
-
-    <details>
-    <summary>iOS (Manual)</summary>
-
-   ![Diagram of Xcode](docs/manual-installation.png)
-
-    1. Select your project in Xcode.
-
-    2. Select your app target.
-
-    3. Select the General tab and then scroll down to Frameworks, Libraries, and Embedded Content.
-
-    4. Add identity.xcframework from the artifacts directory in the repository.
-
-   > **Note**: Ensure you add the .xcframework file, rather than the .framework file.
-
-    5. Add [JOSESwift](https://github.com/airsidemobile/JOSESwift) as a dependency
-    6. Under the Embed column, ensure Embed & Sign is set.
-    7. Follow installation instructions to add the iProov SDK to your app [here](https://github.com/iProov/iOS)
+   The SDK's transitive dependencies ([iProov](https://github.com/iProov/ios)
+   and [JOSESwift](https://github.com/airsidemobile/JOSESwift)) are resolved automatically by SPM.
 
     </details>
 
@@ -141,7 +99,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     dependencies {
-      implementation("com.iproov.identity:identity-android:0.3.6")
+      implementation("com.iproov.identity:identity-android:0.4.0")
       implementation("com.iproov.sdk:iproov:<latest-version>")
     }
     ```
@@ -176,7 +134,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
       sourceSets {
           val commonMain by getting {
               dependencies {
-                  implementation("com.iproov.identity:identity:0.3.6")
+                  implementation("com.iproov.identity:identity:0.4.0")
               }
           }
       }

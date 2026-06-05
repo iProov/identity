@@ -3,15 +3,29 @@ import PackageDescription
 
 let package = Package(
     name: "Identity",
-    platforms: [.iOS(.v16)],
+    platforms: [
+        .iOS(.v16)
+    ],
     products: [
-        .library(name: "Identity", targets: ["identity"])
+        .library(name: "identity", targets: ["identityWrapper"])
+    ],
+    dependencies: [
+        .package(url: "https://github.com/iproov/ios", from: "13.1.0"),
+        .package(url: "https://github.com/airsidemobile/JOSESwift.git", from: "3.0.0"),
     ],
     targets: [
         .binaryTarget(
-            name: "identity",
-            url: "https://github.com/iProov/identity/releases/download/0.3.6/identity.xcframework.zip",
-            checksum: "ee629dc7c2755223a4b336f6f8725a31ff2e62c8f522a3ac9eac3766d0c17012"
-        )
+            name: "identityBinary",
+            url: "https://github.com/iProov/identity/releases/download/0.4.0/identity.xcframework.zip",
+            checksum: "b0364a31eb38e540cf9aa5e14b877d4754e519ebe2f529112585afc65dad95cf"
+        ),
+        .target(
+            name: "identityWrapper",
+            dependencies: [
+                "identityBinary",
+                .product(name: "iProov", package: "ios"),
+                .product(name: "JOSESwift", package: "JOSESwift"),
+            ]
+        ),
     ]
 )

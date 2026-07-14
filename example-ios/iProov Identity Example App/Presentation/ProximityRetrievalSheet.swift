@@ -7,12 +7,12 @@ struct ProximityRetrievalSheet: View {
     let onCompleted: (ProximityRetrievalResponse) -> Void
 
     init(
-        uri: String,
+        source: RetrievalEngagementSource,
         onDismiss: @escaping () -> Void,
         onCompleted: @escaping (ProximityRetrievalResponse) -> Void
     ) {
         _viewModel = StateObject(
-            wrappedValue: ProximityRetrievalViewModel(uri: uri)
+            wrappedValue: ProximityRetrievalViewModel(source: source)
         )
         self.onDismiss = onDismiss
         self.onCompleted = onCompleted
@@ -234,6 +234,9 @@ struct ProximityRetrievalSheet: View {
         switch viewModel.state {
         case .idle, .decoding:
             Image(systemName: "qrcode")
+                .foregroundStyle(.blue)
+        case .requestingTag:
+            Image(systemName: "wave.3.right")
                 .foregroundStyle(.blue)
         case .connecting:
             Image(systemName: "antenna.radiowaves.left.and.right")

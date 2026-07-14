@@ -17,6 +17,7 @@ class ScanQRCodeViewModel: ObservableObject {
     @Published var loginRequest: RespondableLoginRequest? = nil
     @Published var presentationRequest: RespondablePresentationRequest? = nil
     @Published var proximityRetrievalUri: String? = nil
+    @Published var isShowingNfcRetrieval = false
     @Published var isLoading = false
     @Binding var alert: AlertDialog?
     let reloadCredentials: () -> Void
@@ -142,6 +143,18 @@ class ScanQRCodeViewModel: ObservableObject {
 
             self.loginRequest = presentationRequest
         }
+    }
+
+    func startNfcProximityRetrieval() {
+        let nfcAvailable = NFCNDEFReaderSession.readingAvailable
+        guard nfcAvailable else {
+            alert = AlertDialog(
+                title: "NFC unavailable",
+                message: "NFC reading is not available on this device."
+            )
+            return
+        }
+        isShowingNfcRetrieval = true
     }
 
     func dismissPresentationRequest() {

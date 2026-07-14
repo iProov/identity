@@ -14,7 +14,7 @@
 //
 //  SDK contract (everything else here — trust banner, full/partial/none classification,
 //  eager matching, hero screens — is optional UI/UX):
-//    1. let session = try await wallet.startProximityPresentation(config:)
+//    1. let session = try await wallet.startProximityPresentation(qr:config:)
 //    2. session.events.collect { ... }       // drive the UI from ProximityPresentationEvent
 //    3. on .RequestReceived: request.match()   // which stored credentials satisfy the request
 //    4. request.respond(disclosed:)            // send the user's picks (empty map = decline)
@@ -111,7 +111,9 @@ final class ProximityPresentationViewModel: ObservableObject {
 
         Task {
             do {
-                let session = try await wallet.startProximityPresentation(config: ProximityConfig())
+                let session = try await wallet.startProximityPresentation(
+                    qr: PresentationMethod.QrPresentation.shared,
+                    config: ProximityConfig())
                 self.session = session
                 collect(session)
             } catch {
@@ -154,11 +156,11 @@ final class ProximityPresentationViewModel: ObservableObject {
 
     private func handle(_ event: ProximityPresentationEvent) {
         switch event {
-        case is ProximityPresentationEvent.GeneratingEngagement:
+        case is ProximityPresentationEvent.EngagementGenerating:
             // Don't clobber the QR if this arrives after QrEngagementReady.
             if case .showingQr = state {} else { state = .generatingEngagement }
 
-        case let e as ProximityPresentationEvent.QrEngagementReady:
+        case let e as ProximityPresentationEvent.EngagementQrReady:
             state = .showingQr(e.payload.mdocUri)
 
         case is ProximityPresentationEvent.Connecting:
@@ -299,6 +301,7 @@ final class ProximityPresentationViewModel: ObservableObject {
             let disclosed = sel.selectedItems.filter { !$0.value.isEmpty }
             picks[sel.docRequest] = DisclosedDocument(
                 credential: sel.candidates[idx].credential,
+                metadata: sel.candidates[idx].metadata,
                 disclosedItems: disclosed)
         }
 

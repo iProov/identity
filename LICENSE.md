@@ -1,4 +1,4 @@
-## iProov Biometrics SDK Terms
+## iProov Identity SDK Terms
 
 iProov Identity SDK Terms (the "Terms"):
 

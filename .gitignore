@@ -1,4 +1,4 @@
 .build/
-example-ios/.DS_Store
+**/.DS_Store
 # Local-only release helper skill (not shared)
 .claude/skills/release-ios-example/

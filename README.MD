@@ -1,4 +1,4 @@
-# iProov Identity SDK v0.4.0
+# iProov Identity SDK v0.4.1
 
 The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform
 app.
@@ -70,7 +70,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     2. Enter the repository URL for the iProov Identity SDK.
 
-    3. Select your desired version rule (e.g. Up to Next Major Version from `0.4.0`).
+    3. Select your desired version rule (e.g. Up to Next Major Version from `0.4.1`).
 
     4. Add the `identity` library product to your app target.
 
@@ -99,7 +99,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     dependencies {
-      implementation("com.iproov.identity:identity-android:0.4.0")
+      implementation("com.iproov.identity:identity-android:0.4.1")
       implementation("com.iproov.sdk:iproov:<latest-version>")
     }
     ```
@@ -134,7 +134,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
       sourceSets {
           val commonMain by getting {
               dependencies {
-                  implementation("com.iproov.identity:identity:0.4.0")
+                  implementation("com.iproov.identity:identity:0.4.1")
               }
           }
       }
@@ -1794,27 +1794,9 @@ if (wallet.isDCApiAvailable()) {
 
 ## Proximity (ISO/IEC 18013-5)
 
-In-person mdoc exchange over BLE. The wallet can act as the **holder** (presenting credentials) or the **reader**
-(retrieving them).
+In-person mdoc exchange. Engagement is over QR or NFC; the credential transfer itself is always BLE (NFC uses negotiated handover to BLE). The wallet can act as the holder (presenting) or the reader (retrieving).
 
-### Presentation flow (wallet presents to a reader)
-
-1. Call `wallet.startProximityPresentation(config)` to get a `ProximityPresentationSession`.
-2. Collect `session.events` and render the QR from the `QrEngagementReady` event so the reader can scan it
-   (`GeneratingEngagement → QrEngagementReady → Connecting → SessionCreated → RequestReceived → PresentationSent →
-   Disconnected`).
-3. On `RequestReceived`, call `request.match()` to find which stored credentials satisfy the reader's request.
-4. Show selective-disclosure UI, then call `request.respond(disclosed)` with the user's picks (an empty map declines).
-5. `PresentationSent` (success), `Disconnected`, and `Failure` are terminal. Call `session.close()` to cancel.
-
-### Reading flow (wallet reads from a holder)
-
-1. Call `wallet.startProximityRetrieval(uri, requestedDocuments)` to get a `ProximityRetrievalSession`.
-2. Collect `session.events` (`Decoding → Connecting → SendingRequest → WaitingForResponse → ProcessingResponse →
-   Completed`).
-3. The `Completed` event carries the received documents; `Error` carries a message.
-
-### Bluetooth permissions
+#### Bluetooth permissions
 
 Both roles use BLE, so each platform needs Bluetooth access granted before a session starts.
 
@@ -1837,6 +1819,105 @@ android:name="android.permission.BLUETOOTH_ADVERTISE" /><!-- BLE on Android 11 a
 
 **iOS** — add `NSBluetoothAlwaysUsageDescription` to `Info.plist`; iOS prompts for access automatically on first BLE
 use (no manual runtime request). See `example-ios`.
+
+
+### Engagement over QR
+
+#### Presentation flow (wallet presents to a reader)
+
+1. Call `wallet.startProximityPresentation(PresentationMethod.QrPresentation, config)` to get a `ProximityPresentationSession`.
+2. Collect `session.events` and render the QR from the `QrEngagementReady` event so the reader can scan it
+   (`Engagement.Generating → Engagement.Qr.Ready → Connecting → Connected → CreatingSession → SessionCreated  → RequestReceived → PresentationSent → Disconnected`).
+3. On `RequestReceived`, call `request.match()` to find which stored credentials satisfy the reader's request.
+4. Show selective-disclosure UI, then call `request.respond(disclosed)` with the user's picks (an empty map declines).
+5. `PresentationSent` (success), `Disconnected`, and `Failure` are terminal. Call `session.close()` to cancel.
+
+#### Reading flow (wallet reads from a holder)
+
+1. Call `wallet.startProximityRetrieval(uri, requestedDocuments, config)` to get a `ProximityRetrievalSession`.
+2. Collect `session.events` (`Engagement.Qr.Decoding → Connecting → SendingRequest → WaitingForResponse → ProcessingResponse → Completed`).
+3. The `Completed` event carries the received documents; `Error` carries a message.
+
+### Engagement over NFC
+
+#### Presentation flow (wallet presents to a reader)
+
+1. Call `wallet.startProximityPresentation(PresentationMethod.NfcPresentation, config)` to get a `ProximityPresentationSession`.
+2. Collect `session.events`. On `Engagement.Nfc.Ready` the HCE service is primed — prompt the user to hold the device to the reader; the reader's tap performs the NDEF handover. Full `ProximityPresentationEvent` sequence:
+`Engagement.Generating → Engagement.Nfc.Ready → Engagement.Nfc.Completed → Connecting → Connected → CreatingSession → SessionCreated → RequestReceived → PresentationSent → Disconnected`.
+3. On `RequestReceived`, call `request.match()` to find which stored credentials satisfy the reader's request.
+4. Show selective-disclosure UI, then call `request.respond(disclosed)` with the user's picks (an empty map declines).
+5. `PresentationSent` (success), `Disconnected`, and `Failure` are terminal. Call `session.close()` to cancel.
+
+#### Reading flow (wallet reads from a holder)
+
+1. Enable NFC reader mode, and on tag detection call `wallet.startProximityRetrieval(nfcTag, requestedDocuments)` on Android (or `wallet.startProximityRetrieval(options)` on iOS) to get a `ProximityRetrievalSession`.
+2. Collect `session.events`, the engagement prefix differs by platform, then both converge:
+  - iOS: `Engagement.Nfc.RequestingTag → Engagement.Nfc.Completed → ...`
+  - Android: `Engagement.Nfc.Completed → ... (your app supplies the already-discovered Tag, so no RequestingTag is emitted)`
+  - ...→ `Connecting → SendingRequest → WaitingForResponse → ProcessingResponse → Completed.`
+3. The `Completed` event carries the received documents; `Error` carries a message.
+
+
+**Android - Holder HCE** — declare the permissions in `AndroidManifest.xml` **and** request them at runtime *before* starting a session: 
+
+```xml
+<uses-feature android:name="android.hardware.nfc.hce" android:required="false" />
+<uses-permission android:name="android.permission.NFC" />
+
+<service
+    android:name=".AppHceService"
+    android:exported="true"
+    android:permission="android.permission.BIND_NFC_SERVICE">
+    <intent-filter>
+        <action android:name="android.nfc.cardemulation.action.HOST_APDU_SERVICE" />
+    </intent-filter>
+    <meta-data
+        android:name="android.nfc.cardemulation.host_apdu_service"
+        android:resource="@xml/nfc_service" />
+</service>
+```
+
+res/xml/nfc_service.xml — **the AID MUST be D2760000850101 under category other:**
+
+```xml
+<host-apdu-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/nfc_service_description"
+    android:requireDeviceScreenOn="true"
+    android:requireDeviceUnlock="false">
+    <aid-group android:category="other" android:description="@string/nfc_aid_group_description">
+        <aid-filter android:name="D2760000850101" />
+    </aid-group>
+</host-apdu-service>
+```
+
+The service is a one-liner — subclass the SDK's IsoMdocHceService:
+
+```xml
+class AppHceService : IsoMdocHceService()
+```
+
+Arm card emulation around your Activity lifecycle, and start the session with the NFC overload:
+
+```xml
+override fun onResume() { super.onResume(); wallet.enableNfcEngagement() }
+override fun onPause()  { super.onPause();  wallet.disableNfcEngagement() }
+```
+
+See `example-android` for implementation example
+
+**Android - Reader** — Add `<uses-permission android:name="android.permission.NFC" />`, enable reader mode, and pass the detected tag to the SDK:
+
+```xml
+nfcAdapter.enableReaderMode(activity, { tag ->
+    wallet.startProximityRetrieval(nfcTag = tag, requestedDocuments, createSigningData, ProximityConfig())
+}, NfcAdapter.FLAG_READER_NFC_A or NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK, null)
+```
+
+See `example-android` for implementation example
+
+**iOS - Reader Only** -  Add `NFCReaderUsageDescription` and `com.apple.developer.nfc.readersession.iso7816.select-identifiers` (containing D2760000850101) to `Info.plist`, and enable the `Near Field Communication Tag Reading capability` for the `com.apple.developer.nfc.readersession.formats entitlement`; iOS prompts for access automatically on first NFC read (no manual runtime request). See example-ios.
+
 
 ## Handling login requests
 

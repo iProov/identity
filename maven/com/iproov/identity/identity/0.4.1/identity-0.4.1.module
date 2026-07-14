@@ -1,0 +1,183 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.iproov.identity",
+    "module": "identity",
+    "version": "0.4.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "com.iproov.kmp",
+          "module": "sdk",
+          "version": {
+            "requires": "2.0.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "identity-0.4.1.jar",
+          "url": "identity-0.4.1.jar",
+          "size": 107642,
+          "sha512": "ccb33792361fb4a927c97f5d1e0fc66d422e317fbc0269ce7bf876c901daec7621cad77de67db1ec34decd8db806d44fc96ab9e6bc692b9939c186f80049c86a",
+          "sha256": "2e60e74ff2d266d96a207d603700ac8bfd38a53edf4ca50ebeae666e1f679845",
+          "sha1": "6ce2ded7fc315de57020bab5f4cacacf35065d47",
+          "md5": "acd55acbac9923437f43281be487a8c0"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "files": [
+        {
+          "name": "identity-0.4.1-sources.jar",
+          "url": "identity-0.4.1-sources.jar",
+          "size": 146032,
+          "sha512": "e651b1ee1c7b9e0daf131c7e3dd3110d2cc04aa1f0a989ef5aed06dcfba1e36a5aaa6470a78794e10c6ade0ccd64e4bd62c9379254a8b78e3ee96cd47653f8ba",
+          "sha256": "642ae0b366f96f86cee4768f39036079e3f882bf3be32c5fe7b48fd7546c6d76",
+          "sha1": "7c05a57dba652f818664a24efc428b3ee0f2cc10",
+          "md5": "bd6505f672b15b1dd30cf19712cc6264"
+        }
+      ]
+    },
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../identity-android/0.4.1/identity-android-0.4.1.module",
+        "group": "com.iproov.identity",
+        "module": "identity-android",
+        "version": "0.4.1"
+      }
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../identity-android/0.4.1/identity-android-0.4.1.module",
+        "group": "com.iproov.identity",
+        "module": "identity-android",
+        "version": "0.4.1"
+      }
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../identity-android/0.4.1/identity-android-0.4.1.module",
+        "group": "com.iproov.identity",
+        "module": "identity-android",
+        "version": "0.4.1"
+      }
+    },
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../identity-iosarm64/0.4.1/identity-iosarm64-0.4.1.module",
+        "group": "com.iproov.identity",
+        "module": "identity-iosarm64",
+        "version": "0.4.1"
+      }
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../identity-iosarm64/0.4.1/identity-iosarm64-0.4.1.module",
+        "group": "com.iproov.identity",
+        "module": "identity-iosarm64",
+        "version": "0.4.1"
+      }
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../identity-iosarm64/0.4.1/identity-iosarm64-0.4.1.module",
+        "group": "com.iproov.identity",
+        "module": "identity-iosarm64",
+        "version": "0.4.1"
+      }
+    }
+  ]
+}

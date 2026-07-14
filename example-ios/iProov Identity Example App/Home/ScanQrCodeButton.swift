@@ -10,6 +10,7 @@ struct ScanQRCodeButton : View {
     @StateObject private var viewModel: ScanQRCodeViewModel
     @Binding private var pendingDeepLinkURI: String?
     private let onCredentialOfferScanned: (String) -> Void
+    @State private var isShowingMethodPicker = false
 
     init(
         failure: Binding<AlertDialog?>,
@@ -26,7 +27,7 @@ struct ScanQRCodeButton : View {
 
     var body: some View {
         Button(action: {
-            viewModel.isShowingSheet = true
+            isShowingMethodPicker = true
         }) {
             Image(systemName: "qrcode.viewfinder")
                 .font(.title.weight(.semibold))
@@ -37,6 +38,19 @@ struct ScanQRCodeButton : View {
                 .shadow(radius: 4)
         }
         .disabled(viewModel.isLoading)
+        .confirmationDialog(
+            "How would you like to connect?",
+            isPresented: $isShowingMethodPicker,
+            titleVisibility: .visible
+        ) {
+            Button("Scan QR Code") {
+                viewModel.isShowingSheet = true
+            }
+            Button("NFC Proximity Tap") {
+                viewModel.startNfcProximityRetrieval()
+            }
+            Button("Cancel", role: .cancel) {}
+        }
         .sheet(isPresented: $viewModel.isShowingSheet) {
             ScanQrCodeSheet(
                 dismiss: { viewModel.isShowingSheet = false },
@@ -68,7 +82,7 @@ struct ScanQRCodeButton : View {
         )) {
             if let uri = viewModel.proximityRetrievalUri {
                 ProximityRetrievalSheet(
-                    uri: uri,
+                    source: .qr(uri: uri),
                     onDismiss: { viewModel.proximityRetrievalUri = nil },
                     onCompleted: { response in
                         viewModel.proximityRetrievalUri = nil
@@ -76,6 +90,16 @@ struct ScanQRCodeButton : View {
                     }
                 )
             }
+        }
+        .sheet(isPresented: $viewModel.isShowingNfcRetrieval) {
+            ProximityRetrievalSheet(
+                source: .nfc,
+                onDismiss: { viewModel.isShowingNfcRetrieval = false },
+                onCompleted: { response in
+                    viewModel.isShowingNfcRetrieval = false
+                    viewModel.handleProximitySuccess(response)
+                }
+            )
         }
         .onAppear {
             consumePendingDeepLink()

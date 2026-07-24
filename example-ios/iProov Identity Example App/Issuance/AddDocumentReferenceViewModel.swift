@@ -174,9 +174,12 @@ class AddDocumentReferenceViewModel: ObservableObject {
         try? await Task.sleep(nanoseconds: 600_000_000)
 
         do {
-            let code = try await launchAuthSession(url: url)
+            let response = try await launchAuthSession(url: url)
             isLoading = true
-            let summary = try await authRequired.respond(authorizationCode: code)
+            let summary = try await authRequired.respond(
+                authorizationCode: response.authorizationCode,
+                state: response.state
+            )
             isLoading = false
 
             // Re-present the offer sheet with completed status
@@ -191,7 +194,7 @@ class AddDocumentReferenceViewModel: ObservableObject {
         }
     }
 
-    private func launchAuthSession(url: URL) async throws -> String {
+    private func launchAuthSession(url: URL) async throws -> (authorizationCode: String, state: String) {
         defer { activeAuthSession = nil }
 
         return try await withCheckedThrowingContinuation { continuation in
@@ -212,15 +215,16 @@ class AddDocumentReferenceViewModel: ObservableObject {
 
                 guard let callbackURL = callbackURL,
                       let components = URLComponents(url: callbackURL, resolvingAgainstBaseURL: false),
-                      let code = components.queryItems?.first(where: { $0.name == "code" })?.value else {
+                      let authorizationCode = components.queryItems?.first(where: { $0.name == "code" })?.value,
+                      let state = components.queryItems?.first(where: { $0.name == "state" })?.value else {
                     continuation.resume(throwing: NSError(
                         domain: "AuthError", code: 1,
-                        userInfo: [NSLocalizedDescriptionKey: "No authorization code received"]
+                        userInfo: [NSLocalizedDescriptionKey: "Authorization response is missing its code or state"]
                     ))
                     return
                 }
 
-                continuation.resume(returning: code)
+                continuation.resume(returning: (authorizationCode, state))
             }
 
             session.presentationContextProvider = WebAuthContextProvider.shared

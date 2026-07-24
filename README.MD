@@ -1,4 +1,4 @@
-# iProov Identity SDK v0.4.1
+# iProov Identity SDK v0.5.0
 
 The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform
 app.
@@ -70,7 +70,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     2. Enter the repository URL for the iProov Identity SDK.
 
-    3. Select your desired version rule (e.g. Up to Next Major Version from `0.4.1`).
+    3. Select your desired version rule (e.g. Up to Next Major Version from `0.5.0`).
 
     4. Add the `identity` library product to your app target.
 
@@ -99,7 +99,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     dependencies {
-      implementation("com.iproov.identity:identity-android:0.4.1")
+      implementation("com.iproov.identity:identity-android:0.5.0")
       implementation("com.iproov.sdk:iproov:<latest-version>")
     }
     ```
@@ -134,7 +134,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
       sourceSets {
           val commonMain by getting {
               dependencies {
-                  implementation("com.iproov.identity:identity:0.4.1")
+                  implementation("com.iproov.identity:identity:0.5.0")
               }
           }
       }
@@ -649,7 +649,8 @@ grant). Check `offer.availableGrants` to see which flows the issuer supports:
 
 When you call `authorize()`, the SDK returns `IssuanceResult.AuthorizationRequired` containing an `authorizationUrl`.
 Open this URL in a browser (Custom Tab on Android, `ASWebAuthenticationSession` on iOS). After the user authenticates,
-the issuer redirects back to your app with an authorization code. Extract the code and pass it to `respond()`.
+the issuer redirects back to your app with an authorization code and state. Extract both values and pass them to
+`respond()` so the SDK can validate that the response belongs to the authorization request.
 
 <details>
 <summary>Kotlin</summary>
@@ -669,9 +670,10 @@ val issuance = if (hasAuthCode) {
 when (issuance) {
     is IssuanceResult.AuthorizationRequired -> {
         // Open issuance.authorizationUrl in a Custom Tab or browser
-        // After redirect, extract the authorization code from the callback URI
+        // After redirect, extract the authorization code and state from the callback URI
         val authCode = extractAuthCodeFromRedirect(callbackUri)
-        val summary = issuance.respond(authCode)
+        val state = extractStateFromRedirect(callbackUri)
+        val summary = issuance.respond(authorizationCode = authCode, state = state)
         // Process summary.credentialsAdded / summary.errors
     }
     // ... handle other IssuanceResult types as shown above
@@ -700,8 +702,11 @@ if hasAuthCode {
 
 if let authRequired = result as? IssuanceResultAuthorizationRequired {
     // Present authRequired.authorizationUrl in ASWebAuthenticationSession
-    // Extract authorization code from the callback
-    let summary = try await authRequired.respond(authorizationCode: authCode)
+    // Extract the authorization code and state from the callback URL
+    let summary = try await authRequired.respond(
+        authorizationCode: authCode,
+        state: state
+    )
     // Process summary
 }
 ```
@@ -723,6 +728,10 @@ code entry points so SDK consumers are aware of the current scope:
   it will be reported as an error in `IssuanceSummary.errors` with code `deferred_not_supported`.
 - **iOS App Attestation** for Proof of Possession is not yet implemented. The SDK passes `nil` for
   the `clientAttestationPoPBuilder` parameter.
+- **Remote / asynchronous signing** is not supported. `KeyPair.sign` is synchronous because
+  credential issuance signs proofs through a synchronous signer, so a bring-your-own signing key
+  must sign in-process (e.g. a secure element); server-side or HSM signing that awaits a network
+  call is out of scope.
 - **Callback URI** is currently hardcoded to `com.iproov.identity://callback` and cannot be
   customized per-app.
 - **Trusted authority matching** in DCQL queries compares against the issuer name. A full trust
@@ -2289,8 +2298,8 @@ For the iOS example app, see the `/example-ios` folder. For the Android example 
 
 By default, the wallet uses a 'device bound' key pair for signing and another device bound key pair for storage
 encryption. The default access policies for these key pairs are `DeviceUnlocked`. You can configure the wallet to use a
-different access policy (e.g. requiring biometrics for example) for signing, by overriding the `signingKeyPairFactory`
-param in getInstance, or for storage in the `DeviceBoundStorageEngine` class.
+different access policy (e.g. requiring biometrics) for signing by overriding the `signingKeyPairFactory` param in
+`getInstance`, or for storage via the `accessPolicy` argument of `getDeviceBoundStorageEngine`.
 
 The available access policies for iOS are:
 
@@ -2303,24 +2312,29 @@ The available access policies for iOS are:
 The available access policies for Android are:
 
 - `KeyPairAccessPolicy.DeviceUnlocked` - Requires the device to be unlocked.
-- `KeyPairAccessPolicy.AnyBiometric` - Requires any biometrics enrolled on the device.
+- `KeyPairAccessPolicy.UserPresent` - Requires user presence (a strong biometric or the device credential).
+- `KeyPairAccessPolicy.AnyBiometrics` - Requires any biometrics enrolled on the device.
 - `KeyPairAccessPolicy.CurrentBiometrics` - Requires the current set of biometrics enrolled on the device (invalidated
   if new biometrics are added).
 
+> [!NOTE]
+> On Android you can request StrongBox-backed keys by passing `useStrongBox = true` to
+> `AndroidDefaultKeyPair`; it falls back to TEE-backed keys on devices without StrongBox.
+
 <details>
-<summary>Koltin</summary>
+<summary>Kotlin</summary>
 
 ```kotlin
 val tenMinutes = 10 * 60
-val accessPolicy = KeyPairAccessPolicy.AnyBiometric(authenticationValidityDuration: tenMinutes)
-val storageEngine = DeviceBoundStorageEngine(accessPolicy: accessPolicy)
+val accessPolicy = KeyPairAccessPolicy.AnyBiometrics(authenticationValidityDuration = tenMinutes)
+val storageEngine = getDeviceBoundStorageEngine(accessPolicy = accessPolicy)
 
 val wallet = WalletFactory.getInstance(
     baseUrl = "https://api.beta.iproov.id",
     isLoggingEnabled = true,
     storageEngine = storageEngine,
     signingKeyPairFactory = {
-        AndroidDefaultKeyPair(context, "com.iproov.identity", accessControlPolicy = accessPolicy)
+        AndroidDefaultKeyPair(context, "com.iproov.identity", accessPolicy = accessPolicy)
     }
 )
 ```
@@ -2333,7 +2347,7 @@ val wallet = WalletFactory.getInstance(
 ```swift
 let tenMinutes = 10 * 60
 let accessPolicy = KeyPairAccessPolicy.AnyBiometrics(authenticationValidityDuration: tenMinutes)
-let storageEngine = DeviceBoundStorageEngine(accessPolicy: accessPolicy)
+let storageEngine = DeviceBoundAppleStorageEngine(accessControlPolicy: accessPolicy)
 
 let wallet = WalletFactory.shared.getInstance(
     baseUrl: "https://api.beta.iproov.id",
@@ -2346,6 +2360,73 @@ let wallet = WalletFactory.shared.getInstance(
 ```
 
 </details>
+
+### Bring your own key management
+
+By default, the wallet manages a device-bound signing key and a separate storage-encryption key.
+You can supply either or both when your organization needs to own key management.
+
+- Swift custom signing keys implement `WalletSigningKey`; Kotlin custom signing keys implement
+  `KeyPair`. Both must use ES256 with a P-256 public key.
+- The SDK reports every injected signing key to the backend with
+  `keySecurityLevel = SECURITY_LEVEL_CUSTOMER`.
+- Swift custom storage keys for our provided storage engine implement `WalletStorageEncryptionKey`; Kotlin custom storage keys
+  implement `EncryptionKey`. Both must use authenticated encryption.
+- Factories can be called more than once and must return handles to the same underlying keys.
+- Swift signing keys implement `AttestableWalletSigningKey` when an issuer requires OID4VCI key
+  attestation; Kotlin signing keys implement `AttestableKeyPair`.
+- Injected keys are caller-managed; the SDK does not reset an injected signing key.
+
+#### Injection and lifecycle
+
+Pass the signing key through `signingKeyPairFactory` and the storage key through
+`encryptionKeyFactory` on `getDeviceBoundStorageEngine`. Omitting either uses the SDK's default
+device-bound key.
+
+> [!IMPORTANT]
+> You are responsible for the security and lifecycle of injected keys. Prefer hardware-backed keys.
+
+<details>
+<summary>Kotlin</summary>
+
+```kotlin
+val wallet = WalletFactory.getInstance(
+    baseUrl = "https://api.beta.iproov.id",
+    signingKeyPairFactory = { signingKey }, // KeyPair, optionally also AttestableKeyPair
+    storageEngine = getDeviceBoundStorageEngine(
+        accessPolicy = KeyPairAccessPolicy.DeviceUnlocked,
+        encryptionKeyFactory = { storageKey }, // EncryptionKey, optionally also ResettableKey
+    ),
+)
+```
+
+</details>
+
+<details>
+<summary>Swift</summary>
+
+```swift
+let storageEngine = DeviceBoundAppleStorageEngine(
+    accessControlPolicy: KeyPairAccessPolicy.companion.DeviceUnlocked,
+    storageEncryptionKeyFactory: { storageKey }
+)
+
+let wallet = WalletFactory.shared.getInstance(
+    baseUrl: "https://api.beta.iproov.id",
+    isLoggingEnabled: true,
+    storageEngine: storageEngine,
+    signingKeyFactory: { signingKey }
+)
+```
+
+</details>
+
+The SDK resets its default signing key during wallet teardown. Injected signing keys remain
+caller-managed. Swift injected storage keys opt into best-effort reset by implementing
+`ResettableWalletStorageEncryptionKey`.
+
+See [Bring your own key management](docs/bring-your-own-key-management.md) for the complete
+contracts, implementations, attestation rules, and lifecycle behavior.
 
 ### Adding a document by reference
 

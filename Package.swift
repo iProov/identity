@@ -7,7 +7,7 @@ let package = Package(
         .iOS(.v16)
     ],
     products: [
-        .library(name: "identity", targets: ["identityWrapper"])
+        .library(name: "identity", targets: ["identity"])
     ],
     dependencies: [
         .package(url: "https://github.com/iproov/ios", from: "13.1.0"),
@@ -15,18 +15,19 @@ let package = Package(
     ],
     targets: [
         .binaryTarget(
-            name: "identityBinary",
+            name: "iProovIdentityBinary",
             url:
-                "https://github.com/iProov/identity/releases/download/0.4.1/identity.xcframework.zip",
-            checksum: "f7d0e5388fa93f664906589a8ef93ea0f764d8bb094beb35e538ff8f336cf931"
+                "https://github.com/iProov/identity/releases/download/0.5.0/iProovIdentity.xcframework.zip",
+            checksum: "55f5e9f95be205efb36fa751eb9ca0d2fd79b92c96e5edbfba1fa4f11020b468"
         ),
         .target(
-            name: "identityWrapper",
+            name: "identity",
             dependencies: [
-                "identityBinary",
+                "iProovIdentityBinary",
                 .product(name: "iProov", package: "ios"),
                 .product(name: "JOSESwift", package: "JOSESwift"),
-            ]
+            ],
+            path: "Sources/identity"
         ),
     ]
 )

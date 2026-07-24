@@ -30,6 +30,8 @@
 		CA4156792D39641800D7A909 /* CredentialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4156782D39641800D7A909 /* CredentialsView.swift */; };
 		CA41567B2D3965A800D7A909 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA41567A2D3965A800D7A909 /* HomeViewModel.swift */; };
 		CA41567F2D39732000D7A909 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA41567E2D39732000D7A909 /* ErrorView.swift */; };
+		CA8C0DB13010D5D400D9B009 /* ByoKeyConsumerFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8C0DB03010D5D400D9B009 /* ByoKeyConsumerFixture.swift */; };
+		CA8C0DB33010D5D400D9B009 /* UserDefaultsSoftwareKeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8C0DB23010D5D400D9B009 /* UserDefaultsSoftwareKeyPair.swift */; };
 		CAB4C39A2FD1C7FF006D9724 /* identity in Frameworks */ = {isa = PBXBuildFile; productRef = CAB4C3992FD1C7FF006D9724 /* identity */; };
 		CAB748A62D1415BE00F33325 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB748A52D1415BE00F33325 /* App.swift */; };
 		CAB748A82D1415BE00F33325 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB748A72D1415BE00F33325 /* HomeView.swift */; };
@@ -85,6 +87,8 @@
 		CA4156782D39641800D7A909 /* CredentialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsView.swift; sourceTree = "<group>"; };
 		CA41567A2D3965A800D7A909 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CA41567E2D39732000D7A909 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		CA8C0DB03010D5D400D9B009 /* ByoKeyConsumerFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByoKeyConsumerFixture.swift; sourceTree = "<group>"; };
+		CA8C0DB23010D5D400D9B009 /* UserDefaultsSoftwareKeyPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsSoftwareKeyPair.swift; sourceTree = "<group>"; };
 		CAB748A22D1415BE00F33325 /* iProov Identity Example App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iProov Identity Example App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB748A52D1415BE00F33325 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		CAB748A72D1415BE00F33325 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 		CAB748A42D1415BE00F33325 /* iProov Identity Example App */ = {
 			isa = PBXGroup;
 			children = (
+				CA8C0DB03010D5D400D9B009 /* ByoKeyConsumerFixture.swift */,
+				CA8C0DB23010D5D400D9B009 /* UserDefaultsSoftwareKeyPair.swift */,
 				CAF398DD2D47F6AB007D62E3 /* Utils */,
 				CAF398DC2D47F67C007D62E3 /* Issuance */,
 				CAF398DB2D47F675007D62E3 /* Presentation */,
@@ -311,6 +317,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA8C0DB13010D5D400D9B009 /* ByoKeyConsumerFixture.swift in Sources */,
+				CA8C0DB33010D5D400D9B009 /* UserDefaultsSoftwareKeyPair.swift in Sources */,
 				CAD1A8CD2D510FDB009CD341 /* AddEmailView.swift in Sources */,
 				CA41567F2D39732000D7A909 /* ErrorView.swift in Sources */,
 				CAB748A82D1415BE00F33325 /* HomeView.swift in Sources */,
@@ -597,7 +605,7 @@
 			repositoryURL = "https://github.com/iproov/identity";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.4.1;
+				minimumVersion = 0.5.0;
 			};
 		};
 		CAD1A8C32D4D1EBD009CD341 /* XCRemoteSwiftPackageReference "NFCPassportReader" */ = {

@@ -121,6 +121,44 @@ public extension WalletFactory {
             }
         )
     }
+
+    /// Creates a wallet with a caller-owned Swift signing key, authorization-code issuance and the
+    /// default storage engine.
+    func getInstance(
+        baseUrl: String,
+        clientConfiguration: OID4VCIClientConfiguration,
+        isLoggingEnabled: Bool = false,
+        signingKeyFactory: @escaping () -> any WalletSigningKey
+    ) -> Wallet {
+        getInstance(
+            baseUrl: baseUrl,
+            clientConfiguration: clientConfiguration,
+            isLoggingEnabled: isLoggingEnabled,
+            storageEngine: DeviceBoundAppleStorageEngine(
+                accessControlPolicy: KeyPairAccessPolicy.companion.DeviceUnlocked
+            ),
+            signingKeyFactory: signingKeyFactory
+        )
+    }
+
+    /// Creates a wallet with a caller-owned Swift signing key and authorization-code issuance.
+    func getInstance(
+        baseUrl: String,
+        clientConfiguration: OID4VCIClientConfiguration,
+        isLoggingEnabled: Bool = false,
+        storageEngine: any StorageEngine,
+        signingKeyFactory: @escaping () -> any WalletSigningKey
+    ) -> Wallet {
+        getInstance(
+            baseUrl: baseUrl,
+            clientConfiguration: clientConfiguration,
+            isLoggingEnabled: isLoggingEnabled,
+            storageEngine: storageEngine,
+            signingKeyPairFactory: {
+                makeKotlinSigningKey(signingKeyFactory())
+            }
+        )
+    }
 }
 
 public extension DeviceBoundAppleStorageEngine {

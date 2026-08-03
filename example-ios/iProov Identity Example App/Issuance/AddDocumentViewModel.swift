@@ -23,7 +23,7 @@ class AddDocumentViewModel: ObservableObject {
     private let loginRequest: LoginRequest?
     private let initialCredentialOfferUri: String?
     private let completion: () -> Void
-    private var activeAuthSession: ASWebAuthenticationSession?
+    private let authorizationLauncher = AuthorizationSessionLauncher()
     private var sheetDismissalContinuation: CheckedContinuation<Void, Never>?
     private var hasHandledInitialCredentialOffer = false
 
@@ -255,11 +255,12 @@ class AddDocumentViewModel: ObservableObject {
         }
 
         do {
-            let response = try await launchAuthSession(url: url)
+            let response = try await authorizationLauncher.authorize(url: url)
             isLoading = true
             let summary = try await authRequired.respond(
                 authorizationCode: response.authorizationCode,
-                state: response.state
+                state: response.state,
+                iss: response.iss
             )
             isLoading = false
 
@@ -272,71 +273,6 @@ class AddDocumentViewModel: ObservableObject {
         } catch {
             isLoading = false
             failure = AlertDialog(title: "Authorization Failed", message: error.localizedDescription)
-        }
-    }
-
-    /// Launches ASWebAuthenticationSession and returns the authorization response.
-    private func launchAuthSession(url: URL) async throws -> (authorizationCode: String, state: String) {
-        defer { activeAuthSession = nil }
-
-        return try await withCheckedThrowingContinuation { continuation in
-            let session = ASWebAuthenticationSession(
-                url: url,
-                callbackURLScheme: "com.iproov.identity"
-            ) { callbackURL, error in
-                if let error = error as? ASWebAuthenticationSessionError,
-                   error.code == .canceledLogin {
-                    continuation.resume(throwing: CancellationError())
-                    return
-                }
-
-                if let error = error {
-                    continuation.resume(throwing: error)
-                    return
-                }
-
-                guard let callbackURL = callbackURL,
-                      let components = URLComponents(url: callbackURL, resolvingAgainstBaseURL: false) else {
-                    continuation.resume(throwing: NSError(
-                        domain: "AuthError", code: 1,
-                        userInfo: [NSLocalizedDescriptionKey: "No authorization code received"]
-                    ))
-                    return
-                }
-
-                // Check for OAuth2 error parameters before looking for the code
-                if let oauthError = components.queryItems?.first(where: { $0.name == "error" })?.value {
-                    let desc = components.queryItems?.first(where: { $0.name == "error_description" })?.value
-                    continuation.resume(throwing: NSError(
-                        domain: "OAuthError", code: 0,
-                        userInfo: [NSLocalizedDescriptionKey: desc ?? "Authorization error: \(oauthError)"]
-                    ))
-                    return
-                }
-
-                guard let authorizationCode = components.queryItems?.first(where: { $0.name == "code" })?.value,
-                      let state = components.queryItems?.first(where: { $0.name == "state" })?.value else {
-                    continuation.resume(throwing: NSError(
-                        domain: "AuthError", code: 1,
-                        userInfo: [NSLocalizedDescriptionKey: "Authorization response is missing its code or state"]
-                    ))
-                    return
-                }
-
-                continuation.resume(returning: (authorizationCode, state))
-            }
-
-            session.presentationContextProvider = WebAuthContextProvider.shared
-            session.prefersEphemeralWebBrowserSession = false
-            activeAuthSession = session
-
-            if !session.start() {
-                activeAuthSession = nil
-                continuation.resume(throwing: NSError(
-                    domain: "AuthError", code: 2,
-                    userInfo: [NSLocalizedDescriptionKey: "Failed to start authorization browser"]
-                ))
-            }
         }
     }
 

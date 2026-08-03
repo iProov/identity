@@ -19,7 +19,7 @@ class AddDocumentReferenceViewModel: ObservableObject {
 
     private let completion: () -> Void
     private let wallet = WalletFactory.shared.instance!
-    private var activeAuthSession: ASWebAuthenticationSession?
+    private let authorizationLauncher = AuthorizationSessionLauncher()
 
     init(completion: @escaping () -> Void) {
         self.completion = completion
@@ -174,11 +174,12 @@ class AddDocumentReferenceViewModel: ObservableObject {
         try? await Task.sleep(nanoseconds: 600_000_000)
 
         do {
-            let response = try await launchAuthSession(url: url)
+            let response = try await authorizationLauncher.authorize(url: url)
             isLoading = true
             let summary = try await authRequired.respond(
                 authorizationCode: response.authorizationCode,
-                state: response.state
+                state: response.state,
+                iss: response.iss
             )
             isLoading = false
 
@@ -191,53 +192,6 @@ class AddDocumentReferenceViewModel: ObservableObject {
         } catch {
             isLoading = false
             alert = AlertDialog(title: "Authorization Failed", message: error.localizedDescription)
-        }
-    }
-
-    private func launchAuthSession(url: URL) async throws -> (authorizationCode: String, state: String) {
-        defer { activeAuthSession = nil }
-
-        return try await withCheckedThrowingContinuation { continuation in
-            let session = ASWebAuthenticationSession(
-                url: url,
-                callbackURLScheme: "com.iproov.identity"
-            ) { callbackURL, error in
-                if let error = error as? ASWebAuthenticationSessionError,
-                   error.code == .canceledLogin {
-                    continuation.resume(throwing: CancellationError())
-                    return
-                }
-
-                if let error = error {
-                    continuation.resume(throwing: error)
-                    return
-                }
-
-                guard let callbackURL = callbackURL,
-                      let components = URLComponents(url: callbackURL, resolvingAgainstBaseURL: false),
-                      let authorizationCode = components.queryItems?.first(where: { $0.name == "code" })?.value,
-                      let state = components.queryItems?.first(where: { $0.name == "state" })?.value else {
-                    continuation.resume(throwing: NSError(
-                        domain: "AuthError", code: 1,
-                        userInfo: [NSLocalizedDescriptionKey: "Authorization response is missing its code or state"]
-                    ))
-                    return
-                }
-
-                continuation.resume(returning: (authorizationCode, state))
-            }
-
-            session.presentationContextProvider = WebAuthContextProvider.shared
-            session.prefersEphemeralWebBrowserSession = false
-            activeAuthSession = session
-
-            if !session.start() {
-                activeAuthSession = nil
-                continuation.resume(throwing: NSError(
-                    domain: "AuthError", code: 2,
-                    userInfo: [NSLocalizedDescriptionKey: "Failed to start authorization browser"]
-                ))
-            }
         }
     }
 

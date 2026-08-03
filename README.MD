@@ -1,4 +1,4 @@
-# iProov Identity SDK v0.5.0
+# iProov Identity SDK v0.5.1
 
 The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform
 app.
@@ -70,7 +70,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     2. Enter the repository URL for the iProov Identity SDK.
 
-    3. Select your desired version rule (e.g. Up to Next Major Version from `0.5.0`).
+    3. Select your desired version rule (e.g. Up to Next Major Version from `0.5.1`).
 
     4. Add the `identity` library product to your app target.
 
@@ -99,7 +99,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     dependencies {
-      implementation("com.iproov.identity:identity-android:0.5.0")
+      implementation("com.iproov.identity:identity-android:0.5.1")
       implementation("com.iproov.sdk:iproov:<latest-version>")
     }
     ```
@@ -134,7 +134,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
       sourceSets {
           val commonMain by getting {
               dependencies {
-                  implementation("com.iproov.identity:identity:0.5.0")
+                  implementation("com.iproov.identity:identity:0.5.1")
               }
           }
       }
@@ -329,6 +329,20 @@ let isRegistered = wallet.isRegistered()
 
 When your wallet is first registered, it contains no credentials and only three claims: `sub` and `wid`
 and `com.svipe:client_attestation`.
+
+#### Simulator and emulator support
+
+Registration normally attests the device with App Attest (iOS) or Play Integrity (Android), neither of which can succeed
+on a virtual device. So that you can develop without a physical device, `register()` falls back to an unattested
+registration on:
+
+- the **iOS simulator** — the simulator slice of the framework only; the device slice cannot perform this fallback at all
+- the **Android emulator**, when your app is a debuggable build — a release-signed app always attests for real
+
+> [!IMPORTANT]
+> Unattested registration is accepted by the **DEV environment only**. Against any other environment `register()` will
+> still fail on a simulator or emulator, and a physical device is required. Production builds are unaffected and always
+> use App Attest or Play Integrity.
 
 ### Deleting the wallet
 
@@ -647,10 +661,22 @@ grant). Check `offer.availableGrants` to see which flows the issuer supports:
 - `AvailableGrant.PreAuthorizedCode` — use `offer.accept(credentials)`
 - `AvailableGrant.AuthorizationCode` — use `offer.authorize(credentials)`
 
+Create the wallet with an `OID4VCIClientConfiguration`, giving it your `clientId` and `redirectUri`. Both grant types
+send its `clientId` as `client_id`; only the authorization code flow uses `redirectUri`.
+
+The configuration is optional if you only use pre-authorized issuance. Without it, `authorize()` throws, and
+pre-authorized issuance sends the SDK's own client ID — `identity-android-wallet` on Android, `identity-ios-wallet` on
+iOS — which is what every wallet sent before this configuration existed.
+
 When you call `authorize()`, the SDK returns `IssuanceResult.AuthorizationRequired` containing an `authorizationUrl`.
 Open this URL in a browser (Custom Tab on Android, `ASWebAuthenticationSession` on iOS). After the user authenticates,
-the issuer redirects back to your app with an authorization code and state. Extract both values and pass them to
-`respond()` so the SDK can validate that the response belongs to the authorization request.
+the issuer redirects back to your app with `code`, `state` and — from any authorization server implementing
+[RFC 9207](https://www.rfc-editor.org/rfc/rfc9207) — `iss`. Pass all three to `respond()` so the SDK can validate that
+the response belongs to the authorization request and came from the authorization server it sent that request to.
+
+Pass `iss` through exactly as it arrives, and pass `null` only when the redirect genuinely carried none. Checking it is
+what stops an authorization code being redeemed at the wrong authorization server, so issuance fails with `missing_iss`
+if you drop an `iss` that the server advertises support for, and with `invalid_iss` if the value does not match.
 
 <details>
 <summary>Kotlin</summary>
@@ -670,10 +696,12 @@ val issuance = if (hasAuthCode) {
 when (issuance) {
     is IssuanceResult.AuthorizationRequired -> {
         // Open issuance.authorizationUrl in a Custom Tab or browser
-        // After redirect, extract the authorization code and state from the callback URI
-        val authCode = extractAuthCodeFromRedirect(callbackUri)
-        val state = extractStateFromRedirect(callbackUri)
-        val summary = issuance.respond(authorizationCode = authCode, state = state)
+        // After redirect, read the response parameters from the callback URI
+        val summary = issuance.respond(
+            authorizationCode = callbackUri.getQueryParameter("code")!!,
+            state = callbackUri.getQueryParameter("state")!!,
+            iss = callbackUri.getQueryParameter("iss"),
+        )
         // Process summary.credentialsAdded / summary.errors
     }
     // ... handle other IssuanceResult types as shown above
@@ -702,10 +730,11 @@ if hasAuthCode {
 
 if let authRequired = result as? IssuanceResultAuthorizationRequired {
     // Present authRequired.authorizationUrl in ASWebAuthenticationSession
-    // Extract the authorization code and state from the callback URL
+    // Read the response parameters from the callback URL
     let summary = try await authRequired.respond(
         authorizationCode: authCode,
-        state: state
+        state: state,
+        iss: iss // nil only if the redirect carried no iss
     )
     // Process summary
 }
@@ -714,10 +743,19 @@ if let authRequired = result as? IssuanceResultAuthorizationRequired {
 </details>
 
 > [!IMPORTANT]
-> **Callback URL scheme setup:** The authorization code flow redirects back to your app using the
-> `com.iproov.identity://callback` URL scheme. You must register this scheme in your app:
-> - **iOS:** Add `com.iproov.identity` to `CFBundleURLSchemes` in your `Info.plist`
-> - **Android:** Add an intent filter for `com.iproov.identity://callback` in your `AndroidManifest.xml`
+> Register the exact `redirectUri` with the authorization server and with your app — a `CFBundleURLSchemes` entry on
+> iOS, an intent filter on Android.
+>
+> The SDK only checks that `redirectUri` is a valid absolute URI. Pick the form yourself:
+> [RFC 8252 §7](https://www.rfc-editor.org/rfc/rfc8252#section-7) covers app-claimed HTTPS URIs, private-use schemes
+> unique to your app such as `com.example.wallet:/oauth2redirect`, and loopback URIs.
+>
+> Compare the whole callback URI against the one you configured before reading `code`, `state` and `iss` from it, not
+> just the scheme. An intent filter or `CFBundleURLSchemes` entry registers only the scheme, so
+> `com.example.wallet://attacker/oauth2redirect` will also arrive, and
+> [RFC 9700 §2.1](https://www.rfc-editor.org/rfc/rfc9700#section-2.1) requires exact comparison. Both example apps show
+> one way to do it (`isConfiguredAuthorizationRedirect` on Android, `AuthorizationCodeSettings.matchesRedirectUri` on
+> iOS).
 
 ### Known limitations
 
@@ -732,10 +770,21 @@ code entry points so SDK consumers are aware of the current scope:
   credential issuance signs proofs through a synchronous signer, so a bring-your-own signing key
   must sign in-process (e.g. a secure element); server-side or HSM signing that awaits a network
   call is out of scope.
-- **Callback URI** is currently hardcoded to `com.iproov.identity://callback` and cannot be
-  customized per-app.
 - **Trusted authority matching** in DCQL queries compares against the issuer name. A full trust
   store with certificate chain verification is planned but not yet implemented.
+- **One authorization code flow at a time.** An in-flight request's PKCE and issuer state is held in
+  memory. Calling `authorize()` again supersedes the previous request, and completing the superseded
+  one fails with an `invalid_state` error. A request cannot be resumed if the app is killed during
+  the browser round trip.
+- **One OAuth client registration per wallet.** `OID4VCIClientConfiguration` is fixed when
+  the wallet is created, which is what the specs ask for: HAIP 1.0 §4.4 requires `client_id` to be
+  the `sub` of the Wallet Attestation, and OID4VCI 1.0 §15.4.4 requires that value to identify the
+  wallet implementation rather than an instance, so it is the same string at every issuer. The
+  attestation changes per issuer — HAIP forbids reusing one — but the `client_id` does not. Client
+  registration itself is out of scope of OID4VCI 1.0 §12.1.1, so if you pre-register separately with
+  independent authorization servers you need one wallet per registration.
+- **Wallet attestation** (OID4VCI 1.0 Appendix E) is not implemented, so requests are made as a
+  public client using the configured `client_id`, or the SDK's own if you did not configure one.
 
 ## Demo identity credentials
 

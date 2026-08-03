@@ -505,6 +505,158 @@ struct CredentialOfferSheet: View {
 
 }
 
+// MARK: - Authorization Code Flow
+
+/// This app's OAuth client for OID4VCI authorization-code issuance.
+///
+/// The SDK sends `redirectUri` as `redirect_uri`, so it must be registered for `clientId` at the
+/// issuer's authorization server and declared in `CFBundleURLSchemes`.
+enum AuthorizationCodeSettings {
+
+    static let clientId = "identity-ios-wallet"
+    static let redirectUri = "com.iproov.identity.example:/oauth2redirect"
+
+    /// The callback `ASWebAuthenticationSession` should watch for.
+    static func callback() -> ASWebAuthenticationSession.Callback? {
+        guard let components = URLComponents(string: redirectUri),
+              let scheme = components.scheme?.lowercased() else {
+            return nil
+        }
+
+        guard scheme == "https" else {
+            return .customScheme(scheme)
+        }
+        guard let host = components.host, !components.path.isEmpty else {
+            return nil
+        }
+        return .https(host: host, path: components.path)
+    }
+
+    /// True when `url` is the configured redirect URI, ignoring the query string that carries the
+    /// authorization response.
+    ///
+    /// The session itself only matches a scheme, or a host and path, so the rest is compared here.
+    /// RFC 9700 Section 2.1 requires redirect URIs to be compared exactly.
+    static func matchesRedirectUri(_ url: URL) -> Bool {
+        guard let expected = URLComponents(string: redirectUri),
+              let actual = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+            return false
+        }
+
+        return actual.scheme?.lowercased() == expected.scheme?.lowercased()
+            && actual.user == expected.user
+            && actual.host == expected.host
+            && actual.port == expected.port
+            && actual.path == expected.path
+    }
+}
+
+/// Runs the browser leg of the authorization code flow and returns the authorization response.
+///
+/// Shared by the credential-offer view models, so the callback URI is validated the same way
+/// wherever the flow starts.
+@MainActor
+final class AuthorizationSessionLauncher {
+
+    struct Response {
+        let authorizationCode: String
+        let state: String
+        /// The response's `iss`, absent from servers that do not implement RFC 9207. Pass it to the
+        /// SDK as-is; it checks it against the authorization server it sent the request to.
+        let iss: String?
+    }
+
+    enum LaunchError: LocalizedError {
+        case invalidRedirectUri
+        case unexpectedCallback
+        case incompleteResponse
+        case authorizationServer(error: String, description: String?)
+        case couldNotStart
+
+        var errorDescription: String? {
+            switch self {
+            case .invalidRedirectUri:
+                return "The app's configured redirect URI cannot receive an authorization response."
+            case .unexpectedCallback:
+                return "The browser returned to a URI that is not the configured redirect URI."
+            case .incompleteResponse:
+                return "Authorization response is missing its code or state."
+            case .authorizationServer(let error, let description):
+                return description ?? "Authorization error: \(error)"
+            case .couldNotStart:
+                return "Failed to start authorization browser."
+            }
+        }
+    }
+
+    private var activeSession: ASWebAuthenticationSession?
+
+    func authorize(url: URL) async throws -> Response {
+        guard let callback = AuthorizationCodeSettings.callback() else {
+            throw LaunchError.invalidRedirectUri
+        }
+
+        defer { activeSession = nil }
+
+        return try await withCheckedThrowingContinuation { continuation in
+            let session = ASWebAuthenticationSession(
+                url: url,
+                callback: callback
+            ) { callbackURL, error in
+                if let error = error as? ASWebAuthenticationSessionError,
+                   error.code == .canceledLogin {
+                    continuation.resume(throwing: CancellationError())
+                    return
+                }
+
+                if let error = error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+
+                guard let callbackURL = callbackURL,
+                      AuthorizationCodeSettings.matchesRedirectUri(callbackURL),
+                      let components = URLComponents(url: callbackURL, resolvingAgainstBaseURL: false) else {
+                    continuation.resume(throwing: LaunchError.unexpectedCallback)
+                    return
+                }
+
+                let queryItems = components.queryItems ?? []
+
+                // Check for OAuth2 error parameters before looking for the code
+                if let oauthError = queryItems.first(where: { $0.name == "error" })?.value {
+                    continuation.resume(throwing: LaunchError.authorizationServer(
+                        error: oauthError,
+                        description: queryItems.first(where: { $0.name == "error_description" })?.value
+                    ))
+                    return
+                }
+
+                guard let authorizationCode = queryItems.first(where: { $0.name == "code" })?.value,
+                      let state = queryItems.first(where: { $0.name == "state" })?.value else {
+                    continuation.resume(throwing: LaunchError.incompleteResponse)
+                    return
+                }
+
+                continuation.resume(returning: Response(
+                    authorizationCode: authorizationCode,
+                    state: state,
+                    iss: queryItems.first(where: { $0.name == "iss" })?.value
+                ))
+            }
+
+            session.presentationContextProvider = WebAuthContextProvider.shared
+            session.prefersEphemeralWebBrowserSession = false
+            activeSession = session
+
+            if !session.start() {
+                activeSession = nil
+                continuation.resume(throwing: LaunchError.couldNotStart)
+            }
+        }
+    }
+}
+
 /// Provides a presentation anchor for ASWebAuthenticationSession.
 class WebAuthContextProvider: NSObject, ASWebAuthenticationPresentationContextProviding {
     static let shared = WebAuthContextProvider()

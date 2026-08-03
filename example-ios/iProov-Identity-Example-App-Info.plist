@@ -11,7 +11,7 @@
 			<string>com.iproov.identity.example</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.iproov.identity</string>
+				<string>com.iproov.identity.example</string>
 				<string>eudi-openid4vp</string>
 				<string>haip-vc</string>
 				<string>haip-vci</string>

@@ -1,4 +1,4 @@
-# iProov Identity SDK v0.5.1
+# iProov Identity SDK v0.5.2
 
 The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform
 app.
@@ -70,7 +70,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     2. Enter the repository URL for the iProov Identity SDK.
 
-    3. Select your desired version rule (e.g. Up to Next Major Version from `0.5.1`).
+    3. Select your desired version rule (e.g. Up to Next Major Version from `0.5.2`).
 
     4. Add the `identity` library product to your app target.
 
@@ -99,7 +99,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     dependencies {
-      implementation("com.iproov.identity:identity-android:0.5.1")
+      implementation("com.iproov.identity:identity-android:0.5.2")
       implementation("com.iproov.sdk:iproov:<latest-version>")
     }
     ```
@@ -134,7 +134,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
       sourceSets {
           val commonMain by getting {
               dependencies {
-                  implementation("com.iproov.identity:identity:0.5.1")
+                  implementation("com.iproov.identity:identity:0.5.2")
               }
           }
       }
@@ -677,6 +677,12 @@ the response belongs to the authorization request and came from the authorizatio
 Pass `iss` through exactly as it arrives, and pass `null` only when the redirect genuinely carried none. Checking it is
 what stops an authorization code being redeemed at the wrong authorization server, so issuance fails with `missing_iss`
 if you drop an `iss` that the server advertises support for, and with `invalid_iss` if the value does not match.
+
+An `invalid_iss` usually means the issuer publishes one authorization server identifier and sends another — a defect on
+its side. To keep working against such an issuer, set `acceptUnadvertisedIssParameter` on
+`OID4VCIClientConfiguration`. It allows a mismatch only from a server that does not advertise
+`authorization_response_iss_parameter_supported`, and logs each time it does. Servers that do advertise it are always
+checked. Leave it off in production.
 
 <details>
 <summary>Kotlin</summary>

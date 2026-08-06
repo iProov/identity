@@ -1,0 +1,319 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.iproov.identity",
+    "module": "identity",
+    "version": "0.5.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "com.iproov.kmp",
+          "module": "sdk",
+          "version": {
+            "requires": "2.0.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.21"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-darwin",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-serialization-json",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-serialization-cbor",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-content-negotiation",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-serialization-kotlinx-json",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-logging",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "at.asitplus.signum",
+          "module": "indispensable",
+          "version": {
+            "requires": "3.19.1"
+          }
+        },
+        {
+          "group": "com.benasher44",
+          "module": "uuid",
+          "version": {
+            "requires": "0.8.4"
+          }
+        },
+        {
+          "group": "org.multipaz",
+          "module": "multipaz",
+          "version": {
+            "requires": "0.99.0"
+          }
+        },
+        {
+          "group": "net.orandja.obor",
+          "module": "obor",
+          "version": {
+            "requires": "2.1.3"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "identity-metadata-0.5.2.jar",
+          "url": "identity-0.5.2.jar",
+          "size": 111717,
+          "sha512": "d556d5b79f219420f8e2d2d6ac378f3cbbcade0860b04e49dd8569ed56bd6e062490aaa2f34a4bcff17b71d411fca945ee44e1b093270d3837856e0daa5223b2",
+          "sha256": "5535ba32277db2056533adf9013e44cb9133238a3f9ab441b499ddb051898753",
+          "sha1": "e3ea191539cadb5fbb122f12489e0d26baae751f",
+          "md5": "7c2a85a9c4d555173cd88da6a35d4e5c"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "files": [
+        {
+          "name": "identity-kotlin-0.5.2-sources.jar",
+          "url": "identity-0.5.2-sources.jar",
+          "size": 207171,
+          "sha512": "a6d35586c38d2f794b42e8176b706efa274bc14c57e60c0159d6eb35a626aab231dcb5dff9f1aeceaa8bb0ebf414bc3991e9b2fc7e9588d3a0983bd41015dcbd",
+          "sha256": "a64642e55f3d91291b9f879199c4abcd745e39dc9754ca2a63b5f8975f59cf63",
+          "sha1": "55c1d19d40265c59aef29020794c736fbdb72a96",
+          "md5": "871d8b5091b079871e9c352f17b76822"
+        }
+      ]
+    },
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../identity-android/0.5.2/identity-android-0.5.2.module",
+        "group": "com.iproov.identity",
+        "module": "identity-android",
+        "version": "0.5.2"
+      }
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../identity-android/0.5.2/identity-android-0.5.2.module",
+        "group": "com.iproov.identity",
+        "module": "identity-android",
+        "version": "0.5.2"
+      }
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../identity-android/0.5.2/identity-android-0.5.2.module",
+        "group": "com.iproov.identity",
+        "module": "identity-android",
+        "version": "0.5.2"
+      }
+    },
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../identity-iosarm64/0.5.2/identity-iosarm64-0.5.2.module",
+        "group": "com.iproov.identity",
+        "module": "identity-iosarm64",
+        "version": "0.5.2"
+      }
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../identity-iosarm64/0.5.2/identity-iosarm64-0.5.2.module",
+        "group": "com.iproov.identity",
+        "module": "identity-iosarm64",
+        "version": "0.5.2"
+      }
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../identity-iosarm64/0.5.2/identity-iosarm64-0.5.2.module",
+        "group": "com.iproov.identity",
+        "module": "identity-iosarm64",
+        "version": "0.5.2"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../identity-iossimulatorarm64/0.5.2/identity-iossimulatorarm64-0.5.2.module",
+        "group": "com.iproov.identity",
+        "module": "identity-iossimulatorarm64",
+        "version": "0.5.2"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../identity-iossimulatorarm64/0.5.2/identity-iossimulatorarm64-0.5.2.module",
+        "group": "com.iproov.identity",
+        "module": "identity-iossimulatorarm64",
+        "version": "0.5.2"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../identity-iossimulatorarm64/0.5.2/identity-iossimulatorarm64-0.5.2.module",
+        "group": "com.iproov.identity",
+        "module": "identity-iossimulatorarm64",
+        "version": "0.5.2"
+      }
+    }
+  ]
+}

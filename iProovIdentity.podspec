@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'iProovIdentity'
-  s.version          = '0.5.1'
+  s.version          = '0.5.2'
   s.summary          = 'iProov Identity SDK — digital identity wallet (OID4VCI / OID4VP, ISO/IEC 18013-5).'
   s.description      = <<-DESC
     The iProov Identity SDK provides a digital identity wallet: OID4VCI credential
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   # Both `iProovIdentity.xcframework` and `Sources/identity` are at the archive root
   # (see buildXCFramework in identity/build.gradle.kts).
   s.source = {
-    :http => 'https://github.com/iProov/identity/releases/download/0.5.1/iProovIdentity.pod.zip'
+    :http => 'https://github.com/iProov/identity/releases/download/0.5.2/iProovIdentity.pod.zip'
   }
   s.vendored_frameworks = 'iProovIdentity.xcframework'
   s.source_files = 'Sources/identity/*.swift'

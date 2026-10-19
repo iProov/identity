@@ -24,6 +24,10 @@ final class PresentationRequestViewModel: ObservableObject {
     @Published var selections: [CredentialQuery: CredentialSelection] = [:]
     @Published var alert: AlertDialog?
     @Published var successOutcome: PresentationOutcomeSuccess?
+    @Published var declineOutcome: PresentationOutcomeSuccess?
+    @Published private(set) var hasResponded = false
+    @Published private(set) var hasDeclined = false
+    @Published private(set) var canCloseLocally = false
 
     /**
         This is the presentation object returned by the SDK for the authorization request.
@@ -32,6 +36,15 @@ final class PresentationRequestViewModel: ObservableObject {
 
     init(request: RespondablePresentationRequest) {
         self.request = request
+        guard request.request.responseMode == .directPost || request.request.responseMode == .directPostJwt else {
+            hasResponded = true
+            canCloseLocally = true
+            alert = AlertDialog(
+                title: "Unsupported presentation request",
+                message: "This request needs the browser's credential picker. Start it from the verifier's website."
+            )
+            return
+        }
         Task { await loadRequestDetails() }
     }
 
@@ -44,12 +57,15 @@ final class PresentationRequestViewModel: ObservableObject {
     /// Matches wallet credentials against the verifier's request, populating `walletMatches`.
     /// Called automatically on init; can be invoked again to retry after a failure.
     func loadRequestDetails() async {
-        guard !isLoading else { return }
+        guard !isLoading, !hasResponded else { return }
         isLoading = true
         defer { isLoading = false }
         do {
-            walletMatches = try await fetchMatchResult()
+            let matches = try await fetchMatchResult()
+            guard !hasDeclined else { return }
+            walletMatches = matches
         } catch {
+            guard !hasDeclined else { return }
             alert = AlertDialog(
                 title: "Unable to load request",
                 message: error.localizedDescription
@@ -214,11 +230,12 @@ final class PresentationRequestViewModel: ObservableObject {
     }
 
     var canShare: Bool {
-        !isLoading && walletMatches != nil && shareBlockers.isEmpty
+        !hasResponded && !isLoading && walletMatches != nil && shareBlockers.isEmpty
     }
 
     /// Submits the current selections to the verifier. Sets `successOutcome` on success, or `alert` on failure.
     func share() async {
+        guard !hasResponded else { return }
         guard shareBlockers.isEmpty else {
             alert = AlertDialog(
                 title: "Unable to share credentials",
@@ -228,6 +245,7 @@ final class PresentationRequestViewModel: ObservableObject {
         }
         guard let result = walletMatches else { return }
 
+        hasResponded = true
         isLoading = true
         defer { isLoading = false }
 
@@ -240,6 +258,7 @@ final class PresentationRequestViewModel: ObservableObject {
                 matchResult: result
             )
             let outcome = try await respond(with: submission)
+            hasResponded = outcome is PresentationOutcomeSuccess || outcome is PresentationOutcomeDCApiResponse
             switch outcome {
             case let success as PresentationOutcomeSuccess:
                 successOutcome = success
@@ -260,9 +279,36 @@ final class PresentationRequestViewModel: ObservableObject {
                 )
             }
         } catch {
+            let timedOut = (error as NSError).kotlinException is ApiException.TimeoutError
+            hasResponded = timedOut
+            canCloseLocally = timedOut
             alert = AlertDialog(
-                title: "Failed to share credentials",
-                message: error.localizedDescription
+                title: timedOut ? "Share not confirmed" : "Failed to share credentials",
+                message: timedOut
+                    ? "The verifier may have received your credentials. Close this request and start a new one there."
+                    : error.localizedDescription
+            )
+        }
+    }
+
+    func decline() async {
+        guard !hasResponded else { return }
+        hasResponded = true
+        hasDeclined = true
+        do {
+            declineOutcome = try await withCheckedThrowingContinuation { continuation in
+                request.decline { outcome, error in
+                    if let outcome {
+                        continuation.resume(returning: outcome)
+                    } else {
+                        continuation.resume(throwing: error ?? NSError(domain: "PresentationRequest", code: -3))
+                    }
+                }
+            }
+        } catch {
+            alert = AlertDialog(
+                title: "Decline not confirmed",
+                message: "The verifier may still be waiting. You can close this request and start a new one there."
             )
         }
     }

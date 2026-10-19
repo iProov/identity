@@ -91,25 +91,29 @@ struct ProximityRetrievalSheet: View {
     private func completedView(_ response: ProximityRetrievalResponse) -> some View {
         ScrollView {
             VStack(spacing: 16) {
-                // Success header
+                // The session's result. The reader authenticated each document as it arrived;
+                // whether its issuer still stands behind it is each card's status, checked below.
                 VStack(spacing: 8) {
-                    Image(systemName: "checkmark.shield.fill")
+                    Image(systemName: "checkmark.shield")
                         .font(.system(size: 44))
-                        .foregroundStyle(.green)
+                        .foregroundStyle(.blue)
 
-                    Text("Verified")
+                    Text(viewModel.title)
                         .font(.title2.weight(.bold))
 
-                    Text("\(response.documents.count) document\(response.documents.count == 1 ? "" : "s") received")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                    if let subtitle = viewModel.subtitle {
+                        Text(subtitle)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
                 }
                 .padding(.top, 20)
                 .padding(.bottom, 8)
 
                 // Document cards
                 ForEach(Array(response.documents.enumerated()), id: \.offset) { _, doc in
-                    documentCard(doc)
+                    ReceivedDocumentCard(doc: doc)
                 }
 
                 // Done button
@@ -125,7 +129,52 @@ struct ProximityRetrievalSheet: View {
         }
     }
 
-    private func documentCard(_ doc: ReceivedMDocCredential) -> some View {
+    // MARK: - Status Icon
+
+    @ViewBuilder
+    private var statusIcon: some View {
+        switch viewModel.state {
+        case .idle, .decoding:
+            Image(systemName: "qrcode")
+                .foregroundStyle(.blue)
+        case .requestingTag:
+            Image(systemName: "wave.3.right")
+                .foregroundStyle(.blue)
+        case .connecting:
+            Image(systemName: "antenna.radiowaves.left.and.right")
+                .foregroundStyle(.blue)
+        case .sendingRequest:
+            Image(systemName: "arrow.up.circle")
+                .foregroundStyle(.blue)
+        case .waitingForResponse:
+            Image(systemName: "hourglass")
+                .foregroundStyle(.orange)
+        case .processingResponse:
+            Image(systemName: "checkmark.shield")
+                .foregroundStyle(.blue)
+        case .completed:
+            Image(systemName: "checkmark.circle.fill")
+                .foregroundStyle(.green)
+        case .error:
+            Image(systemName: "exclamationmark.triangle.fill")
+                .foregroundStyle(.red)
+        }
+    }
+}
+
+// MARK: - Document card
+
+/// One received document: its claims, and its verification status once the session is over.
+///
+/// `getVerificationSummary()` returns the summary a held mDL gets, so the badges are the ones
+/// `CredentialsView` shows for held credentials. It re-checks the validity period and fetches the
+/// issuer's status list. Nothing is fetched during the session, so the holder is never kept waiting
+/// on the reader's network. A status that can't be established shows as an issue, never as valid.
+private struct ReceivedDocumentCard: View {
+    let doc: ReceivedMDocCredential
+    @StateObject private var verification = CredentialVerificationModel()
+
+    var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             // Card header
             HStack {
@@ -159,6 +208,8 @@ struct ProximityRetrievalSheet: View {
                 }
 
                 Spacer()
+
+                CompactVerificationBadge(phase: verification.phase)
             }
             .padding()
 
@@ -222,94 +273,115 @@ struct ProximityRetrievalSheet: View {
                 }
                 .padding()
             }
+
+            // Status: the summary's verdict, one row per check, and a way to run it again
+            Divider()
+            verificationFooter
         }
         .background(Color(.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 12))
+        .task { await verification.verify(doc) }
     }
 
-    // MARK: - Status Icon
+    private var verificationFooter: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text("Status")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                statusView
+            }
+
+            switch verification.phase {
+            case .verified(let summary):
+                ForEach(Array(summary.results.enumerated()), id: \.offset) { entry in
+                    VerificationResultRow(result: entry.element)
+                }
+            case .failed(let message):
+                Text(message)
+                    .font(.footnote)
+                    .foregroundStyle(.red)
+            default:
+                EmptyView()
+            }
+
+            Button("Verify again") {
+                Task { await verification.verify(doc) }
+            }
+            .font(.subheadline)
+            .disabled(verification.isVerifying)
+        }
+        .padding()
+    }
 
     @ViewBuilder
-    private var statusIcon: some View {
-        switch viewModel.state {
-        case .idle, .decoding:
-            Image(systemName: "qrcode")
-                .foregroundStyle(.blue)
-        case .requestingTag:
-            Image(systemName: "wave.3.right")
-                .foregroundStyle(.blue)
-        case .connecting:
-            Image(systemName: "antenna.radiowaves.left.and.right")
-                .foregroundStyle(.blue)
-        case .sendingRequest:
-            Image(systemName: "arrow.up.circle")
-                .foregroundStyle(.blue)
-        case .waitingForResponse:
-            Image(systemName: "hourglass")
-                .foregroundStyle(.orange)
-        case .processingResponse:
-            Image(systemName: "checkmark.shield")
-                .foregroundStyle(.blue)
-        case .completed:
-            Image(systemName: "checkmark.circle.fill")
-                .foregroundStyle(.green)
-        case .error:
-            Image(systemName: "exclamationmark.triangle.fill")
-                .foregroundStyle(.red)
-        }
-    }
-
-    // MARK: - Helpers
-
-    private struct ClaimEntry {
-        let key: String
-        let value: Any?
-    }
-
-    private func extractClaims(from doc: ReceivedMDocCredential) -> [ClaimEntry] {
-        var claims: [ClaimEntry] = []
-        for (_, namespaceClaims) in doc.nameSpaces {
-            for (key, value) in namespaceClaims {
-                claims.append(ClaimEntry(key: key, value: value))
+    private var statusView: some View {
+        switch verification.phase {
+        case .idle, .verifying:
+            HStack(spacing: 6) {
+                ProgressView().controlSize(.small)
+                Text("Verifying…")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
             }
+        case .verified(let summary):
+            VerificationStatusBadge(status: summary.concluded)
+        case .failed:
+            CompactVerificationBadge(phase: verification.phase)
         }
-        return claims
-    }
-
-    private func formatClaimValue(_ value: Any?) -> String {
-        switch value {
-        case let str as String:
-            return str
-        case let num as NSNumber:
-            return num.stringValue
-        case let bool as Bool:
-            return bool ? "Yes" : "No"
-        case is Data:
-            return "[binary data]"
-        case let list as [Any?]:
-            return list.compactMap { formatClaimValue($0) }.joined(separator: ", ")
-        case nil:
-            return "\u{2014}"
-        default:
-            return String(describing: value!)
-        }
-    }
-
-    private func formatDate(_ isoDate: String) -> String {
-        if let range = isoDate.range(of: "T") {
-            return String(isoDate[isoDate.startIndex..<range.lowerBound])
-        }
-        return isoDate
-    }
-
-    // displayNameForDocType / iconForDocType / formatClaimName are shared helpers in
-    // DisplayHelpers.swift.
-
-    private func flagEmoji(for countryCode: String) -> String {
-        let base: UInt32 = 127397
-        return countryCode.uppercased().unicodeScalars.compactMap {
-            UnicodeScalar(base + $0.value).map(String.init)
-        }.joined()
     }
 }
 
+// MARK: - Helpers
+
+private struct ClaimEntry {
+    let key: String
+    let value: Any?
+}
+
+private func extractClaims(from doc: ReceivedMDocCredential) -> [ClaimEntry] {
+    var claims: [ClaimEntry] = []
+    for (_, namespaceClaims) in doc.nameSpaces {
+        for (key, value) in namespaceClaims {
+            claims.append(ClaimEntry(key: key, value: value))
+        }
+    }
+    return claims
+}
+
+private func formatClaimValue(_ value: Any?) -> String {
+    switch value {
+    case let str as String:
+        return str
+    case let num as NSNumber:
+        return num.stringValue
+    case let bool as Bool:
+        return bool ? "Yes" : "No"
+    case is Data:
+        return "[binary data]"
+    case let list as [Any?]:
+        return list.compactMap { formatClaimValue($0) }.joined(separator: ", ")
+    case nil:
+        return "\u{2014}"
+    default:
+        return String(describing: value!)
+    }
+}
+
+private func formatDate(_ isoDate: String) -> String {
+    if let range = isoDate.range(of: "T") {
+        return String(isoDate[isoDate.startIndex..<range.lowerBound])
+    }
+    return isoDate
+}
+
+// displayNameForDocType / iconForDocType / formatClaimName are shared helpers in
+// DisplayHelpers.swift.
+
+private func flagEmoji(for countryCode: String) -> String {
+    let base: UInt32 = 127397
+    return countryCode.uppercased().unicodeScalars.compactMap {
+        UnicodeScalar(base + $0.value).map(String.init)
+    }.joined()
+}

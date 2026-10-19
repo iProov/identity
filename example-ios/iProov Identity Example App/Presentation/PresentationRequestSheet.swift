@@ -3,6 +3,7 @@ import identity
 
 struct PresentationRequestSheet: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.openURL) private var openURL
     @StateObject private var viewModel: PresentationRequestViewModel
 
     let onDismiss: () -> Void
@@ -61,30 +62,60 @@ struct PresentationRequestSheet: View {
             .navigationTitle("Share credentials")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel", action: cancel)
+                    Button(viewModel.canCloseLocally ? "Close" : "Decline") {
+                        if viewModel.canCloseLocally { close() }
+                        else { Task { await viewModel.decline() } }
+                    }
+                    .disabled(viewModel.hasResponded && !viewModel.canCloseLocally)
                 }
             }
         }
         .presentationDetents([.large])
+        .interactiveDismissDisabled(true)
         .alert(item: $viewModel.alert) { alert in
             Alert(
                 title: Text(alert.title),
                 message: Text(alert.message),
-                dismissButton: .default(Text("OK"))
+                dismissButton: .default(Text(viewModel.hasDeclined || viewModel.canCloseLocally ? "Close" : "OK")) {
+                    if viewModel.hasDeclined || viewModel.canCloseLocally { close() }
+                }
             )
         }
-        .onChange(of: viewModel.successOutcome) { outcome in
+        .onChange(of: viewModel.successOutcome) { _, outcome in
             guard let outcome else { return }
             onSuccess(outcome)
             viewModel.successOutcome = nil
-            dismiss()
-            onDismiss()
+            close()
+        }
+        .onChange(of: viewModel.declineOutcome) { _, outcome in
+            guard let outcome else { return }
+            viewModel.declineOutcome = nil
+            guard let redirect = outcome.redirectUri, !redirect.isEmpty else {
+                close()
+                return
+            }
+            guard let url = URL(string: redirect), url.scheme != nil else {
+                showRedirectError()
+                return
+            }
+            openURL(url) { accepted in
+                Task { @MainActor in
+                    if accepted { close() } else { showRedirectError() }
+                }
+            }
         }
     }
 
-    private func cancel() {
+    private func close() {
         dismiss()
         onDismiss()
+    }
+
+    private func showRedirectError() {
+        viewModel.alert = AlertDialog(
+            title: "Unable to return to verifier",
+            message: "Your decline was accepted. Please return to the verifier in your browser."
+        )
     }
 }
 

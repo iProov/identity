@@ -95,14 +95,14 @@ class ProximityRetrievalViewModel: ObservableObject {
                     uri: uri,
                     requestedDocuments: requestedDocuments,
                     createSigningData: nil,
-                    config: ProximityConfig()
+                    config: ProximityConfig.Reader()
                 )
             case .nfc:
                 session = try wallet.startProximityRetrieval(
                     options: NfcRetrievalOptions(dialogMessage: "Hold near holder's device"),
                     requestedDocuments: requestedDocuments,
                     createSigningData: nil,
-                    config: ProximityConfig()
+                    config: ProximityConfig.Reader()
                 )
             }
             

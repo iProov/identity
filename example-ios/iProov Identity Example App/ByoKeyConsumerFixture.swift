@@ -51,15 +51,23 @@ final class TestStorageEncryptionKey: WalletStorageEncryptionKey {
 ///
 /// This is intentionally not called; creating a wallet is outside this fixture's
 /// runtime checks.
-private func makeWalletWithSwiftKeys() -> Wallet {
+private func makeWalletWithSwiftKeys() throws -> Wallet {
     let signingKey = TestSigningKey()
     let storageKey = TestStorageEncryptionKey()
-    let storageEngine = DeviceBoundAppleStorageEngine(
+    let storageEngine = try DeviceBoundAppleStorageEngine(
+        appGroupIdentifier: WalletGroups.appGroupIdentifier,
         accessControlPolicy: KeyPairAccessPolicy.companion.DeviceUnlocked,
         storageEncryptionKeyFactory: { storageKey }
     )
+    // Shared with the document-provider extension: the keychain group enables the Digital Credentials API.
+    _ = try DeviceBoundAppleStorageEngine(
+        appGroupIdentifier: WalletGroups.appGroupIdentifier,
+        accessControlPolicy: KeyPairAccessPolicy.companion.DeviceUnlocked,
+        storageEncryptionKeyFactory: { storageKey },
+        keychainAccessGroup: WalletGroups.keychainAccessGroup
+    )
 
-    return WalletFactory.shared.getInstance(
+    return try WalletFactory.shared.getInstance(
         baseUrl: "https://api.beta.iproov.id",
         storageEngine: storageEngine,
         signingKeyFactory: { signingKey }

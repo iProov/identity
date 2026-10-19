@@ -22,10 +22,10 @@
 			</array>
 		</dict>
 	</array>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Bluetooth is required to communicate with nearby devices for identity verification.</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Bluetooth is required to communicate with nearby devices for identity verification.</string>
+	<key>IPIAppGroupIdentifier</key>
+	<string>group.com.iproov.identity.example</string>
+	<key>IPIKeychainAccessGroup</key>
+	<string>$(AppIdentifierPrefix)com.iproov.identity.credentialsigning</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

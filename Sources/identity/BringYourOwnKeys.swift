@@ -89,18 +89,47 @@ public protocol ResettableWalletStorageEncryptionKey: WalletStorageEncryptionKey
 }
 
 public extension WalletFactory {
-    /// Creates a wallet with a caller-owned Swift signing key and the default storage engine.
+    /// Creates a wallet with a caller-owned Swift signing key and the SDK storage engine in the given
+    /// App Group. Sharing with a document-provider extension needs a keychain group too: construct
+    /// `DeviceBoundAppleStorageEngine` yourself and use the `storageEngine:` overload instead.
     func getInstance(
         baseUrl: String,
+        appGroupIdentifier: String,
         isLoggingEnabled: Bool = false,
+        trustConfiguration: TrustConfiguration = TrustConfiguration(),
         signingKeyFactory: @escaping () -> any WalletSigningKey
-    ) -> Wallet {
-        getInstance(
+    ) throws -> Wallet {
+        try getInstance(
             baseUrl: baseUrl,
             isLoggingEnabled: isLoggingEnabled,
             storageEngine: DeviceBoundAppleStorageEngine(
+                appGroupIdentifier: appGroupIdentifier,
                 accessControlPolicy: KeyPairAccessPolicy.companion.DeviceUnlocked
             ),
+            trustConfiguration: trustConfiguration,
+            signingKeyFactory: signingKeyFactory
+        )
+    }
+
+    /// Creates a wallet with a caller-owned Swift signing key, authorization-code issuance and the SDK
+    /// storage engine in the given App Group.
+    func getInstance(
+        baseUrl: String,
+        clientConfiguration: OID4VCIClientConfiguration,
+        appGroupIdentifier: String,
+        isLoggingEnabled: Bool = false,
+        trustConfiguration: TrustConfiguration = TrustConfiguration(),
+        signingKeyFactory: @escaping () -> any WalletSigningKey
+    ) throws -> Wallet {
+        try getInstance(
+            baseUrl: baseUrl,
+            clientConfiguration: clientConfiguration,
+            isLoggingEnabled: isLoggingEnabled,
+            storageEngine: DeviceBoundAppleStorageEngine(
+                appGroupIdentifier: appGroupIdentifier,
+                accessControlPolicy: KeyPairAccessPolicy.companion.DeviceUnlocked
+            ),
+            trustConfiguration: trustConfiguration,
             signingKeyFactory: signingKeyFactory
         )
     }
@@ -110,34 +139,17 @@ public extension WalletFactory {
         baseUrl: String,
         isLoggingEnabled: Bool = false,
         storageEngine: any StorageEngine,
+        trustConfiguration: TrustConfiguration = TrustConfiguration(),
         signingKeyFactory: @escaping () -> any WalletSigningKey
-    ) -> Wallet {
-        getInstance(
+    ) throws -> Wallet {
+        try getInstance(
             baseUrl: baseUrl,
             isLoggingEnabled: isLoggingEnabled,
             storageEngine: storageEngine,
             signingKeyPairFactory: {
                 makeKotlinSigningKey(signingKeyFactory())
-            }
-        )
-    }
-
-    /// Creates a wallet with a caller-owned Swift signing key, authorization-code issuance and the
-    /// default storage engine.
-    func getInstance(
-        baseUrl: String,
-        clientConfiguration: OID4VCIClientConfiguration,
-        isLoggingEnabled: Bool = false,
-        signingKeyFactory: @escaping () -> any WalletSigningKey
-    ) -> Wallet {
-        getInstance(
-            baseUrl: baseUrl,
-            clientConfiguration: clientConfiguration,
-            isLoggingEnabled: isLoggingEnabled,
-            storageEngine: DeviceBoundAppleStorageEngine(
-                accessControlPolicy: KeyPairAccessPolicy.companion.DeviceUnlocked
-            ),
-            signingKeyFactory: signingKeyFactory
+            },
+            trustConfiguration: trustConfiguration
         )
     }
 
@@ -147,16 +159,18 @@ public extension WalletFactory {
         clientConfiguration: OID4VCIClientConfiguration,
         isLoggingEnabled: Bool = false,
         storageEngine: any StorageEngine,
+        trustConfiguration: TrustConfiguration = TrustConfiguration(),
         signingKeyFactory: @escaping () -> any WalletSigningKey
-    ) -> Wallet {
-        getInstance(
+    ) throws -> Wallet {
+        try getInstance(
             baseUrl: baseUrl,
             clientConfiguration: clientConfiguration,
             isLoggingEnabled: isLoggingEnabled,
             storageEngine: storageEngine,
             signingKeyPairFactory: {
                 makeKotlinSigningKey(signingKeyFactory())
-            }
+            },
+            trustConfiguration: trustConfiguration
         )
     }
 }
@@ -164,14 +178,35 @@ public extension WalletFactory {
 public extension DeviceBoundAppleStorageEngine {
     /// Creates device-bound storage encrypted by a caller-owned Swift key.
     convenience init(
+        appGroupIdentifier: String,
         accessControlPolicy: KeyPairAccessPolicy,
         storageEncryptionKeyFactory: @escaping () -> any WalletStorageEncryptionKey
-    ) {
-        self.init(
+    ) throws {
+        try self.init(
+            appGroupIdentifier: appGroupIdentifier,
             accessControlPolicy: accessControlPolicy,
             encryptionKeyFactory: {
                 makeKotlinStorageEncryptionKey(storageEncryptionKeyFactory())
             }
+        )
+    }
+
+    /// Creates device-bound storage encrypted by a caller-owned Swift key and shared with the
+    /// document-provider extension. The keychain group enables the Digital Credentials API; the
+    /// caller's key is responsible for its own keychain sharing.
+    convenience init(
+        appGroupIdentifier: String,
+        accessControlPolicy: KeyPairAccessPolicy,
+        storageEncryptionKeyFactory: @escaping () -> any WalletStorageEncryptionKey,
+        keychainAccessGroup: String
+    ) throws {
+        try self.init(
+            appGroupIdentifier: appGroupIdentifier,
+            accessControlPolicy: accessControlPolicy,
+            encryptionKeyFactory: {
+                makeKotlinStorageEncryptionKey(storageEncryptionKeyFactory())
+            },
+            keychainAccessGroup: keychainAccessGroup
         )
     }
 }
@@ -287,7 +322,7 @@ private func makeKotlinStorageEncryptionKey(
     return KotlinStorageEncryptionKeyAdapter(encryptionKey)
 }
 
-private extension Data {
+extension Data {
     var kotlinByteArray: KotlinByteArray {
         let result = KotlinByteArray(size: Int32(count))
         for (index, byte) in enumerated() {
@@ -299,6 +334,6 @@ private extension Data {
 
 private extension KotlinByteArray {
     var swiftData: Data {
-        Data(toNSData())
+        get throws { Data(try toNSData()) }
     }
 }

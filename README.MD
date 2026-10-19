@@ -1,4 +1,4 @@
-# iProov Identity SDK v0.5.2
+# iProov Identity SDK v0.6.0
 
 The iProov Identity SDK enables you to create an iProov Identity wallet within your Android, iOS or Kotlin Multiplatform
 app.
@@ -15,6 +15,8 @@ app.
 - Android: API Level 26+ (DC API requires Android 14+)
 - Kotlin Multiplatform: 2.2.0+
 - Xcode: 26+ (required for building iOS targets)
+- iProov Biometrics SDK, which the Identity SDK depends on but doesn't embed: Android 11.1.x (11.1.1 is resolved
+  transitively), iOS 13.x from 13.1.0 (SwiftPM and CocoaPods both allow >= 13.1.0, < 14). Stay on these major versions.
 
 ## Concepts and terminology
 
@@ -70,7 +72,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     2. Enter the repository URL for the iProov Identity SDK.
 
-    3. Select your desired version rule (e.g. Up to Next Major Version from `0.5.2`).
+    3. Select your desired version rule (e.g. Up to Next Major Version from `0.6.0`).
 
     4. Add the `identity` library product to your app target.
 
@@ -99,8 +101,8 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
     ```kotlin
     dependencies {
-      implementation("com.iproov.identity:identity-android:0.5.2")
-      implementation("com.iproov.sdk:iproov:<latest-version>")
+      implementation("com.iproov.identity:identity-android:0.6.0")
+      implementation("com.iproov.sdk:iproov:11.1.1")
     }
     ```
 
@@ -134,7 +136,7 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
       sourceSets {
           val commonMain by getting {
               dependencies {
-                  implementation("com.iproov.identity:identity:0.5.2")
+                  implementation("com.iproov.identity:identity:0.6.0")
               }
           }
       }
@@ -157,12 +159,13 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
     <details>
     <summary>Android</summary>
 
-   On Android, the Identity SDK stores its data in the `com.iproov.identity.xml` encrypted shared preferences file. By
-   default, this file is encrypted with a key stored in secure hardware and can therefore not be accessed on a different
-   device, or after a device reset.
+   On Android, the default storage engine keeps its data in a file encrypted with a key stored in secure hardware, so
+   it can't be read on a different device or after a device reset. The SDK keeps that file in the app's
+   `noBackupFilesDir`, which Android never backs up or transfers to another device, so no configuration is needed.
 
-   Therefore, if Android tries to restore this file from a backup, it will fail to decrypt it. Follow these steps to
-   exclude it from your app backups:
+   If you use `EncryptedPreferencesAndroidStorageEngine` instead, its data is in the `com.iproov.identity.xml`
+   encrypted shared preferences file, which Android would try to restore from a backup and fail to decrypt. Follow
+   these steps to exclude it from your app backups:
 
     1. Add the following attributes to your `AndroidManifest.xml` file `<application>` tag:
 
@@ -174,7 +177,8 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
         ```
 
    You could also consider adding `android:allowBackup="false"`, however this will prevent **all** data from your app
-   being backed up.
+   being backed up. It isn't a replacement for these rules: on some manufacturers' devices it doesn't stop
+   device-to-device transfer for apps targeting Android 12 and above.
 
     2. Add the following contents to `res/xml/backup_rules.xml` (for Android 11 and below):
 
@@ -188,12 +192,12 @@ Please contact [support@iproov.com](mailto:support@iproov.com) with the followin
 
         ```xml
         <data-extraction-rules>
-            <cloud-backup-rules>
+            <cloud-backup>
                 <exclude domain="sharedpref" path="com.iproov.identity.xml"/>
-            </cloud-backup-rules>
-            <device-transfer-rules>
+            </cloud-backup>
+            <device-transfer>
                 <exclude domain="sharedpref" path="com.iproov.identity.xml"/>
-            </device-transfer-rules>
+            </device-transfer>
         </data-extraction-rules>
         ```
 
@@ -239,8 +243,18 @@ val wallet = WalletFactory.getInstance(baseUrl = "https://api.beta-eu.iproov.id"
 <summary>Swift</summary>
 
 ```swift
-let wallet = WalletFactory.shared.getInstance(baseUrl: "https://api.beta-eu.iproov.id", isLoggingEnabled: true)
+let wallet = try WalletFactory.shared.getInstance(
+    baseUrl: "https://api.beta-eu.iproov.id",
+    appGroupIdentifier: "group.com.example.wallet",
+    isLoggingEnabled: true
+)
 ```
+
+> [!NOTE]
+> On iOS the wallet's storage is always configured with an App Group identifier, the container the credential file lives in once the app is entitled to it.
+> No entitlement is required until DC-API is needed: until then the wallet stays in the app sandbox.
+> Use a group dedicated to your app and its extensions. See
+> [Upgrading iOS storage to 0.6.0](docs/features/migration-guide-0.6.0.md).
 
 </details>
 
@@ -255,6 +269,153 @@ If the wallet hasn't yet been initialized on your device, it will be created for
 > [!IMPORTANT]
 > This will create a wallet locally (if it doesn't exist already), but it doesn't actually register the wallet with
 > iProov's backend. Before using it for the first time, you must call `register()` below.
+
+### Trusting credential issuers
+
+When you create the wallet, tell it which organisations may issue the credentials your app accepts. The wallet uses
+this to check mdoc credentials (mDLs, photo IDs and other ISO mdoc types) in three places:
+
+- when a credential is issued to the wallet;
+- when you check a credential's status;
+- when the wallet reads a credential from another device in person (proximity).
+
+#### If you don't set it up
+
+The wallet trusts every issuer (`IssuerTrustPolicy.TrustAll`). This is for development only.
+
+- Credentials are still added to the wallet.
+- The wallet still checks each credential's signature, but not who signed it. Anyone could have made the credential.
+- `getVerificationSummary()` never returns `VALID`. It returns `INDETERMINATE`, with the reason "Issuer trust is not
+  configured".
+- `resolveStatus()` still returns the credential's status, but you can't rely on it.
+- With logging enabled, the wallet logs which credential types aren't checked when it is created.
+
+> [!IMPORTANT]
+> Set up issuer trust before you release your app.
+
+#### Step 1: Collect what you need for each credential type
+
+For each type of credential your app accepts, ask the issuer for:
+
+1. **The credential's `docType`**, for example `org.iso.18013.5.1.mDL`. Copy it exactly, including upper and lower
+   case.
+2. **The issuer's root certificates (IACA certificates)**. You pass them to the wallet as DER bytes: a `ByteArray`
+   each in Kotlin, and a `Data` each in Swift. If you were given a `.pem` file, convert it first:
+
+   ```sh
+   openssl x509 -in root.pem -outform DER -out root.der
+   ```
+
+   `TrustConfiguration` throws if a certificate isn't DER.
+3. **One of the issuer's Document Signer certificates**, so you can check its key usage. Run:
+
+   ```sh
+   openssl x509 -in document-signer.pem -noout -text | grep -A1 "Extended Key Usage"
+   ```
+
+   For a `.der` file, add `-inform DER`. Note what the output shows; you need it in step 2.
+
+#### Step 2: Write a rule for each issuer
+
+A rule is an `IssuerTrustPolicy.TrustedCertificates`. It holds the issuer's root certificates, and the key usage
+that the issuer's Document Signer certificates must carry. Choose it from what step 1 showed:
+
+| The Document Signer certificate shows | Write the rule as |
+|---|---|
+| `1.0.18013.5.1.2`, the mDL key usage (every mDL has it) | `TrustedCertificates(roots)` |
+| Nothing | `TrustedCertificates(roots, documentSignerKeyUsage = null)` |
+| Another number, for example `1.2.3.4` | `TrustedCertificates(roots, documentSignerKeyUsage = "1.2.3.4")` |
+
+#### Step 3: Give the rules to the wallet
+
+Put the rules in a `TrustConfiguration`, and pass it to `WalletFactory.getInstance`:
+
+- **`issuerTrust`** is the default rule. The wallet uses it for every credential type that has no rule of its own.
+- **`issuerTrustByType`** gives a credential type its own rule, keyed by its `docType`. The wallet uses that rule
+  **instead of** the default, not as well as it.
+
+In this example, mDLs use the default rule. Photo IDs come from a different issuer, whose Document Signer certificates
+show no key usage.
+
+<details>
+<summary>Kotlin</summary>
+
+```kotlin
+val wallet = WalletFactory.getInstance(
+    baseUrl = "https://api.beta-eu.iproov.id",
+    trustConfiguration = TrustConfiguration(
+        issuerTrust = IssuerTrustPolicy.TrustedCertificates(mdlRootCertificates),
+        issuerTrustByType = mapOf(
+            "org.iso.23220.photoID.1" to IssuerTrustPolicy.TrustedCertificates(
+                photoIdRootCertificates,
+                documentSignerKeyUsage = null,
+            ),
+        ),
+    ),
+)
+```
+
+</details>
+
+<details>
+<summary>Swift</summary>
+
+```swift
+let wallet = try WalletFactory.shared.getInstance(
+    baseUrl: "https://api.beta-eu.iproov.id",
+    appGroupIdentifier: "group.com.example.wallet",
+    isLoggingEnabled: false,
+    trustConfiguration: try TrustConfiguration(
+        // mdlRootCertificates and photoIdRootCertificates are [Data], one DER certificate each.
+        issuerTrust: IssuerTrustPolicy.TrustedCertificates(certificates: mdlRootCertificates),
+        issuerTrustByType: [
+            "org.iso.23220.photoID.1": IssuerTrustPolicy.TrustedCertificates(
+                certificates: photoIdRootCertificates,
+                documentSignerKeyUsage: nil
+            ),
+        ],
+        jwksStatusListHosts: []
+    )
+)
+```
+
+</details>
+
+A photo ID must now come from the photo ID issuer, and an mDL from an mDL issuer. Neither issuer can issue the other's
+credentials.
+
+Common setups:
+
+| Your app accepts | `issuerTrust` | `issuerTrustByType` |
+|---|---|---|
+| mDLs only | `TrustedCertificates(mdlRoots)` | Leave it out |
+| mDLs, and other types from other issuers | `TrustedCertificates(mdlRoots)` | One rule for each other type |
+| Only the types you list | `TrustedCertificates(emptyList())`, which trusts nothing | One rule for each type |
+
+#### When an issuer isn't trusted
+
+- **During issuance**, the credential isn't added to the wallet. The issuance summary's `errors` lists it as
+  `untrusted_issuer`.
+- **For a credential already in the wallet**, `getVerificationSummary()` reports `ISSUER_UNTRUSTED`, and
+  `resolveStatus()` throws `CredentialStatusException.InvalidCredential`.
+- **In proximity**, the reading session ends with an error.
+
+To see which check failed, create the wallet with `isLoggingEnabled = true` and read the logs:
+
+- **`no matching IACA root found`**: the credential's issuer isn't in the rule's root certificates. Check that
+  you have the right roots for that `docType` (step 1), and that the `docType` key matches exactly.
+- **`extendedKeyUsage does not include required OID …`** or **`missing extendedKeyUsage extension`**: the issuer is
+  right, but its certificate doesn't carry the key usage the rule asks for. Go back to step 2.
+
+> [!NOTE]
+> - Leave `jwksStatusListHosts` empty unless an issuer tells you their status lists are signed with a key published at
+>   `/.well-known/jwks.json`. See [Which key signs the status list](docs/features/credential-status.md#which-key-signs-the-status-list).
+> - `TrustConfiguration` throws if a `docType` key is blank or has spaces around it, a certificate isn't DER, a
+>   `documentSignerKeyUsage` isn't a dotted number such as `1.0.18013.5.1.2`, or a `jwksStatusListHosts` entry isn't a
+>   plain host name such as `status.example.com`.
+> - Create one wallet per process. Credentials you've already stored are checked with the configuration of the most
+>   recently created wallet.
+> - For every check the wallet makes, see [Credential verification status](docs/features/credential-status.md).
 
 ### Registering the wallet
 
@@ -537,6 +698,83 @@ let summary = wallet.getCredentials() { credentials, error in
 
 > [!TIP]
 > Call `wallet.getCredentialMetadata()` when you only need issuer metadata without deserializing each credential.
+
+### Checking a credential's status
+
+First, [set up issuer trust](#trusting-credential-issuers). Without it, the result can't be relied on.
+
+`wallet.resolveStatus(credential)` returns an mdoc's status from its IETF Token Status List: `Valid`, `Invalid`
+(revoked), `Suspended`, `ApplicationSpecific` or `Reserved`. The credential's signature, issuer and validity period
+are checked first, and its list isn't fetched if any fails. When no status can be established it throws a
+`CredentialStatusException`, whose `details["cause"]` says why (for example `network`), and that never means valid.
+`credential.getVerificationSummary()` reports the same checks as results, and `summary.concluded` is `VALID`,
+`REVOKED`, `EXPIRED`, `SIGNATURE_INVALID`, `MALFORMED` or `INDETERMINATE`. See
+[Credential verification status](docs/features/credential-status.md) for each result and the limits.
+
+An mDL received by the proximity reader has the same two calls on the document itself, `document.getVerificationSummary()`
+and `document.resolveStatus()`, with the same results and exceptions, so one badge serves held and received mDLs. The
+reader authenticated the document when it arrived; these check its validity period again and fetch its status list.
+Nothing is fetched during the session, so an offline reader doesn't wait on the network. Under `TrustAll` the holder can
+sign its own mDL, so `resolveStatus()` can return `Valid` for it while the summary concludes `INDETERMINATE`. Check a
+document before copying it into your own model: one rebuilt with the public constructor has no status reference.
+
+<details>
+<summary>Kotlin</summary>
+
+```kotlin
+try {
+    when (wallet.resolveStatus(credential)) {
+        CredentialStatus.Valid -> { /* Show as valid */ }
+        CredentialStatus.Invalid, CredentialStatus.Suspended -> { /* Revoked or suspended by the issuer */ }
+        else -> { /* An application-specific or reserved value */ }
+    }
+} catch (e: CredentialStatusException) {
+    // Not determined: e.details["cause"], e.g. "network"
+}
+```
+
+</details>
+
+<details>
+<summary>Swift</summary>
+
+```swift
+do {
+    let status = try await wallet.resolveStatus(credential: credential)
+    if status is CredentialStatus.Invalid || status is CredentialStatus.Suspended {
+        // Revoked or suspended by the issuer
+    }
+} catch {
+    // Not determined
+}
+```
+
+</details>
+
+<details>
+<summary>Kotlin, an mDL received by the proximity reader</summary>
+
+```kotlin
+is ProximityRetrievalEvent.Completed -> event.response.documents.forEach { document ->
+    // The same summary as credential.getVerificationSummary(), so the same badge applies
+    val summary = document.getVerificationSummary()
+    showBadge(summary.concluded) // VALID, REVOKED, EXPIRED, INDETERMINATE, ...
+}
+```
+
+</details>
+
+<details>
+<summary>Swift, an mDL received by the proximity reader</summary>
+
+```swift
+for document in response.documents {
+    let summary = try await document.getVerificationSummary()
+    showBadge(summary.concluded)
+}
+```
+
+</details>
 
 ### Deleting credentials
 
@@ -1208,6 +1446,70 @@ credentials (see [Handling OID4VCI credential offers](#handling-oid4vci-credenti
 > If the document does not support Active Authentication or Chip Authentication, you should pass `null` as the
 > signature (or omit the argument).
 
+#### Reading the chip through the iProov NFC service
+
+Instead of reading the chip with your own NFC stack, you can have the iProov NFC service read it, through the iProov
+NFC reader SDK. The app then uploads no data groups or signature: the platform fetches the read itself, and Active
+Authentication comes with it. The platform team enables this mode per app.
+
+Pass `nfcServiceRead = true` to `addDocumentWithMrz` or `addDocumentWithFields`. If the returned challenge has an
+`nfcServiceReadToken`, pass it unchanged to the reader SDK with the BAC key, then pass the read's completion code to
+`withNfcServiceRead`. If it has none, the mode isn't set up for your app in this environment, so read the chip on the
+device as above.
+
+<details>
+<summary>Kotlin</summary>
+
+```kotlin
+val challenge = wallet.addDocumentWithFields(
+    documentNumber = "899033624",
+    dateOfBirth = "860204",
+    dateOfExpiry = "280101",
+    nfcServiceRead = true,
+)
+val token = challenge.nfcServiceReadToken ?: return readOnDevice(challenge)
+val result = reader.performRead(ReaderSession(token, accessKey = AccessKey.BacKey(challenge.bacKey)))
+val completionCode = result.completionCode ?: return startOver() // the read didn't complete
+val offer = challenge.respond.withNfcServiceRead(completionCode)
+```
+
+</details>
+
+<details>
+<summary>Swift</summary>
+
+```swift
+let challenge = try await wallet.addDocumentWithFields(
+    documentNumber: "899033624",
+    dateOfBirth: "860204",
+    dateOfExpiry: "280101",
+    loginRequest: nil,
+    addLegacyCredential: true,
+    nfcServiceRead: true
+)
+guard let token = challenge.nfcServiceReadToken else { return try await readOnDevice(challenge) }
+let session = try ReaderSession(token: token, accessKey: .mrz(bacKey: challenge.bacKey))
+let result = try await reader.performRead(session: session)
+guard let completionCode = result.completionCode else { return try await startOver() } // the read didn't complete
+let offer = try await challenge.respond!.withNfcServiceRead(completionCode: completionCode.value)
+```
+
+</details>
+
+Start the read within about 5 minutes and call `withNfcServiceRead` within about 10 minutes of `addDocument…`. If
+the read doesn't end with a completion code, start again from `addDocument…`. Never log the token or the completion
+code. The platform's errors arrive as `ApiException.HttpError`; dispatch on `statusCode`:
+
+| Status | Meaning                                                    | What to do                                                    |
+|--------|------------------------------------------------------------|---------------------------------------------------------------|
+| 457    | The NFC service is temporarily unavailable                 | Retry the same call after a short delay                       |
+| 458    | The read expired, was already used, or is unknown          | Start again from `addDocument…`                               |
+| 459    | On-device reads are turned off for this app                | Use `nfcServiceRead = true`                                   |
+
+When `addDocument…` finds the mode isn't available (456, or 422 from a platform that predates it), it falls back for
+you: you get a challenge with no `nfcServiceReadToken`. A 456 from `withNfcServiceRead` means the mode was turned off
+mid-flow; start again from `addDocument…`.
+
 ### Support for DTC-VCs (**Digital Travel Credential Virtual Component**)
 
 The identity SDK provides support for adding documents with a DTC-VC where the DTC is type 1.
@@ -1293,7 +1595,7 @@ events.collect(onEach: { event in
 | `VerificationEvent.Loading`      | `IProovEventProcessing` | iProov UI completed and is now processing asynchronously          |
 | `VerificationEvent.Canceled`     | `IProovEventCanceled`   | iProov scan was canceled by the user                              |
 | `VerificationEvent.Loading`      | `IProovEventSuccess`    | iProov scan completed successfully                                |
-| `VerificationEvent.Error`        | `IProovEventFailure`    | iProov scan failed liveness checks or an error                    |
+| `VerificationEvent.Error`        | `IProovEventFailure`    | iProov scan failed liveness checks or an error; `feedbackCodes` holds iProov's codes for a failed scan |
 | `CompletedFaceVerificationEvent` | N/A                     | The face verification has succeeded & new claims have been issued |
 
 For more details on iProov Biometrics SDK events, [see here](https://github.com/iproov/android#get-started).
@@ -1787,6 +2089,23 @@ We only support `DCQL` (Digital Credential Query Lanaguage) queries in the autho
    the submitted credential for each of the credentail queries.
 7. Respond to the `RespondablePresentationRequest` using this `CredentialSubmission` and the wallet will respond to the
    verifier.
+   The verifier has 30 seconds to answer once the response is sent; otherwise `respond()` throws
+   `ApiException.TimeoutError`. Time the user spends authenticating doesn't count. Standard transports cooperate with
+   cancellation. A timeout leaves receipt uncertain: both example apps allow local **Close** and block further
+   responses on that request.
+8. If the user declines instead, call `request.decline()` so the verifier receives `access_denied` instead of waiting
+   for a timeout (`direct_post` and `direct_post.jwt` only). Follow the returned `redirectUri`, if any.
+   The decline attempt has a 30-second deadline and throws `ApiException.TimeoutError` if it expires.
+
+Both example apps use a **Decline** action, wait for the attempt to finish, and follow the verifier's returned redirect.
+Compose integrations can use the `PresentationRequestSheetProvider` overload with `onDeclined` to handle its
+`Result<PresentationOutcome.Success>` separately from credential sharing, including notification failures.
+
+Invalid `direct_post` requests are rejected locally without posting a protocol error to `response_uri`.
+Verifier authentication in this flow remains incomplete ([#35](https://github.com/iProov/identity-sdk/issues/35),
+[#36](https://github.com/iProov/identity-sdk/issues/36), [#48](https://github.com/iProov/identity-sdk/issues/48)).
+Automatic `invalid_request` notifications require an authenticated verifier and permitted response URI first.
+This is an OpenID4VP conformance limitation.
 
 ### Digital Credentials API (Android)
 
@@ -1799,6 +2118,20 @@ delegates the response to your wallet app.
 
 - Android API 34+ (Android 14)
 - Google Play Services with credential manager support
+
+#### Supported protocols
+
+Requests are carried as OpenID for Verifiable Presentations 1.0 over the DC API (Appendix A):
+
+| Protocol identifier        | Support                                              |
+|----------------------------|------------------------------------------------------|
+| `openid4vp-v1-unsigned`    | Yes                                                  |
+| `openid4vp-v1-signed`      | Yes                                                  |
+| `openid4vp-v1-multisigned` | No                                                   |
+| `org-iso-mdoc`             | No - ISO/IEC 18013-7 Annex C is the iOS path (below) |
+
+Full HAIP 1.0 conformance is not claimed: [§5.2](https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0-final.html) also requires
+`openid4vp-v1-multisigned`, which is not implemented. The iOS Annex C transport is a separate capability.
 
 #### Manifest configuration
 
@@ -1853,12 +2186,170 @@ if (wallet.isDCApiAvailable()) {
 > `CredentialSelectionActivity` is provided by the SDK and handles the full flow automatically (request parsing,
 > credential matching, VP token construction, response delivery). No custom activity code is needed.
 
+### Digital Credentials API (iOS)
+
+On iOS the Digital Credentials API is provided by Apple's IdentityDocumentServices
+framework [IdentityDocumentServices](https://developer.apple.com/documentation/IdentityDocumentServices).
+Safari passes an org-iso-mdoc request to an **Identity Document Provider extension** shipped inside
+your application; the extension will show consent, builds the response with the SDK, and Safari
+returns it to the website. Presentation therefore runs in the extension's process, which is why
+storage must be shared between the app and the extension.
+
+#### Requirements
+
+- iOS 26+
+- The `com.apple.developer.identity-document-services.document-provider.mobile-document-types`
+  entitlement on **both**
+  the app and the extension, listing the document types you provide. Apple grants this entitlement
+  on request and
+  restricts the values to its publish list
+  [EntitlementReference](https://developer.apple.com/documentation/BundleResources/Entitlements/com.apple.developer.identity-document-services.document-provider.mobile-document-types) ;
+  the example app uses `org.iso.18013.5.1.mDL` and `eu.europa.ec.eudi.pid.1`.
+- The App Group the storage engine is configured with and a Keychain Sharing group,
+   See [Upgrading iOS storage to 0.6.0](docs/features/migration-guide-0.6.0.md).
+- mdoc credentials only. Apple's request type is ISO 18013 mobile documents; SD-JWT VCs cannot be
+  presented through the
+  iOS Digital Credentials API, and OpenID4VP over the DC API is not delivered to iOS wallets.
+
+#### Configuration
+
+Add the same three capabilities to the app target and the extension target:
+
+```xml
+<key>com.apple.developer.identity-document-services.document-provider.mobile-document-types</key>
+<array>
+    <string>org.iso.18013.5.1.mDL</string>
+    <string>eu.europa.ec.eudi.pid.1</string>
+</array>
+<key>com.apple.security.application-groups</key>
+<array>
+    <string>group.com.example.wallet</string>
+</array>
+<key>keychain-access-groups</key>
+<array>
+    <string>$(AppIdentifierPrefix)com.example.wallet.signing</string>
+</array>
+```
+
+#### Sharing storage with the extension
+
+`DeviceBoundAppleStorageEngine` requires an App Group identifier, so the SDK knows where the
+credential file lives. Passing `keychainAccessGroup` as well is what enables the Digital Credentials
+API: it shares the SDK keys with the extension. Use the same two values in **both** targets; the
+example app reads them from each target's Info.plist (see `example-ios/Shared/WalletGroups.swift`).
+
+```swift
+let wallet = try WalletFactory.shared.getInstance(
+    baseUrl: "https://api.dev-eu.iproov.id",
+    isLoggingEnabled: false,
+    storageEngine: DeviceBoundAppleStorageEngine(
+        appGroupIdentifier: "group.com.example.wallet",
+        accessControlPolicy: KeyPairAccessPolicy.companion.DeviceUnlocked,
+        keychainAccessGroup: "TEAMID.com.example.wallet.signing"
+    )
+)
+```
+
+> [!IMPORTANT]
+> Until the app is entitled to the App Group, the wallet stays in the sandbox as before. Once
+> entitled, the SDK moves it into the container on the next open and will not open it anywhere
+> else: a removed entitlement or a changed identifier fails with `StorageLocationException`
+> instead of showing an empty wallet (`deleteAll()` starts again). Use a group of your own, add the
+> keychain group in both targets when you adopt the extension, and note there is no rollback to
+> 0.5.x after the move.
+
+#### Creating the Extension
+
+Add an Identity Document Provider extension target (extension point
+com.apple.identity-document-services.document-provider-ui) and implement IdentityDocumentProvider (
+Ref: https://developer.apple.com/documentation/identitydocumentservices/implenting-as-an-identity-document-provider)
+
+#### Registering and unregistering credentials"
+
+After issuing credentials via OID4VCI, registration tells iOS which documents the app can present.
+Call it from the app, on startup and after adding or deleting a credential:
+
+```swift
+try await wallet.registerAllCredentialsForDCApi()
+```
+
+```swift
+try await wallet.unregisterCredentialFromDCApi(credentialId: id)
+```
+
+The first registration triggers the system authorization prompt. Non-mdoc credentials are skipped.
+Each registration
+carries the document's MSO expiry, so iOS stops offering a credential when it expires.
+
+#### Handling a request in the extension
+
+```swift
+let request = try await wallet.digitalCredentialsRequest(
+    requestJson: String(data: rawRequest.requestData, encoding: .utf8)!,
+    origin: context.requestingWebsiteOrigin!
+)
+```
+
+Call `request.match()` to find which stored credentials to satisfy the reader's request
+
+```swift
+let candidates = try await request.match()
+```
+
+Responding after consent + selective disclosure
+
+```swift
+let bytes = try await request.respond(disclosed: chosen)
+return ISO18013MobileDocumentResponse(responseData: bytes)
+```
+
+`request.raw` exposes the original request JSON for integrators who need to inspect or process it
+themselves.
+
 > [!NOTE]
-> iOS 26+ Digital Credentials API support is coming in a future release.
+> Reader trust is set in each wallet's `TrustConfiguration.readerTrust` and applies here and to proximity
+> alike. The extension builds its own wallet, so give it the same configuration, with your reader roots, as
+> the app. The default `EnforceIfPresent` rejects any signed reader whose chain does not reach its
+> `certificates`, so production apps must supply their reader CA roots. `DoNotEnforce` with no roots is for
+> development only; with roots it accepts every reader and still reports in `readerAuth` whether a signing
+> reader chains to them, for a consent screen that warns rather than blocks.
+
+#### Checking availability
+
+```swift
+let status = try await wallet.digitalCredentialsStatus()
+```
+
+iOS responds with either:
+
+```swift
+.authorized, .notDetermined, .notAuthorized, .notSupported, .unsupportedOSVersion, .notConfigured
+```
+
+> [!NOTE]
+> .notAuthorized - user turned `Allow on websites off` for the app in Settings.
+> .notSupported - entitlement missing or document type not permitted.
+> .notConfigured - the SDK storage engine was built without a `keychainAccessGroup`, so nothing is shared
+> with the extension. The platform reports the user and the entitlement; this value reports the engine.
+
+> [!NOTE]
+> `isDCApiAvailable()` reports OS support (iOS 26+) and, for the SDK storage engine, that a keychain
+> group was configured; authorization is what `digitalCredentialsStatus()` returns.
+> `isCredentialRegisteredForDCApi(...)` reflects registrations made through this wallet instance since
+> launch, so call `registerAllCredentialsForDCApi()` first. Both are synchronous.
+
+#### How it works
+
+1. A website calls navigator.credentials.get() in Safari with an org-iso-mdoc request
+2. iOS matches it against the documents the app registered and launches the extension
+3. The extension shows who is asking and what they want, then authenticates the user
+4. The SDK verifies reader authentication, matches credentials, and returns a signed, encrypted
+   DeviceResponse
+5. Safari delivers the response to the website
 
 ## Proximity (ISO/IEC 18013-5)
 
-In-person mdoc exchange. Engagement is over QR or NFC; the credential transfer itself is always BLE (NFC uses negotiated handover to BLE). The wallet can act as the holder (presenting) or the reader (retrieving).
+In-person mdoc exchange. Engagement is over QR or NFC; the credential transfer itself is always BLE (the holder offers NFC negotiated handover to BLE; the reader accepts static and negotiated handover). The wallet can act as the holder (presenting) or the reader (retrieving). Each session takes a `ProximityConfig.Holder` or a `ProximityConfig.Reader`, both with sensible defaults; which readers a holder trusts comes from `TrustConfiguration.readerTrust`.
 
 #### Bluetooth permissions
 
@@ -1901,6 +2392,7 @@ use (no manual runtime request). See `example-ios`.
 1. Call `wallet.startProximityRetrieval(uri, requestedDocuments, config)` to get a `ProximityRetrievalSession`.
 2. Collect `session.events` (`Engagement.Qr.Decoding → Connecting → SendingRequest → WaitingForResponse → ProcessingResponse → Completed`).
 3. The `Completed` event carries the received documents; `Error` carries a message.
+4. To check a received mDL, call `document.getVerificationSummary()` or `document.resolveStatus()`, as for a held credential. See [Checking a credential's status](#checking-a-credentials-status).
 
 ### Engagement over NFC
 
@@ -1921,6 +2413,7 @@ use (no manual runtime request). See `example-ios`.
   - Android: `Engagement.Nfc.Completed → ... (your app supplies the already-discovered Tag, so no RequestingTag is emitted)`
   - ...→ `Connecting → SendingRequest → WaitingForResponse → ProcessingResponse → Completed.`
 3. The `Completed` event carries the received documents; `Error` carries a message.
+4. To check a received mDL, call `document.getVerificationSummary()` or `document.resolveStatus()`, as for a held credential. See [Checking a credential's status](#checking-a-credentials-status).
 
 
 **Android - Holder HCE** — declare the permissions in `AndroidManifest.xml` **and** request them at runtime *before* starting a session: 
@@ -1974,7 +2467,7 @@ See `example-android` for implementation example
 
 ```xml
 nfcAdapter.enableReaderMode(activity, { tag ->
-    wallet.startProximityRetrieval(nfcTag = tag, requestedDocuments, createSigningData, ProximityConfig())
+    wallet.startProximityRetrieval(nfcTag = tag, requestedDocuments, createSigningData, ProximityConfig.Reader())
 }, NfcAdapter.FLAG_READER_NFC_A or NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK, null)
 ```
 
@@ -2354,7 +2847,8 @@ For the iOS example app, see the `/example-ios` folder. For the Android example 
 By default, the wallet uses a 'device bound' key pair for signing and another device bound key pair for storage
 encryption. The default access policies for these key pairs are `DeviceUnlocked`. You can configure the wallet to use a
 different access policy (e.g. requiring biometrics) for signing by overriding the `signingKeyPairFactory` param in
-`getInstance`, or for storage via the `accessPolicy` argument of `getDeviceBoundStorageEngine`.
+`getInstance`, or for storage via the `accessPolicy` argument of `getDeviceBoundStorageEngine`. on Android and the
+`accessControlPolicy` argument of `DeviceBoundAppleStorageEngine` on iOS.
 
 The available access policies for iOS are:
 
@@ -2376,6 +2870,16 @@ The available access policies for Android are:
 > On Android you can request StrongBox-backed keys by passing `useStrongBox = true` to
 > `AndroidDefaultKeyPair`; it falls back to TEE-backed keys on devices without StrongBox.
 
+> [!NOTE]
+> For storage on Android, a policy other than `DeviceUnlocked` needs an `authenticationValidityDuration` above 0. Check
+> `accessPolicy.canAuthenticate(context)` before using one: with no biometric or screen lock set up, the key can't be
+> created. Below API 30 it can report gated policies as unavailable when a screen lock would do. On API 30+, enrolling
+> a new biometric under `CurrentBiometrics`, or removing the screen lock under any of these policies, permanently
+> invalidates the storage key, and reads then throw `KeyPermanentlyInvalidatedException`. Call `deleteAll()` on the
+> storage engine and register again. A signing key created under the same policy, as in the example below, is
+> invalidated too: call `reset()` on it before registering again, because `deleteAll()` and `wallet.destroy()` don't
+> reset a signing key you supply.
+
 <details>
 <summary>Kotlin</summary>
 
@@ -2383,6 +2887,7 @@ The available access policies for Android are:
 val tenMinutes = 10 * 60
 val accessPolicy = KeyPairAccessPolicy.AnyBiometrics(authenticationValidityDuration = tenMinutes)
 val storageEngine = getDeviceBoundStorageEngine(accessPolicy = accessPolicy)
+// When the validity window has lapsed, the SDK prompts on the Activity that is in the foreground.
 
 val wallet = WalletFactory.getInstance(
     baseUrl = "https://api.beta.iproov.id",
@@ -2402,9 +2907,12 @@ val wallet = WalletFactory.getInstance(
 ```swift
 let tenMinutes = 10 * 60
 let accessPolicy = KeyPairAccessPolicy.AnyBiometrics(authenticationValidityDuration: tenMinutes)
-let storageEngine = DeviceBoundAppleStorageEngine(accessControlPolicy: accessPolicy)
+let storageEngine = try DeviceBoundAppleStorageEngine(
+    appGroupIdentifier: "group.com.example.wallet",
+    accessControlPolicy: accessPolicy
+)
 
-let wallet = WalletFactory.shared.getInstance(
+let wallet = try WalletFactory.shared.getInstance(
     baseUrl: "https://api.beta.iproov.id",
     isLoggingEnabled: true,
     storageEngine: storageEngine,
@@ -2435,8 +2943,8 @@ You can supply either or both when your organization needs to own key management
 #### Injection and lifecycle
 
 Pass the signing key through `signingKeyPairFactory` and the storage key through
-`encryptionKeyFactory` on `getDeviceBoundStorageEngine`. Omitting either uses the SDK's default
-device-bound key.
+`encryptionKeyFactory` on `getDeviceBoundStorageEngine` (Android) or `DeviceBoundAppleStorageEngine`
+(iOS). Omitting either uses the SDK's default device-bound key.
 
 > [!IMPORTANT]
 > You are responsible for the security and lifecycle of injected keys. Prefer hardware-backed keys.
@@ -2461,12 +2969,13 @@ val wallet = WalletFactory.getInstance(
 <summary>Swift</summary>
 
 ```swift
-let storageEngine = DeviceBoundAppleStorageEngine(
+let storageEngine = try DeviceBoundAppleStorageEngine(
+    appGroupIdentifier: "group.com.example.wallet",
     accessControlPolicy: KeyPairAccessPolicy.companion.DeviceUnlocked,
     storageEncryptionKeyFactory: { storageKey }
 )
 
-let wallet = WalletFactory.shared.getInstance(
+let wallet = try WalletFactory.shared.getInstance(
     baseUrl: "https://api.beta.iproov.id",
     isLoggingEnabled: true,
     storageEngine: storageEngine,
@@ -2480,7 +2989,7 @@ The SDK resets its default signing key during wallet teardown. Injected signing 
 caller-managed. Swift injected storage keys opt into best-effort reset by implementing
 `ResettableWalletStorageEncryptionKey`.
 
-See [Bring your own key management](docs/bring-your-own-key-management.md) for the complete
+See [Bring your own key management](docs/features/bring-your-own-key-management.md) for the complete
 contracts, implementations, attestation rules, and lifecycle behavior.
 
 ### Adding a document by reference

@@ -113,7 +113,7 @@ final class ProximityPresentationViewModel: ObservableObject {
             do {
                 let session = try await wallet.startProximityPresentation(
                     qr: PresentationMethod.QrPresentation.shared,
-                    config: ProximityConfig())
+                    config: ProximityConfig.Holder())
                 self.session = session
                 collect(session)
             } catch {

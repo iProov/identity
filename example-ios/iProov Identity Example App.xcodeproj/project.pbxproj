@@ -3,13 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0991C180F7A5401F8EEEA02A /* PresentationRequestSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DB091124AF48D08F44E35F /* PresentationRequestSheet.swift */; };
 		1DC8C249B038450EB3EFEC56 /* PresentationRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6DAE64BF7C4202B77074B2 /* PresentationRequestViewModel.swift */; };
 		37AD14F7E5B74C919B47E195 /* PresentationIdentityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4E461D17004912AE4696E6 /* PresentationIdentityExtensions.swift */; };
+		6F42D6033038936B000ED503 /* IdentityDocumentProviderExtension.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 6F42D5FC3038936B000ED503 /* IdentityDocumentProviderExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6F67433A303DDD9200B98559 /* identity in Frameworks */ = {isa = PBXBuildFile; productRef = 6F674339303DDD9200B98559 /* identity */; };
 		AABB0100000000000000000A /* ProximityPresentationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB0200000000000000000B /* ProximityPresentationFlow.swift */; };
 		CA0CDC972D5E17BA005725B7 /* MRZScanner in Frameworks */ = {isa = PBXBuildFile; productRef = CA0CDC962D5E17BA005725B7 /* MRZScanner */; };
 		CA0CDC992D5E17DD005725B7 /* MrzCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0CDC982D5E17DD005725B7 /* MrzCaptureView.swift */; };
@@ -32,7 +34,9 @@
 		CA41567F2D39732000D7A909 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA41567E2D39732000D7A909 /* ErrorView.swift */; };
 		CA8C0DB13010D5D400D9B009 /* ByoKeyConsumerFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8C0DB03010D5D400D9B009 /* ByoKeyConsumerFixture.swift */; };
 		CA8C0DB33010D5D400D9B009 /* UserDefaultsSoftwareKeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8C0DB23010D5D400D9B009 /* UserDefaultsSoftwareKeyPair.swift */; };
-		CAB4C39A2FD1C7FF006D9724 /* identity in Frameworks */ = {isa = PBXBuildFile; productRef = CAB4C3992FD1C7FF006D9724 /* identity */; };
+		AA55000000000000000000C1 /* WalletGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55000000000000000000F1 /* WalletGroups.swift */; };
+		AA55000000000000000000C2 /* WalletGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55000000000000000000F1 /* WalletGroups.swift */; };
+		CA9FF5DA3000204F00EEB3A4 /* identity in Frameworks */ = {isa = PBXBuildFile; productRef = CA9FF5D93000204F00EEB3A4 /* identity */; };
 		CAB748A62D1415BE00F33325 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB748A52D1415BE00F33325 /* App.swift */; };
 		CAB748A82D1415BE00F33325 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB748A72D1415BE00F33325 /* HomeView.swift */; };
 		CAB748AA2D1415C000F33325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB748A92D1415C000F33325 /* Assets.xcassets */; };
@@ -52,21 +56,33 @@
 		CAF398E32D4929CE007D62E3 /* RegisteredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF398E22D4929CE007D62E3 /* RegisteredView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		6F42D6013038936B000ED503 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CAB7489A2D1415BE00F33325 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6F42D5FB3038936B000ED503;
+			remoteInfo = IdentityDocumentProviderExtension;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
-		CA19803E2F9B94E200C2E1E2 /* Embed Frameworks */ = {
+		6F42D5F330389340000ED503 /* Embed ExtensionKit Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
 			files = (
+				6F42D6033038936B000ED503 /* IdentityDocumentProviderExtension.appex in Embed ExtensionKit Extensions */,
 			);
-			name = "Embed Frameworks";
+			name = "Embed ExtensionKit Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		34DB091124AF48D08F44E35F /* PresentationRequestSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationRequestSheet.swift; sourceTree = "<group>"; };
+		6F42D5FC3038936B000ED503 /* IdentityDocumentProviderExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = IdentityDocumentProviderExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F4E461D17004912AE4696E6 /* PresentationIdentityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationIdentityExtensions.swift; sourceTree = "<group>"; };
 		AABB0200000000000000000B /* ProximityPresentationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProximityPresentationFlow.swift; sourceTree = "<group>"; };
 		BC6DAE64BF7C4202B77074B2 /* PresentationRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationRequestViewModel.swift; sourceTree = "<group>"; };
@@ -89,6 +105,7 @@
 		CA41567E2D39732000D7A909 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		CA8C0DB03010D5D400D9B009 /* ByoKeyConsumerFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByoKeyConsumerFixture.swift; sourceTree = "<group>"; };
 		CA8C0DB23010D5D400D9B009 /* UserDefaultsSoftwareKeyPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsSoftwareKeyPair.swift; sourceTree = "<group>"; };
+		AA55000000000000000000F1 /* WalletGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletGroups.swift; path = Shared/WalletGroups.swift; sourceTree = SOURCE_ROOT; };
 		CAB748A22D1415BE00F33325 /* iProov Identity Example App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iProov Identity Example App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB748A52D1415BE00F33325 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		CAB748A72D1415BE00F33325 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -107,13 +124,35 @@
 		CAF398E22D4929CE007D62E3 /* RegisteredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		6F42D6043038936B000ED503 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 6F42D5FB3038936B000ED503 /* IdentityDocumentProviderExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		6F42D5FD3038936B000ED503 /* IdentityDocumentProviderExtension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (6F42D6043038936B000ED503 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = IdentityDocumentProviderExtension; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		6F42D5F93038936B000ED503 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F67433A303DDD9200B98559 /* identity in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAB7489F2D1415BE00F33325 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA9FF5DA3000204F00EEB3A4 /* identity in Frameworks */,
 				CA0CDC972D5E17BA005725B7 /* MRZScanner in Frameworks */,
-				CAB4C39A2FD1C7FF006D9724 /* identity in Frameworks */,
 				CAEE65D52EEC5FAC0088151B /* iProov in Frameworks */,
 				CAD1A8C52D4D1EBD009CD341 /* NFCPassportReader in Frameworks */,
 				CA39CA9E2EA005570051934E /* JOSESwift in Frameworks */,
@@ -127,6 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				CAB748A42D1415BE00F33325 /* iProov Identity Example App */,
+				6F42D5FD3038936B000ED503 /* IdentityDocumentProviderExtension */,
+				AA55000000000000000000F1 /* WalletGroups.swift */,
 				CAB748A32D1415BE00F33325 /* Products */,
 				CAB748B32D141AB300F33325 /* Frameworks */,
 			);
@@ -136,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				CAB748A22D1415BE00F33325 /* iProov Identity Example App.app */,
+				6F42D5FC3038936B000ED503 /* IdentityDocumentProviderExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,6 +277,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6F42D5FB3038936B000ED503 /* IdentityDocumentProviderExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F42D6053038936B000ED503 /* Build configuration list for PBXNativeTarget "IdentityDocumentProviderExtension" */;
+			buildPhases = (
+				6F42D5F83038936B000ED503 /* Sources */,
+				6F42D5F93038936B000ED503 /* Frameworks */,
+				6F42D5FA3038936B000ED503 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				6F42D5FD3038936B000ED503 /* IdentityDocumentProviderExtension */,
+			);
+			name = IdentityDocumentProviderExtension;
+			packageProductDependencies = (
+				6F674339303DDD9200B98559 /* identity */,
+			);
+			productName = IdentityDocumentProviderExtension;
+			productReference = 6F42D5FC3038936B000ED503 /* IdentityDocumentProviderExtension.appex */;
+			productType = "com.apple.product-type.extensionkit-extension";
+		};
 		CAB748A12D1415BE00F33325 /* iProov Identity Example App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAB748B02D1415C000F33325 /* Build configuration list for PBXNativeTarget "iProov Identity Example App" */;
@@ -242,19 +307,20 @@
 				CAB7489F2D1415BE00F33325 /* Frameworks */,
 				CAB7489E2D1415BE00F33325 /* Sources */,
 				CAB748A02D1415BE00F33325 /* Resources */,
-				CA19803E2F9B94E200C2E1E2 /* Embed Frameworks */,
+				6F42D5F330389340000ED503 /* Embed ExtensionKit Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6F42D6023038936B000ED503 /* PBXTargetDependency */,
 			);
 			name = "iProov Identity Example App";
 			packageProductDependencies = (
 				CAD1A8C42D4D1EBD009CD341 /* NFCPassportReader */,
 				CA0CDC962D5E17BA005725B7 /* MRZScanner */,
 				CA39CA9D2EA005570051934E /* JOSESwift */,
+				CA9FF5D93000204F00EEB3A4 /* identity */,
 				CAEE65D42EEC5FAC0088151B /* iProov */,
-				CAB4C3992FD1C7FF006D9724 /* identity */,
 			);
 			productName = "iProov Identity Sample App";
 			productReference = CAB748A22D1415BE00F33325 /* iProov Identity Example App.app */;
@@ -267,9 +333,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
+				LastSwiftUpdateCheck = 2660;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					6F42D5FB3038936B000ED503 = {
+						CreatedOnToolsVersion = 26.6;
+					};
 					CAB748A12D1415BE00F33325 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -296,11 +365,19 @@
 			projectRoot = "";
 			targets = (
 				CAB748A12D1415BE00F33325 /* iProov Identity Example App */,
+				6F42D5FB3038936B000ED503 /* IdentityDocumentProviderExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6F42D5FA3038936B000ED503 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAB748A02D1415BE00F33325 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -313,12 +390,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6F42D5F83038936B000ED503 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA55000000000000000000C2 /* WalletGroups.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAB7489E2D1415BE00F33325 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				CA8C0DB13010D5D400D9B009 /* ByoKeyConsumerFixture.swift in Sources */,
 				CA8C0DB33010D5D400D9B009 /* UserDefaultsSoftwareKeyPair.swift in Sources */,
+				AA55000000000000000000C1 /* WalletGroups.swift in Sources */,
 				CAD1A8CD2D510FDB009CD341 /* AddEmailView.swift in Sources */,
 				CA41567F2D39732000D7A909 /* ErrorView.swift in Sources */,
 				CAB748A82D1415BE00F33325 /* HomeView.swift in Sources */,
@@ -358,7 +444,77 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		6F42D6023038936B000ED503 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6F42D5FB3038936B000ED503 /* IdentityDocumentProviderExtension */;
+			targetProxy = 6F42D6013038936B000ED503 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		6F42D6063038936B000ED503 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = IdentityDocumentProviderExtension/IdentityDocumentProviderExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 622Y49N79Q;
+				ENABLE_DEBUG_DYLIB = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IdentityDocumentProviderExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = IdentityDocumentProviderExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iproov.identity.example.IdentityDocumentProviderExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6F42D6073038936B000ED503 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = IdentityDocumentProviderExtension/IdentityDocumentProviderExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 622Y49N79Q;
+				ENABLE_DEBUG_DYLIB = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IdentityDocumentProviderExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = IdentityDocumentProviderExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iproov.identity.example.IdentityDocumentProviderExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		CAB748AE2D1415C000F33325 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -494,6 +650,8 @@
 				INFOPLIST_FILE = "iProov-Identity-Example-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "iProov Identity Example App";
 				INFOPLIST_KEY_NFCReaderUsageDescription = "iProov ID uses NFC to scan the chip in your passport to verify your identity.";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bluetooth is required to communicate with nearby devices for identity verification.";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Bluetooth is required to communicate with nearby devices for identity verification.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires the camera to scan QR codes and your face.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "For face verification";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -535,6 +693,8 @@
 				INFOPLIST_FILE = "iProov-Identity-Example-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "iProov Identity Example App";
 				INFOPLIST_KEY_NFCReaderUsageDescription = "iProov ID uses NFC to scan the chip in your passport to verify your identity.";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bluetooth is required to communicate with nearby devices for identity verification.";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Bluetooth is required to communicate with nearby devices for identity verification.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires the camera to scan QR codes and your face.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "For face verification";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -563,6 +723,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6F42D6053038936B000ED503 /* Build configuration list for PBXNativeTarget "IdentityDocumentProviderExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F42D6063038936B000ED503 /* Debug */,
+				6F42D6073038936B000ED503 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CAB7489D2D1415BE00F33325 /* Build configuration list for PBXProject "iProov Identity Example App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -605,7 +774,7 @@
 			repositoryURL = "https://github.com/iproov/identity";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.2;
+				minimumVersion = 0.6.0;
 			};
 		};
 		CAD1A8C32D4D1EBD009CD341 /* XCRemoteSwiftPackageReference "NFCPassportReader" */ = {
@@ -627,6 +796,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6F674339303DDD9200B98559 /* identity */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CAB4C3982FD1C7FF006D9724 /* XCRemoteSwiftPackageReference "identity" */;
+			productName = identity;
+		};
 		CA0CDC962D5E17BA005725B7 /* MRZScanner */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CA0CDC952D5E17BA005725B7 /* XCRemoteSwiftPackageReference "MRZScanner" */;
@@ -637,7 +811,7 @@
 			package = CA39CA9C2EA005570051934E /* XCRemoteSwiftPackageReference "JOSESwift" */;
 			productName = JOSESwift;
 		};
-		CAB4C3992FD1C7FF006D9724 /* identity */ = {
+		CA9FF5D93000204F00EEB3A4 /* identity */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CAB4C3982FD1C7FF006D9724 /* XCRemoteSwiftPackageReference "identity" */;
 			productName = identity;

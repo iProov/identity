@@ -15,6 +15,8 @@ class RegisteredViewModel: ObservableObject {
     @Published var credentialSummary = CredentialSummary(credentials: [:], failures: [:])
     @Published var isLoading = false
     @Published var alert: AlertDialog? = nil
+    @Published var dcApiStatus: DCApiStatus = .notDetermined
+    @Published var dcApiRegisteredUuids: Set<String> = []
 
     private let wallet = WalletFactory.shared.instance!
 
@@ -26,6 +28,13 @@ class RegisteredViewModel: ObservableObject {
         }
     }
 
+    var isDcApiEnabled: Bool {
+            switch dcApiStatus {
+            case .notSupported, .unsupportedOsVersion: false
+            default: true
+            }
+        }
+
     /// Async version for use with SwiftUI's refreshable modifier.
     func loadCredentialsAsync() async {
         isLoading = true
@@ -34,16 +43,52 @@ class RegisteredViewModel: ObservableObject {
 
     private func performLoadCredentials() async {
         do {
-            let summary = try await wallet.getCredentials()
-            let legacy = try await wallet.getLegacyCredentials()
-            credentialSummary = summary
-            legacyCredentials = legacy
-        } catch {
+                let summary = try await wallet.getCredentials()
+                let legacy = try await wallet.getLegacyCredentials()
+                credentialSummary = summary
+                legacyCredentials = legacy
+
+                await syncDigitalCredentials(surfacingErrors: false)
+                await refreshDcApiRegistrations(summary)
+        }catch {
             alert = AlertDialog(title: "Failed to load credentials", message: error.localizedDescription)
             credentialSummary = CredentialSummary(credentials: [:], failures: [:])
         }
         isLoading = false
     }
+
+    private func refreshDcApiRegistrations(_ summary: CredentialSummary) async {
+        guard isDcApiEnabled else {
+            dcApiRegisteredUuids = []
+            return
+        }
+        var registered: Set<String> = []
+        for metadata in summary.credentials.keys {
+            if wallet.isCredentialRegisteredForDCApi(metadata: metadata) {
+                registered.insert(metadata.uuid)
+            }
+        }
+        dcApiRegisteredUuids = registered
+    }
+
+    func syncDigitalCredentials(surfacingErrors: Bool = true) async {
+            do {
+                try await wallet.registerAllCredentialsForDCApi()
+                dcApiStatus = try await wallet.digitalCredentialsStatus()
+                await refreshDcApiRegistrations(credentialSummary)
+            } catch {
+                if surfacingErrors {
+                    alert = AlertDialog(title: "Digital Credentials",
+                                        message: error.localizedDescription)
+                }
+            }
+        }
+
+        func refreshDigitalCredentialsStatus() async {
+            if let status = try? await wallet.digitalCredentialsStatus() {
+                dcApiStatus = status
+            }
+        }
 
     /// Deletes a specific credential from the wallet and reloads the list.
     func deleteLegacyCredential(_ credential: LegacyCredential) {
@@ -65,12 +110,26 @@ class RegisteredViewModel: ObservableObject {
             do {
                 try await wallet.deleteCredential(metadata: metadata)
                 loadCredentials()
+                await refreshDcApiRegistrations(credentialSummary)
             } catch {
                 alert = AlertDialog(title: "Failed to delete credential", message: error.localizedDescription)
             }
             isLoading = false
         }
     }
+
+    private func unregisterFromDCApi(credentialMetaData: CredentialMetadata) {
+           guard dcApiRegisteredUuids.contains(credentialMetaData.uuid) else { return }
+           Task {
+               do {
+                   try await wallet.unregisterCredentialFromDCApi(credentialId: credentialMetaData.uuid)
+                   dcApiRegisteredUuids.remove(credentialMetaData.uuid)
+               } catch {
+                   alert = AlertDialog(title: "Digital Credentials",
+                                       message: error.localizedDescription)
+               }
+           }
+       }
 
     func verify(_ credential: LegacyCredential) {
         let hasDtc =  credential.claims.contains{ claim in claim.name == "com.svipe:dtc"}

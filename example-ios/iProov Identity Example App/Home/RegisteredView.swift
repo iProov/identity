@@ -97,7 +97,7 @@ struct RegisteredView: View {
         }
         .refreshable {
             await viewModel.loadCredentialsAsync()
-        }
+        }.task { await viewModel.refreshDigitalCredentialsStatus() }
         .alert(item: $viewModel.alert) { alert in
             Alert(title: Text(alert.title), message: Text(alert.message))
         }
@@ -109,6 +109,7 @@ struct RegisteredView: View {
             List {
                 StoredCredentialsSection(
                     summary: viewModel.credentialSummary,
+                    registeredUuids: viewModel.dcApiRegisteredUuids,
                     onDelete: viewModel.deleteCredential
                 )
 
@@ -117,6 +118,14 @@ struct RegisteredView: View {
                     deleteCredential: viewModel.deleteLegacyCredential,
                     verifyCredential: viewModel.verify
                 )
+
+                if (viewModel.isDcApiEnabled){
+                    DigitalCredentialsSection(
+                        status: viewModel.dcApiStatus,
+                        onSync: { Task { await viewModel.syncDigitalCredentials() } },
+                        showSettingsLink: viewModel.dcApiStatus == .notAuthorized
+                    )
+                }
             }
         } else if !viewModel.isLoading {
             EmptyCredentialsView(path: $path)

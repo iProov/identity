@@ -1,0 +1,329 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../identity/0.6.0/identity-0.6.0.module",
+    "group": "com.iproov.identity",
+    "module": "identity",
+    "version": "0.6.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "com.iproov.kmp",
+          "module": "sdk",
+          "version": {
+            "requires": "2.0.1"
+          },
+          "excludes": [
+            {
+              "group": "io.ktor",
+              "module": "ktor-client-okhttp-jvm"
+            },
+            {
+              "group": "io.ktor",
+              "module": "ktor-client-okhttp"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.21"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-darwin",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-serialization-json",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-serialization-cbor",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-content-negotiation",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-serialization-kotlinx-json",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-logging",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "at.asitplus.signum",
+          "module": "indispensable",
+          "version": {
+            "requires": "3.19.1"
+          }
+        },
+        {
+          "group": "com.benasher44",
+          "module": "uuid",
+          "version": {
+            "requires": "0.8.4"
+          }
+        },
+        {
+          "group": "org.multipaz",
+          "module": "multipaz",
+          "version": {
+            "requires": "0.100.0"
+          }
+        },
+        {
+          "group": "net.orandja.obor",
+          "module": "obor",
+          "version": {
+            "requires": "2.1.3"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "identity-iosArm64Main-0.6.0.klib",
+          "url": "identity-iosarm64-0.6.0.klib",
+          "size": 1489628,
+          "sha512": "c7da548fbab761d9a25c7463327355f8ddfe3988cb19eb46fc477e978e70f50ec5ce7356b3f45bc39a7431d688a4d81e045f2c5514bf3fea76f3f7f531acecf3",
+          "sha256": "42835fdbfa3fe3b0794c848cbcf7cee7e7c9f91f0ab113698ed9a9b6ad40b13d",
+          "sha1": "a5fe81a0cba6b61d65a391d47fc74d91b7f859cb",
+          "md5": "3654a25bd7c11c2604256f2ebf6f6824"
+        },
+        {
+          "name": "identity-iosArm64Cinterop-cinteropMain-0.6.0.klib",
+          "url": "identity-iosarm64-0.6.0-cinterop-cinterop.klib",
+          "size": 2131679,
+          "sha512": "ae5ee2ee51fc427a61bcbcbc31b8d824b935cfcfdd72bbce4685bdf0c49a385f53cd55b8eb3bebe4ea2b3c73333316be630c3547e3a5bec454aaa135b5ae926f",
+          "sha256": "f03f4b6f7490933b328ad394e3238e1c1fd07d43ad37950de1e9d7af08c45810",
+          "sha1": "aed31ac3fedc6f47ac2bee4ba176c843c70ef589",
+          "md5": "6fc7bec583e34577555e9c51393f9d99"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "files": [
+        {
+          "name": "identity-iosarm64-0.6.0-sources.jar",
+          "url": "identity-iosarm64-0.6.0-sources.jar",
+          "size": 259854,
+          "sha512": "5f2f2d80826af488529c956d7e0d82a25bf13e13fc1484f3afa93c3872ca9f35d147b09a5c36a87b438b926db102445f283aa356ef82064de7b0232ecc75b47c",
+          "sha256": "5e1f865c9b2263b082b4e3419847a12e85e7891f43c8c33ce5c14a9f43080859",
+          "sha1": "2c28d1e93f5474815cf5f87bede8c3186666a054",
+          "md5": "a4501459c7323335aa14d30e1309b09d"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "com.iproov.kmp",
+          "module": "sdk",
+          "version": {
+            "requires": "2.0.1"
+          },
+          "excludes": [
+            {
+              "group": "io.ktor",
+              "module": "ktor-client-okhttp-jvm"
+            },
+            {
+              "group": "io.ktor",
+              "module": "ktor-client-okhttp"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.21"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-darwin",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-serialization-json",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-serialization-cbor",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-content-negotiation",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-serialization-kotlinx-json",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-logging",
+          "version": {
+            "requires": "3.3.1"
+          }
+        },
+        {
+          "group": "at.asitplus.signum",
+          "module": "indispensable",
+          "version": {
+            "requires": "3.19.1"
+          }
+        },
+        {
+          "group": "com.benasher44",
+          "module": "uuid",
+          "version": {
+            "requires": "0.8.4"
+          }
+        },
+        {
+          "group": "org.multipaz",
+          "module": "multipaz",
+          "version": {
+            "requires": "0.100.0"
+          }
+        },
+        {
+          "group": "net.orandja.obor",
+          "module": "obor",
+          "version": {
+            "requires": "2.1.3"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "identity-iosarm64-0.6.0-metadata.jar",
+          "url": "identity-iosarm64-0.6.0-metadata.jar",
+          "size": 81923,
+          "sha512": "0bc9b494cedc88e003ddd2d6d0283444b52d1803c66791d7511c79f59d97bcbfbd2e4c32c2b1bc11839a2f684d42f508b49ab9a2b2db976a55ce003ebc910d59",
+          "sha256": "39bf8d26cc686f6e21d480de51f19ed4cffb69e7041814cc4fa9fb5192113f45",
+          "sha1": "57eb3ec1b639cc18ee25cfa0020f9a48ef553a83",
+          "md5": "ee70310a940c619270a932f5e6aa20f8"
+        }
+      ]
+    }
+  ]
+}

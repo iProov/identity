@@ -13,6 +13,7 @@ import identity
 
 struct StoredCredentialsSection: View {
     let summary: CredentialSummary
+    let registeredUuids: Set<String>
     let onDelete: (CredentialMetadata) -> Void
 
     private var readyItems: [StoredCredentialItem] {
@@ -36,11 +37,17 @@ struct StoredCredentialsSection: View {
                 if !readyItems.isEmpty {
                     Section("Credentials") {
                         ForEach(readyItems) { item in
-                            NavigationLink {
-                                StoredCredentialDetailView(item: item)
-                            } label: {
-                                StoredCredentialRow(item: item, onDelete: onDelete)
-                            }
+                            StoredCredentialRow(
+                                item: item,
+                                isRegisteredForDCApi: registeredUuids.contains(item.metadata.uuid),
+                                onDelete: onDelete
+                            )
+                            // Invisible link keeps the row tappable while the row draws its own
+                            // chevron, so the options menu and the chevron share one column.
+                            .background(
+                                NavigationLink { StoredCredentialDetailView(item: item) } label: { EmptyView() }
+                                    .opacity(0)
+                            )
                         }
                     }
                 }
@@ -57,6 +64,50 @@ struct StoredCredentialsSection: View {
                     }
                 }
             }
+        }
+    }
+}
+
+struct DigitalCredentialsSection: View {
+    let status: DCApiStatus
+    let onSync: () -> Void
+    let showSettingsLink: Bool
+
+    /// `default` rather than an exhaustive switch: DCApiStatus is a Kotlin enum exported as a class,
+    /// so Swift cannot prove the cases are complete.
+    private var statusDescription: String {
+        switch status {
+            case .authorized:           "Active"
+            case .notDetermined:        "Not yet requested"
+            case .notAuthorized:        "Turned off in Settings"
+            case .notSupported:         "Not supported for these document types"
+            case .unsupportedOsVersion: "Requires iOS 26"
+            case .notConfigured:        "Not enabled: the storage engine has no keychain access group"
+            default:                    status.name
+        }
+    }
+
+    var body: some View {
+        Section {
+            HStack {
+                Text("Status: ") + Text(statusDescription)
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+            }
+            Button("Sync registrations", action: onSync)
+
+            if showSettingsLink {
+                            Button("Open Settings") {
+                                if let url = URL(string: UIApplication.openSettingsURLString) {
+                                    UIApplication.shared.open(url)
+                                }
+                            }
+                        }
+        } header: {
+            Text("Digital Credentials API")
+        } footer: {
+            Text("Registers mDoc credentials with iOS so websites can request them. "
+                 + "Requires iOS 26 and a doctype listed in the app's entitlement.")
         }
     }
 }
@@ -78,7 +129,10 @@ private struct CredentialFailureItem: Identifiable {
 
 private struct StoredCredentialRow: View {
     let item: StoredCredentialItem
+    let isRegisteredForDCApi: Bool
     let onDelete: (CredentialMetadata) -> Void
+
+    @StateObject private var verification = CredentialVerificationModel()
 
     private var display: DisplayProperties? { item.metadata.bestDisplay }
 
@@ -91,8 +145,8 @@ private struct StoredCredentialRow: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack(alignment: .firstTextBaseline) {
+        HStack(alignment: .top, spacing: 12) {
+            VStack(alignment: .leading, spacing: 8) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(display?.name ?? "Credential")
                         .font(.headline)
@@ -100,7 +154,46 @@ private struct StoredCredentialRow: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
-                Spacer()
+
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Format: \(format)")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+
+                    if let addedDate = formattedDate(milliseconds: item.metadata.addedAt) {
+                        Text("Added: \(addedDate)")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    HStack(spacing: 12) {
+                        // Verified on appear, as the Android card is; the detail screen shows each check.
+                        CompactVerificationBadge(phase: verification.phase)
+
+                        // Only mdocs can be registered, so a "Not registered" label on an SD-JWT would
+                        // read as a problem rather than a fact about the format.
+                        if item.credential is MDocCredential {
+                            Label(
+                                isRegisteredForDCApi ? "Registered with DC-API" : "Not registered with DC-API",
+                                systemImage: isRegisteredForDCApi ? "checkmark.seal.fill" : "seal"
+                            )
+                            .labelStyle(TightLabelStyle())
+                            .font(.caption)
+                            .foregroundStyle(isRegisteredForDCApi ? .green : .secondary)
+                        }
+                    }
+                    .padding(.top, 6)
+                }
+            }
+
+            Spacer(minLength: 0)
+
+            // Menu pinned to the top; chevron centred in the row like the system indicator.
+            ZStack(alignment: .top) {
+                Image(systemName: "chevron.right")
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(.tertiary)
+                    .frame(maxHeight: .infinity)
                 Menu {
                     Button(role: .destructive) {
                         onDelete(item.metadata)
@@ -110,29 +203,24 @@ private struct StoredCredentialRow: View {
                 } label: {
                     Image(systemName: "ellipsis.circle")
                         .imageScale(.large)
-                        .padding(.leading, 4)
                 }
             }
-
-            VStack(alignment: .leading, spacing: 4) {
-                Text("Format: \(format)")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-
-                if let addedDate = formattedDate(milliseconds: item.metadata.addedAt) {
-                    Text("Added: \(addedDate)")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-
-                if let mdoc = item.credential as? MDocCredential {
-                    Text("Doc Type: \(mdoc.docType)")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-            }
+            .frame(maxHeight: .infinity)
         }
         .padding(.vertical, 6)
+        .task(id: item.id) { await verification.verify(item.credential) }
+    }
+}
+
+//Helper function for Icon/Text alignment
+private struct TightLabelStyle: LabelStyle {
+    var spacing: CGFloat = 3
+
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: spacing) {
+            configuration.icon
+            configuration.title
+        }
     }
 }
 
@@ -196,10 +284,14 @@ private struct CredentialFailureRow: View {
 private struct StoredCredentialDetailView: View {
     let item: StoredCredentialItem
 
+    @StateObject private var verification = CredentialVerificationModel()
+
     private var display: DisplayProperties? { item.metadata.bestDisplay }
 
     var body: some View {
         List {
+            VerificationSection(model: verification, credential: item.credential)
+
             Section("Overview") {
                 DetailRow(label: "Name", value: display?.name)
                 DetailRow(label: "Issuer", value: item.metadata.issuer.name)
@@ -237,6 +329,7 @@ private struct StoredCredentialDetailView: View {
             }
         }
         .navigationTitle(display?.name ?? "Credential")
+        .task { await verification.verify(item.credential) }
     }
 }
 
@@ -628,3 +721,264 @@ extension LegacyCredential: Identifiable {
 }
 
 extension Claim: Identifiable {}
+
+// MARK: - Verification status (mirrors the Android example app's badges and verification details)
+
+// MARK: - Model
+
+/// Runs `getVerificationSummary()` for one credential, held or received, and publishes the outcome.
+@MainActor
+final class CredentialVerificationModel: ObservableObject {
+    enum Phase {
+        case idle
+        case verifying
+        case verified(VerificationSummary)
+        case failed(String)
+    }
+
+    @Published private(set) var phase: Phase = .idle
+
+    var isVerifying: Bool {
+        if case .verifying = phase { return true }
+        return false
+    }
+
+    func verify(_ credential: any Credential) async {
+        await run { try await credential.getVerificationSummary() }
+    }
+
+    /// An mDL the proximity reader received: the same summary as a held mDL, so the same badge.
+    func verify(_ document: ReceivedMDocCredential) async {
+        await run {
+            let summary = try await document.getVerificationSummary()
+            // No checks, or only the TrustAll warning: no status reference was checked.
+            guard summary.results.allSatisfy({
+                $0.check == "issuer_trust" && $0.status == .indeterminate
+            }) else {
+                return summary
+            }
+            return VerificationSummary(results: summary.results + [
+                VerificationResult(
+                    check: "status_list",
+                    status: .indeterminate,
+                    reason: "Credential has no status reference",
+                    details: ["cause": "no_status"]
+                )
+            ])
+        }
+    }
+
+    private func run(_ summary: () async throws -> VerificationSummary) async {
+        if isVerifying { return }
+        phase = .verifying
+        do {
+            phase = .verified(try await summary())
+        } catch {
+            phase = .failed(error.localizedDescription)
+        }
+    }
+}
+
+// MARK: - Styling
+
+private struct VerificationStyle {
+    let label: String
+    let systemImage: String
+    let color: Color
+}
+
+private let verifiedGreen = Color(red: 0.04, green: 0.53, blue: 0.33)  // Android 0xFF0A8754
+private let pendingAmber = Color(red: 0.90, green: 0.63, blue: 0.0)    // Android 0xFFE6A000
+
+/// Per-check outcome, labelled as the Android app's verification details rows are.
+/// `default` because VerificationStatus is a Kotlin enum exported as a class.
+private func resultStyle(_ status: VerificationStatus) -> VerificationStyle {
+    switch status {
+    case .valid:            return .init(label: "Valid", systemImage: "checkmark.circle.fill", color: verifiedGreen)
+    case .expired:          return .init(label: "Expired", systemImage: "exclamationmark.circle.fill", color: .red)
+    case .revoked:          return .init(label: "Revoked", systemImage: "exclamationmark.circle.fill", color: .red)
+    case .notYetValid:      return .init(label: "Not yet valid", systemImage: "hourglass.bottomhalf.filled", color: pendingAmber)
+    case .issuerUntrusted:  return .init(label: "Issuer untrusted", systemImage: "exclamationmark.triangle.fill", color: .red)
+    case .signatureInvalid: return .init(label: "Signature invalid", systemImage: "exclamationmark.triangle.fill", color: .red)
+    case .malformed:        return .init(label: "Malformed", systemImage: "exclamationmark.triangle.fill", color: .red)
+    case .indeterminate:    return .init(label: "Indeterminate", systemImage: "shield.fill", color: .secondary)
+    default:                return .init(label: status.name, systemImage: "questionmark.circle", color: .secondary)
+    }
+}
+
+/// The overall verdict, labelled as the Android app's compact card badge is.
+private func concludedStyle(_ status: VerificationStatus) -> VerificationStyle {
+    switch status {
+    case .valid:       return .init(label: "Verified", systemImage: "checkmark.seal.fill", color: verifiedGreen)
+    case .expired:     return .init(label: "Expired", systemImage: "exclamationmark.circle.fill", color: .red)
+    case .revoked:     return .init(label: "Revoked", systemImage: "exclamationmark.circle.fill", color: .red)
+    case .notYetValid: return .init(label: "Pending", systemImage: "clock", color: pendingAmber)
+    default:           return .init(label: "Issue", systemImage: "exclamationmark.triangle.fill", color: .red)
+    }
+}
+
+private let failedStyle = VerificationStyle(label: "Issue", systemImage: "exclamationmark.triangle.fill", color: .red)
+
+// MARK: - Badges
+
+/// Inline badge for a credential row: "Verifying…", then the summary's concluded status.
+struct CompactVerificationBadge: View {
+    let phase: CredentialVerificationModel.Phase
+
+    var body: some View {
+        switch phase {
+        case .idle:
+            EmptyView()
+        case .verifying:
+            HStack(spacing: 4) {
+                ProgressView().controlSize(.small)
+                Text("Verifying…")
+            }
+            .font(.caption)
+            .foregroundStyle(.secondary)
+        case .verified(let summary):
+            InlineBadge(style: concludedStyle(summary.concluded))
+        case .failed:
+            InlineBadge(style: failedStyle)
+        }
+    }
+}
+
+/// Capsule badge for the overall status on the detail screen.
+struct VerificationStatusBadge: View {
+    let status: VerificationStatus
+
+    var body: some View {
+        let style = resultStyle(status)
+        HStack(spacing: 4) {
+            Image(systemName: style.systemImage)
+            Text(style.label)
+        }
+        .font(.caption.weight(.semibold))
+        .foregroundStyle(style.color)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 5)
+        .background(style.color.opacity(0.12), in: Capsule())
+    }
+}
+
+private struct InlineBadge: View {
+    let style: VerificationStyle
+
+    var body: some View {
+        HStack(spacing: 3) {
+            Image(systemName: style.systemImage)
+            Text(style.label)
+        }
+        .font(.caption.weight(.medium))
+        .foregroundStyle(style.color)
+    }
+}
+
+// MARK: - Detail section
+
+/// "Verification" section for the credential detail screen: the concluded status, one row per
+/// check and a button to run the checks again, like the Android app's verification details sheet.
+struct VerificationSection: View {
+    @ObservedObject var model: CredentialVerificationModel
+    let credential: any Credential
+
+    var body: some View {
+        Section("Verification") {
+            HStack {
+                Text("Status")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                statusView
+            }
+
+            switch model.phase {
+            case .verified(let summary):
+                ForEach(Array(summary.results.enumerated()), id: \.offset) { entry in
+                    VerificationResultRow(result: entry.element)
+                }
+            case .failed(let message):
+                Text(message)
+                    .font(.footnote)
+                    .foregroundStyle(.red)
+            default:
+                EmptyView()
+            }
+
+            Button("Verify again") {
+                Task { await model.verify(credential) }
+            }
+            .disabled(model.isVerifying)
+        }
+    }
+
+    @ViewBuilder
+    private var statusView: some View {
+        switch model.phase {
+        case .idle:
+            Text("—")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+        case .verifying:
+            HStack(spacing: 6) {
+                ProgressView().controlSize(.small)
+                Text("Verifying…")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+        case .verified(let summary):
+            VerificationStatusBadge(status: summary.concluded)
+        case .failed:
+            InlineBadge(style: failedStyle)
+        }
+    }
+}
+
+/// One check from the summary: its name, outcome, reason and details.
+struct VerificationResultRow: View {
+    let result: VerificationResult
+
+    private var details: [(key: String, value: String)] {
+        result.details.sorted { $0.key < $1.key }
+    }
+
+    var body: some View {
+        let style = resultStyle(result.status)
+        VStack(alignment: .leading, spacing: 4) {
+            HStack(spacing: 8) {
+                Image(systemName: style.systemImage)
+                    .foregroundStyle(style.color)
+                Text(result.check)
+                    .font(.subheadline.weight(.medium))
+                Spacer()
+                Text(style.label)
+                    .font(.caption.weight(.medium))
+                    .foregroundStyle(style.color)
+            }
+            if let reason = result.reason {
+                Text(reason)
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+            if !details.isEmpty {
+                VStack(alignment: .leading, spacing: 2) {
+                    ForEach(details, id: \.key) { entry in
+                        HStack(alignment: .top) {
+                            Text(entry.key)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                            Spacer()
+                            Text(entry.value)
+                                .font(.caption)
+                                .multilineTextAlignment(.trailing)
+                                .textSelection(.enabled)
+                        }
+                    }
+                }
+                .padding(.top, 2)
+            }
+        }
+        .padding(.vertical, 4)
+    }
+}
